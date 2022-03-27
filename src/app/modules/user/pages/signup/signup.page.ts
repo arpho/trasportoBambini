@@ -27,11 +27,13 @@ export class SignupPage implements OnInit,OnDestroy {
     this.usersFields = [,new TextboxQuestion({
       key:'name',
       label:'nome',
+      required:true,
       order:1
 
     }),new TextboxQuestion({
-      key:'surName',
+      key:'surname',
       label:'cognome',
+      required:true,
       order:2
 
     })]
