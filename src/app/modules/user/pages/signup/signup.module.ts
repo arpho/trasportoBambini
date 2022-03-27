@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SignupPage } from './signup.page';
+import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.module';
 
 const routes: Routes = [
   {
@@ -14,13 +15,15 @@ const routes: Routes = [
   }
 ];
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule.forRoot(),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    DynamicFormModule
   ],
   declarations: [SignupPage]
 })

@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscriber, Subscription } from 'rxjs';
+import { QuestionBase } from 'src/app/modules/dynamic-form/models/question-base';
+import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -11,15 +13,28 @@ import { Subscriber, Subscription } from 'rxjs';
 })
 export class SignupPage implements OnInit,OnDestroy {
   public signupForm: FormGroup;
+  public usersFields:any
   public modal: any;
   subscription:Subscription
   constructor(
+    public modalCtrl: ModalController,
     private authService: AuthService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder,
     private router: Router
   ) {
+    this.usersFields = [,new TextboxQuestion({
+      key:'name',
+      label:'nome',
+      order:1
+
+    }),new TextboxQuestion({
+      key:'surName',
+      label:'cognome',
+      order:2
+
+    })]
     this.signupForm = this.formBuilder.group({
       email: [
         '',
@@ -38,6 +53,18 @@ export class SignupPage implements OnInit,OnDestroy {
   }
 
   ngOnInit() { }
+
+  filter(ev) {
+    console.log('ciao',ev)
+  }
+  dismiss(payment?) {
+    this.modalCtrl.dismiss(payment)
+  }
+
+  submit(ev) {
+    
+
+  }
 
   async signupUser(signupForm: FormGroup): Promise<void> {
     if (!signupForm.valid) {

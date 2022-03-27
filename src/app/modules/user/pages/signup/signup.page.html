@@ -35,4 +35,7 @@ signupForm.controls['password'].touched">
       Create an Account
     </ion-button>
   </form>
+
+
+  <app-dynamic-form [questions]="usersFields" (interactiveSubmit)="filter($event)" (singleSubmit)="submit($event)"></app-dynamic-form>
 </ion-content>
