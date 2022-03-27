@@ -1,0 +1,7 @@
+{
+  "name": "PulizieGnosis",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
