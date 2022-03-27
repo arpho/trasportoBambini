@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
@@ -12,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class FolderPage implements OnInit {
   public folder: string;
   log = console.log.bind(document)
-  constructor(private activatedRoute: ActivatedRoute,private router:Router,public httpClient:HttpClient) { }
+  constructor(private activatedRoute: ActivatedRoute,private router:Router) { }
 
   fileToUpload: File = null;
 
@@ -20,14 +19,7 @@ onFileSelect(files: FileList) {
     this.fileToUpload = files.item(0);
 }
 
-// call this method when you want the upload to begin
-uploadFile(fileToUpload: File): Observable<Object> {
-    const endpoint = 'backend-upload-url';
-    const formData: FormData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    return this.httpClient
-      .post(endpoint, formData)
-}
+
 
   
 
@@ -40,7 +32,7 @@ uploadFile(fileToUpload: File): Observable<Object> {
     const auth = getAuth()
  onAuthStateChanged(auth,(user)=>{
    if(user){
-     this.log('user ok',user)
+     this.log('user ok è',user)
    }
    else{
      this.log('no user')
