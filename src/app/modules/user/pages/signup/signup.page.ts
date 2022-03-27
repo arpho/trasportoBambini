@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Subscriber, Subscription } from 'rxjs';
 import { QuestionBase } from 'src/app/modules/dynamic-form/models/question-base';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
+import { UserModel } from '../../models/userModel';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -36,6 +38,12 @@ export class SignupPage implements OnInit,OnDestroy {
       required:true,
       order:2
 
+    }),new EmailQuestion({
+      key:'email',
+      label:'email',
+      required:true,
+      order:3
+
     })]
     this.signupForm = this.formBuilder.group({
       email: [
@@ -63,8 +71,9 @@ export class SignupPage implements OnInit,OnDestroy {
     this.modalCtrl.dismiss(payment)
   }
 
-  submit(ev) {
-    
+  async submit(ev) {
+    const user = new UserModel().load(ev)
+    console.log('submitting',ev,user)
 
   }
 

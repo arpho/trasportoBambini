@@ -12,7 +12,7 @@
     />
     
     
-    <div [ngSwitch]="question?.controlType" class='question'>
+    <section [ngSwitch]="question?.controlType" class='question'>
       <ion-textarea
       ngDefaultControl
         *ngSwitchCase="'textArea'"
@@ -22,17 +22,30 @@
         autoGrow="question?.autoGrow"
         [value]= "question?.value"
       ></ion-textarea>
-      </div>
+      </section>
 
+<section *ngSwitchCase="'email'"
+         >
 
+          <input 
+          class='question'
+          [formControlName]="question?.key"
+          [value]= "question?.value"
+          [id]="question.key"
+          [type]="email">
+
+     
+          
+
+    </section>
   
 
-    <div *ngSwitchCase="'datebox'" class='question'>
+    <section *ngSwitchCase="'datebox'" class='question'>
       <ion-datetime [formControlName]="question?.key" [id]="question?.key">
       </ion-datetime>
-    </div>
+    </section>
 
-    <div *ngSwitchCase="'switchBox'" class="question">
+    <section *ngSwitchCase="'switchBox'" class="question">
       <p class="switchText">
         {{ getValue ? question.labelTrue : question.labelFalse }}
       </p>
@@ -43,10 +56,10 @@
         [formControlName]="question?.key"
         [id]="question?.key"
       ></ion-toggle>
-    </div>
+    </section>
     
  
-    <div *ngSwitchCase="'itemSelector'"
+    <section *ngSwitchCase="'itemSelector'"
     class="question"
     [formControlName]="question?.key"
     [id]="question?.key"
@@ -62,7 +75,7 @@
           [item]="question?.value"
           (selectedItem)="question.selectedItem($event)" ></app-selector-items>
       
-    </div>
+    </section>
     <select
       [id]="question?.key"
       *ngSwitchCase="'dropdown'"
@@ -74,7 +87,7 @@
       }}</option>
     </select>
 
-  <div style="color:red" *ngIf="!isValid">
-    {{ question ? question.label : "" }} is required
-  </div>
+  <section style="color:red" *ngIf="!isValid">
+    {{ question ? question.label : "" }} è richiesto
+  </section>
 </div>
