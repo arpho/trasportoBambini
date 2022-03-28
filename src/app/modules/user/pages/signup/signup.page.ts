@@ -8,6 +8,7 @@ import { QuestionBase } from 'src/app/modules/dynamic-form/models/question-base'
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
 import { UserModel } from '../../models/userModel';
+import { PasswordQuestion } from 'src/app/modules/dynamic-form/models/password-question';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -44,7 +45,11 @@ export class SignupPage implements OnInit,OnDestroy {
       required:true,
       order:3
 
-    })]
+    }),
+  
+  new PasswordQuestion({key:'password',
+label:'password'
+})]
     this.signupForm = this.formBuilder.group({
       email: [
         '',

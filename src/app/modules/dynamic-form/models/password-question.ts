@@ -1,9 +1,12 @@
 import { QuestionBase } from "./question-base";
 import { QuestionProperties } from './questionproperties';
 
-export class passwordQuestion extends QuestionBase<string>{
+export interface passwordQuestionProperties extends QuestionProperties<string>{
+repeatPassword?:boolean
+}
+export class PasswordQuestion extends QuestionBase<string>{
     controlType='password'
-    type:'password'
+    type:string
     constructor(options:QuestionProperties<string>){
         super(options)
     

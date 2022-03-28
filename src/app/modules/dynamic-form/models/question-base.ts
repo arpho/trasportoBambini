@@ -16,6 +16,7 @@ export class QuestionBase<T> {
   type: string | ItemModelInterface
   controlType: string;
   iconTrue: string;
+  repeatPassword?:boolean
   iconFalse: string;
   labelTrue: string;
   service: ItemServiceInterface
