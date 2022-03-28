@@ -26,7 +26,7 @@ export class SignupPage implements OnInit,OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router
   ) {
-    this.usersFields = [,new TextboxQuestion({
+    this.usersFields = [new TextboxQuestion({
       key:'name',
       label:'nome',
       required:true,
