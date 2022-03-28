@@ -6,9 +6,10 @@ import { QuestionFormComponent } from './components/question-form-component/ques
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { QuestionControlService } from './services/question-control.service';
 import { ItemModule } from '../item/item.module';
+import { PasswordFieldComponent } from './components/password-field/password-field.component';
 
 @NgModule({
-  declarations: [QuestionFormComponent, DynamicFormComponent],
+  declarations: [QuestionFormComponent, DynamicFormComponent,PasswordFieldComponent],
   imports: [
     CommonModule,
     IonicModule.forRoot(),
