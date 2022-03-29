@@ -42,7 +42,7 @@
     <section *ngSwitchCase="'password'">
       <input
       class='question'
-       
+      [formControlName]="question?.key"
           [value]= "question?.value"
           [id]="question.key"
       type=" password">

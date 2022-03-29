@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { StringMappingType } from 'typescript';
 
 @Component({
@@ -12,10 +12,27 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
   disabled: boolean;
-  password: string
-  repeatedPasword:string
+  password: string;
+  _id:string
+  @Input()
+  set id(id){
+    this._id= id
+  }
 
-  constructor() { }
+  get id(){
+    return this._id
+  }
+  repeatedPasword:string
+@Input()
+  set value(pass:string){
+    this.password= pass
+  }
+
+  get value(){
+    return this.password
+  }
+
+  constructor(public ngControl: NgControl) { }
   writeValue(obj: any): void {
     this.password= obj
   }
