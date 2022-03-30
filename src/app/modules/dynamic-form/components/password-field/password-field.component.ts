@@ -9,49 +9,51 @@ import { StringMappingType } from 'typescript';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      multi:true,
+      multi: true,
       useExisting: PasswordFieldComponent
     }
   ]
 })
-export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
-  private onChange: Function = (password:string) => { };
+export class PasswordFieldComponent implements OnInit, ControlValueAccessor {
+  private onChange: Function = (password: string) => { };
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
   disabled: boolean;
-  password='';
-  passwordForm:FormGroup
+  password = '';
+  passwordForm: FormGroup
   touched = false;
-  _id:string
+  _id: string
   @Input()
-  set id(id){
-    this._id= id
+  set id(id) {
+    this._id = id
   }
 
-  get id(){
+  get id() {
     return this._id
   }
-  repeatedPasword:string
-@Input()
-  set value(pass:string){
-    this.password= pass
+  repeatedPasword: string
+  @Input()
+  set value(pass: string) {
+    this.password = pass
   }
 
-  get value(){
+  get value() {
     return this.password
   }
 
-  constructor(formBuilder:FormBuilder) { 
-    this.passwordForm = formBuilder.group({password:new FormControl(this.password),
-                                            retype:''})
+  constructor(formBuilder: FormBuilder) {
+    this.passwordForm = formBuilder.group({
+      password: new FormControl(this.password),
+      retype: ''
+    })
 
-    this.passwordForm.valueChanges.subscribe(d=>{
+    this.passwordForm.valueChanges.subscribe(d => {
       this.markAsTouched()
       this.onChange(d.password)
     })
   }
   writeValue(pass: string): void {
-    this.password= pass
+    this.password = pass
   }
   registerOnChange(fn) {
     this.onChange = fn;
@@ -60,7 +62,7 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
     this.onTouch = fn;
   }
 
-  
+
   setDisabledState(disabled: boolean): void {
     this.disabled = disabled;
   }
@@ -72,6 +74,6 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
