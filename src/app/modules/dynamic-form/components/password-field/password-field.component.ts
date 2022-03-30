@@ -13,6 +13,7 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
   private onTouch: Function = () => { };
   disabled: boolean;
   password: string;
+  touched = false;
   _id:string
   @Input()
   set id(id){
