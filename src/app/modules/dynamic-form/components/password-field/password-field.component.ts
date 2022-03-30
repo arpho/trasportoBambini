@@ -1,11 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { StringMappingType } from 'typescript';
 
 @Component({
   selector: 'app-password-field',
   templateUrl: './password-field.component.html',
   styleUrls: ['./password-field.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi:true,
+      useExisting: PasswordFieldComponent
+    }
+  ]
 })
 export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
   private onChange: Function = (password:string) => { };
