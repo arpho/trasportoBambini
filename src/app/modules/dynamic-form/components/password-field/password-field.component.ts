@@ -46,7 +46,8 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
                                             retype:''})
 
     this.passwordForm.valueChanges.subscribe(d=>{
-      console.log('password',d)
+      this.markAsTouched()
+      this.onChange(d.password)
     })
   }
   writeValue(pass: string): void {
