@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { StringMappingType } from 'typescript';
 
 @Component({
@@ -42,8 +42,12 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
   }
 
   constructor(formBuilder:FormBuilder) { 
-    this.passwordForm = formBuilder.group({password:this.password,
+    this.passwordForm = formBuilder.group({password:new FormControl(this.password),
                                             retype:''})
+
+    this.passwordForm.valueChanges.subscribe(d=>{
+      console.log('password',d)
+    })
   }
   writeValue(pass: string): void {
     this.password= pass
