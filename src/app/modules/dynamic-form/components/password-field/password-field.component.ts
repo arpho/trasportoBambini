@@ -33,8 +33,8 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
   }
 
   constructor(public ngControl: NgControl) { }
-  writeValue(obj: any): void {
-    this.password= obj
+  writeValue(pass: string): void {
+    this.password= pass
   }
   registerOnChange(fn) {
     this.onChange = fn;
