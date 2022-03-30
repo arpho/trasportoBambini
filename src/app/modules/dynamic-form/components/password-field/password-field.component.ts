@@ -40,7 +40,7 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
     return this.password
   }
 
-  constructor(public ngControl: NgControl) { }
+  constructor() { }
   writeValue(pass: string): void {
     this.password= pass
   }
