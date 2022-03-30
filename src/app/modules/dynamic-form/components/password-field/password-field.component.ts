@@ -49,6 +49,13 @@ export class PasswordFieldComponent implements OnInit,ControlValueAccessor {
     this.disabled = disabled;
   }
 
+  markAsTouched() {
+    if (!this.touched) {
+      this.onTouch();
+      this.touched = true;
+    }
+  }
+
   ngOnInit() {}
 
 }
