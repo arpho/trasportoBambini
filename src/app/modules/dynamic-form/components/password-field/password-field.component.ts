@@ -64,7 +64,6 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
    console.log('value',password,password.password==password.retype)
    if(password.password!=password.retype){
      return {
-       mustMatch:{}
      }
    
    }
