@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { StringMappingType } from 'typescript';
 
 @Component({
@@ -14,7 +14,7 @@ import { StringMappingType } from 'typescript';
     }
   ]
 })
-export class PasswordFieldComponent implements OnInit, ControlValueAccessor {
+export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Validator {
   private onChange: Function = (password: string) => { };
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
@@ -23,6 +23,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor {
   passwordForm: FormGroup
   touched = false;
   _id: string
+  retype: string;
   @Input()
   set id(id) {
     this._id = id
@@ -44,13 +45,19 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor {
   constructor(formBuilder: FormBuilder) {
     this.passwordForm = formBuilder.group({
       password: new FormControl(this.password),
-      retype: ''
+      retype: new FormControl(this.retype)
     })
 
     this.passwordForm.valueChanges.subscribe(d => {
       this.markAsTouched()
       this.onChange(d.password)
     })
+  }
+  validate(control: AbstractControl): ValidationErrors {
+    throw new Error('Method not implemented.');
+  }
+  registerOnValidatorChange?(fn: () => void): void {
+    throw new Error('Method not implemented.');
   }
   writeValue(pass: string): void {
     this.password = pass
