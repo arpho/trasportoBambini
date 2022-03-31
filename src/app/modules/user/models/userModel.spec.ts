@@ -46,8 +46,8 @@ describe("serialize should work", () => {
     expect(serializedUser.firstName).toBe(val.firstName);
     expect(serializedUser.lastName).toBe(val.lastName);
     expect(serializedUser.level).toBe(val.level);
-    expect(serializedUser.birthDate.day).toBe(val.birthDate.day);
-    expect(serializedUser.birthDate.month).toBe(val.birthDate.month);
-    expect(serializedUser.birthDate.year).toBe(val.birthDate.year);
+    expect(serializedUser.birthDate['day']).toBe(val.birthDate.day);
+    expect(serializedUser.birthDate['month']).toBe(val.birthDate.month);
+    expect(serializedUser.birthDate['year']).toBe(val.birthDate.year);
   });
 });
