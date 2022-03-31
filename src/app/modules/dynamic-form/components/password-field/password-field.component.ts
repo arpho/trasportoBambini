@@ -41,7 +41,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
   get id() {
     return this._id
   }
-  repeatedPasword: string
+  retypePasword: string
   @Input()
   set value(pass: string) {
     this.password = pass
