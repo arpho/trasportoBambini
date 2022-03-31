@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
 import { StringMappingType } from 'typescript';
 
 @Component({
@@ -9,6 +9,11 @@ import { StringMappingType } from 'typescript';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: PasswordFieldComponent
+    },
+    {
+      provide: NG_VALIDATORS,
       multi: true,
       useExisting: PasswordFieldComponent
     }
@@ -53,8 +58,14 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
       this.onChange({password:d.password,retype:d.retype})
     })
   }
-  validate(control: AbstractControl): ValidationErrors {
-    throw new Error('Method not implemented.');
+  validate(control: AbstractControl): ValidationErrors |null {
+   const password = control.value
+   if(password!=this.retype){
+     return {
+       mustMatch:{}
+     }
+   
+   }
   }
   registerOnValidatorChange?(fn: () => void): void {
     throw new Error('Method not implemented.');
