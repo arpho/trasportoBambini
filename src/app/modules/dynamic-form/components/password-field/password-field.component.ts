@@ -25,6 +25,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
   private onValidationChange: any = () => {};
+  @Input()retypePassword:string
   disabled: boolean;
   password = '';
   passwordForm: FormGroup
