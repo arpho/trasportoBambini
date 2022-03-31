@@ -61,18 +61,10 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
     return this.match ||!this.touched ||(this.touched&&!Boolean(this.retypePassword)&&!this.match)
   }
 
-  constructor(formBuilder: FormBuilder) {
-    this.passwordForm = this.retypePassword? formBuilder.group({
-      password: new FormControl(this.password,Validators.required),
-      retype: new FormControl(this.retype)
-    }): formBuilder.group({
-      password: new FormControl(this.password,Validators.required)})
-
-    this.subscription = this.passwordForm.valueChanges.subscribe(d => {
-      this.markAsTouched()
-      this.onChange({password:d.password,retype:d.retype})
-      console.log('password is valid',d.password==d.retype)
-    })
+  constructor(public formBuilder: FormBuilder) {
+   
+console.log('form',this.passwordForm)
+    
   }
   ngOnDestroy(): void {
     if(this.subscription){
@@ -117,6 +109,18 @@ if(this.retypePassword){
   ngOnInit() { 
 
     console.log('retype',this.retypePassword)
+    this.passwordForm = this.retypePassword? this.formBuilder.group({
+      password: new FormControl(this.password,Validators.required),
+      retype: new FormControl(this.retype)
+    }): this.formBuilder.group({
+      password: new FormControl(this.password,Validators.required)})
+      console.log('retype',this.retypePassword)
+
+      this.subscription = this.passwordForm.valueChanges.subscribe(d => {
+        this.markAsTouched()
+        this.onChange({password:d.password,retype:d.retype})
+        console.log('password is valid',d.password==d.retype)
+      })
   }
 
 }
