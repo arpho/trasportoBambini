@@ -58,14 +58,15 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
   get isValid() {
     //return !this.touched|| this.passwordForm.value.password==this.passwordForm.value.retype ;
     console.log('match',this.match,'touched',this.touched,'retype',this.retypePassword)
-    return this.match ||!this.touched ||(this.touched&&!this.retypePassword&&!this.match)
+    return this.match ||!this.touched ||(this.touched&&!Boolean(this.retypePassword)&&!this.match)
   }
 
   constructor(formBuilder: FormBuilder) {
-    this.passwordForm = formBuilder.group({
+    this.passwordForm = this.retypePassword? formBuilder.group({
       password: new FormControl(this.password,Validators.required),
       retype: new FormControl(this.retype)
-    })
+    }): formBuilder.group({
+      password: new FormControl(this.password,Validators.required)})
 
     this.subscription = this.passwordForm.valueChanges.subscribe(d => {
       this.markAsTouched()
@@ -81,10 +82,12 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
   validate(control: AbstractControl): ValidationErrors |null {
    const password = control.value
    console.log('value',password,password.password==password.retype)
+
+if(this.retypePassword){
    if(password.password!=password.retype){
      return {passwordMismatch:{}}
    
-   }
+   }}
   }
   registerOnValidatorChange?(fn: () => void): void {
     this.onValidationChange= fn
