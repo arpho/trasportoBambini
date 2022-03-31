@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { StringMappingType } from 'typescript';
 
 @Component({
@@ -19,7 +20,7 @@ import { StringMappingType } from 'typescript';
     }
   ]
 })
-export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Validator {
+export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Validator,OnDestroy {
   private onChange: Function = (password: string) => { };
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
@@ -28,6 +29,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
   password = '';
   passwordForm: FormGroup
   touched = false;
+  subscription:Subscription
   _id: string
   retype: string;
   @Input()
@@ -54,10 +56,15 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
       retype: new FormControl(this.retype)
     })
 
-    this.passwordForm.valueChanges.subscribe(d => {
+    this.subscription = this.passwordForm.valueChanges.subscribe(d => {
       this.markAsTouched()
       this.onChange({password:d.password,retype:d.retype})
     })
+  }
+  ngOnDestroy(): void {
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
   }
   validate(control: AbstractControl): ValidationErrors |null {
    const password = control.value
