@@ -50,7 +50,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
 
     this.passwordForm.valueChanges.subscribe(d => {
       this.markAsTouched()
-      this.onChange(d.password)
+      this.onChange({password:d.password,retype:d.retype})
     })
   }
   validate(control: AbstractControl): ValidationErrors {
