@@ -70,7 +70,7 @@ label:'password'
   ngOnInit() { }
 
   filter(ev) {
-    console.log('ciao',ev)
+    console.log(ev.password,ev.retype)
   }
   dismiss(payment?) {
     this.modalCtrl.dismiss(payment)
