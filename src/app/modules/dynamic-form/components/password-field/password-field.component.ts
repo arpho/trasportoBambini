@@ -20,17 +20,17 @@ import { StringMappingType } from 'typescript';
     }
   ]
 })
-export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Validator,OnDestroy {
+export class PasswordFieldComponent implements OnInit, ControlValueAccessor, Validator, OnDestroy {
   private onChange: Function = (password: string) => { };
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
-  private onValidationChange: any = () => {};
-  @Input()retypePassword:boolean
+  private onValidationChange: any = () => { };
+  @Input() retypePassword: boolean
   disabled: boolean;
   password = '';
   passwordForm: FormGroup
   touched = false;
-  subscription:Subscription
+  subscription: Subscription
   _id: string
   retype: string;
   @Input()
@@ -51,38 +51,36 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
     return this.password
   }
 
-  get match(){
-    return this.passwordForm.value.password==this.passwordForm.value.retype
+  get match() {
+    return this.passwordForm.value.password == this.passwordForm.value.retype
   }
 
   get isValid() {
-    //return !this.touched|| this.passwordForm.value.password==this.passwordForm.value.retype ;
-    console.log('match',this.match,'touched',this.touched,'retype',this.retypePassword)
-    return this.match ||!this.touched ||(this.touched&&!Boolean(this.retypePassword)&&!this.match)
+    return this.match || !this.touched || (this.touched && !Boolean(this.retypePassword) && !this.match)
   }
 
   constructor(public formBuilder: FormBuilder) {
-   
-console.log('form',this.passwordForm)
-    
+
+
+
   }
   ngOnDestroy(): void {
-    if(this.subscription){
+    if (this.subscription) {
       this.subscription.unsubscribe()
     }
   }
-  validate(control: AbstractControl): ValidationErrors |null {
-   const password = control.value
-   console.log('value',password,password.password==password.retype)
+  validate(control: AbstractControl): ValidationErrors | null {
+    const password = control.value
 
-if(this.retypePassword){
-   if(password.password!=password.retype){
-     return {passwordMismatch:{}}
-   
-   }}
+    if (this.retypePassword) {
+      if (password.password != password.retype) {
+        return { passwordMismatch: {} }
+
+      }
+    }
   }
   registerOnValidatorChange?(fn: () => void): void {
-    this.onValidationChange= fn
+    this.onValidationChange = fn
   }
   writeValue(pass: string): void {
     this.password = pass
@@ -106,21 +104,18 @@ if(this.retypePassword){
     }
   }
 
-  ngOnInit() { 
-
-    console.log('retype',this.retypePassword)
-    this.passwordForm = this.retypePassword? this.formBuilder.group({
-      password: new FormControl(this.password,Validators.required),
+  ngOnInit() {
+    this.passwordForm = this.retypePassword ? this.formBuilder.group({
+      password: new FormControl(this.password, Validators.required),
       retype: new FormControl(this.retype)
-    }): this.formBuilder.group({
-      password: new FormControl(this.password,Validators.required)})
-      console.log('retype',this.retypePassword)
+    }) : this.formBuilder.group({
+      password: new FormControl(this.password, Validators.required)
+    })
 
-      this.subscription = this.passwordForm.valueChanges.subscribe(d => {
-        this.markAsTouched()
-        this.onChange({password:d.password,retype:d.retype})
-        console.log('password is valid',d.password==d.retype)
-      })
+    this.subscription = this.passwordForm.valueChanges.subscribe(d => {
+      this.markAsTouched()
+      this.onChange({ password: d.password, retype: d.retype })
+    })
   }
 
 }
