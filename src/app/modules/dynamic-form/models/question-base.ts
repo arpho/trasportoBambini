@@ -19,6 +19,7 @@ export class QuestionBase<T> {
   repeatPassword?:boolean
   iconFalse: string;
   labelTrue: string;
+  retypePassword?:string
   service: ItemServiceInterface
   labelFalse: string;
   text: string;

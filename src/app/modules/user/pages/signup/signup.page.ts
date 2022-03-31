@@ -48,7 +48,8 @@ export class SignupPage implements OnInit,OnDestroy {
     }),
   
   new PasswordQuestion({key:'password',
-label:'password',required:true
+label:'password',required:true,
+retypePassword:true,
 })]
     this.signupForm = this.formBuilder.group({
       email: [

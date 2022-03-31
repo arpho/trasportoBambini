@@ -7,6 +7,7 @@ export interface QuestionProperties<T> {
     label: string;
     required?: boolean;
     order?: number;
+    retypePassword?:boolean
     type?: string
     controlType?: string;
     disabled?:boolean;
