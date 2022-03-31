@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PasswordFieldComponent } from './password-field.component';
@@ -11,7 +11,7 @@ describe('PasswordFieldComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PasswordFieldComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),ReactiveFormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PasswordFieldComponent);
