@@ -70,8 +70,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
    const password = control.value
    console.log('value',password,password.password==password.retype)
    if(password.password!=password.retype){
-     return {
-     }
+     return {}
    
    }
   }
