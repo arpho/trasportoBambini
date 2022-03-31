@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PasswordFieldComponent } from './password-field.component';
