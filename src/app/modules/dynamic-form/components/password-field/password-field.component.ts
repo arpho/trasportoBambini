@@ -25,7 +25,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
   private onValidationChange: any = () => {};
-  @Input()retypePassword:string
+  @Input()retypePassword:boolean
   disabled: boolean;
   password = '';
   passwordForm: FormGroup
@@ -51,8 +51,14 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
     return this.password
   }
 
+  get match(){
+    return this.passwordForm.value.password==this.passwordForm.value.retype
+  }
+
   get isValid() {
-    return !this.touched|| this.passwordForm.value.password==this.passwordForm.value.retype ;
+    //return !this.touched|| this.passwordForm.value.password==this.passwordForm.value.retype ;
+    console.log('match',this.match,'touched',this.touched,'retype',this.retypePassword)
+    return this.match ||!this.touched ||(this.touched&&!this.retypePassword&&!this.match)
   }
 
   constructor(formBuilder: FormBuilder) {
