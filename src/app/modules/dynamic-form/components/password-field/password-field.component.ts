@@ -23,6 +23,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
   private onChange: Function = (password: string) => { };
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
+  private onValidationChange: any = () => {};
   disabled: boolean;
   password = '';
   passwordForm: FormGroup
@@ -68,7 +69,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
    }
   }
   registerOnValidatorChange?(fn: () => void): void {
-    throw new Error('Method not implemented.');
+    this.onValidationChange= fn
   }
   writeValue(pass: string): void {
     this.password = pass
