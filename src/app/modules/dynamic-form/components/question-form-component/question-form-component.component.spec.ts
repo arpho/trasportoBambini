@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { QuestionFormComponent } from './question-form-component.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { GeoLocationModule } from 'src/app/modules/geo-location/geo-location.module';
 import { CommonModule } from '@angular/common';
 import { ItemModule } from 'src/app/modules/item/item.module';
 
@@ -17,7 +16,6 @@ describe('QuestionFormComponent', () => {
       imports: [ReactiveFormsModule,
         CommonModule,
         IonicModule.forRoot(),
-        GeoLocationModule,
         ItemModule,
         ]
     })

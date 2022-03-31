@@ -114,7 +114,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor, Val
 
     this.subscription = this.passwordForm.valueChanges.subscribe(d => {
       this.markAsTouched()
-      this.onChange({ password: d.password, retype: d.retype })
+      this.onChange({ 'password': d.password, 'retype': d.retype })
     })
   }
 
