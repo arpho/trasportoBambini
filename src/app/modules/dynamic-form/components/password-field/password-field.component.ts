@@ -56,7 +56,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor, Val
   }
 
   get isValid() {
-    return this.match || !this.touched || (this.touched && !Boolean(this.retypePassword) && !this.match)
+    return this.match || !this.touched || (this.touched && ! !!this.retypePassword && !this.match)
   }
 
   constructor(public formBuilder: FormBuilder) {
