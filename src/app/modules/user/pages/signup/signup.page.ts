@@ -48,7 +48,7 @@ export class SignupPage implements OnInit,OnDestroy {
     }),
   
   new PasswordQuestion({key:'password',
-label:'password'
+label:'password',required:true
 })]
     this.signupForm = this.formBuilder.group({
       email: [
@@ -70,7 +70,7 @@ label:'password'
   ngOnInit() { }
 
   filter(ev) {
-    console.log(ev.password,ev.retype)
+    console.log(ev)
   }
   dismiss(payment?) {
     this.modalCtrl.dismiss(payment)

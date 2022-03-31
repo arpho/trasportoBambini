@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { StringMappingType } from 'typescript';
 
@@ -50,15 +50,20 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
     return this.password
   }
 
+  get isValid() {
+    return this.passwordForm.value.password==this.passwordForm.value.retype ;
+  }
+
   constructor(formBuilder: FormBuilder) {
     this.passwordForm = formBuilder.group({
-      password: new FormControl(this.password),
+      password: new FormControl(this.password,Validators.required),
       retype: new FormControl(this.retype)
     })
 
     this.subscription = this.passwordForm.valueChanges.subscribe(d => {
       this.markAsTouched()
       this.onChange({password:d.password,retype:d.retype})
+      console.log('password is valid',d.password==d.retype)
     })
   }
   ngOnDestroy(): void {
@@ -70,7 +75,7 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
    const password = control.value
    console.log('value',password,password.password==password.retype)
    if(password.password!=password.retype){
-     return {}
+     return {passwordMismatch:{}}
    
    }
   }
