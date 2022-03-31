@@ -105,6 +105,9 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
     }
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+
+    console.log('retype',this.retypePassword)
+  }
 
 }
