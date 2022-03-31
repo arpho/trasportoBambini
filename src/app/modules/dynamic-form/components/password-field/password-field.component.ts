@@ -61,7 +61,8 @@ export class PasswordFieldComponent implements OnInit, ControlValueAccessor,Vali
   }
   validate(control: AbstractControl): ValidationErrors |null {
    const password = control.value
-   if(password!=this.retype){
+   console.log('value',password,password.password==password.retype)
+   if(password.password!=password.retype){
      return {
        mustMatch:{}
      }
