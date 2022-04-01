@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-email-field',
@@ -12,6 +13,8 @@ export class EmailFieldComponent implements OnInit,ControlValueAccessor {
   email:string
   disabled: boolean;
   touched: any;
+  emailForm;
+  subscription:Subscription
 
   set value (email:string){
     this.email = email
@@ -45,9 +48,15 @@ export class EmailFieldComponent implements OnInit,ControlValueAccessor {
 
 
 
-  constructor() { }
+  constructor(public formBuilder:FormBuilder) { }
   
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.emailForm = this.formBuilder.group({email:new FormControl(this.email,Validators.email)})
+    this.subscription =this.emailForm.valueChanges.subscribe(d=>{
+      this.markAsTouched()
+      this.onChange({'email':d.email})
+    })
+  }
 
 }
