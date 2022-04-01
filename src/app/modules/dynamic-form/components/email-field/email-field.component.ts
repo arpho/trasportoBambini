@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
 export class EmailFieldComponent implements OnInit,ControlValueAccessor,Validator {
 
 
-  @Input()email:string
+  @Input()email=''
   disabled: boolean;
   touched= false;
   emailForm;
@@ -70,7 +70,8 @@ export class EmailFieldComponent implements OnInit,ControlValueAccessor,Validato
   }
 
   isValid(){
-    return !!this.emailForm.value.email.match(
+    console.log('email field',this.emailForm.value.email)
+    return !!this.emailForm.value.email?.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   }
