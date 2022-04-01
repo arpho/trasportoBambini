@@ -1,11 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-email-field',
   templateUrl: './email-field.component.html',
   styleUrls: ['./email-field.component.scss'],
+  providers:[{
+    provide: NG_VALUE_ACCESSOR,
+    multi: true,
+    useExisting: EmailFieldComponent
+  },]
 })
 export class EmailFieldComponent implements OnInit,ControlValueAccessor {
 
@@ -52,7 +57,7 @@ export class EmailFieldComponent implements OnInit,ControlValueAccessor {
   constructor(public formBuilder:FormBuilder) { }
 
   isValid(){
-    return this.emailForm.value.email.match(
+    return !!this.emailForm.value.email.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   }
@@ -62,6 +67,7 @@ export class EmailFieldComponent implements OnInit,ControlValueAccessor {
     this.emailForm = this.formBuilder.group({email:new FormControl(this.email,Validators.email)})
     this.subscription =this.emailForm.valueChanges.subscribe(d=>{
       this.markAsTouched()
+      console.log('email valida',this.isValid())
       this.onChange({'email':d.email})
     })
   }
