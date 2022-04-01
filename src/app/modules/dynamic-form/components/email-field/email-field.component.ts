@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -10,11 +10,12 @@ import { Subscription } from 'rxjs';
 export class EmailFieldComponent implements OnInit,ControlValueAccessor {
 
 
-  email:string
+  @Input()email:string
   disabled: boolean;
   touched= false;
   emailForm;
   subscription:Subscription
+
 
   set value (email:string){
     this.email = email
