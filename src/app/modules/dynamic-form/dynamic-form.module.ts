@@ -7,9 +7,10 @@ import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.com
 import { QuestionControlService } from './services/question-control.service';
 import { ItemModule } from '../item/item.module';
 import { PasswordFieldComponent } from './components/password-field/password-field.component';
+import { EmailFieldComponent } from './components/email-field/email-field.component';
 
 @NgModule({
-  declarations: [QuestionFormComponent, DynamicFormComponent,PasswordFieldComponent],
+  declarations: [QuestionFormComponent, DynamicFormComponent,PasswordFieldComponent,EmailFieldComponent],
   imports: [
     CommonModule,
     IonicModule.forRoot(),
