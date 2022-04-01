@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,9 +10,14 @@ import { Subscription } from 'rxjs';
     provide: NG_VALUE_ACCESSOR,
     multi: true,
     useExisting: EmailFieldComponent
-  },]
+  },
+  {
+    provide: NG_VALIDATORS,
+    multi: true,
+    useExisting: EmailFieldComponent
+  }]
 })
-export class EmailFieldComponent implements OnInit,ControlValueAccessor {
+export class EmailFieldComponent implements OnInit,ControlValueAccessor,Validator {
 
 
   @Input()email:string
@@ -55,6 +60,14 @@ export class EmailFieldComponent implements OnInit,ControlValueAccessor {
 
 
   constructor(public formBuilder:FormBuilder) { }
+  validate(control: AbstractControl): ValidationErrors {
+    if(!this.isValid()){
+      return{notValidEmail:this.email}
+    }
+  }
+  registerOnValidatorChange?(fn: () => void): void {
+    this.onValidationChange = fn
+  }
 
   isValid(){
     return !!this.emailForm.value.email.match(
