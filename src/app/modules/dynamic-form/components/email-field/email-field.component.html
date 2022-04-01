@@ -1,3 +1,7 @@
-<p>
-  email-field works!
-</p>
+<form [formGroup]="emailForm">
+  <label>email</label>
+  <input type="email" [formControlName]="'email">
+  <section style="color:red" *ngIf="!isValid">
+    email non valida!
+  </section>
+  </form>
