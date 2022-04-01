@@ -24,8 +24,8 @@ export class EmailFieldComponent implements OnInit,ControlValueAccessor {
   private onTouch: Function = () => { };
   private onValidationChange: any = () => { };
 
-  writeValue(pass: string): void {
-    this.email = pass
+  writeValue(email: string): void {
+    this.email = email
   }
   registerOnChange(fn) {
     this.onChange = fn;
