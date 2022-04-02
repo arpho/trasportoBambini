@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-email-field',
   templateUrl: './email-field.component.html',
   styleUrls: ['./email-field.component.scss'],
-  providers:[{
+  providers: [{
     provide: NG_VALUE_ACCESSOR,
     multi: true,
     useExisting: EmailFieldComponent
@@ -17,17 +17,17 @@ import { Subscription } from 'rxjs';
     useExisting: EmailFieldComponent
   }]
 })
-export class EmailFieldComponent implements OnInit,ControlValueAccessor,Validator {
+export class EmailFieldComponent implements OnInit, ControlValueAccessor, Validator {
 
 
-  @Input()email=''
+  @Input() email = ''
   disabled: boolean;
-  touched= false;
+  touched = false;
   emailForm;
-  subscription:Subscription
+  subscription: Subscription
 
 
-  set value (email:string){
+  set value(email: string) {
     this.email = email
   }
   private onChange: Function = (password: string) => { };
@@ -59,30 +59,29 @@ export class EmailFieldComponent implements OnInit,ControlValueAccessor,Validato
 
 
 
-  constructor(public formBuilder:FormBuilder) { }
+  constructor(public formBuilder: FormBuilder) { }
   validate(control: AbstractControl): ValidationErrors {
-    if(!this.isValid()){
-      return{notValidEmail:this.email}
+    if (!this.isValid()) {
+      return { notValidEmail: this.email }
     }
   }
   registerOnValidatorChange?(fn: () => void): void {
     this.onValidationChange = fn
   }
 
-  isValid(){
-   
-    return !this.touched||!!this.emailForm.value.email?.match(
+  isValid() {
+
+    return !this.touched || !!this.emailForm.value.email?.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   }
-  
+
 
   ngOnInit() {
-    this.emailForm = this.formBuilder.group({email:new FormControl(this.email,Validators.email)})
-    this.subscription =this.emailForm.valueChanges.subscribe(d=>{
+    this.emailForm = this.formBuilder.group({ email: new FormControl(this.email, Validators.email) })
+    this.subscription = this.emailForm.valueChanges.subscribe(d => {
       this.markAsTouched()
-      console.log('email valida',this.isValid())
-      this.onChange({'email':d.email})
+      this.onChange({ 'email': d.email })
     })
   }
 
