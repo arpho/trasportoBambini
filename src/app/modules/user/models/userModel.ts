@@ -14,6 +14,7 @@ export class UserModel implements ItemModelInterface {
   email: string;
   firstName: string;
   lastName: string;
+  password: string;
   title: string;
   key: string;
   offlineEnabled = true // for the moment true for default
