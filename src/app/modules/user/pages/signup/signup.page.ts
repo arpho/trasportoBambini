@@ -79,11 +79,13 @@ retypePassword:true,
 
   async submit(ev) {
     const user = new UserModel().load(ev)
+   user.password = ev.password.password
     console.log('submitting',ev,user)
+    //this.signupUser(this.signupForm,user)
 
   }
 
-  async signupUser(signupForm: FormGroup): Promise<void> {
+  async signupUser(signupForm: FormGroup,user:UserModel): Promise<void> {
     if (!signupForm.valid) {
       console.log(
         'Need to complete the form, current value: ', signupForm.value
@@ -109,7 +111,7 @@ retypePassword:true,
             await alert.present();
           });
         }
-        this.authService.signupUser(email, password, successHandler, errorHandler)
+        this.authService.signupUser(user, successHandler, errorHandler)
         this.modal = await this.loadingCtrl.create();
         await this.modal.present();
       }
