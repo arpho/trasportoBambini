@@ -14,11 +14,11 @@ import { PasswordQuestion } from 'src/app/modules/dynamic-form/models/password-q
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
-export class SignupPage implements OnInit,OnDestroy {
+export class SignupPage implements OnInit, OnDestroy {
   public signupForm: FormGroup;
-  public usersFields:any
+  public usersFields: any
   public modal: any;
-  subscription:Subscription
+  subscription: Subscription
   constructor(
     public modalCtrl: ModalController,
     private authService: AuthService,
@@ -28,29 +28,30 @@ export class SignupPage implements OnInit,OnDestroy {
     private router: Router
   ) {
     this.usersFields = [new TextboxQuestion({
-      key:'name',
-      label:'nome',
-      required:true,
-      order:1
+      key: 'name',
+      label: 'nome',
+      required: true,
+      order: 1
 
-    }),new TextboxQuestion({
-      key:'surname',
-      label:'cognome',
-      required:true,
-      order:2
+    }), new TextboxQuestion({
+      key: 'surname',
+      label: 'cognome',
+      required: true,
+      order: 2
 
-    }),new EmailQuestion({
-      key:'email',
-      label:'email',
-      required:true,
-      order:3
+    }), new EmailQuestion({
+      key: 'email',
+      label: 'email',
+      required: true,
+      order: 3
 
     }),
-  
-  new PasswordQuestion({key:'password',
-label:'password',required:true,
-retypePassword:true,
-})]
+
+    new PasswordQuestion({
+      key: 'password',
+      label: 'password', required: true,
+      retypePassword: true,
+    })]
     this.signupForm = this.formBuilder.group({
       email: [
         '',
@@ -63,9 +64,9 @@ retypePassword:true,
     });
   }
   ngOnDestroy(): void {
-  if(this.subscription){
-    this.subscription.unsubscribe()
-  }
+    if (this.subscription) {
+      this.subscription.unsubscribe()
+    }
   }
 
   ngOnInit() { }
@@ -79,13 +80,12 @@ retypePassword:true,
 
   async submit(ev) {
     const user = new UserModel().load(ev)
-   user.password = ev.password.password
-    console.log('submitting',ev,user)
-    //this.signupUser(this.signupForm,user)
+    user.password = ev.password.password
+    this.signupUser(this.signupForm, user)
 
   }
 
-  async signupUser(signupForm: FormGroup,user:UserModel): Promise<void> {
+  async signupUser(signupForm: FormGroup, user: UserModel): Promise<void> {
     if (!signupForm.valid) {
       console.log(
         'Need to complete the form, current value: ', signupForm.value
@@ -102,18 +102,18 @@ retypePassword:true,
         })
       }
 
-        const errorHandler = (error) => {
-          this.modal.dismiss().then(async () => {
-            const alert = await this.alertCtrl.create({
-              message: error.message,
-              buttons: [{ text: 'Ok', role: 'cancel' }],
-            });
-            await alert.present();
+      const errorHandler = (error) => {
+        this.modal.dismiss().then(async () => {
+          const alert = await this.alertCtrl.create({
+            message: error.message,
+            buttons: [{ text: 'Ok', role: 'cancel' }],
           });
-        }
-        this.authService.signupUser(user, successHandler, errorHandler)
-        this.modal = await this.loadingCtrl.create();
-        await this.modal.present();
+          await alert.present();
+        });
       }
+      this.authService.signupUser(user, successHandler, errorHandler)
+      this.modal = await this.loadingCtrl.create();
+      await this.modal.present();
     }
   }
+}
