@@ -25,8 +25,8 @@ export class AuthService {
     return firebase.auth().sendPasswordResetEmail(email);
   }
 
-  signupUser(email: string, password: string, next?, error?, complete?): Subscription {
-    return this.createUserObserver(email, password).subscribe({
+  signupUser(user:UserModel, string, next?, error?, complete?): Subscription {
+    return this.createUserObserver(user.email, user.password).subscribe({
       next: v => {
         console.log('creato user', v)
         sendEmailVerification(v['user'])
