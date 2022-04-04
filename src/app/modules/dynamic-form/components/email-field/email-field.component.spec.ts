@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { EmailFieldComponent } from './email-field.component';
@@ -10,7 +11,8 @@ describe('EmailFieldComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EmailFieldComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(),
+      FormsModule,ReactiveFormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(EmailFieldComponent);
