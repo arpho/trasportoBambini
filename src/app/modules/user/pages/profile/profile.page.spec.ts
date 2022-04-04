@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProfilePage } from './profile.page';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import firebase from 'firebase/compat/app';
 describe('ProfilePage', () => {
   let component: ProfilePage;
   let fixture: ComponentFixture<ProfilePage>;
@@ -14,7 +14,7 @@ describe('ProfilePage', () => {
       declarations: [ ProfilePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [AlertController],
-      imports: [RouterModule, RouterTestingModule],
+      imports: [RouterModule, RouterTestingModule,firebase],
     })
     .compileComponents();
   }));
