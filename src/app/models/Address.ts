@@ -7,6 +7,7 @@ export class Address {
     province: string
     latitude: number
     longitude: number
+    number:number
 
     load(value: {}) {
         Object.assign(this, value)
@@ -24,6 +25,7 @@ export class Address {
             'street': this.serializers.serialize2String(this.street),
             'cap': this.serializers.serialize2String(this.cap),
             'city': this.serializers.serialize2String(this.city),
+            'number':this.serializers.serialize2PositiveNumber(this.number),
             'province': this.serializers.serialize2String(this.province),
             'longitude': this.serializers.serialize2PositiveNumber(this.longitude),
             'latitude': this.serializers.serialize2PositiveNumber(this.latitude)
