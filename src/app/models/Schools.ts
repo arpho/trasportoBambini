@@ -1,5 +1,5 @@
 import { Serializers } from "../helpers/serializers"
-import { Address } from "./Address"
+import { Address } from "../modules/geolocation/models/Address"
 
 export class School{
     denominazione:string
