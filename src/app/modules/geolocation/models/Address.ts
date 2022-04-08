@@ -1,4 +1,4 @@
-import { Serializers } from "../../../helpers/serializers"
+import { Serializers } from "../../helpers/serializers"
 
 export class Address {
     street: string

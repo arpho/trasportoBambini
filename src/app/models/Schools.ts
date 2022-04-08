@@ -1,4 +1,4 @@
-import { Serializers } from "../helpers/serializers"
+import { Serializers } from "../modules/helpers/serializers"
 import { Address } from "../modules/geolocation/models/Address"
 import { Genere, ItemModelInterface } from "../modules/item/models/itemModelInterface"
 import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterface"
