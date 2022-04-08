@@ -1,10 +1,16 @@
 import { Serializers } from "../helpers/serializers"
 import { Address } from "../modules/geolocation/models/Address"
+import { Genere, ItemModelInterface } from "../modules/item/models/itemModelInterface"
+import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterface"
+import { QuickAction } from "../modules/item/models/QuickAction"
+import { Value } from "../modules/item/models/value"
 
-export class School{
+export class School implements ItemModelInterface{
     denominazione:string
     key:string
     indirizzo:Address
+    nota:string
+    archived:boolean
 
 
     load(v:{}){
@@ -18,7 +24,10 @@ export class School{
         'city':v['city']
     })
         return this
-    }
+    } 
+    fetchAddress(){
+            return `${this.indirizzo.street}, ${this.indirizzo.number}, ${this.indirizzo.cap} ${this.indirizzo.city} ${this.indirizzo.province}`
+        }
 
     serialize(){
         var out 
@@ -26,9 +35,13 @@ export class School{
         
             out = {
             'denominazione':serializers.serialize2String(this.denominazione),
-            'indirizzo':this.indirizzo.serialize()
+            'indirizzo':this.indirizzo.serialize(),
+            'nota':serializers.serialize2String(this.nota),
+            'archived':!!this.archived
             
         }
+
+       
 
         if(this.key){
             out = {'key':this.key,...out}
@@ -38,5 +51,60 @@ export class School{
 
     constructor(v?:{}){
         this.load(v)
+    }
+    title: string
+    note?: string
+    quickActions?: QuickAction[]
+    service?: ItemServiceInterface
+    getTitle(): Value {
+       return new Value({'value':this.denominazione,label:'scuola'})
+    }
+    getCountingText(): string {
+        return 'scuole'
+    }
+    getNote(): Value {
+        return new Value({value:this.nota,label:'nota'})
+    }
+    build?(item: {}) {
+        return this.load(item)
+    }
+    isArchived?(): boolean {
+        return this.archived
+    }
+    archiveItem?(b: boolean) {
+        throw new Error("Method not implemented.")
+    }
+    isArchivable?(): boolean {
+        return true
+    }
+    getValue2(): Value {
+        return new Value({value:this.fetchAddress(),label:'indirizzo'})
+    }
+    getValue3(): Value {
+        throw new Error("Method not implemented.")
+    }
+    getValue4(): Value {
+        throw new Error("Method not implemented.")
+    }
+    setKey?(key: string): ItemModelInterface {
+        throw new Error("Method not implemented.")
+    }
+    getEditPopup(item?: ItemModelInterface, service?: ItemServiceInterface) {
+        throw new Error("Method not implemented.")
+    }
+    initialize(item: {}): ItemModelInterface {
+        throw new Error("Method not implemented.")
+    }
+    getAggregate(): Value {
+        throw new Error("Method not implemented.")
+    }
+    aggregateAction?() {
+        throw new Error("Method not implemented.")
+    }
+    hasQuickActions?(): boolean {
+        throw new Error("Method not implemented.")
+    }
+    getElement(): { element: string; genere: Genere } {
+        throw new Error("Method not implemented.")
     }
 }
