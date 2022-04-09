@@ -46,6 +46,10 @@ export class Utenti extends UserModel {
 
     }
 
+    getElement(): { element: string; genere: "o" } {
+        return {element:'utente',genere:'o'}
+    }
+    
     constructor(user?: {}, key?: string) {
         super(user, key)
         this.load(user)
