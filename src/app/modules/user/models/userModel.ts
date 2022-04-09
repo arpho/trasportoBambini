@@ -8,6 +8,7 @@ import { DateModel } from './birthDateModel';
 import { RoleModel } from './privilegesLevelModel';
 import { configs } from 'src/app/configs/configs';
 import { QuickAction } from '../../item/models/QuickAction';
+import { KeyboardResize } from '@capacitor/keyboard';
 // import { EditUserPage } from '../pages/edit-user/edit-user.page';
 export class UserModel implements ItemModelInterface {
   birthDate: DateModel; // { day: number; month: number; year: number };
@@ -35,13 +36,13 @@ export class UserModel implements ItemModelInterface {
   note?: string;
   archived?: boolean;
   isArchived?(): boolean {
-   return this.archived
+    return this.archived
   }
   archiveItem?(b: boolean) {
- this.archived = b
+    this.archived = b
   }
   isArchivable?(): boolean {
-   return true
+    return true
   }
   setKey(key: string): UserModel {
     this.key = key
@@ -94,7 +95,7 @@ export class UserModel implements ItemModelInterface {
   }
 
   serialize() {
-    return {
+    const out = {
       key: this.key,
       uid: this.uid || this.key,
       birthDate: this.birthDate ? this.birthDate.serialize() : '',
@@ -103,8 +104,10 @@ export class UserModel implements ItemModelInterface {
       lastName: this.lastName ?? '',
       enabled: this.enabled,
       level: this.role.value,
-      archived:!!this.archived
+      archived: !!this.archived
     };
+
+    return this.key ? { ...out, ...{ key: this.key } } : out
   }
 
   roleFactory(level) {
