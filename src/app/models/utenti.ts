@@ -42,10 +42,10 @@ export class Utenti extends UserModel {
 
         var out = super.serialize()
         const telephones = this.telephones.map((t: Telephone) => t.serialize())
-        out = { ...out, ...{ telephones, role: this.role } }
-        return out
+        return { ...super.serialize(), ...{ telephones: telephones, role: this.role } }
+
     }
-    
+
     constructor(user?: {}, key?: string) {
         super(user, key)
         this.load(user)
