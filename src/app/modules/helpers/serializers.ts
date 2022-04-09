@@ -4,7 +4,7 @@ export class Serializers{
         v ? v : ''
     }
 
-    serialize2PositiveNumber = (n: number) => {
-        n ? n : -1
+    serialize2PositiveNumber = (n: number,defaultNumber=-1) => {
+        n ? n : defaultNumber
     }
 }

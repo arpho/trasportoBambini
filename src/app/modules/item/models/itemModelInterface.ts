@@ -39,7 +39,7 @@ export interface ItemModelInterface {
   */();
   getElement(): { element: string; genere: Genere };
 
-  /**ritorna il nome del tipo di elemento
+  /**ritorna il nome del tipo di elemento per esempio scuola 
    * @returns {element:string,genere:'o'|'a'}
    */
 }

@@ -105,6 +105,6 @@ export class School implements ItemModelInterface{
         throw new Error("Method not implemented.")
     }
     getElement(): { element: string; genere: Genere } {
-        throw new Error("Method not implemented.")
+       return {element:'scuola',genere:'a'}
     }
 }
