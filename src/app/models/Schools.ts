@@ -26,7 +26,7 @@ export class School implements ItemModelInterface{
         return this
     } 
     fetchAddress(){
-            return `${this.indirizzo.street}, ${this.indirizzo.number}, ${this.indirizzo.cap} ${this.indirizzo.city} ${this.indirizzo.province}`
+            return this.indirizzo.fetchAddress()
         }
 
     serialize(){
