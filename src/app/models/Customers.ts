@@ -87,22 +87,22 @@ export class CollectionPoint implements ItemModelInterface {
         return 'punti di raccolta'
     }
     getNote(): Value {
-        throw new Error("Method not implemented.");
+        return new Value({value:this.note,label:'note'})
     }
     build?(item: {}) {
-        throw new Error("Method not implemented.");
+       this.load(item)
     }
     isArchived?(): boolean {
-        throw new Error("Method not implemented.");
+       return this.archived
     }
     archiveItem?(b: boolean) {
-        throw new Error("Method not implemented.");
+        this.archived = b
     }
     isArchivable?(): boolean {
-        throw new Error("Method not implemented.");
+       return true
     }
     getValue2(): Value {
-        throw new Error("Method not implemented.");
+        return new Value({value:this.address.fetchAddress(),label:'indirizzo'})
     }
     getValue3(): Value {
         throw new Error("Method not implemented.");
@@ -111,13 +111,15 @@ export class CollectionPoint implements ItemModelInterface {
         throw new Error("Method not implemented.");
     }
     setKey?(key: string): ItemModelInterface {
-        throw new Error("Method not implemented.");
+        this.key = key
+        return this
     }
     getEditPopup(item?: ItemModelInterface, service?: ItemServiceInterface) {
         throw new Error("Method not implemented.");
     }
     initialize(item: {}): ItemModelInterface {
-        throw new Error("Method not implemented.");
+        this.load(item)
+        return this
     }
     getAggregate(): Value {
         throw new Error("Method not implemented.");
@@ -126,7 +128,7 @@ export class CollectionPoint implements ItemModelInterface {
         throw new Error("Method not implemented.");
     }
     hasQuickActions?(): boolean {
-        throw new Error("Method not implemented.");
+        return false
     }
     serialize() {
         const serializers = new Serializers()
