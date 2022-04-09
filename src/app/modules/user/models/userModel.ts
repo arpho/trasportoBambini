@@ -35,13 +35,13 @@ export class UserModel implements ItemModelInterface {
   note?: string;
   archived?: boolean;
   isArchived?(): boolean {
-    throw new Error('Method not implemented.');
+   return this.archived
   }
   archiveItem?(b: boolean) {
-    throw new Error('Method not implemented.');
+ this.archived = b
   }
   isArchivable?(): boolean {
-    throw new Error('Method not implemented.');
+   return true
   }
   setKey(key: string): UserModel {
     this.key = key
