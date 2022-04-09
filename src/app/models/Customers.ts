@@ -91,6 +91,7 @@ export class CollectionPoint implements ItemModelInterface {
     }
     build?(item: {}) {
        this.load(item)
+       return this
     }
     isArchived?(): boolean {
        return this.archived
