@@ -102,7 +102,8 @@ export class UserModel implements ItemModelInterface {
       firstName: this.firstName ?? '',
       lastName: this.lastName ?? '',
       enabled: this.enabled,
-      level: this.role.value
+      level: this.role.value,
+      archived:!!this.archived
     };
   }
 
