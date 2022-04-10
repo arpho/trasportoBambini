@@ -8,6 +8,13 @@ import { Value } from "../modules/item/models/value";
 import { UserModel } from "../modules/user/models/userModel";
 import { Utenti } from "./utenti";
 
+export enum UserType {
+    studente = 0,
+    genitore,
+    autista,
+    addetto
+}
+
 export class Studenti extends UserModel {
 
     pulminoKey: string
@@ -15,7 +22,7 @@ export class Studenti extends UserModel {
     collectionPoint: string
     collectionPointKey: string
     schoolKey: string
-    type = -1
+    type = UserType.studente
     load(v: {}) {
         Object.assign(this, v)
 
@@ -43,7 +50,7 @@ export class Studenti extends UserModel {
 
 export class Genitori extends Utenti {
     children: Array<string>
-    type = -3
+    type = UserType.genitore
 
 
     load(v: {}) {
@@ -87,23 +94,23 @@ export class CollectionPoint implements ItemModelInterface {
         return 'punti di raccolta'
     }
     getNote(): Value {
-        return new Value({value:this.note,label:'note'})
+        return new Value({ value: this.note, label: 'note' })
     }
     build?(item: {}) {
-       this.load(item)
-       return this
+        this.load(item)
+        return this
     }
     isArchived?(): boolean {
-       return this.archived
+        return this.archived
     }
     archiveItem?(b: boolean) {
         this.archived = b
     }
     isArchivable?(): boolean {
-       return true
+        return true
     }
     getValue2(): Value {
-        return new Value({value:this.address.fetchAddress(),label:'indirizzo'})
+        return new Value({ value: this.address.fetchAddress(), label: 'indirizzo' })
     }
     getValue3(): Value {
         throw new Error("Method not implemented.");
