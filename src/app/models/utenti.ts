@@ -1,5 +1,7 @@
+import { DropdownQuestion } from "../modules/dynamic-form/models/question-dropdown"
 import { Address } from "../modules/geolocation/models/Address"
 import { Serializers } from "../modules/helpers/serializers"
+import { DateModel } from "../modules/user/models/birthDateModel"
 import { UserModel } from "../modules/user/models/userModel"
 
 export class Telephone {
@@ -25,6 +27,7 @@ export class Telephone {
 export class Utenti extends UserModel {
     indirizzo: Address
     telephones: Array<Telephone>
+    dor: DateModel // date of registration
 
     load(v: {}) {
         this.telephones = []
@@ -42,7 +45,7 @@ export class Utenti extends UserModel {
 
         var out = super.serialize()
         const telephones = this.telephones.map((t: Telephone) => t.serialize())
-        return { ...super.serialize(), ...{ telephones: telephones, role: this.role,archived:!!this.archived } }
+        return { ...super.serialize(), ...{ telephones: telephones, role: this.role,archived:!!this.archived,dor:this.dor.formatDate() } }
 
     }
 
