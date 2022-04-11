@@ -1,8 +1,10 @@
+import { type } from "os"
 import { DropdownQuestion } from "../modules/dynamic-form/models/question-dropdown"
 import { Address } from "../modules/geolocation/models/Address"
 import { Serializers } from "../modules/helpers/serializers"
 import { DateModel } from "../modules/user/models/birthDateModel"
 import { UserModel } from "../modules/user/models/userModel"
+import { UserType } from "./Customers"
 
 export class Telephone {
     numero: string
@@ -26,6 +28,7 @@ export class Telephone {
 
 export class Utenti extends UserModel {
     indirizzo: Address
+    type:UserType
     telephones: Array<Telephone>
     dor: DateModel // date of registration
 
@@ -41,11 +44,21 @@ export class Utenti extends UserModel {
         return this
     }
 
-    serialize() {
-
-        var out = super.serialize()
+    serialize() { 
+        
         const telephones = this.telephones.map((t: Telephone) => t.serialize())
-        return { ...super.serialize(), ...{ telephones: telephones, role: this.role,archived:!!this.archived,dor:this.dor.formatDate() } }
+
+        var out =  { ...super.serialize(),
+             ...{ telephones: telephones,
+                indirizzo:this.indirizzo.serialize(),
+                 role: this.role,
+                 archived:!!this.archived,dor:this.dor.formatDate(),
+                type:this.type
+                } }
+    if(this.key){
+        out = {...out,...{key:this.key}}
+    }
+    return out
 
     }
 
@@ -56,6 +69,8 @@ export class Utenti extends UserModel {
     constructor(user?: {}, key?: string) {
         super(user, key)
         this.load(user)
+        if(!this.type){
+        this.type = UserType.genitore}
 
     }
 }

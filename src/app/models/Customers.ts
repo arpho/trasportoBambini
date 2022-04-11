@@ -51,6 +51,7 @@ export class Studenti extends UserModel {
 export class Genitori extends Utenti {
     children: Array<string>
     type = UserType.genitore
+    indirizzo: Address;
 
 
     load(v: {}) {
@@ -59,7 +60,7 @@ export class Genitori extends Utenti {
     }
 
     serialize() {
-        return { ...super.serialize(), ...{ figli: this.children, type: this.type } }
+        return { ...super.serialize(), ...{ figli: this.children, indirizzo:this.indirizzo.serialize()} }
     }
 
     getElement(): { element: string; genere: "o"; } {
@@ -69,6 +70,7 @@ export class Genitori extends Utenti {
     constructor(v?: {}) {
         super(v)
         this.load(v)
+        this.type= UserType.genitore
     }
 
 }
@@ -140,7 +142,7 @@ export class CollectionPoint implements ItemModelInterface {
     }
     serialize() {
         const serializers = new Serializers()
-        var out = { denominazione: serializers.serialize2String(this.title), note: serializers.serialize2String(this.note), address: this.address.serialize() }
+        var out = { denominazione: serializers.serialize2String(this.title), note: serializers.serialize2String(this.note), }
         if (this.key) {
             out = { ...out, ...{ key: this.key } }
         }

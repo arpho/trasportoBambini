@@ -21,10 +21,14 @@ export class Autista extends Utenti {
         return {
             ...super.serialize(), ...{
                 pulminoKey: serializers.serialize2String(this.pulminoKey),
-                type: serializers.serialize2PositiveNumber(this.type, UserType.genitore)
+                type: serializers.serialize2PositiveNumber(this.type, UserType.autista)
             }
         }
 
+    }
+    constructor(v?:{}){
+        super(v)
+        this.type = UserType.autista
     }
 }
 
@@ -46,11 +50,12 @@ export class Addetto extends Utenti{
 
     serialize(){
         var out = {...super.serialize(),...{mansione:this.mansione}}
-        if(this.key){
-            out = {...out, ... {key:this.key}}
-
-        }
+  
         return out
+    }
+    constructor(v?:{}){
+        super(v)
+        this.type= UserType.addetto
     }
 }
 
