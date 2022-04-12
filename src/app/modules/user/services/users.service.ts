@@ -1,6 +1,6 @@
 // tslint:disable: quotemark
 import { Injectable, OnInit } from "@angular/core";
-import firebase from 'firebase/compat/app';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { DatabaseReference, getDatabase,ref, onValue,remove,set,push, update } from "firebase/database";
 import { ItemServiceInterface } from "../../item/models/ItemServiceInterface";
 import { UserModel } from "../models/userModel";
@@ -42,7 +42,8 @@ db
   }
 
   loadItems() {
-    firebase.auth().onAuthStateChanged(user => {
+    const auth = getAuth();
+    onAuthStateChanged(auth,(user) => {
       if (user) {
         this.usersRef = ref(this.db,`/userProfile/`);
 
