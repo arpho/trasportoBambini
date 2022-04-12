@@ -1,20 +1,21 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {  ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ProfilePage } from './profile.page';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import firebase from 'firebase/compat/app';
 import { AuthService } from '../../services/auth.service';
+import { ProfileService } from '../../services/profile.service';
 describe('ProfilePage', () => {
   let component: ProfilePage;
   let fixture: ComponentFixture<ProfilePage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ProfilePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [AlertController,AuthService],
+      providers: [AlertController,AuthService,ProfileService,Router],
       imports: [RouterModule, RouterTestingModule,firebase],
     })
     .compileComponents();
