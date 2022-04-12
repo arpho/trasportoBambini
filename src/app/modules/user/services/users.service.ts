@@ -6,7 +6,6 @@ import { ItemServiceInterface } from "../../item/models/ItemServiceInterface";
 import { UserModel } from "../models/userModel";
 import { ItemModelInterface } from "../../item/models/itemModelInterface";
 import { BehaviorSubject, Observable } from 'rxjs';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 @Injectable({
   providedIn: "root"
