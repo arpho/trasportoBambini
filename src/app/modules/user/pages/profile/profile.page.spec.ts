@@ -5,6 +5,7 @@ import { ProfilePage } from './profile.page';
 import { Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import firebase from 'firebase/compat/app';
+import { AuthService } from '../../services/auth.service';
 describe('ProfilePage', () => {
   let component: ProfilePage;
   let fixture: ComponentFixture<ProfilePage>;
@@ -13,7 +14,7 @@ describe('ProfilePage', () => {
     TestBed.configureTestingModule({
       declarations: [ ProfilePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [AlertController],
+      providers: [AlertController,AuthService],
       imports: [RouterModule, RouterTestingModule,firebase],
     })
     .compileComponents();
