@@ -14,12 +14,6 @@ import { textChangeRangeIsUnchanged } from "typescript";
 export class ProfilePage implements OnInit {
   public userProfile: any;
   public birthDate: string;
-  constructor(
-    private alertCtrl: AlertController,
-    private authService: AuthService,
-    private profileService: ProfileService,
-    private router: Router
-  ) { }
 
   ngOnInit() {
     console.log('init profile')
@@ -167,4 +161,11 @@ export class ProfilePage implements OnInit {
     });
     await alert.present();
   }
+
+  constructor(
+    private alertCtrl: AlertController,
+    private authService: AuthService,
+    private profileService: ProfileService,
+    private router: Router
+  ) { }
 }
