@@ -2,20 +2,21 @@ import { Injectable, ComponentFactoryResolver } from "@angular/core";
 import firebase from 'firebase/compat/app';
 import "firebase/auth";
 import "firebase/database";
-import { getAuth, updatePassword } from "firebase/auth";
+import { EmailAuthProvider, getAuth, onAuthStateChanged, reauthenticateWithCredential, updatePassword, User } from "firebase/auth";
 
 @Injectable({
   providedIn: "root"
 })
 export class ProfileService {
   public userProfileReference: firebase.database.Reference;
-  public currentUser: firebase.User;
+  public currentUser: User;
 
   constructor() {
-    firebase.auth().onAuthStateChanged(user => {
+    const auth = getAuth()
+    onAuthStateChanged(auth,user => {
       if (user) {
         console.log('user',user.uid)
-        this.currentUser = user;
+        this.currentUser = auth.currentUser;
         this.userProfileReference = firebase.database().ref(`/userProfile/${user.uid}/`);
 
         console.log('profile',this.userProfileReference)
@@ -47,14 +48,12 @@ console.log('getting usr profile reference')
     const user = auth.currentUser
     const out = updatePassword(user,password)
 
-    const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
-      this.currentUser.email,
-      password
-    );
-    return this.currentUser
-      .reauthenticateWithCredential(credential)
+   
+    const credential = EmailAuthProvider.credential(auth.currentUser.email,password)
+   
+     return  reauthenticateWithCredential(auth.currentUser,credential)
       .then(() => {
-        this.currentUser.updateEmail(newEmail).then(() => {
+        this.updateEmail(auth.currentUser.email,newEmail).then(() => {
           this.userProfileReference.update({ email: newEmail });
         });
       })
@@ -75,12 +74,10 @@ console.log('getting usr profile reference')
     );
     const out = updatePassword(user,newPassword)
     
-    return this.currentUser
-      .reauthenticateWithCredential(credential)
+    return 
+      reauthenticateWithCredential(auth.currentUser,credential)
       .then(() => {
-        this.currentUser.updatePassword(newPassword).then(() => {
-          console.log("Password Changed");
-        });
+      
       })
       .catch(error => {
         console.error(error);
