@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import 'firebase/auth';
 import 'firebase/database';
 import { DatabaseReference, getDatabase, ref, push } from "firebase/database";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, Auth, UserCredential } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, Auth, UserCredential, sendPasswordResetEmail } from 'firebase/auth'
 import { UserModel } from '../models/userModel'
 
 @Injectable({
@@ -22,7 +22,8 @@ export class AuthService {
   }
 
   resetPassword(email: string): Promise<void> {
-    return firebase.auth().sendPasswordResetEmail(email);
+    const user = getAuth()
+    return sendPasswordResetEmail(user,email);
   }
 
   signupUser(user:UserModel, string, next?, error?, complete?): Subscription {
