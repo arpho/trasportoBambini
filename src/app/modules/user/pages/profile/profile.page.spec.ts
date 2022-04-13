@@ -7,20 +7,19 @@ import { RouterTestingModule } from '@angular/router/testing';
 import firebase from 'firebase/compat/app';
 import { AuthService } from '../../services/auth.service';
 import { ProfileService } from '../../services/profile.service';
+
+TestBed.configureTestingModule({
+  declarations: [ ProfilePage ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [ AlertController/*,AuthService,ProfileService,Router */],
+  imports: [RouterModule, RouterTestingModule,firebase],
+})
+.compileComponents();
 describe('ProfilePage', () => {
   let component: ProfilePage;
   let fixture: ComponentFixture<ProfilePage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ProfilePage ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [AlertController,AuthService,ProfileService,Router],
-      imports: [RouterModule, RouterTestingModule,firebase],
-    })
-    .compileComponents();
-  }));
-
+ 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProfilePage);
     component = fixture.componentInstance;
