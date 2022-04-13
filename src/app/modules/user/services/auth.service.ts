@@ -75,13 +75,9 @@ export class AuthService {
   }
 
   logoutUser(): Promise<void> {
-    const userId: string = firebase.auth().currentUser.uid;
-    firebase
+    const user = getAuth()
+return  user.signOut()
 
-      .database()
-      .ref(`/userProfile/${userId}`)
-      .off();
-    return firebase.auth().signOut();
   }
 
 }

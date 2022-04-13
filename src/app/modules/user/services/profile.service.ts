@@ -2,6 +2,7 @@ import { Injectable, ComponentFactoryResolver } from "@angular/core";
 import firebase from 'firebase/compat/app';
 import "firebase/auth";
 import "firebase/database";
+import { getAuth, updatePassword } from "firebase/auth";
 
 @Injectable({
   providedIn: "root"
@@ -42,6 +43,10 @@ console.log('getting usr profile reference')
   }
 
   updateEmail(newEmail: string, password: string): Promise<any> {
+    const auth = getAuth()
+    const user = auth.currentUser
+    const out = updatePassword(user,password)
+
     const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
       this.currentUser.email,
       password
@@ -59,12 +64,19 @@ console.log('getting usr profile reference')
   }
 
   updatePassword(newPassword: string, oldPassword: string): Promise<any> {
+
+    const auth = getAuth()
+    const user = auth.currentUser
+    
+    //const cred = 
     const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
       this.currentUser.email,
       oldPassword
     );
+    const out = updatePassword(user,newPassword)
+    
     return this.currentUser
-      .reauthenticateAndRetrieveDataWithCredential(credential)
+      .reauthenticateWithCredential(credential)
       .then(() => {
         this.currentUser.updatePassword(newPassword).then(() => {
           console.log("Password Changed");
