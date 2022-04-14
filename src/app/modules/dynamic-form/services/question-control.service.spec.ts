@@ -7,7 +7,7 @@ describe('QuestionControlService', () => {
   beforeEach(() => TestBed.configureTestingModule({ providers: [QuestionControlService,FormBuilder] }));
 
   it('should be created', () => {
-    const service: QuestionControlService = TestBed.get(QuestionControlService);
+    const service: QuestionControlService = TestBed.inject(QuestionControlService);
     expect(service).toBeTruthy();
   });
 });
