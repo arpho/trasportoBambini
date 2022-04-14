@@ -26,7 +26,7 @@ export class Telephone {
     }
 }
 
-export class Utenti extends UserModel {
+export class User extends UserModel {
     indirizzo: Address
     type:UserType
     telephones: Array<Telephone>
