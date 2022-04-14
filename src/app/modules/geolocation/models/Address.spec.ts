@@ -12,4 +12,13 @@ describe('should instantiate correctly',()=>{
     expect(address.latitude).toEqual(data.latitude)
 
     })
+    it('testing serialize',()=>{
+
+        expect(address.serialize().cap).toEqual(data.cap)
+        expect(address.serialize().city).toEqual(data.city)
+        expect(address.serialize().number).toEqual(data.number)
+        expect(address.serialize().latitude).toEqual(data.latitude)
+        expect(address.serialize().longitude).toEqual(data.longitude)
+        expect(address.serialize().street).toEqual(data.street)
+    })
 })
