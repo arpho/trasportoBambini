@@ -11,7 +11,7 @@ import { ProfileService } from '../../services/profile.service';
 TestBed.configureTestingModule({
   declarations: [ ProfilePage ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ AlertController/*,AuthService,ProfileService,Router */],
+  providers: [ AlertController,AuthService,ProfileService,Router ],
   imports: [RouterModule, RouterTestingModule,firebase],
 })
 .compileComponents();
