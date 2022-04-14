@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Database, DatabaseReference, getDatabase, onValue, ref } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from 'src/app/models/utenti';
+import { Utente } from 'src/app/models/Utente';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInterface';
 import { initializeApp, getApps, getApp } from "firebase/app";
@@ -18,22 +18,22 @@ export class UtentiService implements ItemServiceInterface {
   paymentsService?: ItemServiceInterface;
   suppliersListRef?: any;
   db:Database
-  _items: BehaviorSubject<Array<User>> = new BehaviorSubject([])
-  readonly items: Observable<Array<User>> = this._items.asObservable()
-  items_list: Array<User> = []
+  _items: BehaviorSubject<Array<Utente>> = new BehaviorSubject([])
+  readonly items: Observable<Array<Utente>> = this._items.asObservable()
+  items_list: Array<Utente> = []
   getItem(key: string, next: () => void): void {
     throw new Error('Method not implemented.');
   }
-  updateItem(item: User) {
+  updateItem(item: Utente) {
     throw new Error('Method not implemented.');
   }
   deleteItem(key: string) {
     throw new Error('Method not implemented.');
   }
-  getDummyItem(): User {
+  getDummyItem(): Utente {
     throw new Error('Method not implemented.');
   }
-  createItem(item: User) {
+  createItem(item: Utente) {
     throw new Error('Method not implemented.');
   }
 

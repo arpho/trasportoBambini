@@ -1,32 +1,10 @@
-
-import { DropdownQuestion } from "../modules/dynamic-form/models/question-dropdown"
 import { Address } from "../modules/geolocation/models/Address"
-import { Serializers } from "../modules/helpers/serializers"
 import { DateModel } from "../modules/user/models/birthDateModel"
 import { UserModel } from "../modules/user/models/userModel"
 import { UserType } from "./Customers"
+import { Telephone } from "./telephone"
 
-export class Telephone {
-    numero: string
-    note: string
-    role: number
-
-    serialize() {
-        const serializers = new Serializers()
-        return { numero: serializers.serialize2String(this.numero), note: serializers.serialize2String(this.note) }
-    }
-
-    load(v: {}) {
-        Object.assign(this, v)
-        return this
-    }
-
-    constructor(v: {}) {
-        this.load(v)
-    }
-}
-
-export class User extends UserModel {
+export class Utente extends UserModel {
     indirizzo: Address
     type:UserType
     telephones: Array<Telephone>
@@ -68,6 +46,7 @@ export class User extends UserModel {
     
     constructor(user?: {}, key?: string) {
         super(user, key)
+        console.log('costruisco utente',this)
         this.load(user)
         if(!this.type){
         this.type = UserType.genitore}

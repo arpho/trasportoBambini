@@ -6,7 +6,7 @@ import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterfac
 import { QuickAction } from "../modules/item/models/QuickAction";
 import { Value } from "../modules/item/models/value";
 import { UserModel } from "../modules/user/models/userModel";
-import { User } from "./utenti";
+import { Utente } from "./Utente";
 
 export enum UserType {
     studente = 0,
@@ -15,7 +15,7 @@ export enum UserType {
     addetto
 }
 
-export class Studenti extends UserModel {
+export class Studenti extends Utente {
 
     pulminoKey: string
     genitoriId: Array<string>
@@ -48,7 +48,7 @@ export class Studenti extends UserModel {
     }
 }
 
-export class Genitori extends User {
+export class Genitori extends Utente {
     children: Array<string>
     type = UserType.genitore
     indirizzo: Address;

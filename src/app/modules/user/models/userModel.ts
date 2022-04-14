@@ -67,7 +67,7 @@ export class UserModel implements ItemModelInterface {
 
   getTitle() {
     return new Value({ value: this.email, label: 'user mail' });
-  }
+  } 
 
   build(item: {}) {
     const loader = ([Key, value]) => {

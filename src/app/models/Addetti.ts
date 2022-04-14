@@ -3,9 +3,9 @@ import { Serializers } from "../modules/helpers/serializers";
 import { ItemModelInterface } from "../modules/item/models/itemModelInterface";
 import { RoleModel } from "../modules/user/models/privilegesLevelModel";
 import { UserType } from "./Customers";
-import { User } from "./utenti";
+import { Utente } from "./Utente";
 
-export class Autista extends User {
+export class Autista extends Utente {
     getElement(): { element: string; genere: "o"; } {
         return { element: 'autista', genere: 'o' }
     }
@@ -32,7 +32,7 @@ export class Autista extends User {
     }
 }
 
-export class Addetto extends User{
+export class Addetto extends Utente{
     mansione:string
     key:string
     getElement(): { element: string; genere: "o"; } {

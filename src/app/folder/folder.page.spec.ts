@@ -22,7 +22,7 @@ describe('FolderPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it('should create folder page', () => {
     expect(component).toBeTruthy();
   });
 });
