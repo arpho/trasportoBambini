@@ -1,4 +1,5 @@
 import {  ComponentFixture, TestBed } from '@angular/core/testing';
+import { Address } from '../modules/geolocation/models/Address';
 import { DateModel } from '../modules/user/models/birthDateModel';
 import { Utente } from './Utente';
 
@@ -33,4 +34,16 @@ const user= new Utente(data_no_key)
       expect(user.key).toEqual('key')
       expect(user.serialize()['key']).toEqual('key')
     }) 
+    it('serialize and load addresss',()=>{
+      const data = {indirizzo:{street:'via e cosenz',cap:'20158',city:'milano',province:'mi',number:'54',latitude:5,longitude:4}}
+      const user= new Utente(data)
+      expect(user.indirizzo).toBeInstanceOf(Address)
+      expect(user.indirizzo.latitude).toEqual(data.indirizzo.latitude)
+      expect(user.indirizzo.longitude).toEqual(data.indirizzo.longitude)
+      expect(user.indirizzo.city).toEqual(data.indirizzo.city)
+      expect(user.indirizzo.number).toEqual(data.indirizzo.number)
+      expect(user.indirizzo.street).toEqual(data.indirizzo.street)
+      expect(user.indirizzo.province).toEqual(data.indirizzo.province)
+      expect(user.indirizzo.cap).toEqual(data.indirizzo.cap)
+    })
 })
