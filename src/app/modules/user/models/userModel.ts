@@ -67,7 +67,7 @@ export class UserModel implements ItemModelInterface {
 
   getTitle() {
     return new Value({ value: this.email, label: 'user mail' });
-  } 
+  }
 
   build(item: {}) {
     const loader = ([Key, value]) => {
@@ -102,10 +102,10 @@ export class UserModel implements ItemModelInterface {
       firstName: this.firstName ?? '',
       lastName: this.lastName ?? '',
       enabled: !!this.enabled,
-      level: this.role&&this.role.value?this.role.value:3,
+      level: this.role && this.role.value ? this.role.value : 3,
       archived: !!this.archived
     };
-    if(!out.uid){
+    if (!out.uid) {
       delete out.uid
 
     }
