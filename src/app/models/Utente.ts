@@ -14,9 +14,12 @@ export class Utente extends UserModel {
         this.telephones = []
         Object.assign(this, v)
         if (v&&v['telephones']) {
-            this.telephones = v['telephone'].map((t) => {
-                new Telephone(t)
+            this.telephones = v['telephones'].map((t) => {
+                return new Telephone(t)
             })
+        }
+        if ( v&&v['indirizzo']){
+            this.indirizzo = new Address(v['indirizzo'])
         }
         this.dor = v&&v['dor']? new DateModel(v['dor']):new DateModel(new Date())
 
@@ -30,14 +33,19 @@ export class Utente extends UserModel {
 
         var out =  { ...super.serialize(),
              ...{ telephones: telephones,
-                indirizzo:this.indirizzo.serialize(),
+                
                  role: this.role,
-                 archived:!!this.archived,dor:this.dor.formatDate(),
+                 archived:!!this.archived,
+                 dor:this.dor.formatDate(),
                 type:this.type
                 } }
     if(this.key){
         out = {...out,...{key:this.key}}
     }
+    if(this.indirizzo instanceof Address){
+        out = {...out,...{indirizzo:this.indirizzo.serialize()},}
+    }
+
     return out
 
     }
@@ -48,7 +56,6 @@ export class Utente extends UserModel {
     
     constructor(user?: {}, key?: string) {
         super(user, key)
-        console.log('costruisco utente',this)
         this.load(user)
         if(!this.type){
         this.type = UserType.genitore}

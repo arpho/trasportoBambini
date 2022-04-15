@@ -8,9 +8,8 @@ describe('testing users class',()=>{
 const data_no_key={firstName:'nome',lastName:'last',email:'email',dob:{day:13,month:5,year:1977},dor:{day:14,month:4,year:2022},
 telephones:[{numero:'1', note:'test'},{numero:'2',note:'test1'}]}
 
-const user= new Utente(data_no_key)    
-console.log('data',data_no_key)
-       it('user intantiated correctly',()=>{
+const user= new Utente(data_no_key)  
+       it('user intantiated correctly withouth key',()=>{
     expect(user['firstName']).toEqual(data_no_key.firstName)
     expect(user['lastName']).toEqual(data_no_key.lastName)
     expect(user['email']).toEqual(data_no_key.email)
@@ -23,9 +22,15 @@ console.log('data',data_no_key)
     expect(user.telephones.length).toEqual(2)
     expect(user.telephones[0].numero).toEqual('1')
     expect(user.telephones[0].note).toEqual('test')
-    console.log('key *#',user.serialize())
     expect(user.serialize()['key']).toBeUndefined()
+    expect(user.serialize()['indirizzo']).toBeUndefined()
     
 
+    })
+    it('seialize key',()=>{
+
+      const user = new Utente({key:'key'})
+      expect(user.key).toEqual('key')
+      expect(user.serialize()['key']).toEqual('key')
     }) 
 })
