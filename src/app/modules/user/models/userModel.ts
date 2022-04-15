@@ -76,7 +76,7 @@ export class UserModel implements ItemModelInterface {
     Object.entries(item).forEach(loader);
     // tslint:disable-next-line: no-string-literal
     if (item['birthDate']) {
-      // tslint:disable-next-line: no-string-literal
+      // tslint:disable-next-line: no-strin
       this.birthDate = new DateModel(item['birthDate']);
     }
     this.role = configs.accessLevel.filter(
@@ -96,16 +96,19 @@ export class UserModel implements ItemModelInterface {
 
   serialize() {
     const out = {
-      key: this.key,
       uid: this.uid || this.key,
       birthDate: this.birthDate ? this.birthDate.serialize() : '',
       email: this.email ?? '',
       firstName: this.firstName ?? '',
       lastName: this.lastName ?? '',
-      enabled: this.enabled,
-      level: this.role.value,
+      enabled: !!this.enabled,
+      level: this.role&&this.role.value?this.role.value:3,
       archived: !!this.archived
     };
+    if(!out.uid){
+      delete out.uid
+
+    }
 
     return this.key ? { ...out, ...{ key: this.key } } : out
   }
