@@ -2,7 +2,7 @@
 import { Serializers } from "../modules/helpers/serializers";
 import { ItemModelInterface } from "../modules/item/models/itemModelInterface";
 import { RoleModel } from "../modules/user/models/privilegesLevelModel";
-import { UserType } from "./Customers";
+import { UserType } from "./usersType";
 import { Utente } from "./Utente";
 
 export class Autista extends Utente {

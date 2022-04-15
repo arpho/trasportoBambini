@@ -1,5 +1,5 @@
 import { Serializers } from "../modules/helpers/serializers"
-import { UserType } from "./Customers"
+import { UserType } from "./usersType"
 import { Utente } from "./Utente"
 
 export class Studenti extends Utente {
