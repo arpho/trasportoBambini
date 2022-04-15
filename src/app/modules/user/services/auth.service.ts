@@ -29,7 +29,6 @@ export class AuthService {
   signupUser(user:UserModel, string, next?, error?, complete?): Subscription {
     return this.createUserObserver(user.email, user.password).subscribe({
       next: v => {
-        console.log('creato user', v)
         sendEmailVerification(v['user'])
         const db = getDatabase()
         const newUser = new UserModel(v['user']).load(v['user'])
