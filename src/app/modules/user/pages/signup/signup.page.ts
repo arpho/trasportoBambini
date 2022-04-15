@@ -94,9 +94,12 @@ export class SignupPage implements OnInit, OnDestroy {
 
         console.log('loading', this.modal)
         this.modal.dismiss().then(() => {
-          this.router.navigateByUrl('home');
+       
 
         })
+      }
+      const complete = ()=>{
+        this.router.navigateByUrl('home');
       }
 
       const errorHandler = (error) => {
@@ -106,9 +109,12 @@ export class SignupPage implements OnInit, OnDestroy {
             buttons: [{ text: 'Ok', role: 'cancel' }],
           });
           await alert.present();
+          await alert.onDidDismiss()
+          this.router.navigateByUrl('home');
+          
         });
       }
-      this.authService.signupUser(user, successHandler, errorHandler)
+      this.authService.signupUser(user, successHandler, errorHandler,complete)
       this.modal = await this.loadingCtrl.create();
       await this.modal.present();
     }
