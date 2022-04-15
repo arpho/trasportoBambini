@@ -13,11 +13,13 @@ export class Utente extends UserModel {
     load(v: {}) {
         this.telephones = []
         Object.assign(this, v)
-        if (v['telephones']) {
+        if (v&&v['telephones']) {
             this.telephones = v['telephone'].map((t) => {
                 new Telephone(t)
             })
         }
+        this.dor = v&&v['dor']? new DateModel(v['dor']):new DateModel(new Date())
+
 
         return this
     }
