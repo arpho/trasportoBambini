@@ -6,74 +6,13 @@ import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterfac
 import { QuickAction } from "../modules/item/models/QuickAction";
 import { Value } from "../modules/item/models/value";
 import { UserModel } from "../modules/user/models/userModel";
+import { UserType } from "./usersType";
 import { Utente } from "./Utente";
 
-export enum UserType {
-    studente = 0,
-    genitore,
-    autista,
-    addetto
-}
-
-export class Studenti extends Utente {
-
-    pulminoKey: string
-    genitoriId: Array<string>
-    collectionPoint: string
-    collectionPointKey: string
-    schoolKey: string
-    type = UserType.studente
-    load(v: {}) {
-        Object.assign(this, v)
-
-        return this
-    }
-
-    serialize() {
-        const serializers = new Serializers()
-        return {
-            ...super.serialize(),
-            ...{
-                type: this.type,
-                genitoryId: this.genitoriId,
-                pulminoKey: serializers.serialize2String(this.pulminoKey),
-                collectionPointKey: serializers.serialize2String(this.collectionPointKey),
-                schoolkey: serializers.serialize2String(this.schoolKey)
-            }
-        }
-    }
-
-    getElement(): { element: string; genere: "o"; } {
-        return { element: 'studente', genere: "o" }
-    }
-}
-
-export class Genitori extends Utente {
-    children: Array<string>
-    type = UserType.genitore
-    indirizzo: Address;
 
 
-    load(v: {}) {
-        Object.assign(this, v)
-        return this
-    }
 
-    serialize() {
-        return { ...super.serialize(), ...{ figli: this.children, indirizzo:this.indirizzo.serialize()} }
-    }
 
-    getElement(): { element: string; genere: "o"; } {
-        return { element: 'genitore', genere: 'o' }
-    }
-
-    constructor(v?: {}) {
-        super(v)
-        this.load(v)
-        this.type= UserType.genitore
-    }
-
-}
 
 export class CollectionPoint implements ItemModelInterface {
     title: string;

@@ -1,7 +1,7 @@
 import { Address } from "../modules/geolocation/models/Address"
 import { DateModel } from "../modules/user/models/birthDateModel"
 import { UserModel } from "../modules/user/models/userModel"
-import { UserType } from "./Customers"
+import { UserType } from "./usersType"
 import { Telephone } from "./telephone"
 
 export class Utente extends UserModel {
