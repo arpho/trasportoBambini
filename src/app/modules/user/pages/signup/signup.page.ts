@@ -81,6 +81,7 @@ export class SignupPage implements OnInit, OnDestroy {
   async submit(ev) {
     const user = new UserModel().load(ev)
     user.password = ev.password.password
+    user.email = ev.email.email
     this.signupUser(this.signupForm, user)
 
   }
@@ -91,7 +92,7 @@ export class SignupPage implements OnInit, OnDestroy {
         'Need to complete the form, current value: ', signupForm.value
       );
     } else {
-      const email: string = signupForm.value.email;
+      const email: string = signupForm.value.email.email;
       const password: string = signupForm.value.password;
       const successHandler = (v) => {
 
