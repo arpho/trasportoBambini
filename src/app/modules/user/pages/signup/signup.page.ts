@@ -87,11 +87,7 @@ export class SignupPage implements OnInit, OnDestroy {
   }
 
   async signupUser(signupForm: FormGroup, user: UserModel): Promise<void> {
-    if (!signupForm.valid) {
-      console.log(
-        'Need to complete the form, current value: ', signupForm.value
-      );
-    } else {
+  
       const email: string = signupForm.value.email.email;
       const password: string = signupForm.value.password;
       const successHandler = (v) => {
@@ -117,4 +113,4 @@ export class SignupPage implements OnInit, OnDestroy {
       await this.modal.present();
     }
   }
-}
+
