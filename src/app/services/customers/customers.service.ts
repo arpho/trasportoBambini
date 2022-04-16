@@ -18,7 +18,10 @@ export class CustomersService implements ItemServiceInterface {
   reference = 'userprofile'
 
 
-  loadData() {
+  loadData(next?: (data?) => void) {
+    /**
+     * @param: calback function to be executed everytime firebase fire an event
+     */
     this.customerListRef = ref(this.db, this.reference)
     onValue(this.customerListRef, (snapshot) => {
 
@@ -28,7 +31,7 @@ export class CustomersService implements ItemServiceInterface {
         this.items_list.push(item)
 
       })
-      this.publishitems(this.items_list)
+      next(this.items_list)
     })
   }
 
@@ -61,7 +64,7 @@ export class CustomersService implements ItemServiceInterface {
 
   constructor() {
     this.db = getDatabase()
-    this.loadData()
+    this.loadData(this.publishitems)
   }
   categoriesService?: ItemServiceInterface;
   suppliersService?: ItemServiceInterface;
@@ -71,8 +74,8 @@ export class CustomersService implements ItemServiceInterface {
   items_list: Utente[] = []
   readonly items: Observable<Array<Utente>>;
   getItem(key: string, next: (item?) => void): void {
-    const customerRef = ref(this.db,`${this.reference}/${key}`)
-    onValue(customerRef,(item=>{
+    const customerRef = ref(this.db, `${this.reference}/${key}`)
+    onValue(customerRef, (item => {
       next(item.val())
     }))
   }
