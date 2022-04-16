@@ -73,7 +73,7 @@ export class CustomersService implements ItemServiceInterface {
   getItem(key: string, next: (item?) => void): void {
     const customerRef = ref(this.db,`${this.reference}/${key}`)
     onValue(customerRef,(item=>{
-      next(item)
+      next(item.val())
     }))
   }
   updateItem(item: ItemModelInterface) {
