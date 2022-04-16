@@ -70,8 +70,11 @@ export class CustomersService implements ItemServiceInterface {
   _items: BehaviorSubject<Utente[]>;
   items_list: Utente[] = []
   readonly items: Observable<Array<Utente>>;
-  getItem(key: string, next: () => void): void {
-    throw new Error('Method not implemented.');
+  getItem(key: string, next: (item?) => void): void {
+    const customerRef = ref(this.db,`${this.reference}/${key}`)
+    onValue(customerRef,(item=>{
+      next(item)
+    }))
   }
   updateItem(item: ItemModelInterface) {
     this.customerListRef.set(item.serialize())//serialize show the item.key if present
