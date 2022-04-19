@@ -19,6 +19,10 @@ pathMatch:'full'},
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'customers',
+    loadChildren: () => import('./pages/customers/customers/customers.module').then( m => m.CustomersPageModule)
   }
 ];
 
