@@ -9,7 +9,7 @@ import { Utente } from './models/Utente';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'calendario prenotazioni', url: '/folder/Archived', icon: 'calendar' },
+    { title: 'utenti', url: '/folder/Archived', icon: 'people' },
   ];
   public labels = [];
   constructor() {
