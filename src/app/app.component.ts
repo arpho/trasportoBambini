@@ -9,7 +9,7 @@ import { Utente } from './models/Utente';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'utenti', url: '/folder/Archived', icon: 'people' },
+    { title: 'utenti', url: '/customers', icon: 'people' },
   ];
   public labels = [];
   constructor() {
