@@ -15,7 +15,14 @@ import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInt
 export class CustomersService implements ItemServiceInterface {
   customerListRef
   db
-  reference = 'userprofile'
+  reference = 'userProfile'
+
+  categoriesService?: ItemServiceInterface;
+  suppliersService?: ItemServiceInterface;
+  paymentsService?: ItemServiceInterface;
+  suppliersListRef?: any;
+  _items: BehaviorSubject<Array<Utente>>=  new BehaviorSubject([]);
+  readonly items: Observable<Array<Utente>> = this._items.asObservable()
 
 
   loadData(next?: (data?) => void) {
@@ -23,19 +30,25 @@ export class CustomersService implements ItemServiceInterface {
      * @param: calback function to be executed everytime firebase fire an event
      */
     this.customerListRef = ref(this.db, this.reference)
+    console.log('reading db',this.customerListRef)
     onValue(this.customerListRef, (snapshot) => {
+      console.log('data',snapshot)
+
 
       this.items_list = []
       snapshot.forEach(e => {
+        console.log('item',e.val())
         const item = this.CustomersFactory(e.val())
         this.items_list.push(item)
+      
 
       })
+      console.log('items',this.items_list)
       next(this.items_list)
     })
   }
 
-  publishitems(list: Utente[]) {// must stay inside onValue to update data evry time there is an update
+  publishItems(list: Utente[]) {// must stay inside onValue to update data evry time there is an update
     this._items.next(list)
 
   }
@@ -63,16 +76,12 @@ export class CustomersService implements ItemServiceInterface {
 
 
   constructor() {
+    
+    console.log('_items',this._items)
     this.db = getDatabase()
-    this.loadData(this.publishitems)
+    this.loadData(this.publishItems)
   }
-  categoriesService?: ItemServiceInterface;
-  suppliersService?: ItemServiceInterface;
-  paymentsService?: ItemServiceInterface;
-  suppliersListRef?: any;
-  _items: BehaviorSubject<Utente[]>= new BehaviorSubject([]);
   items_list: Utente[] = []
-  readonly items: Observable<Array<Utente>>;
   getItem(key: string, next: (item?) => void): void {
     const customerRef = ref(this.db, `${this.reference}/${key}`)
     onValue(customerRef, (item => {
