@@ -70,7 +70,7 @@ export class CustomersService implements ItemServiceInterface {
   suppliersService?: ItemServiceInterface;
   paymentsService?: ItemServiceInterface;
   suppliersListRef?: any;
-  _items: BehaviorSubject<Utente[]>;
+  _items: BehaviorSubject<Utente[]>= new BehaviorSubject([]);
   items_list: Utente[] = []
   readonly items: Observable<Array<Utente>>;
   getItem(key: string, next: (item?) => void): void {
