@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getDatabase, onValue, push, ref, set } from 'firebase/database';
+import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Addetto, Autista } from 'src/app/models/Addetti';
 import { Genitori } from 'src/app/models/genitori';
@@ -13,24 +13,30 @@ import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInt
   providedIn: 'root'
 })
 export class CustomersService implements ItemServiceInterface {
-  customerListRef
-  db
-  reference = 'userProfile'
-
-  categoriesService?: ItemServiceInterface;
-  suppliersService?: ItemServiceInterface;
-  paymentsService?: ItemServiceInterface;
-  suppliersListRef?: any;
-  _items: BehaviorSubject<Array<Utente>>=  new BehaviorSubject([]);
+  customerListRef:DatabaseReference
+  db: Database
+   _items: BehaviorSubject<Array<Utente>>=  new BehaviorSubject([]);
   readonly items: Observable<Array<Utente>> = this._items.asObservable()
+  items_list: Array<Utente> = []
+  reference: string;
 
+ constructor() {
+    console.log('_items',this._items)
+    this._items.subscribe((d)=>{
+      console.log('subscription',d)
+    })
+
+  this.reference = 'userProfile'
+    this.db = getDatabase()
+    this.customerListRef = ref(this.db, this.reference)
+    this.loadData(this.publishItems)
+  }
 
   loadData(next?: (data?) => void) {
     /**
      * @param: calback function to be executed everytime firebase fire an event
      */
-    this.customerListRef = ref(this.db, this.reference)
-    console.log('reading db',this.customerListRef)
+    console.log('_items',this._items)
     onValue(this.customerListRef, (snapshot) => {
       console.log('data',snapshot)
 
@@ -44,14 +50,13 @@ export class CustomersService implements ItemServiceInterface {
 
       })
       console.log('items',this.items_list)
-      next(this.items_list)
+      console.log('_items',this._items)
+      //next(this.items_list)
+      this._items.next(this.items_list)
     })
   }
 
-  publishItems(list: Utente[]) {// must stay inside onValue to update data evry time there is an update
-    this._items.next(list)
 
-  }
 
   CustomersFactory(d: {}) {
     var out
@@ -74,14 +79,14 @@ export class CustomersService implements ItemServiceInterface {
 
   }
 
+  publishItems(lista: Utente[]) {// must stay inside onValue to update data evry time there is an update
+    console.log('publishing',lista)
+    this._items.next(lista)
 
-  constructor() {
-    
-    console.log('_items',this._items)
-    this.db = getDatabase()
-    this.loadData(this.publishItems)
   }
-  items_list: Utente[] = []
+
+
+ 
   getItem(key: string, next: (item?) => void): void {
     const customerRef = ref(this.db, `${this.reference}/${key}`)
     onValue(customerRef, (item => {
@@ -89,11 +94,12 @@ export class CustomersService implements ItemServiceInterface {
     }))
   }
   updateItem(item: ItemModelInterface) {
-    this.customerListRef.set(item.serialize())//serialize show the item.key if present
+    const reference = ref(this.db,`${this.reference}/${item.key}`)
+    set(reference,item.serialize())
   }
   deleteItem(key: string) {
-    const userRef = ref(this.db, `${this.reference}/${key}`)
-    set(userRef, null)
+    const reference = ref(this.db, `${this.reference}/${key}`)
+    set(reference, null)
 
   }
   getDummyItem(): ItemModelInterface {
