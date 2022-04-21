@@ -106,7 +106,7 @@ export class SignupPage implements OnInit, OnDestroy {
       const errorHandler = (error) => {
         this.modal.dismiss().then(async () => {
           const alert = await this.alertCtrl.create({
-            message: error?error.message:`utente ${user.getTitle().value} creato corettamente`,
+            message: error.message?error.message:`utente ${user.getTitle().value} creato correttamente`,
             buttons: [{ text: 'Ok', role: 'cancel' }],
           });
           await alert.present();

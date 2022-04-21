@@ -27,7 +27,6 @@ export class UserModel implements ItemModelInterface {
   service: ItemServiceInterface;
 
   constructor(user?: {}, key?: string,) {
-    console.log('costruisco user',user)
     this.load(user)
     if (key) {
       this.key = key
@@ -120,7 +119,6 @@ export class UserModel implements ItemModelInterface {
       (access: RoleModel) => access.value === this.level
     )[0]
 
-    console.log('role',out)
     return out ? out : configs.accessLevel[2] //utente standard
 
   }

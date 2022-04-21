@@ -66,7 +66,6 @@ export class Utente extends UserModel {
 
     constructor(user?: {}, key?: string) {
         super(user, key)
-        console.log('costruiisco utente',user)
         this.load(user)
         if (!this.type) {
             this.type = UserType.genitore

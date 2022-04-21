@@ -37,7 +37,6 @@ reference = 'userProfile'
       this.items_list = []
       snapshot.forEach(e => {
         const item = this.CustomersFactory(e.val())
-        console.log('item',item)
         this.items_list.push(item)
 
 
@@ -49,8 +48,7 @@ reference = 'userProfile'
 
 
   CustomersFactory(d: {}):Utente {
-    console.log('facvtory data',d)
-    var out
+    var out= new Utente(d)
     if (d['type'] == UserType.addetto) {
       out = new Addetto(d)
     }
@@ -62,9 +60,6 @@ reference = 'userProfile'
     }
     if (d['type'] == UserType.studente) {
       out = new Studenti(d)
-    }
-    if (!d['type']) {
-      out = new Utente(d)
     }
     return out
 
