@@ -44,7 +44,7 @@ export class PageItemsListComponent implements OnInit, OnChanges {
   ) {
     // this.showSpinner = false
     this.filterFunction = v => true;
-    
+
 
 
   }
@@ -55,9 +55,10 @@ export class PageItemsListComponent implements OnInit, OnChanges {
 
   }
   ngOnInit() {
-  
-    if(!this.filterFunction){
-    this.filterFunction = this.filterFunction? this.filterFunction: (v: ItemModelInterface) => true;}
+
+    if (!this.filterFunction) {
+      this.filterFunction = this.filterFunction ? this.filterFunction : (v: ItemModelInterface) => true;
+    }
     if (!this.sorterFunction) {
       this.sorterFunction = (a: ItemModelInterface, b: ItemModelInterface) => 0
     }
@@ -88,8 +89,7 @@ export class PageItemsListComponent implements OnInit, OnChanges {
     slide['close']();
     const element = this.service.getDummyItem().getElement();
     const alert = await this.alertCtrl.create({
-      message: ` vuoi davvero cancellare quest${element.genere} ${
-        element.element
+      message: ` vuoi davvero cancellare quest${element.genere} ${element.element
         }?(${item.title})`,
       buttons: [
         {
@@ -109,10 +109,9 @@ export class PageItemsListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes',changes,this.service)
-    
 
-   
+
+
 
     if (this.service && this.service.items) {
       this.service.items.subscribe((items) => {
