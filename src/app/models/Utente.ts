@@ -56,8 +56,13 @@ export class Utente extends UserModel {
 
     }
 
+    setKey(key: string) {
+        this.key = key
+        return this
+    }
+
     getTitle(): Value {
-        return new Value({value:`${this.firstName} ${this.lastName}`,label:'utente'})
+        return new Value({ value: `${this.firstName} ${this.lastName}`, label: 'utente' })
     }
 
     getElement(): { element: string; genere: "o" } {

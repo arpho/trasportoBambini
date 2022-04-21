@@ -36,7 +36,7 @@ reference = 'userProfile'
 
       this.items_list = []
       snapshot.forEach(e => {
-        const item = this.CustomersFactory(e.val())
+        const item = this.CustomersFactory(e.val()).setKey(e.key)
         this.items_list.push(item)
 
 
