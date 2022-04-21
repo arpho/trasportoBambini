@@ -13,17 +13,15 @@ import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInt
   providedIn: 'root'
 })
 export class CustomersService implements ItemServiceInterface {
-  customerListRef:DatabaseReference
-  db: Database
-   _items: BehaviorSubject<Array<Utente>>=  new BehaviorSubject([]);
+  customerListRef: DatabaseReference
+  _items: BehaviorSubject<Array<Utente>> = new BehaviorSubject([]);
   readonly items: Observable<Array<Utente>> = this._items.asObservable()
   items_list: Array<Utente> = []
-  reference: string;
+reference = 'userProfile'
+    db = getDatabase()
+  constructor() {
 
- constructor() {
-
-  this.reference = 'userProfile'
-    this.db = getDatabase()
+    
     this.customerListRef = ref(this.db, this.reference)
     this.loadData(this.publishItems)
   }
@@ -32,7 +30,7 @@ export class CustomersService implements ItemServiceInterface {
     /**
      * @param: calback function to be executed everytime firebase fire an event
      */
-    console.log('_items',this._items)
+   
     onValue(this.customerListRef, (snapshot) => {
 
 
@@ -40,11 +38,10 @@ export class CustomersService implements ItemServiceInterface {
       snapshot.forEach(e => {
         const item = this.CustomersFactory(e.val())
         this.items_list.push(item)
-      
+
 
       })
-      //next(this.items_list)
-      this._items.next(this.items_list)
+    this.publishItems(this.items_list)
     })
   }
 
@@ -78,7 +75,7 @@ export class CustomersService implements ItemServiceInterface {
   }
 
 
- 
+
   getItem(key: string, next: (item?) => void): void {
     const customerRef = ref(this.db, `${this.reference}/${key}`)
     onValue(customerRef, (item => {
@@ -86,8 +83,8 @@ export class CustomersService implements ItemServiceInterface {
     }))
   }
   updateItem(item: ItemModelInterface) {
-    const reference = ref(this.db,`${this.reference}/${item.key}`)
-    set(reference,item.serialize())
+    const reference = ref(this.db, `${this.reference}/${item.key}`)
+    set(reference, item.serialize())
   }
   deleteItem(key: string) {
     const reference = ref(this.db, `${this.reference}/${key}`)

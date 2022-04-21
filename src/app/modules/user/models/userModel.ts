@@ -132,7 +132,7 @@ export class UserModel implements ItemModelInterface {
   }
 
   getValue3() {
-    const value = new Value({ value: this.role.key, label: 'ruolo ' });
+    const value = new Value({ value: this.role?.key, label: 'ruolo ' });
     return value;
   }
 
