@@ -9,9 +9,11 @@ export class Utente extends UserModel {
     type: UserType
     telephones: Array<Telephone>
     dor: DateModel // date of registration
+    role
 
     load(v: {}) {
         this.telephones = []
+        this.role = super.roleFactory(this.level)
         Object.assign(this, v)
         if (v && v['telephones']) {
             this.telephones = v['telephones'].map((t) => {
@@ -59,6 +61,7 @@ export class Utente extends UserModel {
 
     constructor(user?: {}, key?: string) {
         super(user, key)
+        console.log('costruiisco utente',user)
         this.load(user)
         if (!this.type) {
             this.type = UserType.genitore
