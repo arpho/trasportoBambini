@@ -31,7 +31,7 @@ export class AuthService {
       next: v => {
         sendEmailVerification(v['user'])
         const db = getDatabase()
-        const newUser = new UserModel(v['user']).load(v['user'])
+        const newUser = new UserModel(user).load(user)
         const usersRef = ref(db, '/userProfile')
         console.log('new user',newUser.serialize())
         push(usersRef, newUser.serialize())

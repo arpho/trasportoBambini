@@ -73,7 +73,7 @@ export class SignupPage implements OnInit, OnDestroy {
   ngOnInit() { }
 
   filter(ev) {
-    console.log(ev)
+
   }
   dismiss(payment?) {
     this.modalCtrl.dismiss(payment)

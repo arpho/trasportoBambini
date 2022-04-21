@@ -27,7 +27,8 @@ export class UserModel implements ItemModelInterface {
   service: ItemServiceInterface;
 
   constructor(user?: {}, key?: string,) {
-    Object.assign(this, user)
+    console.log('costruisco user',user)
+    this.load(user)
     if (key) {
       this.key = key
       this.uid = key
@@ -118,11 +119,14 @@ export class UserModel implements ItemModelInterface {
     const out = configs.accessLevel.filter(
       (access: RoleModel) => access.value === this.level
     )[0]
+
+    console.log('role',out)
     return out ? out : configs.accessLevel[2] //utente standard
 
   }
 
   load(args) {
+    console.log('carico user')
     Object.assign(this, args)
     this.role = this.roleFactory(this.level)
     this.key = this.key ?? this.uid
