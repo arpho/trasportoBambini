@@ -55,8 +55,7 @@ export class PageItemsListComponent implements OnInit, OnChanges {
 
   }
   ngOnInit() {
-
-console.log('oninit',this.service)    
+  
     if(!this.filterFunction){
     this.filterFunction = this.filterFunction? this.filterFunction: (v: ItemModelInterface) => true;}
     if (!this.sorterFunction) {
@@ -116,12 +115,6 @@ console.log('oninit',this.service)
    
 
     if (this.service && this.service.items) {
-
-   
-      this.service._items.subscribe(v=>{console.log('_items subscribed',v)})
-    this.service.items.subscribe(v=>{
-      console.log('itemss subscribed',v)
-    })
       this.service.items.subscribe((items) => {
         if (items) {
           this.showSpinner = false

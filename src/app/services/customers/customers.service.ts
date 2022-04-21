@@ -21,10 +21,6 @@ export class CustomersService implements ItemServiceInterface {
   reference: string;
 
  constructor() {
-    console.log('_items',this._items)
-    this._items.subscribe((d)=>{
-      console.log('subscription',d)
-    })
 
   this.reference = 'userProfile'
     this.db = getDatabase()
@@ -38,19 +34,15 @@ export class CustomersService implements ItemServiceInterface {
      */
     console.log('_items',this._items)
     onValue(this.customerListRef, (snapshot) => {
-      console.log('data',snapshot)
 
 
       this.items_list = []
       snapshot.forEach(e => {
-        console.log('item',e.val())
         const item = this.CustomersFactory(e.val())
         this.items_list.push(item)
       
 
       })
-      console.log('items',this.items_list)
-      console.log('_items',this._items)
       //next(this.items_list)
       this._items.next(this.items_list)
     })
@@ -80,7 +72,7 @@ export class CustomersService implements ItemServiceInterface {
   }
 
   publishItems(lista: Utente[]) {// must stay inside onValue to update data evry time there is an update
-    console.log('publishing',lista)
+
     this._items.next(lista)
 
   }
