@@ -19,6 +19,7 @@ export class SignupPage implements OnInit, OnDestroy {
   public usersFields: any
   public modal: any;
   subscription: Subscription
+  user:UserModel
   constructor(
     public modalCtrl: ModalController,
     private authService: AuthService,
@@ -28,13 +29,13 @@ export class SignupPage implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.usersFields = [new TextboxQuestion({
-      key: 'name',
+      key: 'firstName',
       label: 'nome',
       required: true,
       order: 1
 
     }), new TextboxQuestion({
-      key: 'surname',
+      key: 'lastName',
       label: 'cognome',
       required: true,
       order: 2
@@ -79,10 +80,10 @@ export class SignupPage implements OnInit, OnDestroy {
   }
 
   async submit(ev) {
-    const user = new UserModel().load(ev)
-    user.password = ev.password.password
-    user.email = ev.email.email
-    this.signupUser(this.signupForm, user)
+    this.user = new UserModel().load(ev)
+    this.user.password = ev.password.password
+    this.user.email = ev.email.email
+    this.signupUser(this.signupForm, this.user)
 
   }
 
@@ -105,7 +106,7 @@ export class SignupPage implements OnInit, OnDestroy {
       const errorHandler = (error) => {
         this.modal.dismiss().then(async () => {
           const alert = await this.alertCtrl.create({
-            message: error.message,
+            message: error?error.message:`utente ${user.getTitle().value} creato corettamente`,
             buttons: [{ text: 'Ok', role: 'cancel' }],
           });
           await alert.present();
