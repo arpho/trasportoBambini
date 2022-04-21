@@ -44,6 +44,9 @@ export class PageItemsListComponent implements OnInit, OnChanges {
   ) {
     // this.showSpinner = false
     this.filterFunction = v => true;
+    
+
+
   }
 
   async createItem() {
@@ -52,6 +55,8 @@ export class PageItemsListComponent implements OnInit, OnChanges {
 
   }
   ngOnInit() {
+
+console.log('oninit',this.service)    
     if(!this.filterFunction){
     this.filterFunction = this.filterFunction? this.filterFunction: (v: ItemModelInterface) => true;}
     if (!this.sorterFunction) {
@@ -105,7 +110,18 @@ export class PageItemsListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log('changes',changes,this.service)
+    
+
+   
+
     if (this.service && this.service.items) {
+
+   
+      this.service._items.subscribe(v=>{console.log('_items subscribed',v)})
+    this.service.items.subscribe(v=>{
+      console.log('itemss subscribed',v)
+    })
       this.service.items.subscribe((items) => {
         if (items) {
           this.showSpinner = false

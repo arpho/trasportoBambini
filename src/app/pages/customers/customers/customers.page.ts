@@ -13,7 +13,7 @@ export class CustomersPage implements OnInit {
   
   public filterFields: any[];
 
-  constructor(customers:CustomersService) {
+  constructor(public customers:CustomersService) {
     this.filterFields = [
       new TextboxQuestion({
         key: 'title',
