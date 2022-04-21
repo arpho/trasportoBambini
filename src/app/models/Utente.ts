@@ -3,6 +3,7 @@ import { DateModel } from "../modules/user/models/birthDateModel"
 import { UserModel } from "../modules/user/models/userModel"
 import { UserType } from "./usersType"
 import { Telephone } from "./telephone"
+import { Value } from "../modules/item/models/value"
 
 export class Utente extends UserModel {
     indirizzo: Address
@@ -53,6 +54,10 @@ export class Utente extends UserModel {
 
         return out
 
+    }
+
+    getTitle(): Value {
+        return new Value({value:`${this.firstName} ${this.lastName}`,label:'utente'})
     }
 
     getElement(): { element: string; genere: "o" } {
