@@ -26,17 +26,17 @@ export class Autista extends Utente {
         }
 
     }
-    constructor(v?:{}){
+    constructor(v?: {}) {
         super(v)
         this.userType = UserType.autista
     }
 }
 
-export class Addetto extends Utente{
-    mansione:string
-    key:string
+export class Addetto extends Utente {
+    mansione: string
+    key: string
     getElement(): { element: string; genere: "o"; } {
-        return {genere:'o',element:'addetto'}
+        return { genere: 'o', element: 'addetto' }
     }
 
     getCountingText(): string {
@@ -44,18 +44,18 @@ export class Addetto extends Utente{
     }
 
     load(v: {}): this {
-        Object.assign(this,v)
+        Object.assign(this, v)
         return this
     }
 
-    serialize(){
-        var out = {...super.serialize(),...{mansione:this.mansione}}
-  
+    serialize() {
+        var out = { ...super.serialize(), ...{ mansione: this.mansione } }
+
         return out
     }
-    constructor(v?:{}){
+    constructor(v?: {}) {
         super(v)
-        this.userType= UserType.addetto
+        this.userType = UserType.addetto
     }
 }
 

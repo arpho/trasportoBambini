@@ -14,7 +14,7 @@ export class Genitore extends Utente {
     }
 
     serialize() {
-        return { ...super.serialize(), ...{ figli: this.children, indirizzo:this.indirizzo.serialize()} }
+        return { ...super.serialize(), ...{ figli: this.children, indirizzo: this.indirizzo.serialize() } }
     }
 
     getElement(): { element: string; genere: "o"; } {
@@ -24,7 +24,7 @@ export class Genitore extends Utente {
     constructor(v?: {}) {
         super(v)
         this.load(v)
-        this.userType= UserType.genitore
+        this.userType = UserType.genitore
     }
 
 }

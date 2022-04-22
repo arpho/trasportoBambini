@@ -17,11 +17,11 @@ export class CustomersService implements ItemServiceInterface {
   _items: BehaviorSubject<Array<Utente>> = new BehaviorSubject([]);
   readonly items: Observable<Array<Utente>> = this._items.asObservable()
   items_list: Array<Utente> = []
-reference = 'userProfile'
-    db = getDatabase()
+  reference = 'userProfile'
+  db = getDatabase()
   constructor() {
 
-    
+
     this.customerListRef = ref(this.db, this.reference)
     this.loadData(this.publishItems)
   }
@@ -30,7 +30,7 @@ reference = 'userProfile'
     /**
      * @param: calback function to be executed everytime firebase fire an event
      */
-   
+
     onValue(this.customerListRef, (snapshot) => {
 
 
@@ -41,14 +41,14 @@ reference = 'userProfile'
 
 
       })
-    this.publishItems(this.items_list)
+      this.publishItems(this.items_list)
     })
   }
 
 
 
-  CustomersFactory(d: {}):Utente {
-    var out= new Utente(d)
+  CustomersFactory(d: {}): Utente {
+    var out = new Utente(d)
     if (d['type'] == UserType.addetto) {
       out = new Addetto(d)
     }

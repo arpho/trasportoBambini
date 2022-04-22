@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Genitore } from 'src/app/models/genitori';
+import { Genitore } from 'src/app/models/genitore';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { CustomersService } from '../customers/customers.service';
 
@@ -14,5 +14,5 @@ export class ParentsService extends CustomersService {
 
   constructor() {
     super()
-   }
+  }
 }

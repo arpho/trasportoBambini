@@ -55,8 +55,8 @@ describe('testing users class', () => {
     expect(user.serialize()['indirizzo']).toBeDefined()
   })
 
-  it('set the right userType',()=>{
-    const addetto =new Addetto()
+  it('set the right userType', () => {
+    const addetto = new Addetto()
     const autista = new Autista()
     const genitore = new Genitore()
     const studednte = new Studente()
