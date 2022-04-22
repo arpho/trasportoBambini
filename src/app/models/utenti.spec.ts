@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Address } from '../modules/geolocation/models/Address';
 import { DateModel } from '../modules/user/models/birthDateModel';
+import { StudentsService } from '../services/studenti/students.service';
+import { Addetto, Autista } from './Addetti';
+import { Genitori } from './genitori';
+import { Studenti } from './studente';
+import { UserType } from './usersType';
 import { Utente } from './Utente';
 
 
@@ -50,7 +55,13 @@ describe('testing users class', () => {
     expect(user.serialize()['indirizzo']).toBeDefined()
   })
 
-  it('set the rigth userType',()=>{
-    
+  it('set the right userType',()=>{
+    const addetto =new Addetto()
+    const autista = new Autista()
+    const genitore = new Genitori()
+    const studednte = new Studenti()
+    expect(autista.getUserTypeKwey(autista.userType)).toEqual('autista')
+    expect(genitore.getUserTypeKwey(genitore.userType)).toEqual('genitore')
+    expect(studednte.getUserTypeKwey(studednte.userType)).toEqual('studente')
   })
 })
