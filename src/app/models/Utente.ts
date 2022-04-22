@@ -4,6 +4,8 @@ import { UserModel } from "../modules/user/models/userModel"
 import { UserType } from "./usersType"
 import { Telephone } from "./telephone"
 import { Value } from "../modules/item/models/value"
+import { configs } from "../configs/configs"
+import { UserTpeModedl } from "../modules/user/models/UserTypeModel"
 
 export class Utente extends UserModel {
     indirizzo: Address
@@ -55,6 +57,17 @@ export class Utente extends UserModel {
         return out
 
     }
+
+
+  getUserTypeKwey(level) {
+
+    const out = configs.userType.filter(
+      (access: UserTpeModedl) => access.value === this.userType
+    )[0]
+
+    return out ? out : configs.accessLevel[2] //utente standard
+
+  }
 
     setKey(key: string) {
         this.key = key
