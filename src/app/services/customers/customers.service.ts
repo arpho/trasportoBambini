@@ -3,7 +3,7 @@ import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } fro
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Addetto, Autista } from 'src/app/models/Addetto';
 import { Genitore } from 'src/app/models/genitore';
-import { Studenti } from 'src/app/models/studente';
+import { Studente } from 'src/app/models/studente';
 import { UserType } from 'src/app/models/usersType';
 import { Utente } from 'src/app/models/Utente';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
@@ -59,7 +59,7 @@ reference = 'userProfile'
       out = new Genitore(d)
     }
     if (d['type'] == UserType.studente) {
-      out = new Studenti(d)
+      out = new Studente(d)
     }
     return out
 

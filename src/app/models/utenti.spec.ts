@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Address } from '../modules/geolocation/models/Address';
 import { DateModel } from '../modules/user/models/birthDateModel';
 import { StudentsService } from '../services/studenti/students.service';
-import { Addetto, Autista } from './Addetti';
+import { Addetto, Autista } from './Addetto';
 import { Genitore } from './genitore';
-import { Studenti } from './studente';
+import { Studente } from './studente';
 import { UserType } from './usersType';
 import { Utente } from './Utente';
 
@@ -59,7 +59,7 @@ describe('testing users class', () => {
     const addetto =new Addetto()
     const autista = new Autista()
     const genitore = new Genitore()
-    const studednte = new Studenti()
+    const studednte = new Studente()
     expect(autista.getUserTypeKey(autista.userType)).toEqual('autista')
     expect(genitore.getUserTypeKey(genitore.userType)).toEqual('genitore')
     expect(studednte.getUserTypeKey(studednte.userType)).toEqual('studente')

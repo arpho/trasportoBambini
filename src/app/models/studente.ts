@@ -2,7 +2,7 @@ import { Serializers } from "../modules/helpers/serializers"
 import { UserType } from "./usersType"
 import { Utente } from "./Utente"
 
-export class Studenti extends Utente {
+export class Studente extends Utente {
 
     pulminoKey: string
     genitoriId: Array<string>
