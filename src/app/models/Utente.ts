@@ -59,15 +59,19 @@ export class Utente extends UserModel {
     }
 
 
-  getUserTypeKwey(level) {
+    getValue3(): Value {
+        return new Value({ value: this.getUserTypeKwey(this.userType), label: 'utente' })
+    }
 
-    const out = configs.userType.filter(
-      (access: UserTpeModedl) => access.value === this.userType
-    )[0]
+    getUserTypeKwey(level) {
 
-    return out ? out : configs.accessLevel[2] //utente standard
+        var out = configs.userType.filter(
+            (access: UserTpeModedl) => access.value === level
+        )[0]
 
-  }
+        return out ? out.key : ''
+
+    }
 
     setKey(key: string) {
         this.key = key
