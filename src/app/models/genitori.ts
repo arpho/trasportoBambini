@@ -4,7 +4,7 @@ import { Utente } from "./Utente";
 
 export class Genitori extends Utente {
     children: Array<string>
-    type = UserType.genitore
+    userType = UserType.genitore
     indirizzo: Address;
 
 
@@ -24,7 +24,7 @@ export class Genitori extends Utente {
     constructor(v?: {}) {
         super(v)
         this.load(v)
-        this.type= UserType.genitore
+        this.userType= UserType.genitore
     }
 
 }

@@ -9,7 +9,7 @@ export class Studenti extends Utente {
     collectionPoint: string
     collectionPointKey: string
     schoolKey: string
-    type = UserType.studente
+    userType = UserType.studente
     load(v: {}) {
         Object.assign(this, v)
 
@@ -21,7 +21,7 @@ export class Studenti extends Utente {
         return {
             ...super.serialize(),
             ...{
-                type: this.type,
+                type: this.userType,
                 genitoryId: this.genitoriId,
                 pulminoKey: serializers.serialize2String(this.pulminoKey),
                 collectionPointKey: serializers.serialize2String(this.collectionPointKey),

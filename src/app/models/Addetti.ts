@@ -13,7 +13,7 @@ export class Autista extends Utente {
     getCountingText(): string {
         return 'autisti'
     }
-    type: UserType = UserType.autista
+    userType: UserType = UserType.autista
     pulminoKey: string
     serialize() {
 
@@ -21,14 +21,14 @@ export class Autista extends Utente {
         return {
             ...super.serialize(), ...{
                 pulminoKey: serializers.serialize2String(this.pulminoKey),
-                type: serializers.serialize2PositiveNumber(this.type, UserType.autista)
+                type: serializers.serialize2PositiveNumber(this.userType, UserType.autista)
             }
         }
 
     }
     constructor(v?:{}){
         super(v)
-        this.type = UserType.autista
+        this.userType = UserType.autista
     }
 }
 
@@ -55,7 +55,7 @@ export class Addetto extends Utente{
     }
     constructor(v?:{}){
         super(v)
-        this.type= UserType.addetto
+        this.userType= UserType.addetto
     }
 }
 

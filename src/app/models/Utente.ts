@@ -7,7 +7,7 @@ import { Value } from "../modules/item/models/value"
 
 export class Utente extends UserModel {
     indirizzo: Address
-    type: UserType
+    userType: UserType
     telephones: Array<Telephone>
     dor: DateModel // date of registration
     role
@@ -42,7 +42,7 @@ export class Utente extends UserModel {
                 role: this.role,
                 archived: !!this.archived,
                 dor: this.dor.formatDate(),
-                type: this.type
+                type: this.userType
             }
         }
         if (this.key) {
@@ -72,8 +72,8 @@ export class Utente extends UserModel {
     constructor(user?: {}, key?: string) {
         super(user, key)
         this.load(user)
-        if (!this.type) {
-            this.type = UserType.genitore
+        if (!this.userType) {
+            this.userType = UserType.genitore
         }
 
     }
