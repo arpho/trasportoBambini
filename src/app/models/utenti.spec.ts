@@ -49,4 +49,8 @@ describe('testing users class', () => {
     expect(user.indirizzo.cap).toEqual(data.indirizzo.cap)
     expect(user.serialize()['indirizzo']).toBeDefined()
   })
+
+  it('set the rigth userType',()=>{
+    
+  })
 })
