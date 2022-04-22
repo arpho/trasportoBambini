@@ -2,7 +2,7 @@ import { Address } from "../modules/geolocation/models/Address";
 import { UserType } from "./usersType";
 import { Utente } from "./Utente";
 
-export class Genitori extends Utente {
+export class Genitore extends Utente {
     children: Array<string>
     userType = UserType.genitore
     indirizzo: Address;

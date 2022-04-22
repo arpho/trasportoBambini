@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Genitori } from 'src/app/models/genitori';
+import { Genitore } from 'src/app/models/genitori';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { CustomersService } from '../customers/customers.service';
 
@@ -9,7 +9,7 @@ import { CustomersService } from '../customers/customers.service';
 export class ParentsService extends CustomersService {
 
   getDummyItem(): ItemModelInterface {
-    return new Genitori()
+    return new Genitore()
   }
 
   constructor() {

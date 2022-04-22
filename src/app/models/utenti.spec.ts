@@ -3,7 +3,7 @@ import { Address } from '../modules/geolocation/models/Address';
 import { DateModel } from '../modules/user/models/birthDateModel';
 import { StudentsService } from '../services/studenti/students.service';
 import { Addetto, Autista } from './Addetti';
-import { Genitori } from './genitori';
+import { Genitore } from './genitori';
 import { Studenti } from './studente';
 import { UserType } from './usersType';
 import { Utente } from './Utente';
@@ -58,7 +58,7 @@ describe('testing users class', () => {
   it('set the right userType',()=>{
     const addetto =new Addetto()
     const autista = new Autista()
-    const genitore = new Genitori()
+    const genitore = new Genitore()
     const studednte = new Studenti()
     expect(autista.getUserTypeKey(autista.userType)).toEqual('autista')
     expect(genitore.getUserTypeKey(genitore.userType)).toEqual('genitore')

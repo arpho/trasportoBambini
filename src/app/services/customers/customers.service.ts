@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Addetto, Autista } from 'src/app/models/Addetti';
-import { Genitori } from 'src/app/models/genitori';
+import { Genitore } from 'src/app/models/genitori';
 import { Studenti } from 'src/app/models/studente';
 import { UserType } from 'src/app/models/usersType';
 import { Utente } from 'src/app/models/Utente';
@@ -56,7 +56,7 @@ reference = 'userProfile'
       out = new Autista(d)
     }
     if (d['type'] == UserType.genitore) {
-      out = new Genitori(d)
+      out = new Genitore(d)
     }
     if (d['type'] == UserType.studente) {
       out = new Studenti(d)
