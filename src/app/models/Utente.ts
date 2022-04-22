@@ -60,10 +60,10 @@ export class Utente extends UserModel {
 
 
     getValue3(): Value {
-        return new Value({ value: this.getUserTypeKwey(this.userType), label: 'utente' })
+        return new Value({ value: this.getUserTypeKey(this.userType), label: 'utente' })
     }
 
-    getUserTypeKwey(level) {
+    getUserTypeKey(level) {
 
         var out = configs.userType.filter(
             (access: UserTpeModedl) => access.value === level
