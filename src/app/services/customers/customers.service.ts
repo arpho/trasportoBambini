@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Addetto, Autista } from 'src/app/models/Addetti';
-import { Genitore } from 'src/app/models/genitori';
+import { Addetto, Autista } from 'src/app/models/Addetto';
+import { Genitore } from 'src/app/models/genitore';
 import { Studenti } from 'src/app/models/studente';
 import { UserType } from 'src/app/models/usersType';
 import { Utente } from 'src/app/models/Utente';

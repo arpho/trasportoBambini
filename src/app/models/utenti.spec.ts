@@ -3,7 +3,7 @@ import { Address } from '../modules/geolocation/models/Address';
 import { DateModel } from '../modules/user/models/birthDateModel';
 import { StudentsService } from '../services/studenti/students.service';
 import { Addetto, Autista } from './Addetti';
-import { Genitore } from './genitori';
+import { Genitore } from './genitore';
 import { Studenti } from './studente';
 import { UserType } from './usersType';
 import { Utente } from './Utente';
