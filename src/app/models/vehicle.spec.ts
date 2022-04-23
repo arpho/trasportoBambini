@@ -15,8 +15,20 @@ describe('Vehicle works correctly',()=>{
         expect(vehicle.modello).toEqual(VechicleDataTest.modello)
 
     })
+
     it('serialization works',()=>{
         expect(vehicle.serialize().key).toEqual(VechicleDataTest.key)
+        expect(vehicle.serialize().note).toEqual(VechicleDataTest.note)
+        expect(vehicle.serialize().title).toEqual(VechicleDataTest.title)
+        expect(vehicle.serialize().targa).toEqual(VechicleDataTest.targa)
+        expect(vehicle.serialize().marca).toEqual(VechicleDataTest.marca)
+        expect(vehicle.serialize().modello).toEqual(VechicleDataTest.modello)
+        
+    })
+
+    it('serialize vehicle withouth key',()=>{
+        vehicle = new Vehicle( {title:'test',marca:'mercedes',modello:'250GD',targa:'CT250645',note:'nota test'})
+        expect(vehicle.serialize().key).toBeUndefined()
         expect(vehicle.serialize().note).toEqual(VechicleDataTest.note)
         expect(vehicle.serialize().title).toEqual(VechicleDataTest.title)
         expect(vehicle.serialize().targa).toEqual(VechicleDataTest.targa)
