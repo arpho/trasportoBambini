@@ -23,6 +23,10 @@ pathMatch:'full'},
   {
     path: 'customers',
     loadChildren: () => import('./pages/customers/customers/customers.module').then( m => m.CustomersPageModule)
+  },
+  {
+    path: 'flotta',
+    loadChildren: () => import('./pages/Fleet/flotta/flotta.module').then( m => m.FlottaPageModule)
   }
 ];
 
