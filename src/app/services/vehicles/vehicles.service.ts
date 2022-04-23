@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DatabaseReference } from 'firebase/database';
+import { DatabaseReference, getDatabase, ref } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Vehicle } from 'src/app/models/vehicle';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
@@ -14,7 +14,9 @@ export class VehiclesService implements ItemServiceInterface{
   categoriesService?: ItemServiceInterface;
   suppliersService?: ItemServiceInterface;
   paymentsService?: ItemServiceInterface;
-  itemsListRef: DatabaseReference
+  db=getDatabase()
+  reference= 'vehicles'
+  itemsListRef = ref(this.db,this.reference)
   _items: BehaviorSubject<Vehicle[]>;
   items_list: Vehicle[];
   items: Observable<Vehicle[]>;

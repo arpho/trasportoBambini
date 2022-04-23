@@ -3,16 +3,18 @@
 import * as firebase from 'firebase/app';
 import { ItemModelInterface } from './itemModelInterface';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { DatabaseReference } from 'firebase/database';
+import { Database, DatabaseReference } from 'firebase/database';
 export interface ItemServiceInterface {
 // extra service for complex models
 categoriesService?: ItemServiceInterface
 suppliersService?: ItemServiceInterface
 paymentsService?: ItemServiceInterface
 itemsListRef:DatabaseReference
+reference:string //its the reference name in the realtime database
 // items?: Observable<Array<ItemModelInterface>>
    _items: BehaviorSubject<Array<ItemModelInterface>> // = new BehaviorSubject([])
    items_list: Array<ItemModelInterface> // = []
+   db:Database
 /* public */ readonly items: Observable<Array<ItemModelInterface>> // = this._items.asObservable()
 
     /**get one item from firebase
