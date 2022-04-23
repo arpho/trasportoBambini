@@ -3,12 +3,13 @@
 import * as firebase from 'firebase/app';
 import { ItemModelInterface } from './itemModelInterface';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { DatabaseReference } from 'firebase/database';
 export interface ItemServiceInterface {
 // extra service for complex models
 categoriesService?: ItemServiceInterface
 suppliersService?: ItemServiceInterface
 paymentsService?: ItemServiceInterface
-suppliersListRef?
+itemsListRef:DatabaseReference
 // items?: Observable<Array<ItemModelInterface>>
    _items: BehaviorSubject<Array<ItemModelInterface>> // = new BehaviorSubject([])
    items_list: Array<ItemModelInterface> // = []

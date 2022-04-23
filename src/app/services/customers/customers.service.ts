@@ -13,7 +13,7 @@ import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInt
   providedIn: 'root'
 })
 export class CustomersService implements ItemServiceInterface {
-  customerListRef: DatabaseReference
+  itemsListRef: DatabaseReference
   _items: BehaviorSubject<Array<Utente>> = new BehaviorSubject([]);
   readonly items: Observable<Array<Utente>> = this._items.asObservable()
   items_list: Array<Utente> = []
@@ -22,7 +22,7 @@ export class CustomersService implements ItemServiceInterface {
   constructor() {
 
 
-    this.customerListRef = ref(this.db, this.reference)
+    this.itemsListRef = ref(this.db, this.reference)
     this.loadData(this.publishItems)
   }
 
@@ -31,7 +31,7 @@ export class CustomersService implements ItemServiceInterface {
      * @param: calback function to be executed everytime firebase fire an event
      */
 
-    onValue(this.customerListRef, (snapshot) => {
+    onValue(this.itemsListRef, (snapshot) => {
 
 
       this.items_list = []
@@ -92,7 +92,7 @@ export class CustomersService implements ItemServiceInterface {
     return new Utente()
   }
   createItem(item: ItemModelInterface) {
-    push(this.customerListRef, item.serialize())
+    push(this.itemsListRef, item.serialize())
   }
 
 
