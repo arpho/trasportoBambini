@@ -14,8 +14,5 @@ export class AppComponent {
   public labels = [];
   constructor() {
     const app = initializeApp(configs.firebase)
-    const data_no_key={firstName:'nome',lastName:'last',email:'email',dob:{day:13,month:5,year:1977},dor:{day:14,month:4,year:2022}}
-const user = new Utente(data_no_key)
-console.log('utente',user)
   }
 }
