@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: "root"
 })
 export class UsersService implements ItemServiceInterface, OnInit {
-  public usersRef: DatabaseReference;
+  public itemsListReference: DatabaseReference;
   items_list: Array<UserModel> = []
   _items: BehaviorSubject<Array<UserModel>> = new BehaviorSubject([])
   _loggedUser: BehaviorSubject<UserModel> = new BehaviorSubject(new UserModel)
@@ -23,10 +23,15 @@ static loggedUser:UserModel
 db
   constructor() {
     this.db = getDatabase()
-    this.usersRef = ref(this.db)//,"/userProfile");
+    this.itemsListReference = ref(this.db)//,"/userProfile");
     this.loadItems()
 
   }
+  categoriesService?: ItemServiceInterface;
+  suppliersService?: ItemServiceInterface;
+  paymentsService?: ItemServiceInterface;
+  itemsListRef: DatabaseReference;
+  reference='userProfile'
   populateItems = (UsersListSnapshot) => {
     this.items_list = [];
     UsersListSnapshot.forEach(snap => {
@@ -45,10 +50,10 @@ db
     const auth = getAuth();
     onAuthStateChanged(auth,(user) => {
       if (user) {
-        this.usersRef = ref(this.db,`/userProfile/`);
+        this.itemsListReference = ref(this.db,this.reference);
 
         //this.usersRef.on('value', this.populateItems);
-        onValue(this.usersRef,(users)=>{
+        onValue(this.itemsListReference,(users)=>{
           this.populateItems(users)
         })
       }
@@ -56,8 +61,8 @@ db
   }
 
   getItem(key: string,next) {
-    if (this.usersRef) {
-      const itemRef = ref(this.db,'userProfile/'+key)
+    if (this.itemsListReference) {
+      const itemRef = ref(this.db,this.reference+key)
       onValue(itemRef,(snap)=>{next(snap)})
 
     }
@@ -76,7 +81,7 @@ db
 
   deleteItem(key: string) {
 
-    const itemRef = ref(this.db,'userProfile/'+key)
+    const itemRef = ref(this.db,this.reference+key)
     return remove(itemRef)
     
   }
@@ -87,17 +92,17 @@ db
 
   createItem(item: ItemModelInterface) {
 
-    const itemRef = ref(this.db,'userProfile/')
+    const itemRef = ref(this.db,this.reference)
     return push(item.serialize());
   }
 
   getEntitiesList(): DatabaseReference{
-    return this.usersRef;
+    return this.itemsListReference;
   }
 
   updateItem(item: ItemModelInterface) {
 
-    const itemRef = ref(this.db,'userProfile/'+item.key)
+    const itemRef = ref(this.db,this.reference+item.key)
     return update(itemRef,item.serialize());
   }
 }
