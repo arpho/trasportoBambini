@@ -49,7 +49,7 @@ export class Vehicle implements ItemModelInterface{
     getValue4(): Value {
         return new Value({value:this.modello,label:'modello'})
     }
-    setKey?(key: string): ItemModelInterface {
+    setKey?(key: string): Vehicle {
         this.key = key
         return this
     }
