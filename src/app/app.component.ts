@@ -10,6 +10,7 @@ import { Utente } from './models/Utente';
 export class AppComponent {
   public appPages = [
     { title: 'utenti', url: '/customers', icon: 'people' },
+    { title: 'pulmini', url: '/flotta', icon: 'bus' },
   ];
   public labels = [];
   constructor() {
