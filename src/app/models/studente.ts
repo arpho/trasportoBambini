@@ -12,7 +12,7 @@ export class Studente extends Utente {
     userType = UserType.studente
     load(v: {}) {
         Object.assign(this, v)
-
+        this.userType = UserType.studente
         return this
     }
 
@@ -28,6 +28,11 @@ export class Studente extends Utente {
                 schoolkey: serializers.serialize2String(this.schoolKey)
             }
         }
+    }
+
+    constructor(v?:{}){
+        super(v)
+        this.load(v)
     }
 
     getElement(): { element: string; genere: "o"; } {

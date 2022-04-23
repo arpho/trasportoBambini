@@ -22,6 +22,7 @@ export class Genitore extends Utente {
     }
 
     constructor(v?: {}) {
+        
         super(v)
         this.load(v)
         this.userType = UserType.genitore
