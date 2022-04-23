@@ -83,5 +83,9 @@ export class Vehicle implements ItemModelInterface{
     getElement(): { element: string; genere: Genere; } {
        return {element:'pulmino',genere:'o'}
     }
+
+    constructor(v?:{}){
+        this.load(v)
+    }
     
 }
