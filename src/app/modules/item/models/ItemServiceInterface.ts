@@ -9,12 +9,12 @@ export interface ItemServiceInterface {
 categoriesService?: ItemServiceInterface
 suppliersService?: ItemServiceInterface
 paymentsService?: ItemServiceInterface
-itemsListRef:DatabaseReference
-reference:string //its the reference name in the realtime database
+reference:string //it s the reference name in the realtime database
 // items?: Observable<Array<ItemModelInterface>>
    _items: BehaviorSubject<Array<ItemModelInterface>> // = new BehaviorSubject([])
    items_list: Array<ItemModelInterface> // = []
    db:Database
+   itemsListRef:DatabaseReference
 /* public */ readonly items: Observable<Array<ItemModelInterface>> // = this._items.asObservable()
 
     /**get one item from firebase
