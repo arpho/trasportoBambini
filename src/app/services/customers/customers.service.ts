@@ -88,7 +88,7 @@ export class CustomersService implements ItemServiceInterface {
     set(reference, null)
 
   }
-  getDummyItem(): ItemModelInterface {
+  getDummyItem(): Utente {
     return new Utente()
   }
   createItem(item: ItemModelInterface) {
