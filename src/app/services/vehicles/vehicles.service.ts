@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DatabaseReference, getDatabase, onValue, ref, set } from 'firebase/database';
+import { DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Vehicle } from 'src/app/models/vehicle';
 import { ReferenceFactory } from 'src/app/modules/helpers/makeReference';
@@ -37,17 +37,17 @@ export class VehiclesService implements ItemServiceInterface {
   }
 
   deleteItem(key: string) {
-   const reference = new ReferenceFactory().referenceFactory(this.reference,key)
-   const vehicleReference = ref(this.db,reference)
-   set(vehicleReference,null)
+    const reference = new ReferenceFactory().referenceFactory(this.reference, key)
+    const vehicleReference = ref(this.db, reference)
+    set(vehicleReference, null)
   }
 
   getDummyItem(): ItemModelInterface {
-    throw new Error('Method not implemented.');
+    return new Vehicle()
   }
 
   createItem(item: ItemModelInterface) {
-    throw new Error('Method not implemented.');
+    push(this.itemsListRef, item.serialize())
   }
 
   publishItems(lista: Vehicle[]) {
