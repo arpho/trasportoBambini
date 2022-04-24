@@ -8,7 +8,10 @@ import { UserType } from 'src/app/models/usersType';
 import { Utente } from 'src/app/models/Utente';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInterface';
-
+import { initializeApp, getApp } from "firebase/app";
+import { MyItemComponent } from 'src/app/modules/item/components/item/item.component';
+import { MyFirebaseHelper } from 'src/app/modules/helpers/createFirebaseApp';
+import {configs} from '../../configs/credentials'
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +20,13 @@ export class CustomersService implements ItemServiceInterface {
   _items: BehaviorSubject<Array<Utente>> = new BehaviorSubject([]);
   readonly items: Observable<Array<Utente>> = this._items.asObservable()
   items_list: Array<Utente> = []
-  reference = 'userProfile'
-  db = getDatabase()
+reference: string;
+db:Database
+
   constructor() {
+    new MyFirebaseHelper().createFirebaseApp(configs.firebase)
+    this.reference = 'userProfile'
+    this.db = getDatabase()
 
 
     this.itemsListRef = ref(this.db, this.reference)
