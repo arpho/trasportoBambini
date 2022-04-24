@@ -7,7 +7,7 @@ import { CustomersService } from '../customers/customers.service';
   providedIn: 'root'
 })
 export class DriversService extends CustomersService{
-  getDummyItem(): ItemModelInterface {
+  getDummyItem(): Autista {
     return new Autista()
   }
 

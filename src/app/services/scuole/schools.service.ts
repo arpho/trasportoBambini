@@ -78,7 +78,7 @@ export class SchoolsService implements ItemServiceInterface {
   }
 
 
-  createItem(item: ItemModelInterface) {
+  createItem(item: School) {
     push(this.itemsListRef, item.serialize())
   }
 }

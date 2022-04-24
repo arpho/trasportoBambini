@@ -86,7 +86,7 @@ export class School implements ItemModelInterface{
     getValue4(): Value {
         throw new Error("Method not implemented.")
     }
-    setKey?(key: string): ItemModelInterface {
+    setKey?(key: string): School {
         throw new Error("Method not implemented.")
     }
     getEditPopup(item?: ItemModelInterface, service?: ItemServiceInterface) {

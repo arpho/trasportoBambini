@@ -9,7 +9,7 @@ import { CustomersService } from '../customers/customers.service';
 })
 export class AdettiService extends CustomersService {
 
-  getDummyItem(): ItemModelInterface {
+  getDummyItem(): Addetto {
     return new Addetto()
   }
   constructor() {
