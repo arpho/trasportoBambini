@@ -24,7 +24,7 @@ onFileSelect(files: FileList) {
   
 
   ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+    this.folder ='Home' //this.activatedRoute.snapshot.paramMap.get('id');
     /* firebase.auth().onAuthStateChanged((user: firebase.User) => {
       this.log('user',user)
     }) */
