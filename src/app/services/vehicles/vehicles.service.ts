@@ -37,7 +37,9 @@ export class VehiclesService implements ItemServiceInterface {
   }
 
   deleteItem(key: string) {
-    throw new Error('Method not implemented.');
+   const reference = new ReferenceFactory().referenceFactory(this.reference,key)
+   const vehicleReference = ref(this.db,reference)
+   set(vehicleReference,null)
   }
 
   getDummyItem(): ItemModelInterface {
