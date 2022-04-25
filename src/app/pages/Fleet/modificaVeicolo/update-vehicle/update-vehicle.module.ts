@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { UpdateVehiclePageRoutingModule } from './update-vehicle-routing.module';
 
-import { NuovoVeicoloPage } from '../../nuovo-veicolo/nuovo-veicolo.page';
 import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.module';
 
 @NgModule({
@@ -17,6 +16,6 @@ import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.mod
     UpdateVehiclePageRoutingModule,
     DynamicFormModule
   ],
-  declarations: [NuovoVeicoloPage]
+  declarations: [UpdateVehiclePageModule]
 })
 export class UpdateVehiclePageModule {}

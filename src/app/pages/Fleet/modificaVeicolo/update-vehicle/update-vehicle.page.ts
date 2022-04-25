@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, NavParams, ToastController } from '@ionic/angular';
+import { Vehicle } from 'src/app/models/vehicle';
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { VehiclesService } from 'src/app/services/vehicles/vehicles.service';
@@ -10,22 +11,25 @@ import { NuovoVeicoloPage } from '../../nuovo-veicolo/nuovo-veicolo.page';
   templateUrl: './update-vehicle.page.html',
   styleUrls: ['./update-vehicle.page.scss'],
 })
-export class UpdateVehiclePage extends NuovoVeicoloPage {
+export class UpdateVehiclePage implements OnInit {
+  vehicle:Vehicle
+  showSpinner= false
+  vehicleFields:any[]
 
   constructor(public modalController:ModalController,
      public toastController:ToastController,
-     public service:VehiclesService
+     public service:VehiclesService,
+     public navParams:NavParams
 
 
     
   ) {
-      super(modalController,service,toastController)
+      
      }
 
   ngOnInit() {
 
-    this.vehicle = this.service.getDummyItem()
-    this.showSpinner = false
+    this.vehicle = this.navParams.get('item')
     this.vehicleFields = [
       new TextboxQuestion({
         key: 'model',
