@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Vehicle } from 'src/app/models/vehicle';
+import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
+import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { FilterItemsPipe } from 'src/app/modules/item/pipes/filter-items.pipe';
 import { VehiclesService } from 'src/app/services/vehicles/vehicles.service';
 import { servicesVersion } from 'typescript';
 
@@ -9,14 +13,52 @@ import { servicesVersion } from 'typescript';
   styleUrls: ['./nuovo-veicolo.page.scss'],
 })
 export class NuovoVeicoloPage implements OnInit {
-vehicle = this.service.getDummyItem()
+
+  vehicle: Vehicle
+  showSpinner: boolean
+  vehicleFields: any
+  filter(ev) {
+    console.log('editing', ev)
+  }
+
   dismiss(vehicle?) {
     this.modalCtrl.dismiss(vehicle)
   }
 
-  constructor(public modalCtrl:ModalController,public service:VehiclesService) { }
+  submit(ev){
+    this.vehicle.load(ev)
+    console.log('vehicle to push')
+  }
+
+  constructor(public modalCtrl: ModalController, public service: VehiclesService) { }
 
   ngOnInit() {
+    this.vehicle = this.service.getDummyItem()
+    this.showSpinner = false
+    this.vehicleFields = [
+      new TextboxQuestion({
+        key: 'model',
+        label: 'modello',
+        value: this.vehicle.modello,
+      }),
+      new TextboxQuestion({
+        key: 'brand',
+        label: 'marca',
+        value: this.vehicle.marca
+      }),
+      new TextboxQuestion({
+        key: 'targa',
+        label: 'numero di targa',
+        value: this.vehicle.targa
+      }),
+      new TextAreaBox({
+        key: 'note',
+        label: 'note',
+        autoGrow: true,
+        value: this.vehicle.note
+      })
+
+    ]
   }
 
 }
