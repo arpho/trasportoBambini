@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VehiclesService } from 'src/app/services/vehicles/vehicles.service';
 
 @Component({
   selector: 'app-flotta',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlottaPage implements OnInit {
 
-  constructor() { }
+  constructor(public service:VehiclesService) { }
 
   ngOnInit() {
   }
