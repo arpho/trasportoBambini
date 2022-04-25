@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VehiclesService } from 'src/app/services/vehicles/vehicles.service';
+import { NuovoVeicoloPage } from '../nuovo-veicolo/nuovo-veicolo.page';
 
 @Component({
   selector: 'app-flotta',
@@ -8,7 +9,8 @@ import { VehiclesService } from 'src/app/services/vehicles/vehicles.service';
 })
 export class FlottaPage implements OnInit {
 
-  constructor(public service:VehiclesService) { }
+  constructor(public service: VehiclesService) { }
+  public createModalPage = NuovoVeicoloPage
 
   ngOnInit() {
   }
