@@ -55,12 +55,15 @@ export class VehiclesService implements ItemServiceInterface {
   }
 
   loadData() {
+    console.log('loading vehicles')
     onValue(this.itemsListRef, (snap) => {
       this.items_list = []
       snap.forEach(item => {
         const vehicle = new Vehicle(item.val()).setKey(item.key)
+        console.log('vehicle',vehicle)
         this.items_list.push(vehicle)
       })
+      this.publishItems(this.items_list)
     })
   }
 }
