@@ -49,6 +49,19 @@ export class PageItemsListComponent implements OnInit, OnChanges {
 
   }
 
+
+  getMultiplicityText() {
+    var out = this.dummyItem.getCountingText().singular
+    if (this.countItems() > 1) {
+      out = this.dummyItem.getCountingText().plural
+    }
+    if (this.countItems() == 0) {
+      out = `nessun ${this.dummyItem.getCountingText().singular} presente`
+    }
+
+    return out
+  }
+
   async createItem() {
     const modal = await this.modalController.create({ component: this.createModalPage })
     return await modal.present()
