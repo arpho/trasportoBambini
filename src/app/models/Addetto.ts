@@ -10,8 +10,8 @@ export class Autista extends Utente {
         return { element: 'autista', genere: 'o' }
     }
 
-    getCountingText(): string {
-        return 'autisti'
+    getCountingText(): {plural:string,singular:string} {
+        return {plural:'autista',singular:'autisti'}
     }
     userType: UserType = UserType.autista
     pulminoKey: string
@@ -39,8 +39,8 @@ export class Addetto extends Utente {
         return { genere: 'o', element: 'addetto' }
     }
 
-    getCountingText(): string {
-        return 'addetti'
+    getCountingText(): {plural:string,singular:string} {
+        return { plural:'addetti', singular: 'addetto' }
     }
 
     load(v: {}): this {

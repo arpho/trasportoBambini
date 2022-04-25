@@ -35,6 +35,10 @@ export class Studente extends Utente {
         this.load(v)
     }
 
+    getCountingText(): { plural: string; singular: string } {
+        return {plural:'studenti',singular:'studente'}
+    }
+
     getElement(): { element: string; genere: "o"; } {
         return { element: 'studente', genere: "o" }
     }

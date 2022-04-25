@@ -26,8 +26,8 @@ export class Vehicle implements ItemModelInterface{
     getTitle(): Value {
         return new Value({value:`${this.brand} ${this.model}`,label:' pulmini'})
     }
-    getCountingText(): string {
-        return ' pulmino'
+    getCountingText(): {plural:string,singular:string} {
+        return{singular:'pulmino',plural:'pulmini'}
     }
     getNote(): Value {
         return new Value({value:this.note,label:'note'})

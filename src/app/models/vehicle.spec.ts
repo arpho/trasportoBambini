@@ -21,7 +21,7 @@ describe('Vehicle works correctly',()=>{
         expect(vehicle.serialize().note).toEqual(VechicleDataTest.note)
         expect(vehicle.serialize().title).toEqual(VechicleDataTest.title)
         expect(vehicle.serialize().targa).toEqual(VechicleDataTest.targa)
-        expect(vehicle.serialize().marca).toEqual(VechicleDataTest.marca)
+        expect(vehicle.serialize().brand).toEqual(VechicleDataTest.marca)
         expect(vehicle.serialize().modello).toEqual(VechicleDataTest.modello)
         
     })
@@ -32,7 +32,7 @@ describe('Vehicle works correctly',()=>{
         expect(vehicle.serialize().note).toEqual(VechicleDataTest.note)
         expect(vehicle.serialize().title).toEqual(VechicleDataTest.title)
         expect(vehicle.serialize().targa).toEqual(VechicleDataTest.targa)
-        expect(vehicle.serialize().marca).toEqual(VechicleDataTest.marca)
+        expect(vehicle.serialize().brand).toEqual(VechicleDataTest.marca)
         expect(vehicle.serialize().modello).toEqual(VechicleDataTest.modello)
     })
 

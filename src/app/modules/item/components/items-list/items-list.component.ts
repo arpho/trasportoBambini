@@ -66,6 +66,12 @@ export class ItemsListComponent implements OnInit, OnChanges {
     await alert.present();
   }
 
+pluralOrSingular(text:{singular:string,plural:string},n:number){
+
+  console.log(text,n)
+  return n>1? text.plural:text.singular
+}
+
   async showFilter() { }
 
   ngOnChanges(changes: SimpleChanges) {

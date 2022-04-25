@@ -59,8 +59,8 @@ export class School implements ItemModelInterface{
     getTitle(): Value {
        return new Value({'value':this.denominazione,label:'scuola'})
     }
-    getCountingText(): string {
-        return 'scuole'
+    getCountingText(): {plural:string,singular:string} {
+        return {plural:'scuole',singular:'scuola'}
     }
     getNote(): Value {
         return new Value({value:this.nota,label:'nota'})

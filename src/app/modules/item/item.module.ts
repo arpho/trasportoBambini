@@ -13,6 +13,7 @@ import { ItemsFilterComponent } from './components/items-filter/items-filter.com
 import { FilterPopupPage } from './pages/filter-popup/filter-popup.page';
 import { FilterPopupPageModule } from './pages/filter-popup/filter-popup.module';
 import { SelectorItemsComponent } from './components/selector-items/selector-items.component';
+import { MultiplicityPipe } from './pipes/pluralOrSingular/multiplicity.pipe';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,9 @@ import { SelectorItemsComponent } from './components/selector-items/selector-ite
     PageItemsListComponent,
     ShowValueComponent,
     ItemsFilterComponent,
+    MultiplicityPipe,
   ],
-  imports: [CommonModule, IonicModule.forRoot(), ReactiveFormsModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule],
   // entryComponents:[FilterPopupPage],
   exports: [
     MyItemComponent,

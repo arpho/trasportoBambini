@@ -20,6 +20,9 @@ export class Genitore extends Utente {
     getElement(): { element: string; genere: "o"; } {
         return { element: 'genitore', genere: 'o' }
     }
+    getCountingText(): { plural: string; singular: string; } {
+        return {plural:'genitori',singular:'genitore'}
+    }
 
     constructor(v?: {}) {
         
