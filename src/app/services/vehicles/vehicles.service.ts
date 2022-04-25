@@ -47,7 +47,7 @@ export class VehiclesService implements ItemServiceInterface {
   }
 
   createItem(item: ItemModelInterface) {
-    push(this.itemsListRef, item.serialize())
+    return push(this.itemsListRef, item.serialize())
   }
 
   publishItems(lista: Vehicle[]) {
