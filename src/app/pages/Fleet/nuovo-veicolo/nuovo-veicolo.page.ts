@@ -54,7 +54,9 @@ export class NuovoVeicoloPage implements OnInit {
   }
 
 
-  constructor(public modalCtrl: ModalController, public service: VehiclesService,public toastController:ToastController) { }
+  constructor(public modalCtrl: ModalController,
+     public service: VehiclesService,
+     public toastController:ToastController) { }
 
   ngOnInit() {
     this.vehicle = this.service.getDummyItem()
