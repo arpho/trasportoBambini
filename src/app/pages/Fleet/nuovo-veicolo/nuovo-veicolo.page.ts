@@ -47,6 +47,7 @@ export class NuovoVeicoloPage implements OnInit {
   async presentToast(message:string) {
     const toast = await this.toastController.create({
       message: message,
+      position:'top',
       duration: 2000
     });
     toast.present();
@@ -62,12 +63,12 @@ export class NuovoVeicoloPage implements OnInit {
       new TextboxQuestion({
         key: 'model',
         label: 'modello',
-        value: this.vehicle.modello,
+        value: this.vehicle.model,
       }),
       new TextboxQuestion({
         key: 'brand',
         label: 'marca',
-        value: this.vehicle.marca
+        value: this.vehicle.brand
       }),
       new TextboxQuestion({
         key: 'targa',
