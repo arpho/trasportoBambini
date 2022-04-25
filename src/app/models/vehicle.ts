@@ -23,7 +23,7 @@ export class Vehicle implements ItemModelInterface{
         return new Value({value:this.title,label:' pulmini'})
     }
     getCountingText(): string {
-        return 'pulmino'
+        return ' pulmino'
     }
     getNote(): Value {
         return new Value({value:this.note,label:'note'})
