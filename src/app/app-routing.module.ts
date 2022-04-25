@@ -27,6 +27,10 @@ pathMatch:'full'},
   {
     path: 'flotta',
     loadChildren: () => import('./pages/Fleet/flotta/flotta.module').then( m => m.FlottaPageModule)
+  },
+  {
+    path: 'nuovo-veicolo',
+    loadChildren: () => import('./pages/Fleet/nuovo-veicolo/nuovo-veicolo.module').then( m => m.NuovoVeicoloPageModule)
   }
 ];
 
