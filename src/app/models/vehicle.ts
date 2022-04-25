@@ -17,6 +17,10 @@ export class Vehicle implements ItemModelInterface{
 
     load(v:{}){
     Object.assign(this,v)
+    if(v){
+    this.brand = v['brand']||v['marca']
+    this.model  = v['model']||v['modello']
+}
     return this
     }
     getTitle(): Value {
@@ -66,12 +70,12 @@ export class Vehicle implements ItemModelInterface{
         throw new Error("Method not implemented.");
     }
     hasQuickActions?(): boolean {
-        throw new Error("Method not implemented.");
+        return false
     }
     serialize() {
         const serializers = new Serializers()
         var out = {title: serializers.serialize2String(this.title),
-            marca:serializers.serialize2String(this.brand),
+            brand:serializers.serialize2String(this.brand),
             targa:serializers.serialize2String(this.targa),
             note:serializers.serialize2String(this.note),
             modello:serializers.serialize2String(this.model),
