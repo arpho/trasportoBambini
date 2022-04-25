@@ -42,7 +42,7 @@ export class VehiclesService implements ItemServiceInterface {
     set(vehicleReference, null)
   }
 
-  getDummyItem(): ItemModelInterface {
+  getDummyItem(): Vehicle {
     return new Vehicle()
   }
 
