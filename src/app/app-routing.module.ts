@@ -31,6 +31,10 @@ pathMatch:'full'},
   {
     path: 'nuovo-veicolo',
     loadChildren: () => import('./pages/Fleet/nuovo-veicolo/nuovo-veicolo.module').then( m => m.NuovoVeicoloPageModule)
+  },
+  {
+    path: 'update-vehicle',
+    loadChildren: () => import('./pages/Fleet/modificaVeicolo/update-vehicle/update-vehicle.module').then( m => m.UpdateVehiclePageModule)
   }
 ];
 
