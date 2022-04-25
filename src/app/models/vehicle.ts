@@ -6,8 +6,8 @@ import { Value } from "../modules/item/models/value";
 
 export class Vehicle implements ItemModelInterface{
     title: string;
-    marca:string
-    modello:string
+    brand:string
+    model:string
     targa:string
     note?: string;
     key: string;
@@ -20,7 +20,7 @@ export class Vehicle implements ItemModelInterface{
     return this
     }
     getTitle(): Value {
-        return new Value({value:this.title,label:' pulmini'})
+        return new Value({value:`${this.brand} ${this.model}`,label:' pulmini'})
     }
     getCountingText(): string {
         return ' pulmino'
@@ -41,13 +41,13 @@ export class Vehicle implements ItemModelInterface{
        return true
     }
     getValue2(): Value {
-       return new Value({value:this.marca,label:'marca'})
+       return new Value({value:this.brand,label:'marca'})
     }
     getValue3(): Value {
         return new Value({value:this.targa,label:'targa'})
     }
     getValue4(): Value {
-        return new Value({value:this.modello,label:'modello'})
+        return new Value({value:this.model,label:'modello'})
     }
     setKey?(key: string): Vehicle {
         this.key = key
@@ -71,10 +71,10 @@ export class Vehicle implements ItemModelInterface{
     serialize() {
         const serializers = new Serializers()
         var out = {title: serializers.serialize2String(this.title),
-            marca:serializers.serialize2String(this.marca),
+            marca:serializers.serialize2String(this.brand),
             targa:serializers.serialize2String(this.targa),
             note:serializers.serialize2String(this.note),
-            modello:serializers.serialize2String(this.modello),
+            modello:serializers.serialize2String(this.model),
             archived:!!this.archived
         }
 
