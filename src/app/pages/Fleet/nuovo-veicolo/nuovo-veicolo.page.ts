@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { Vehicle } from 'src/app/models/vehicle';
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
@@ -26,11 +26,34 @@ export class NuovoVeicoloPage implements OnInit {
   }
 
   submit(ev){
+    this.showSpinner= true
     this.vehicle.load(ev)
-    console.log('vehicle to push')
+    console.log('vehicle to push',this.vehicle)
+    this.service.createItem(this.vehicle).then((out)=>{
+      console.log('vehicle created',out)
+      this.showSpinner= false
+      this.presentToast(`vehicolo ${this.vehicle.getTitle().value} inserito nel db`)
+      this.dismiss()
+    }).catch(error=>{
+      this.showSpinner=false
+      this.presentToast('si è verificato un errore')
+      console.error(error)
+      this.dismiss()
+    })
+
+
   }
 
-  constructor(public modalCtrl: ModalController, public service: VehiclesService) { }
+  async presentToast(message:string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
+  constructor(public modalCtrl: ModalController, public service: VehiclesService,public toastController:ToastController) { }
 
   ngOnInit() {
     this.vehicle = this.service.getDummyItem()
