@@ -19,7 +19,7 @@ export class UpdateVehiclePage implements OnInit {
   constructor(public modalController:ModalController,
      public toastController:ToastController,
      public service:VehiclesService,
-     public navParams:NavParams
+     public navParams:NavParams,
 
 
     
@@ -27,9 +27,43 @@ export class UpdateVehiclePage implements OnInit {
       
      }
 
+     async presentToast(message:string) {
+      const toast = await this.toastController.create({
+        message: message,
+        position:'top',
+        duration: 2000
+      });
+      toast.present();
+    }
+
+    ismiss(vehicle?) {
+      this.modalController.dismiss(vehicle)
+    }
+  
+
+     filter(ev){
+       console.log('editing',ev)
+     }
+
+
+     submit(ev){
+       console.log('submitting',ev)
+       const vehicle = this.vehicle.load(ev)
+       console.log('edited',vehicle)
+       this.service.updateItem(vehicle).then(value=>{
+         this.presentToast(`pulmino ${vehicle.getTitle().value} modificato `).catch(error=>{
+           this.presentToast("c'è stato un problema")
+           console.error(error)
+         })
+
+       })
+
+     }
+
   ngOnInit() {
 
     this.vehicle = this.navParams.get('item')
+
     this.vehicleFields = [
       new TextboxQuestion({
         key: 'model',
