@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
     const auth = getAuth()
     onAuthStateChanged(auth,(user)=>{
       if(user){
-        console.log('user',user)
         this.customers.items.subscribe(users=>{
           if(users.length>0){
           const profilo = users.filter(u=>u.email==user.email)[0]
