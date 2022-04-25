@@ -33,7 +33,7 @@ export class VehiclesService implements ItemServiceInterface {
   updateItem(item: ItemModelInterface) {
     const referenceFactory = new ReferenceFactory()
     const vehicleReference = ref(this.db, referenceFactory.referenceFactory(this.reference, item.key))
-    set(vehicleReference, item.serialize())
+    return set(vehicleReference, item.serialize())
   }
 
   deleteItem(key: string) {
