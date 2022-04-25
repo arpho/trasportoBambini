@@ -12,10 +12,15 @@ import { UserModule } from './modules/user/user.module';
 import { HttpClientModule, HttpHandler } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NuovoVeicoloPage } from './pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    NuovoVeicoloPage
+  ],
   entryComponents: [],
-  imports: [BrowserModule,
+  imports: [
+    BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     ItemModule,
@@ -26,7 +31,8 @@ import { environment } from '../environments/environment';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerImmediately'
-    })],
+    })
+  ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BrowserModule,
