@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { FlottaPageRoutingModule } from './flotta-routing.module';
 
 import { FlottaPage } from './flotta.page';
+import { ItemModule } from 'src/app/modules/item/item.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FlottaPageRoutingModule
+    FlottaPageRoutingModule,
+    ItemModule
   ],
   declarations: [FlottaPage]
 })
