@@ -13,6 +13,7 @@ export class FlottaPage implements OnInit {
   public createModalPage = NuovoVeicoloPage
 
   ngOnInit() {
+    this.service.loadData()
   }
 
 }
