@@ -13,10 +13,12 @@ import { HttpClientModule, HttpHandler } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NuovoVeicoloPage } from './pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
+import { UpdateVehiclePage } from './pages/Fleet/modificaVeicolo/update-vehicle/update-vehicle.page';
 @NgModule({
   declarations: [
     AppComponent,
-    NuovoVeicoloPage
+    NuovoVeicoloPage,
+    UpdateVehiclePage
   ],
   entryComponents: [],
   imports: [
