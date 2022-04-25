@@ -16,7 +16,7 @@ export interface ItemModelInterface {
   archived?: boolean;
   service?: ItemServiceInterface;
   getTitle(): Value;
-  getCountingText(): string; // is the text shown on the countarea
+  getCountingText(): string|{singolare:string,plurale:string}; // is the text shown on the countarea
   getNote(): Value;
   build?(item: {});
   load?(next?: () => void); // load the item from firebase
