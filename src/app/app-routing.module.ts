@@ -35,6 +35,10 @@ pathMatch:'full'},
   {
     path: 'update-vehicle',
     loadChildren: () => import('./pages/Fleet/modificaVeicolo/update-vehicle/update-vehicle.module').then( m => m.UpdateVehiclePageModule)
+  },
+  {
+    path: 'schools-list',
+    loadChildren: () => import('./pages/schools/list/schools-list/schools-list.module').then( m => m.SchoolsListPageModule)
   }
 ];
 

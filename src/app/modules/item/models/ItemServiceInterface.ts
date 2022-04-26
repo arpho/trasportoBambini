@@ -40,5 +40,6 @@ reference:string //it s the reference name in the realtime database
      *
      */
     createItem(item: ItemModelInterface);
+    loadData(): void;
 
 }
