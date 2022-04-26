@@ -39,6 +39,10 @@ pathMatch:'full'},
   {
     path: 'schools-list',
     loadChildren: () => import('./pages/schools/list/schools-list/schools-list.module').then( m => m.SchoolsListPageModule)
+  },
+  {
+    path: 'update-school',
+    loadChildren: () => import('./pages/schools/modificaScuola/update-school/update-school.module').then( m => m.UpdateSchoolPageModule)
   }
 ];
 
