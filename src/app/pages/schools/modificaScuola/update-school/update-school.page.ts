@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams } from '@ionic/angular';
+import { School } from 'src/app/models/Schools';
 
 @Component({
   selector: 'app-update-school',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateSchoolPage implements OnInit {
 
-  constructor() { }
+  title:string
+
+  school:School
+
+  constructor(public navParams:NavParams) { }
 
   ngOnInit() {
+    this.school= this.navParams.get('item')
+    this.title = this.school? `modifica scuola ${this.school.getTitle().value}`: 'modifica scuola'
+
   }
 
 }
