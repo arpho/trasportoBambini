@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { School } from 'src/app/models/Schools';
+import { SchoolsService } from 'src/app/services/scuole/schools.service';
 
 @Component({
   selector: 'app-update-school',
@@ -13,7 +14,12 @@ export class UpdateSchoolPage implements OnInit {
 
   school:School
 
-  constructor(public navParams:NavParams) { }
+  constructor(public navParams:NavParams,public modalCtrl:ModalController,public service:SchoolsService) { }
+
+  dismiss(school?) {
+    this.modalCtrl.dismiss(school)
+  }
+
 
   ngOnInit() {
     this.school= this.navParams.get('item')

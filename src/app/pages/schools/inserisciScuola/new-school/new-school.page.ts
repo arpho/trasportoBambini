@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { School } from 'src/app/models/Schools';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { SchoolsService } from 'src/app/services/scuole/schools.service';
@@ -28,7 +29,12 @@ export class NewSchoolPage implements OnInit {
     console.log('new school',this.school)
   }
 
-  constructor(public service:SchoolsService) { }
+  dismiss(school?) {
+    this.modalCtrl.dismiss(school)
+  }
+
+
+  constructor(public service:SchoolsService,public modalCtrl:ModalController) { }
 
   ngOnInit() {
   }
