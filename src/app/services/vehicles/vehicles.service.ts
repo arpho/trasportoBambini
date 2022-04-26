@@ -39,7 +39,7 @@ export class VehiclesService implements ItemServiceInterface {
   deleteItem(key: string) {
     const reference = new ReferenceFactory().referenceFactory(this.reference, key)
     const vehicleReference = ref(this.db, reference)
-    set(vehicleReference, null)
+   return set(vehicleReference, null)
   }
 
   getDummyItem(): Vehicle {

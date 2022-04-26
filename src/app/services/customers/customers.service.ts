@@ -88,18 +88,18 @@ db:Database
   }
   updateItem(item: ItemModelInterface) {
     const reference = ref(this.db, `${this.reference}/${item.key}`)
-    set(reference, item.serialize())
+   return  set(reference, item.serialize())
   }
   deleteItem(key: string) {
     const reference = ref(this.db, `${this.reference}/${key}`)
-    set(reference, null)
+    return set(reference, null)
 
   }
   getDummyItem(): Utente {
     return new Utente()
   }
   createItem(item: ItemModelInterface) {
-    push(this.itemsListRef, item.serialize())
+   return  push(this.itemsListRef, item.serialize())
   }
 
 

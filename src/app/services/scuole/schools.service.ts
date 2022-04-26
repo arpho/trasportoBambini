@@ -41,11 +41,11 @@ export class SchoolsService implements ItemServiceInterface {
   }
   updateItem(item: ItemModelInterface) {
     const reference = ref(this.db, `${this.reference}/${item.key}`)
-    set(reference, item.serialize())
+   return set(reference, item.serialize())
   }
   deleteItem(key: string) {
     const reference = ref(this.db, `${this.reference}/${key}`)
-    set(reference, null)
+   return set(reference, null)
 
   }
 
@@ -79,6 +79,6 @@ export class SchoolsService implements ItemServiceInterface {
 
 
   createItem(item: School) {
-    push(this.itemsListRef, item.serialize())
+  return   push(this.itemsListRef, item.serialize())
   }
 }
