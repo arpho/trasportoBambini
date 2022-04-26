@@ -24,7 +24,7 @@ export class SchoolsService implements ItemServiceInterface {
 
 
 
-    this.loadData(this.publishItems)
+    this.loadDataAndPublish(this.publishItems)
   }
   getDummyItem(): ItemModelInterface {
     return new School()
@@ -58,7 +58,7 @@ export class SchoolsService implements ItemServiceInterface {
 
 
 
-  loadData(next?: (data?) => void) {
+  loadDataAndPublish(next?: (data?) => void) {
     /**
      * @param: calback function to be executed everytime firebase fire an event
      */

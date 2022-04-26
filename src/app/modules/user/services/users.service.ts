@@ -24,7 +24,7 @@ db
   constructor() {
     this.db = getDatabase()
     this.itemsListReference = ref(this.db)//,"/userProfile");
-    this.loadData()
+    this.loadDataAndPublish()
 
   }
   categoriesService?: ItemServiceInterface;
@@ -46,7 +46,7 @@ db
   ngOnInit(): void {
   }
 
-  loadData() {
+  loadDataAndPublish() {
     const auth = getAuth();
     onAuthStateChanged(auth,(user) => {
       if (user) {

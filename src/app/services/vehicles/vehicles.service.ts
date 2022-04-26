@@ -54,7 +54,7 @@ export class VehiclesService implements ItemServiceInterface {
     this._items.next(lista)
   }
 
-  loadData() {
+  loadDataAndPublish() {
     console.log('loading vehicles')
     onValue(this.itemsListRef, (snap) => {
       this.items_list = []

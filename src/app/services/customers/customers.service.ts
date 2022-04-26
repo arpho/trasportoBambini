@@ -30,10 +30,10 @@ db:Database
 
 
     this.itemsListRef = ref(this.db, this.reference)
-    this.loadData(this.publishItems)
+    this.loadDataAndPublish(this.publishItems)
   }
 
-  loadData(next?: (data?) => void) {
+  loadDataAndPublish(next?: (data?) => void) {
     /**
      * @param: calback function to be executed everytime firebase fire an event
      */

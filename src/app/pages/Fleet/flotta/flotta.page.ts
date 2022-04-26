@@ -15,7 +15,7 @@ export class FlottaPage implements OnInit {
   public editModalPage = UpdateVehiclePage
 
   ngOnInit() {
-    this.service.loadData()
+    this.service.loadDataAndPublish()
   }
 
 }
