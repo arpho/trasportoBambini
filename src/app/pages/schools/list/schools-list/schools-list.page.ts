@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { SchoolsService } from 'src/app/services/scuole/schools.service';
+import { servicesVersion } from 'typescript';
 
 @Component({
   selector: 'app-schools-list',
@@ -13,6 +14,8 @@ export class SchoolsListPage implements OnInit {
   constructor(public service:SchoolsService) { }
 
   ngOnInit() {
+    this.service.loadDataAndPublish()
+  
   }
 
 }
