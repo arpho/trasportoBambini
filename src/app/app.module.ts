@@ -14,11 +14,16 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NuovoVeicoloPage } from './pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
 import { UpdateVehiclePage } from './pages/Fleet/modificaVeicolo/update-vehicle/update-vehicle.page';
+import { NewSchoolPageModule } from './pages/schools/inserisciScuola/new-school/new-school.module';
+import { UpdateSchoolPage } from './pages/schools/modificaScuola/update-school/update-school.page';
+import { NewSchoolPage } from './pages/schools/inserisciScuola/new-school/new-school.page';
 @NgModule({
   declarations: [
     AppComponent,
     NuovoVeicoloPage,
-    UpdateVehiclePage
+    UpdateVehiclePage,
+    NewSchoolPage,
+    UpdateSchoolPage
   ],
   entryComponents: [],
   imports: [
