@@ -28,7 +28,8 @@ export class AppComponent implements OnInit {
           const profilo = users.filter(u=>u.email==user.email)[0]
         if (profilo.level<3){
           this.appPages= [   { title: 'utenti', url: '/customers', icon: 'people' },
-          { title: 'pulmini', url: '/flotta', icon: 'bus' },]
+          { title: 'pulmini', url: '/flotta', icon: 'bus' },
+        {title:'Scuole',url:'/schools-list',icon:'business'}]
         }
         }
         })
