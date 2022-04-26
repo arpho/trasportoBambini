@@ -33,7 +33,6 @@ export class PageItemsListComponent implements OnInit, OnChanges {
   @Input() filterFunction: (item: ItemModelInterface) => boolean;
   @Input() sorterFunction: (a: ItemModelInterface, b: ItemModelInterface) => number
   public showSpinner = true;
-  public showSpinner2 = false;
   @Input() createModalPage: ComponentRef;
 
   constructor(
