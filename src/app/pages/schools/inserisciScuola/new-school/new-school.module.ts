@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { NewSchoolPageRoutingModule } from './new-school-routing.module';
 
 import { NewSchoolPage } from './new-school.page';
+import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NewSchoolPageRoutingModule
+    NewSchoolPageRoutingModule,
+    DynamicFormModule
   ],
   declarations: [NewSchoolPage]
 })
