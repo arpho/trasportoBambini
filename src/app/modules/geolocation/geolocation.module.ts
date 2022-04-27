@@ -8,6 +8,7 @@ import { AddressComponent } from './components/AddressField/address/address.comp
   declarations: [AddressComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:[AddressComponent]
 })
 export class GeolocationModule { }
