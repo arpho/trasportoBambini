@@ -8,6 +8,7 @@ import { QuestionControlService } from './services/question-control.service';
 import { ItemModule } from '../item/item.module';
 import { PasswordFieldComponent } from './components/password-field/password-field.component';
 import { EmailFieldComponent } from './components/email-field/email-field.component';
+import { GeolocationModule } from '../geolocation/geolocation.module';
 
 @NgModule({
   declarations: [QuestionFormComponent, DynamicFormComponent,PasswordFieldComponent,EmailFieldComponent],
@@ -15,8 +16,8 @@ import { EmailFieldComponent } from './components/email-field/email-field.compon
     CommonModule,
     IonicModule.forRoot(),
     ReactiveFormsModule,
-    
     ItemModule,
+    GeolocationModule
   ],
   exports: [QuestionFormComponent, DynamicFormComponent],
   providers: [QuestionControlService]
