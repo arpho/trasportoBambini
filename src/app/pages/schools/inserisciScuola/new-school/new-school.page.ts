@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { School } from 'src/app/models/Schools';
+import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { SchoolsService } from 'src/app/services/scuole/schools.service';
 
@@ -16,6 +17,10 @@ export class NewSchoolPage implements OnInit {
       key:'denominazione',
       label:'nome',
       value:this.school.denominazione
+    }), new AddressQuestion({
+      key:'address',
+      label:'indirizzo',
+      value:this.school.indirizzo
     })
   ]
 
