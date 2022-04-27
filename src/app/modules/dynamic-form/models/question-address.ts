@@ -6,7 +6,7 @@ import { Address } from '../../geolocation/models/Address';
 export interface Addressproperties extends QuestionProperties<Address>{
     value:Address
 }
-export class EmailQuestion extends QuestionBase<Address>{
+export class AddressQuestion extends QuestionBase<Address>{
     controlType = 'address'
     type:Address;
     constructor(options:QuestionProperties<string>){
