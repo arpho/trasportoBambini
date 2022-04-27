@@ -47,10 +47,11 @@
     [retypePassword] ="question.retypePassword"
 
     ></app-password-field>
-    <section *ngSwitchCase="'address'"
-    address
     </section>
   
+    <section *ngSwitchCase="'address'">
+    address
+    </section>
 
     <section *ngSwitchCase="'datebox'" class='question'>
       <ion-datetime [formControlName]="question?.key" [id]="question?.key">
