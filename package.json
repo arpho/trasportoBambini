@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
     "@angular/common": "~13.0.0",
     "@angular/core": "~13.0.0",
     "@angular/fire": "^7.2.1",
