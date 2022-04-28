@@ -62,7 +62,6 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     }
   }
   ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 
@@ -79,7 +78,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
       province: new FormControl(this.address.province),
       number: new FormControl(this.address.number)
     })
-    this.subscription = this.addressForm.subscribe(d => {
+    this.subscription = this.addressForm.valueChanges.subscribe(d => {
       this.markAsTouched()
       this.onChange(new Address(d))
     })
