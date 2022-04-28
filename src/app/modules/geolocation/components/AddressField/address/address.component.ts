@@ -1,26 +1,35 @@
-import { Component, ElementRef, Injector, Input, OnInit } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import { Component, ElementRef, Injector, Input, OnDestroy, OnInit } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
+import { Subscription } from 'rxjs';
 import { Address } from '../../../models/Address';
 
 @Component({
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    multi: true,
+    useExisting: AddressComponent
+  }]
 })
-export class AddressComponent implements OnInit,ControlValueAccessor {
-  @Input()address:Address
-  
+export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy {
+  @Input() address: Address
+
+  addressForm
+
   private onChange: Function = (password: string) => { };
   // tslint:disable-next-line: ban-types
   private onTouch: Function = () => { };
-
-  constructor() { }
+  touched = false;
+  subscription: Subscription
+  constructor(public formBuilder: FormBuilder) { }
   protected injector: Injector;
   protected el: ElementRef<any>;
   protected lastValue: any;
   writeValue(value: Address): void {
-   this.address = value
+    this.address = value
   }
 
 
@@ -29,6 +38,13 @@ export class AddressComponent implements OnInit,ControlValueAccessor {
   }
   registerOnTouched(fn) {
     this.onTouch = fn;
+  }
+
+  markAsTouched() {
+    if (!this.touched) {
+      this.onTouch();
+      this.touched = true;
+    }
   }
 
   handleChangeEvent(el: HTMLElement, value: any): void {
@@ -41,13 +57,31 @@ export class AddressComponent implements OnInit,ControlValueAccessor {
     throw new Error('Method not implemented.');
   }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    if (this.subscription) {
+      this.subscription.unsubscribe()
+    }
   }
   ngAfterViewInit(): void {
     throw new Error('Method not implemented.');
   }
 
-  ngOnInit() {}
+
+  ngOnInit() {
+    this.addressForm = this.formBuilder.group({
+      address: new FormControl(this.address.street),
+      cap: new FormControl(this.address.cap),
+      city: new FormControl(this.address.city),
+      longitude: new FormControl(this.address.longitude),
+      latitude: new FormControl(this.address.latitude),
+      province: new FormControl(this.address.province),
+      number: new FormControl(this.address.number)
+    })
+    this.subscription = this.addressForm.subscribe(d => {
+      this.markAsTouched()
+      this.onChange(new Address(d))
+    })
+
+  }
 
 
 

@@ -1,3 +1,19 @@
 <p>
-  address works!
+ 
+
+  <form [formGroup]="addressForm">
+    <label>indirizzo</label>
+   <input type="text" [formControlName]="address">
+   <label>cap</label>
+   <input type="text" [formcontrolName]="cap">
+   <label>provincia</label>
+   <input type="text" [formControlName]="province">
+   <label>città</label>
+   <input  type="text" [formControlName]="'city">
+   <label>longitudine</label>
+   <input type="number" [formcontrolName]="longitude">
+   <label>latitude</label>
+   <input type="number" [formcontrolName]="latitude">
+
+    </form>
 </p>
