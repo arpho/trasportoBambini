@@ -67,6 +67,9 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
 
   ngOnInit() {
+    if(!this.address){
+      this.address= new Address()
+    }
     this.addressForm = this.formBuilder.group({
       address: new FormControl(this.address.street),
       cap: new FormControl(this.address.cap),
