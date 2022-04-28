@@ -25,11 +25,11 @@ export class NewSchoolPage implements OnInit {
   ]
 
   filter(ev){
-    console.log('typing',ev)
+    console.log('typing',ev.address)
   }
 
   submit(ev){
-    console.log('submit',ev)
+    console.log('submit',ev.address)
     this.school.load(ev)
     console.log('new school',this.school)
   }

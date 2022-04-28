@@ -66,9 +66,13 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
 
   ngOnInit() {
+    console.log('address',this.address)
     if(!this.address){
       this.address= new Address()
     }
+
+
+    console.log('address',this.address)
     this.addressForm = this.formBuilder.group({
       address: new FormControl(this.address.street),
       cap: new FormControl(this.address.cap),
@@ -79,8 +83,9 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
       number: new FormControl(this.address.number)
     })
     this.subscription = this.addressForm.valueChanges.subscribe(d => {
+      console.log(d,new Address(d))
       this.markAsTouched()
-      this.onChange(new Address(d))
+      this.onChange(d)
     })
 
   }
