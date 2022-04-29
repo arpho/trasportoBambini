@@ -41,7 +41,9 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     this.onTouch = fn;
   }
 
-  
+  localize(){
+    console.log('localizing')
+  }
 
   markAsTouched() {
     if (!this.touched) {
@@ -79,7 +81,6 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
       number: new FormControl(this.address.number)
     })
     this.subscription = this.addressForm.valueChanges.subscribe(d => {
-      console.log(d,new Address(d))
       this.markAsTouched()
       this.onChange({address:d})
     })
