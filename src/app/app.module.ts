@@ -17,6 +17,8 @@ import { UpdateVehiclePage } from './pages/Fleet/modificaVeicolo/update-vehicle/
 import { NewSchoolPageModule } from './pages/schools/inserisciScuola/new-school/new-school.module';
 import { UpdateSchoolPage } from './pages/schools/modificaScuola/update-school/update-school.page';
 import { NewSchoolPage } from './pages/schools/inserisciScuola/new-school/new-school.page';
+import { AgmCoreModule } from '@agm/core';
+import { configs } from './configs/credentials';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,9 @@ import { NewSchoolPage } from './pages/schools/inserisciScuola/new-school/new-sc
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerImmediately'
-    })
+    }),
+    AgmCoreModule.forRoot({apiKey:configs.google.api_key,
+    libraries:['places']})
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
