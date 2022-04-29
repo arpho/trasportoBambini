@@ -5,6 +5,9 @@ import { Position } from '@capacitor/geolocation';
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 import { Subscription } from 'rxjs';
 import { Address } from '../../../models/Address';
+//import { google } from 'google-maps';
+
+declare var google;
 
 @Component({
   selector: 'app-address',
@@ -48,6 +51,11 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     console.log('localizing')
     navigator.geolocation.getCurrentPosition((position:Position)=>{
       console.log('position',position)
+      let geodecoder = new google.maps.Geocoder()
+      let latlng ={ lat:position.coords.latitude,lng:position.coords.longitude}
+      geodecoder.geocode({'location':latlng},results=>{
+        console.log('results',results)
+      })
     })
   }
 
