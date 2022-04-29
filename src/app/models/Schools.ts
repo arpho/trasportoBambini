@@ -8,7 +8,7 @@ import { Value } from "../modules/item/models/value"
 export class School implements ItemModelInterface{
     denominazione:string
     key:string
-    indirizzo:Address
+    address:Address
     nota:string
     archived:boolean
 
@@ -16,22 +16,22 @@ export class School implements ItemModelInterface{
     load(v:{}){
         Object.assign(this,v)
         if (v){
-        this.indirizzo = new Address({'street':v['street'],
+        this.address = new Address({'street':v['address']['street'],
         'cap':v['cap'],
-        'longitude':v['longitude'],
-        'latituide':v['latitude'],
-        'number':v['number'],
-        'province':v['province'],
+        'longitude':v['address']['longitude'],
+        'latituide':v['address']['latitude'],
+        'number':v['address']['number'],
+        'province':v['address']['province'],
         'city':v['city']})
         }
         else{
-this.indirizzo = new Address()
+this.address = new Address()
         }
     
         return this
     } 
     fetchAddress(){
-            return this.indirizzo.fetchAddress()
+            return this.address.fetchAddress()
         }
 
     serialize(){
@@ -40,7 +40,7 @@ this.indirizzo = new Address()
         
             out = {
             'denominazione':serializers.serialize2String(this.denominazione),
-            'indirizzo':this.indirizzo.serialize(),
+            'indirizzo':this.address.serialize(),
             'nota':serializers.serialize2String(this.nota),
             'archived':!!this.archived
             
