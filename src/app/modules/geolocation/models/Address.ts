@@ -14,7 +14,9 @@ export class Address implements ItemModelInterface {
     number: string
 
     load(value: {}) {
+        console.log('loading address',value)
         Object.assign(this, value)
+        console.log('loaded address',this)
         return this
     }
     serializers: Serializers

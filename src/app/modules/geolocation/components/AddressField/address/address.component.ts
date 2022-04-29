@@ -74,7 +74,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
     console.log('address',this.address)
     this.addressForm = this.formBuilder.group({
-      address: new FormControl(this.address.street),
+      street: new FormControl(this.address.street),
       cap: new FormControl(this.address.cap),
       city: new FormControl(this.address.city),
       longitude: new FormControl(this.address.longitude),
@@ -85,7 +85,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     this.subscription = this.addressForm.valueChanges.subscribe(d => {
       console.log(d,new Address(d))
       this.markAsTouched()
-      this.onChange(d)
+      this.onChange('a')
     })
 
   }
