@@ -44,13 +44,16 @@
   
     <app-password-field  class='question'
     [formControlName]="question?.key"
-    [retypePassword] ="question.retypePassword"
+    [retypePassword] ="question?.retypePassword"
 
     ></app-password-field>
     </section>
   
     <section *ngSwitchCase="'address'">
-    <app-address class="question"></app-address>
+    <app-address class="question"
+                  [formControlName]="question?.key"
+                  [id]="question?.key"
+                  ></app-address>
     </section>
 
     <section *ngSwitchCase="'datebox'" class='question'>
