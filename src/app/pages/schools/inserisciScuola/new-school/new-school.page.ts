@@ -20,7 +20,7 @@ export class NewSchoolPage implements OnInit {
     }), new AddressQuestion({
       key:'address',
       label:'indirizzo',
-      value:this.school.indirizzo
+      value:this.school.address
     })
   ]
 
