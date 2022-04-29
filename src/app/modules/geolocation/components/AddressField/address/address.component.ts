@@ -1,5 +1,5 @@
 import { Component, ElementRef, Injector, Input, OnDestroy, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 import { Subscription } from 'rxjs';
 import { Address } from '../../../models/Address';
@@ -12,12 +12,13 @@ import { Address } from '../../../models/Address';
     provide: NG_VALUE_ACCESSOR,
     multi: true,
     useExisting: AddressComponent
-  }]
+  },]
 })
 export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy {
-  @Input() address: Address
+  @Input() address: Address = new Address()
 
   addressForm
+  disabled = false
 
   private onChange: Function = (password: string) => { };
   // tslint:disable-next-line: ban-types
@@ -40,6 +41,8 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     this.onTouch = fn;
   }
 
+  
+
   markAsTouched() {
     if (!this.touched) {
       this.onTouch();
@@ -54,7 +57,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     throw new Error('Method not implemented.');
   }
   setDisabledState(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    this.disabled = isDisabled
   }
   ngOnDestroy(): void {
     if (this.subscription) {
@@ -66,13 +69,6 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
 
   ngOnInit() {
-    console.log('address',this.address)
-    if(!this.address){
-      this.address= new Address()
-    }
-
-
-    console.log('address',this.address)
     this.addressForm = this.formBuilder.group({
       street: new FormControl(this.address.street),
       cap: new FormControl(this.address.cap),
@@ -85,8 +81,9 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     this.subscription = this.addressForm.valueChanges.subscribe(d => {
       console.log(d,new Address(d))
       this.markAsTouched()
-      this.onChange('a')
+      this.onChange({address:d})
     })
+    
 
   }
 
