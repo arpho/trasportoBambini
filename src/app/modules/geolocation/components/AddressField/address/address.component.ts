@@ -52,8 +52,8 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     navigator.geolocation.getCurrentPosition((position:Position)=>{
       console.log('position',position)
       this.address.latitude = position.coords.latitude
-      this.addressForm.longitude.setValue( position.coords.longitude)
-      this.addressForm.latitude.setValue(position.coords.latitude)
+      this.addressForm.controls.longitude.setValue( position.coords.longitude)
+      this.addressForm.controls.latitude.setValue(position.coords.latitude)
       this.address.longitude= position.coords.longitude
       let geodecoder = new google.maps.Geocoder()
       let latlng ={ lat:position.coords.latitude,lng:position.coords.longitude}
