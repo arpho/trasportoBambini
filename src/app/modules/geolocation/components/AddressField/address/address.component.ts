@@ -1,5 +1,7 @@
+import { MapsAPILoader } from '@agm/core';
 import { Component, ElementRef, Injector, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Position } from '@capacitor/geolocation';
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 import { Subscription } from 'rxjs';
 import { Address } from '../../../models/Address';
@@ -25,7 +27,8 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
   private onTouch: Function = () => { };
   touched = false;
   subscription: Subscription
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder,
+    mapsAPILoader: MapsAPILoader,) { }
   protected injector: Injector;
   protected el: ElementRef<any>;
   protected lastValue: any;
@@ -43,6 +46,9 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
   localize(){
     console.log('localizing')
+    navigator.geolocation.getCurrentPosition((position:Position)=>{
+      console.log('position',position)
+    })
   }
 
   markAsTouched() {
