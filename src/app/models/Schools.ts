@@ -15,13 +15,12 @@ export class School implements ItemModelInterface{
 
 
     load(v:{}){
-        console.log('loading',v)
         Object.assign(this,v)
         if (v){
         this.address = new Address({'street':v['address']['street'],
         'cap':v['address']['cap'],
         'longitude':v['address']['longitude'],
-        'latituide':v['address']['latitude'],
+        'latitude':v['address']['latitude'],
         'number':v['address']['number'],
         'province':v['address']['province'],
         'city':v['address']['city']})
