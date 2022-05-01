@@ -78,7 +78,8 @@ export class SchoolsService implements ItemServiceInterface {
   }
 
 
-  createItem(item: School) {
-  return   push(this.itemsListRef, item.serialize())
+  createItem(school: School) {
+    console.log('creating school',school)
+  return   push(this.itemsListRef, school.serialize())
   }
 }
