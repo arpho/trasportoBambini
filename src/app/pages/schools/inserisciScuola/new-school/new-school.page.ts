@@ -32,6 +32,12 @@ export class NewSchoolPage implements OnInit {
     console.log('submit',ev)
     this.school.load(ev)
     console.log('new school',this.school)
+    this.service.createItem(this.school).then((data)=>{
+      console.log('done',data)
+      this.school.setKey(data.key)
+
+      this.dismiss(this.school)
+    })
   }
 
   dismiss(school?) {
