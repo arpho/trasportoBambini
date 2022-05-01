@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
         if (profilo.level<3){
           this.appPages= [   { title: 'utenti', url: '/customers', icon: 'people' },
           { title: 'pulmini', url: '/flotta', icon: 'bus' },
-        {title:'Scuole',url:'/schools-list',icon:'business'}]
+        {title:'Scuole',url:'/schools-list',icon:'business'},
+      {title:'Studenti',url:'/students',icon:'contacts'}]
         }
         }
         })

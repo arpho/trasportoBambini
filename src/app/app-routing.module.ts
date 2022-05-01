@@ -47,6 +47,10 @@ pathMatch:'full'},
   {
     path: 'new-school',
     loadChildren: () => import('./pages/schools/inserisciScuola/new-school/new-school.module').then( m => m.NewSchoolPageModule)
+  },
+  {
+    path: 'students',
+    loadChildren: () => import('./pages/customers/students/list/students/students.module').then( m => m.StudentsPageModule)
   }
 ];
 
