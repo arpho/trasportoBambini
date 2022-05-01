@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, NavParams, ToastController } from '@ionic/angular';
 import { School } from 'src/app/models/Schools';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
@@ -12,60 +12,71 @@ import { SchoolsService } from 'src/app/services/scuole/schools.service';
 })
 export class UpdateSchoolPage implements OnInit {
 
-  title:string
+  title: string
   school = new School()
-  schoolFields= [
+  schoolFields = [
     new TextboxQuestion({
-      key:'denominazione',
-      label:'nome',
-      value:this.school.denominazione
+      key: 'denominazione',
+      label: 'nome',
+      value: this.school.denominazione
     }), new AddressQuestion({
-      key:'address',
-      label:'indirizzo',
-      value:this.school.address
+      key: 'address',
+      label: 'indirizzo',
+      value: this.school.address
     })
   ]
 
-  filter(ev){
-    console.log('typing',ev)
+  filter(ev) {
   }
 
-  submit(ev){
-    console.log('submit',ev)
-    this.school.load(ev)
-    console.log('new school',this.school)
-    this.service.createItem(this.school).then((data)=>{
-      console.log('done',data)
-      this.school.setKey(data.key)
 
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      position: 'top',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  submit(ev) {
+    this.school.load(ev)
+    this.service.updateItem(this.school).then((data) => {
+      this.presentToast('scuola modificata correttamente')
+    }).catch(error => {
+      this.presentToast(' ci sono stati dei problemi')
+      console.error(error)
+    }).finally(() => {
       this.dismiss(this.school)
     })
   }
 
   dismiss(school?) {
     this.modalCtrl.dismiss(school)
-  }
+  } u
 
-  constructor(public navParams:NavParams,public modalCtrl:ModalController,public service:SchoolsService) { }
+  constructor(public navParams: NavParams,
+    public toastController: ToastController,
+    public modalCtrl: ModalController, public service: SchoolsService) { }
 
- 
+
 
   ngOnInit() {
-    this.school= this.navParams.get('item')
-    console.log('editing',this.school)
-    this.title = this.school? `modifica scuola ${this.school.getTitle().value}`: 'modifica scuola'
-    this.schoolFields =  [
+    this.school = this.navParams.get('item')
+    this.title = this.school ? `modifica scuola ${this.school.getTitle().value}` : 'modifica scuola'
+    this.schoolFields = [
       new TextboxQuestion({
-        key:'denominazione',
-        label:'nome',
-        value:this.school.denominazione
+        key: 'denominazione',
+        label: 'nome',
+        value: this.school.denominazione
       }), new AddressQuestion({
-        key:'address',
-        label:'indirizzo',
-        value:this.school.address
+        key: 'address',
+        label: 'indirizzo',
+        value: this.school.address
       })
     ]
-  
+
 
   }
 
