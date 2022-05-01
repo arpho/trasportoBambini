@@ -31,10 +31,10 @@ export class UpdateSchoolPage implements OnInit {
 
 
 
-  async presentToast(message: string) {
+  async presentToast(message:string) {
     const toast = await this.toastController.create({
       message: message,
-      position: 'top',
+      position:'top',
       duration: 2000
     });
     toast.present();
@@ -44,20 +44,20 @@ export class UpdateSchoolPage implements OnInit {
     this.school.load(ev)
     this.service.updateItem(this.school).then((data) => {
       this.presentToast('scuola modificata correttamente')
-    }).catch(error => {
+    }).catch(error=>{
       this.presentToast(' ci sono stati dei problemi')
       console.error(error)
-    }).finally(() => {
+    }).finally(()=>{
       this.dismiss(this.school)
     })
   }
 
   dismiss(school?) {
     this.modalCtrl.dismiss(school)
-  } u
+  }
 
   constructor(public navParams: NavParams,
-    public toastController: ToastController,
+    public toastController:ToastController,
     public modalCtrl: ModalController, public service: SchoolsService) { }
 
 
