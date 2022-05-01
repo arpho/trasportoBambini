@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
           this.appPages= [   { title: 'utenti', url: '/customers', icon: 'people' },
           { title: 'pulmini', url: '/flotta', icon: 'bus' },
         {title:'Scuole',url:'/schools-list',icon:'business'},
-      {title:'Studenti',url:'/students',icon:'contacts'}]
+      {title:'Studenti',url:'/students',icon:'happy'}]
         }
         }
         })
