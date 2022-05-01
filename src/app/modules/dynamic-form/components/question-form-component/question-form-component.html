@@ -51,6 +51,7 @@
   
     <section *ngSwitchCase="'address'">
     <app-address class="question"
+                  [address]="question?.value"
                   [formControlName]="question?.key"
                   [id]="question?.key"
                   ></app-address>
