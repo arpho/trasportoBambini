@@ -11,18 +11,20 @@ export class School implements ItemModelInterface{
     address:Address
     nota:string
     archived:boolean
+    city:string
 
 
     load(v:{}){
+        console.log('loading',v)
         Object.assign(this,v)
         if (v){
         this.address = new Address({'street':v['address']['street'],
-        'cap':v['cap'],
+        'cap':v['address']['cap'],
         'longitude':v['address']['longitude'],
         'latituide':v['address']['latitude'],
         'number':v['address']['number'],
         'province':v['address']['province'],
-        'city':v['city']})
+        'city':v['address']['city']})
         }
         else{
 this.address = new Address()
@@ -40,7 +42,7 @@ this.address = new Address()
         
             out = {
             'denominazione':serializers.serialize2String(this.denominazione),
-            'indirizzo':this.address.serialize(),
+            'address':this.address.serialize(),
             'nota':serializers.serialize2String(this.nota),
             'archived':!!this.archived
             
@@ -86,13 +88,14 @@ this.address = new Address()
         return new Value({value:this.fetchAddress(),label:'indirizzo'})
     }
     getValue3(): Value {
-        throw new Error("Method not implemented.")
+        return new Value({value:'non so',label:'value3'})
     }
     getValue4(): Value {
-        throw new Error("Method not implemented.")
+        return new Value({value:'non so',label:'value4'})
     }
     setKey?(key: string): School {
-        throw new Error("Method not implemented.")
+        this.key= key
+        return this
     }
     getEditPopup(item?: ItemModelInterface, service?: ItemServiceInterface) {
         throw new Error("Method not implemented.")
@@ -107,7 +110,7 @@ this.address = new Address()
         throw new Error("Method not implemented.")
     }
     hasQuickActions?(): boolean {
-        throw new Error("Method not implemented.")
+       return false
     }
     getElement(): { element: string; genere: Genere } {
        return {element:'scuola',genere:'a'}
