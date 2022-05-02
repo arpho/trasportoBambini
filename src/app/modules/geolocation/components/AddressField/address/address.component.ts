@@ -47,6 +47,48 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
   registerOnTouched(fn) {
     this.onTouch = fn;
   }
+  fetchAddress(location){
+    const address = new Address()
+    console.log('fetching',location)
+    location['address_components'].forEach(element => {
+      console.log('components',element)
+      if(element.types[0]=='street_number')
+      {
+        address.number = element.short_name
+      }
+      if(element.types[0]=='route')
+      {
+        address.street = element.short_name
+      }
+      if(element.types[0]=='locality')
+      {
+        address.city= element.short_name
+
+      }
+
+      if(element.types[0]=='administrative_area_level_2')
+        {
+          address.province = element.short_name
+      }
+
+      if(element.types[0]=='postal_code')
+      {
+        address.cap= element.short_name
+      }
+
+      
+    });
+    console.log('address',address)
+    return address
+  }
+
+  setAddressForm(address:Address){
+    this.addressForm.controls.number.setValue(address.number)
+    this.addressForm.controls.cap.setValue(address.cap)
+    this.addressForm.controls.city.setValue(address.city)
+    this.addressForm.controls.province.setValue(address.province)
+    this.addressForm.controls.street.setValue(address.street)
+  }
 
   localize(){
     console.log('localizing')
@@ -60,6 +102,9 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
       let latlng ={ lat:position.coords.latitude,lng:position.coords.longitude}
        geodecoder.geocode({'location':latlng},results=>{
         console.log('results',results)
+       this.address = this.fetchAddress(results[0])
+       this.setAddressForm(this.address)
+
       }) 
     })
   }
