@@ -13,6 +13,13 @@ export class NewStudentPage implements OnInit {
 studentFields
 student:Studente
   constructor() { }
+  filter(ev){
+    console.log('typing',ev)
+  }
+
+  submit(ev){
+    console.log('submit',ev)
+  }
 
   ngOnInit() {
     this.student= new Studente()
