@@ -19,13 +19,17 @@ import { UpdateSchoolPage } from './pages/schools/modificaScuola/update-school/u
 import { NewSchoolPage } from './pages/schools/inserisciScuola/new-school/new-school.page';
 import { AgmCoreModule } from '@agm/core';
 import { configs } from './configs/credentials';
+import { NewStudentPage } from './pages/customers/students/create/new-student/new-student.page';
+import { UpdateStudentPage } from './pages/customers/students/edit/update-student/update-student.page';
 @NgModule({
   declarations: [
     AppComponent,
     NuovoVeicoloPage,
     UpdateVehiclePage,
     NewSchoolPage,
-    UpdateSchoolPage
+    UpdateSchoolPage,
+    NewStudentPage,
+    UpdateStudentPage
   ],
   entryComponents: [],
   imports: [
