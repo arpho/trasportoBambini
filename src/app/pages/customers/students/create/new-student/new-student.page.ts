@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Studente } from 'src/app/models/studente';
 import { DateQuestion } from 'src/app/modules/dynamic-form/models/question-date';
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
@@ -12,7 +13,13 @@ import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-te
 export class NewStudentPage implements OnInit {
 studentFields
 student:Studente
-  constructor() { }
+  constructor(public modalCtrl: ModalController) { }
+
+
+  dismiss(vehicle?) {
+    this.modalCtrl.dismiss(vehicle)
+  }
+
   filter(ev){
     console.log('typing',ev)
   }
