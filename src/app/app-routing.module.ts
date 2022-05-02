@@ -55,6 +55,10 @@ pathMatch:'full'},
   {
     path: 'new-student',
     loadChildren: () => import('./pages/customers/students/create/new-student/new-student.module').then( m => m.NewStudentPageModule)
+  },
+  {
+    path: 'update-student',
+    loadChildren: () => import('./pages/customers/students/edit/update-student/update-student.module').then( m => m.UpdateStudentPageModule)
   }
 ];
 
