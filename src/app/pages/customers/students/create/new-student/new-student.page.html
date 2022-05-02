@@ -4,6 +4,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<app-dynamic-form [questions]="studentFields" (interactiveSubmit)="filter($event)" (singleSubmit)="submit($event)">
 
-</ion-content>
+</app-dynamic-form>
