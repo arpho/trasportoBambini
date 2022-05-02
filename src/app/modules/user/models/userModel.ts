@@ -18,7 +18,7 @@ export class UserModel implements ItemModelInterface {
   password: string;
   title: string;
   key: string;
-  offlineEnabled = true // for the moment true for default
+  offlineEnabled = false // for the moment false for default
   uid: string;
   level: number;
   quickActions: Array<QuickAction>;
