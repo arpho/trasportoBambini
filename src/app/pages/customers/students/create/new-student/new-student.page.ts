@@ -26,6 +26,8 @@ student:Studente
 
   submit(ev){
     console.log('submit',ev)
+    this.student.load(ev)
+    console.log('student',this.student)
   }
 
   ngOnInit() {
@@ -45,7 +47,8 @@ student:Studente
       new DateQuestion({
         label:'data di nascita',
         key:'dob',
-        value:this.student.birthDate
+        value:this.student.birthDate,
+        presentation:'date'
       }),
       new TextAreaBox({
         key: 'note',
