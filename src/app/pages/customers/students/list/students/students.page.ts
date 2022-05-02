@@ -5,6 +5,8 @@ import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-te
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { CustomersService } from 'src/app/services/customers/customers.service';
 import { StudentsService } from 'src/app/services/studenti/students.service';
+import { NewStudentPage } from '../../create/new-student/new-student.page';
+import { UpdateStudentPage } from '../../edit/update-student/update-student.page';
 
 @Component({
   selector: 'app-students',
@@ -15,6 +17,8 @@ export class StudentsPage implements OnInit {
   public filterFunction: (item:ItemModelInterface) => boolean;
   public filterFields: any[];
 
+  createModalPage = NewStudentPage
+  editModalPage = UpdateStudentPage
   constructor(public students: StudentsService) { }
 
   ngOnInit() {
