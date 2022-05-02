@@ -20,6 +20,7 @@ export class QuestionBase<T> {
   iconFalse: string;
   labelTrue: string;
   retypePassword?:boolean
+  presentation?:'date'|'date-time'|'time'
   service: ItemServiceInterface
   labelFalse: string;
   text: string;
