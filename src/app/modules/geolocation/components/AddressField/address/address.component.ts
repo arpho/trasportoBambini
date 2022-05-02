@@ -55,11 +55,11 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
       this.addressForm.controls.longitude.setValue( position.coords.longitude)
       this.addressForm.controls.latitude.setValue(position.coords.latitude)
       this.address.longitude= position.coords.longitude
-      let geodecoder = new google.maps.Geocoder()
+      //let geodecoder = new google.maps.Geocoder()
       let latlng ={ lat:position.coords.latitude,lng:position.coords.longitude}
-      geodecoder.geocode({'location':latlng},results=>{
+      /* geodecoder.geocode({'location':latlng},results=>{
         console.log('results',results)
-      })
+      }) */
     })
   }
 
