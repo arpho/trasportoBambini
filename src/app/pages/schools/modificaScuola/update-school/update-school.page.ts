@@ -51,7 +51,7 @@ export class UpdateSchoolPage implements OnInit {
 
   constructor(public navParams: NavParams,
     public toastController:ToastController,
-    public toastService:MyToastService
+    public toastService:MyToastService,
     public modalCtrl: ModalController, public service: SchoolsService) { }
 
 
