@@ -4,6 +4,7 @@ import { Studente } from 'src/app/models/studente';
 import { DateQuestion } from 'src/app/modules/dynamic-form/models/question-date';
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { CustomersService } from 'src/app/services/customers/customers.service';
 
 @Component({
   selector: 'app-new-student',
@@ -13,7 +14,7 @@ import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-te
 export class NewStudentPage implements OnInit {
 studentFields
 student:Studente
-  constructor(public modalCtrl: ModalController) { }
+  constructor(public modalCtrl: ModalController,public service:CustomersService) { }
 
 
   dismiss(vehicle?) {
@@ -28,6 +29,16 @@ student:Studente
     console.log('submit',ev)
     this.student.load(ev)
     console.log('student',this.student)
+    this.service.createItem(this.student).then(data=>{
+      console.log('created',data)
+      this.student.setKey(data.key)
+
+    }).catch(error=>{
+      console.error(error)
+    }).finally(()=>{
+      this.dismiss(this.student)
+    })
+
   }
 
   ngOnInit() {
