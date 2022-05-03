@@ -31,8 +31,8 @@ export class CollectionPoint implements ItemModelInterface {
     getTitle(): Value {
         return new Value({ value: this.title, label: 'punto di raccolta' })
     }
-    getCountingText(): string {
-        return 'punti di raccolta'
+    getCountingText() {
+        return{plural: 'punti di raccolta',singular:'punto di raccolta'}
     }
     getNote(): Value {
         return new Value({ value: this.note, label: 'note' })
@@ -54,10 +54,10 @@ export class CollectionPoint implements ItemModelInterface {
         return new Value({ value: this.address.fetchAddress(), label: 'indirizzo' })
     }
     getValue3(): Value {
-        throw new Error("Method not implemented.");
+        return new Value({label:'indirizzo',value:this.address.fetchAddress()})
     }
     getValue4(): Value {
-        throw new Error("Method not implemented.");
+        return new Value({label:'key',value:this.key})
     }
     setKey?(key: string): ItemModelInterface {
         this.key = key
