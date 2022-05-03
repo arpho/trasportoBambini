@@ -25,7 +25,10 @@ export class CollectionPoint implements ItemModelInterface {
 
     load(v) {
         Object.assign(this, v)
-        this.address = new Address(v)
+        
+        if (v && v['indirizzo']) {
+            this.address = new Address(v['address'])
+        }
         return this
     }
     getTitle(): Value {
@@ -89,6 +92,10 @@ export class CollectionPoint implements ItemModelInterface {
     }
     getElement(): { element: string; genere: Genere; } {
         return { element: 'punto di raccolta', genere: 'o' }
+    }
+
+    constructor(v?:{}){
+        this.load(v)
     }
 
 }
