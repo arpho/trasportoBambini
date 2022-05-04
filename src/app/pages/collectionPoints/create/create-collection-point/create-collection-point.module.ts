@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CreateCollectionPointPageRoutingModule } from './create-collection-point-routing.module';
 
 import { CreateCollectionPointPage } from './create-collection-point.page';
+import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreateCollectionPointPageRoutingModule
+    CreateCollectionPointPageRoutingModule,
+    DynamicFormModule
   ],
   declarations: [CreateCollectionPointPage]
 })
