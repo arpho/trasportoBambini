@@ -63,6 +63,10 @@ pathMatch:'full'},
   {
     path: 'collection-points-list',
     loadChildren: () => import('./pages/collectionPoints/list/collection-points-list/collection-points-list.module').then( m => m.CollectionPointsListPageModule)
+  },
+  {
+    path: 'create-collection-point',
+    loadChildren: () => import('./pages/collectionPoints/create/create-collection-point/create-collection-point.module').then( m => m.CreateCollectionPointPageModule)
   }
 ];
 
