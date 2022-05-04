@@ -30,7 +30,7 @@ export class CollectionPointsService implements ItemServiceInterface {
     throw new Error('Method not implemented.');
   }
   getDummyItem(): CollectionPoint {
-    throw new Error('Method not implemented.');
+    return new CollectionPoint()
   }
   createItem(item: CollectionPoint) {
     throw new Error('Method not implemented.');
