@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { CollectionPoint } from 'src/app/models/collectionPoints';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
@@ -33,7 +34,11 @@ export class CreateCollectionPointPage implements OnInit {
       console.log('collection point',collectionPoint)
     }
 
-  constructor(public service:CollectionPointsService) { }
+    dismiss(point?) {
+      this.modalCtrl.dismiss(point)
+    }
+
+  constructor(public service:CollectionPointsService,public modalCtrl:ModalController) { }
 
   ngOnInit() {
   }
