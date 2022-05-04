@@ -22,6 +22,7 @@ import { configs } from './configs/credentials';
 import { NewStudentPage } from './pages/customers/students/create/new-student/new-student.page';
 import { UpdateStudentPage } from './pages/customers/students/edit/update-student/update-student.page';
 import { CreateCollectionPointPage } from './pages/collectionPoints/create/create-collection-point/create-collection-point.page';
+import { UpdateCollectionPointPage } from './pages/collectionPoints/edit/update-collection-point/update-collection-point.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { CreateCollectionPointPage } from './pages/collectionPoints/create/creat
     UpdateSchoolPage,
     NewStudentPage,
     UpdateStudentPage,
-    CreateCollectionPointPage
+    CreateCollectionPointPage,
+    UpdateCollectionPointPage
   ],
   entryComponents: [],
   imports: [
