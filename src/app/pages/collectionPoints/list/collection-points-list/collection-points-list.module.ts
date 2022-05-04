@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CollectionPointsListPageRoutingModule } from './collection-points-list-routing.module';
 
 import { CollectionPointsListPage } from './collection-points-list.page';
+import { ItemModule } from 'src/app/modules/item/item.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CollectionPointsListPageRoutingModule
+    CollectionPointsListPageRoutingModule,
+    ItemModule
   ],
   declarations: [CollectionPointsListPage]
 })
