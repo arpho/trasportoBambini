@@ -21,6 +21,7 @@ import { AgmCoreModule } from '@agm/core';
 import { configs } from './configs/credentials';
 import { NewStudentPage } from './pages/customers/students/create/new-student/new-student.page';
 import { UpdateStudentPage } from './pages/customers/students/edit/update-student/update-student.page';
+import { CreateCollectionPointPage } from './pages/collectionPoints/create/create-collection-point/create-collection-point.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { UpdateStudentPage } from './pages/customers/students/edit/update-studen
     NewSchoolPage,
     UpdateSchoolPage,
     NewStudentPage,
-    UpdateStudentPage
+    UpdateStudentPage,
+    CreateCollectionPointPage
   ],
   entryComponents: [],
   imports: [
