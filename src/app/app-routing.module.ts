@@ -59,6 +59,10 @@ pathMatch:'full'},
   {
     path: 'update-student',
     loadChildren: () => import('./pages/customers/students/edit/update-student/update-student.module').then( m => m.UpdateStudentPageModule)
+  },
+  {
+    path: 'collection-points-list',
+    loadChildren: () => import('./pages/collectionPoints/list/collection-points-list/collection-points-list.module').then( m => m.CollectionPointsListPageModule)
   }
 ];
 
