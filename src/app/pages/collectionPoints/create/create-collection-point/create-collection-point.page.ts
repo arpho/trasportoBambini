@@ -12,7 +12,7 @@ import { CollectionPointsService } from 'src/app/services/collectionPoints/colle
 })
 export class CreateCollectionPointPage implements OnInit {
   collectionPoint = new CollectionPoint();
-  collectionPointFields = [new TextboxQuestion({
+  public collectionPointFields = [new TextboxQuestion({
     label:'titolo del punto di raccolta',
     key:'title'
     ,value:this.collectionPoint.title }),
