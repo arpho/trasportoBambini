@@ -67,6 +67,10 @@ pathMatch:'full'},
   {
     path: 'create-collection-point',
     loadChildren: () => import('./pages/collectionPoints/create/create-collection-point/create-collection-point.module').then( m => m.CreateCollectionPointPageModule)
+  },
+  {
+    path: 'update-collection-point',
+    loadChildren: () => import('./pages/collectionPoints/edit/update-collection-point/update-collection-point.module').then( m => m.UpdateCollectionPointPageModule)
   }
 ];
 
