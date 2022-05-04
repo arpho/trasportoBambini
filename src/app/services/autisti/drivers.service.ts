@@ -7,7 +7,7 @@ import { CustomersService } from '../customers/customers.service';
   providedIn: 'root'
 })
 export class DriversService extends CustomersService{
-  getDummyItem(): Autista {
+  getEmptyItem(): Autista {
     return new Autista()
   }
 

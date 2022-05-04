@@ -35,7 +35,7 @@ reference:string //it s the reference name in the realtime database
     deleteItem(key: string);
 
     /** return a void item of the type handled by the service */
-    getDummyItem(): ItemModelInterface;
+    getEmptyItem(): ItemModelInterface;
     /**crea un item in firebase
      *
      */

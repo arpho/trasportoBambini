@@ -26,7 +26,7 @@ export class SchoolsService implements ItemServiceInterface {
 
     this.loadDataAndPublish(this.publishItems)
   }
-  getDummyItem(): ItemModelInterface {
+  getEmptyItem(): ItemModelInterface {
     return new School()
   }
 

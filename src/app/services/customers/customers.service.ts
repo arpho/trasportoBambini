@@ -95,7 +95,7 @@ db:Database
     return set(reference, null)
 
   }
-  getDummyItem(): Utente {
+  getEmptyItem(): Utente {
     return new Utente()
   }
   createItem(item: ItemModelInterface) {

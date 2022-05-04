@@ -65,6 +65,7 @@ export class PageItemsListComponent implements OnInit, OnChanges {
 
   }
   ngOnInit() {
+    console.log('service',this.service)
 
     if (!this.filterFunction) {
       this.filterFunction = this.filterFunction ? this.filterFunction : (v: ItemModelInterface) => true;
@@ -73,7 +74,7 @@ export class PageItemsListComponent implements OnInit, OnChanges {
       this.sorterFunction = (a: ItemModelInterface, b: ItemModelInterface) => 0
     }
     if (this.service) {
-      this.dummyItem = this.service.getDummyItem();
+      this.dummyItem = this.service.getEmptyItem();
       if (this.items_list) {
         const next = () => {
           this.ref.markForCheck()
@@ -97,7 +98,7 @@ export class PageItemsListComponent implements OnInit, OnChanges {
   async deleteItem(item: ItemModelInterface, slide: {}) {
     // tslint:disable-next-line: no-string-literal
     slide['close']();
-    const element = this.service.getDummyItem().getElement();
+    const element = this.service.getEmptyItem().getElement();
     const alert = await this.alertCtrl.create({
       message: ` vuoi davvero cancellare quest${element.genere} ${element.element
         }?(${item.title})`,

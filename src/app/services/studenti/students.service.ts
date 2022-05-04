@@ -9,7 +9,7 @@ import { CustomersService } from '../customers/customers.service';
 export class StudentsService extends CustomersService {
 
 
-  getDummyItem(){
+  getEmptyItem(){
     return new Studente()
   }
 

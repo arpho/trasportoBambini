@@ -30,7 +30,7 @@ export class ItemsListComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.filterFunction = (v: ItemModelInterface) => true;
     if (this.service) {
-      this.dummyItem = this.service.getDummyItem();
+      this.dummyItem = this.service.getEmptyItem();
     }
 
   }
@@ -44,7 +44,7 @@ export class ItemsListComponent implements OnInit, OnChanges {
 
   async deleteItem(item: ItemModelInterface, slide) {
     slide.close();
-    const element = this.service.getDummyItem().getElement();
+    const element = this.service.getEmptyItem().getElement();
     const alert = await this.alertCtrl.create({
       message: ` vuoi davvero cancellare quest${element.genere} ${
         element.element

@@ -29,7 +29,7 @@ export class CollectionPointsService implements ItemServiceInterface {
   deleteItem(key: string) {
     throw new Error('Method not implemented.');
   }
-  getDummyItem(): CollectionPoint {
+  getEmptyItem(): CollectionPoint {
     return new CollectionPoint()
   }
   createItem(item: CollectionPoint) {

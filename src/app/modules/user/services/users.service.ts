@@ -86,7 +86,7 @@ db
     
   }
 
-  getDummyItem() {
+  getEmptyItem() {
     return new UserModel();
   }
 

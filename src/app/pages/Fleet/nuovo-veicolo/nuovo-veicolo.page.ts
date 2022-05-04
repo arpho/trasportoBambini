@@ -59,7 +59,7 @@ export class NuovoVeicoloPage implements OnInit {
      public toastController:ToastController) { }
 
   ngOnInit() {
-    this.vehicle = this.service.getDummyItem()
+    this.vehicle = this.service.getEmptyItem()
     this.showSpinner = false
     this.vehicleFields = [
       new TextboxQuestion({

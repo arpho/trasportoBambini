@@ -8,7 +8,7 @@ import { CustomersService } from '../customers/customers.service';
 })
 export class ParentsService extends CustomersService {
 
-  getDummyItem(): Genitore {
+  getEmptyItem(): Genitore {
     return new Genitore()
   }
 
