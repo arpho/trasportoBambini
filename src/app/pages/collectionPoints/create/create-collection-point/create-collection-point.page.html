@@ -5,5 +5,8 @@
 </ion-header>
 
 <ion-content>
+  <app-dynamic-form [questions]="collectionPointFields" (interactiveSubmit)="filter($event)" (singleSubmit)="submit($event)">
+
+  </app-dynamic-form>
 
 </ion-content>
