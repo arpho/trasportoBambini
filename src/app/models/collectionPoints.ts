@@ -17,7 +17,7 @@ import { Utente } from "./Utente";
 export class CollectionPoint implements ItemModelInterface {
     title: string;
     note?: string;
-    address: Address
+    address= new Address()
     key: string;
     quickActions?: QuickAction[];
     archived?: boolean;
