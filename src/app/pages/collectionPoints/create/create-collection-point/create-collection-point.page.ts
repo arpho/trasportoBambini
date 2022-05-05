@@ -39,7 +39,7 @@ export class CreateCollectionPointPage implements OnInit {
 
       this.service.createItem(collectionPoint).then(point=>{
         result = collectionPoint.setKey(point.key)
-        console.log('created',point)
+        console.log('created',result)
       }).catch(_error=>{
         console.error(_error)
         error = _error

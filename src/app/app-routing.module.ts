@@ -71,6 +71,18 @@ pathMatch:'full'},
   {
     path: 'update-collection-point',
     loadChildren: () => import('./pages/collectionPoints/edit/update-collection-point/update-collection-point.module').then( m => m.UpdateCollectionPointPageModule)
+  },
+  {
+    path: 'parents-list',
+    loadChildren: () => import('./pages/customers/parents/list/parents-list/parents-list.module').then( m => m.ParentsListPageModule)
+  },
+  {
+    path: 'new-parent',
+    loadChildren: () => import('./pages/customers/parents/create/new-parent/new-parent.module').then( m => m.NewParentPageModule)
+  },
+  {
+    path: 'update-parent',
+    loadChildren: () => import('./pages/customers/parents/edit/update-parent/update-parent.module').then( m => m.UpdateParentPageModule)
   }
 ];
 
