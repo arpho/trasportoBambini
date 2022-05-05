@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserType } from 'src/app/models/usersType';
+import { Utente } from 'src/app/models/Utente';
+import { ParentsService } from 'src/app/services/genitori/parents.service';
 
 @Component({
   selector: 'app-parents-list',
@@ -6,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parents-list.page.scss'],
 })
 export class ParentsListPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  filterFunction: (utente: Utente) => boolean;
+  ngOnInit(): void {
+    this.filterFunction = (utente:Utente)=>{
+      return utente.userType == UserType.genitore
+    }
   }
+
+
+
+
+  constructor(public parents:ParentsService) { }
+
+
+  
+
 
 }
