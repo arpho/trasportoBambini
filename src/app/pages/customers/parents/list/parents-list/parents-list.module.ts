@@ -15,6 +15,6 @@ import { ParentsListPage } from './parents-list.page';
     IonicModule,
     ParentsListPageRoutingModule
   ],
-  declarations: [ParentsListPage]
+  declarations: []
 })
 export class ParentsListPageModule {}
