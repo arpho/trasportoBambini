@@ -19,6 +19,7 @@ export class Utente extends UserModel {
         this.telephones = []
         this.role = super.roleFactory(this.level)
         Object.assign(this, v)
+        this.dor= new DateModel(new Date(this.dor))
         if (v && v['telephones']) {
             this.telephones = v['telephones'].map((t) => {
                 return new Telephone(t)
