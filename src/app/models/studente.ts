@@ -9,11 +9,13 @@ export class Studente extends Utente {
     genitoriId: Array<string>
     collectionPoint: string
     collectionPointKey: string
+    dob:DateModel
     schoolKey: string
     userType = UserType.studente
     load(v: {}) {
         Object.assign(this, v)
         this.dor = new DateModel(new Date(this.dor))
+        this.dob = new DateModel(new Date(this.dob))
         this.userType = UserType.studente
         return this
     }
