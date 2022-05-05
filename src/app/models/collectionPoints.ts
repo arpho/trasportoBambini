@@ -62,7 +62,7 @@ export class CollectionPoint implements ItemModelInterface {
     getValue4(): Value {
         return new Value({label:'key',value:this.key})
     }
-    setKey?(key: string): ItemModelInterface {
+    setKey?(key: string): CollectionPoint {
         this.key = key
         return this
     }
