@@ -25,6 +25,7 @@ export class CollectionPoint implements ItemModelInterface {
 
     load(v) {
         Object.assign(this, v)
+        this.title= this.title||v['denominazione']
         
         if (v && v['indirizzo']) {
             this.address = new Address(v['address'])
@@ -84,7 +85,7 @@ export class CollectionPoint implements ItemModelInterface {
     }
     serialize() {
         const serializers = new Serializers()
-        var out = { denominazione: serializers.serialize2String(this.title), note: serializers.serialize2String(this.note), }
+        var out = { title: serializers.serialize2String(this.title), note: serializers.serialize2String(this.note), }
         if (this.key) {
             out = { ...out, ...{ key: this.key } }
         }
