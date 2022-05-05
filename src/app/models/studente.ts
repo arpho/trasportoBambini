@@ -1,4 +1,5 @@
 import { Serializers } from "../modules/helpers/serializers"
+import { DateModel } from "../modules/user/models/birthDateModel"
 import { UserType } from "./usersType"
 import { Utente } from "./Utente"
 
@@ -12,6 +13,7 @@ export class Studente extends Utente {
     userType = UserType.studente
     load(v: {}) {
         Object.assign(this, v)
+        this.dor = new DateModel(new Date(this.dor))
         this.userType = UserType.studente
         return this
     }
@@ -38,6 +40,7 @@ export class Studente extends Utente {
     getCountingText(): { plural: string; singular: string } {
         return {plural:'studenti',singular:'studente'}
     }
+
 
     getElement(): { element: string; genere: "o"; } {
         return { element: 'studente', genere: "o" }
