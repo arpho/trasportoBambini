@@ -30,19 +30,22 @@ export class NewSchoolPage implements OnInit {
   }
 
   submit(ev){
+    let error:Error
+    let result :School
     console.log('submit',ev)
     this.school.load(ev)
     console.log('new school',this.school)
     this.service.createItem(this.school).then((data)=>{
       console.log('done',data)
-      this.school.setKey(data.key)
+      result = this.school.setKey(data.key)
       this.toastService.presentToast(`scuola "${this.school.denominazione}" creata correttamente`)
       
     }).catch(error=>{
       console.error(error)
       this.toastService.presentToast("qualcosa è andato storto,riprova")
     }).finally(()=>{
-      this.dismiss(this.school)
+      this.dismiss(result)
+
     })
   }
 

@@ -26,17 +26,20 @@ student:Studente
   }
 
   submit(ev){
+    let result:Studente
+    let error:Error
     console.log('submit',ev)
     this.student.load(ev)
     console.log('student',this.student)
     this.service.createItem(this.student).then(data=>{
       console.log('created',data)
-      this.student.setKey(data.key)
+      result = this.student.setKey(data.key)
 
-    }).catch(error=>{
-      console.error(error)
+    }).catch(_error=>{
+      console.error(_error)
+      error=_error
     }).finally(()=>{
-      this.dismiss(this.student)
+      this.dismiss(result)
     })
 
   }
