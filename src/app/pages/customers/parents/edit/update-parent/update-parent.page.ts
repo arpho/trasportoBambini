@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-update-parent',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateParentPage implements OnInit {
 
-  constructor() { }
+  dismiss(vehicle?) {
+    this.modalCtrl.dismiss(vehicle)
+  }
+
+
+  constructor(public modalCtrl:ModalController) { }
 
   ngOnInit() {
   }
