@@ -23,6 +23,9 @@ import { NewStudentPage } from './pages/customers/students/create/new-student/ne
 import { UpdateStudentPage } from './pages/customers/students/edit/update-student/update-student.page';
 import { CreateCollectionPointPage } from './pages/collectionPoints/create/create-collection-point/create-collection-point.page';
 import { UpdateCollectionPointPage } from './pages/collectionPoints/edit/update-collection-point/update-collection-point.page';
+import { ParentsListPage } from './pages/customers/parents/list/parents-list/parents-list.page';
+import { NewParentPage } from './pages/customers/parents/create/new-parent/new-parent.page';
+import { UpdateParentPage } from './pages/customers/parents/edit/update-parent/update-parent.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +36,11 @@ import { UpdateCollectionPointPage } from './pages/collectionPoints/edit/update-
     NewStudentPage,
     UpdateStudentPage,
     CreateCollectionPointPage,
-    UpdateCollectionPointPage
+    UpdateCollectionPointPage,
+    ParentsListPage,
+    NewParentPage,
+    UpdateParentPage,
+    
   ],
   entryComponents: [],
   imports: [
