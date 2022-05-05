@@ -7,4 +7,8 @@ export class Serializers{
     serialize2PositiveNumber = (n: number,defaultNumber=-1) => {
       return  n ? n : defaultNumber
     }
+    serialize2Array(v:Array<any>){
+      return v?v:[]
+
+    }
 }
