@@ -6,13 +6,14 @@ import { Telephone } from "./telephone"
 import { Value } from "../modules/item/models/value"
 import { configs } from "../configs/configs"
 import { UserTpeModedl } from "../modules/user/models/UserTypeModel"
+import { RoleModel } from "../modules/user/models/privilegesLevelModel"
 
 export class Utente extends UserModel {
     indirizzo: Address
     userType: UserType
-    telephones: Array<Telephone>
-    dor: DateModel // date of registration
-    role
+    telephones: Array<Telephone> = []
+    dor = new  DateModel(new Date()) // date of registration
+    role  = new RoleModel({ key: "Utente standard", value: 3 })
 
     load(v: {}) {
         this.telephones = []
@@ -40,8 +41,6 @@ export class Utente extends UserModel {
             ...super.serialize(),
             ...{
                 telephones: telephones,
-
-                role: this.role,
                 archived: !!this.archived,
                 dor: this.dor.formatDate(),
                 type: this.userType
@@ -59,6 +58,9 @@ export class Utente extends UserModel {
     }
 
   
+    getValue4(): Value {
+        return new Value({label:'key',value:this.key})
+    }
 
     getValue3(): Value {
         return new Value({ value: this.getUserTypeKey(this.userType), label: 'utente' })
