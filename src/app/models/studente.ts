@@ -22,7 +22,7 @@ export class Studente extends Utente {
             ...super.serialize(),
             ...{
                 type: this.userType,
-                genitoryId: this.genitoriId,
+                genitoryId:serializers.serialize2Array( this.genitoriId),
                 pulminoKey: serializers.serialize2String(this.pulminoKey),
                 collectionPointKey: serializers.serialize2String(this.collectionPointKey),
                 schoolkey: serializers.serialize2String(this.schoolKey)
