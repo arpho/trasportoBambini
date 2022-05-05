@@ -16,7 +16,7 @@ export class CollectionPointsService implements ItemServiceInterface {
   categoriesService?: ItemServiceInterface;
   suppliersService?: ItemServiceInterface;
   paymentsService?: ItemServiceInterface;
-  reference = 'collectionPoint'
+  reference = 'collectionPoints'
   _items: BehaviorSubject<CollectionPoint[]> = new BehaviorSubject([])
   items_list: CollectionPoint[];
   db = getDatabase()
