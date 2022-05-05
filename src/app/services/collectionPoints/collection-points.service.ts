@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Database, DatabaseReference, DataSnapshot, getDatabase, onValue, ref} from 'firebase/database';
+import { Database, DatabaseReference, DataSnapshot, getDatabase, onValue, push, ref, set} from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CollectionPoint } from 'src/app/models/collectionPoints';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
@@ -24,16 +24,20 @@ export class CollectionPointsService implements ItemServiceInterface {
     throw new Error('Method not implemented.');
   }
   updateItem(item: CollectionPoint) {
-    throw new Error('Method not implemented.');
+
+
+    const reference = ref(this.db, `${this.reference}/${item.key}`)
+   return  set(reference, item.serialize())
   }
   deleteItem(key: string) {
-    throw new Error('Method not implemented.');
+    const reference = ref(this.db, `${this.reference}/${key}`)
+    return set(reference, null)
   }
   getEmptyItem(): CollectionPoint {
     return new CollectionPoint()
   }
   createItem(item: CollectionPoint) {
-    throw new Error('Method not implemented.');
+    return  push(this.itemsListRef,item.serialize())
   }
   loadDataAndPublish(): void {
     onValue(this.itemsListRef,(DataSnapshot)=>{
