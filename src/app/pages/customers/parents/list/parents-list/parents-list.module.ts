@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ParentsListPageRoutingModule } from './parents-list-routing.module';
 
 import { ParentsListPage } from './parents-list.page';
+import { ItemModule } from 'src/app/modules/item/item.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ParentsListPageRoutingModule
+    ParentsListPageRoutingModule,
+    ItemModule
   ],
   declarations: []
 })
