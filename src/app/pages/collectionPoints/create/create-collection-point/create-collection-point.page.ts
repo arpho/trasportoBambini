@@ -35,10 +35,10 @@ export class CreateCollectionPointPage implements OnInit {
       let error: Error
       let result:CollectionPoint
       console.log('collection point',collectionPoint)
-      this.toaster.presentToast('punto di raccolta creato correttamente')
 
       this.service.createItem(collectionPoint).then(point=>{
         result = collectionPoint.setKey(point.key)
+      this.toaster.presentToast('punto di raccolta creato correttamente')
         console.log('created',result)
       }).catch(_error=>{
         console.error(_error)
