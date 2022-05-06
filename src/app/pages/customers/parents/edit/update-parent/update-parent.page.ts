@@ -55,6 +55,13 @@ export class UpdateParentPage implements OnInit {
     this.parent = this.navParams.get('item')
     this.title= `modifica ${this.parent.getTitle().value}`
 
+    this.formFields = [
+      new TextboxQuestion({key:'firstName',label:'nome',value:this.parent.firstName}),
+      new TextboxQuestion({key:'lastName',label:'Cognome',value:this.parent.lastName}),
+      new AddressQuestion({key:'indirizzo',label:'indirizzo',value:this.parent.address})
+  ]
+  
+
   }
 
 }
