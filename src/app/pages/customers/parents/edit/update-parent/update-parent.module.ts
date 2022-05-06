@@ -15,6 +15,6 @@ import { UpdateParentPage } from './update-parent.page';
     IonicModule,
     UpdateParentPageRoutingModule
   ],
-  declarations: [UpdateParentPage]
+  //declarations: [UpdateParentPage]
 })
 export class UpdateParentPageModule {}

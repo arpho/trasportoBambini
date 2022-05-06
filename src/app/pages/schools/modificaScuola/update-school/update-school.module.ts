@@ -17,6 +17,6 @@ import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.mod
     UpdateSchoolPageRoutingModule,
     DynamicFormModule
   ],
-  declarations: [UpdateSchoolPage]
+  // declarations: [UpdateSchoolPage]
 })
 export class UpdateSchoolPageModule {}

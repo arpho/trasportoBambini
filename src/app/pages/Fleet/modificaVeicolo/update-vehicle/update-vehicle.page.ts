@@ -20,12 +20,19 @@ export class UpdateVehiclePage implements OnInit {
      public toastController:ToastController,
      public service:VehiclesService,
      public navParams:NavParams,
+     public modalCtrl:ModalController
 
 
     
   ) {
       
      }
+
+
+
+  dismiss(vehicle?) {
+    this.modalCtrl.dismiss(vehicle)
+  }
 
      async presentToast(message:string) {
       const toast = await this.toastController.create({
