@@ -24,8 +24,9 @@ export class CollectionPoint implements ItemModelInterface {
     service?: ItemServiceInterface;
 
     load(v) {
+        if(v){
         Object.assign(this, v)
-        this.title= this.title||v['denominazione']
+        this.title= this.title||v['denominazione']}
         
         if (v && v['indirizzo']) {
             this.address = new Address(v['address'])
@@ -55,7 +56,8 @@ export class CollectionPoint implements ItemModelInterface {
         return true
     }
     getValue2(): Value {
-        return new Value({ value: this.address.fetchAddress(), label: 'indirizzo' })
+        const serializers= new Serializers()
+        return new Value({ value:serializers.serialize2String (this.address.fetchAddress()), label: 'indirizzo' })
     }
     getValue3(): Value {
         return new Value({label:'indirizzo',value:this.address.fetchAddress()})
