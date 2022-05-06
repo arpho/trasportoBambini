@@ -1,4 +1,6 @@
+
 import { Address } from "../modules/geolocation/models/Address";
+import { Serializers } from "../modules/helpers/serializers";
 import { UserType } from "./usersType";
 import { Utente } from "./Utente";
 
@@ -26,7 +28,8 @@ export class Genitore extends Utente {
     }
 
     serialize() {
-        return { ...super.serialize(), ...{ figli: this.children, indirizzo: this.address.serialize() } }
+        const serializers = new Serializers()
+        return { ...super.serialize(), ...{ figli: serializers.serialize2Array( this.children), indirizzo: this.address.serialize() } }
     }
 
     getElement(): { element: string; genere: "o"; } {
