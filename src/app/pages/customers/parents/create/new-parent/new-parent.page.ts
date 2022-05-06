@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Genitore } from 'src/app/models/genitore';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
@@ -28,7 +29,12 @@ export class NewParentPage implements OnInit {
 
   }
 
-  constructor(public service:CustomersService) { }
+  constructor(public service:CustomersService,public modalCtrl:ModalController) { }
+
+
+  dismiss(vehicle?) {
+    this.modalCtrl.dismiss(vehicle)
+  }
 
   ngOnInit() {
   }
