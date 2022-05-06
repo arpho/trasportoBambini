@@ -9,7 +9,7 @@ import { UserTpeModedl } from "../modules/user/models/UserTypeModel"
 import { RoleModel } from "../modules/user/models/privilegesLevelModel"
 
 export class Utente extends UserModel {
-    indirizzo: Address
+    address: Address
     userType: UserType
     telephones: Array<Telephone> = []
     dor = new  DateModel(new Date()) // date of registration
@@ -26,7 +26,7 @@ export class Utente extends UserModel {
             })
         }
         if (v && v['indirizzo']) {
-            this.indirizzo = new Address(v['indirizzo'])
+            this.address = new Address(v['indirizzo'])
         }
         this.dor = v && v['dor'] ? new DateModel(v['dor']) : new DateModel(new Date())
 
@@ -50,8 +50,8 @@ export class Utente extends UserModel {
         if (this.key) {
             out = { ...out, ...{ key: this.key } }
         }
-        if (this.indirizzo instanceof Address) {
-            out = { ...out, ...{ indirizzo: this.indirizzo.serialize() }, }
+        if (this.address instanceof Address) {
+            out = { ...out, ...{ indirizzo: this.address.serialize() }, }
         }
 
         return out
