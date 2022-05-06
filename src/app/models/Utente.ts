@@ -32,7 +32,7 @@ export class Utente extends UserModel {
         if(isNaN(Date.parse(v['dor']))){
             this.dor = new DateModel(new Date("01-01-1972")) // set a very old Date this user has never been registered
         }
-
+        console.log('dor', typeof this.dor, this.dor)
 
         return this
     }
@@ -46,7 +46,7 @@ export class Utente extends UserModel {
             ...{
                 telephones: telephones,
                 archived: !!this.archived,
-                dor: this.dor.formatDate(),
+                dor:  new DateModel(this.dor).formatDate(),
                 type: this.userType
             }
         }
