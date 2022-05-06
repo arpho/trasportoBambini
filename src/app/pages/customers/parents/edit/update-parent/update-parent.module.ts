@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { UpdateParentPageRoutingModule } from './update-parent-routing.module';
 
 import { UpdateParentPage } from './update-parent.page';
+import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdateParentPageRoutingModule
+    UpdateParentPageRoutingModule,
+    DynamicFormModule
   ],
   //declarations: [UpdateParentPage]
 })
