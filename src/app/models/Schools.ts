@@ -5,57 +5,59 @@ import { ItemServiceInterface } from "../modules/item/models/ItemServiceInterfac
 import { QuickAction } from "../modules/item/models/QuickAction"
 import { Value } from "../modules/item/models/value"
 
-export class School implements ItemModelInterface{
-    denominazione:string
-    key:string
-    address:Address
-    nota:string
-    archived:boolean
-    city:string
+export class School implements ItemModelInterface {
+    denominazione: string
+    key: string
+    address: Address
+    nota: string
+    archived: boolean
+    city: string
 
 
-    load(v:{}){
-        Object.assign(this,v)
-        if (v){
-        this.address = new Address({'street':v['address']['street'],
-        'cap':v['address']['cap'],
-        'longitude':v['address']['longitude'],
-        'latitude':v['address']['latitude'],
-        'number':v['address']['number'],
-        'province':v['address']['province'],
-        'city':v['address']['city']})
+    load(v: {}) {
+        Object.assign(this, v)
+        if (v) {
+            this.address = new Address({
+                'street': v['address']['street'],
+                'cap': v['address']['cap'],
+                'longitude': v['address']['longitude'],
+                'latitude': v['address']['latitude'],
+                'number': v['address']['number'],
+                'province': v['address']['province'],
+                'city': v['address']['city']
+            })
         }
-        else{
-this.address = new Address()
+        else {
+            this.address = new Address()
         }
-    
+
         return this
-    } 
-    fetchAddress(){
-            return this.address.fetchAddress()
+    }
+    fetchAddress() {
+        return this.address.fetchAddress()
+    }
+
+    serialize() {
+        var out
+        const serializers = new Serializers()
+
+        out = {
+            'denominazione': serializers.serialize2String(this.denominazione),
+            'address': this.address.serialize(),
+            'nota': serializers.serialize2String(this.nota),
+            'archived': !!this.archived
+
         }
 
-    serialize(){
-        var out 
-        const serializers= new Serializers()
-        
-            out = {
-            'denominazione':serializers.serialize2String(this.denominazione),
-            'address':this.address.serialize(),
-            'nota':serializers.serialize2String(this.nota),
-            'archived':!!this.archived
-            
-        }
 
-       
 
-        if(this.key){
-            out = {'key':this.key,...out}
+        if (this.key) {
+            out = { 'key': this.key, ...out }
         }
         return out
     }
 
-    constructor(v?:{}){
+    constructor(v?: {}) {
         this.load(v)
     }
     title: string
@@ -63,13 +65,13 @@ this.address = new Address()
     quickActions?: QuickAction[]
     service?: ItemServiceInterface
     getTitle(): Value {
-       return new Value({'value':this.denominazione,label:'scuola'})
+        return new Value({ 'value': this.denominazione, label: 'scuola' })
     }
-    getCountingText(): {plural:string,singular:string} {
-        return {plural:'scuole',singular:'scuola'}
+    getCountingText(): { plural: string, singular: string } {
+        return { plural: 'scuole', singular: 'scuola' }
     }
     getNote(): Value {
-        return new Value({value:this.nota,label:'nota'})
+        return new Value({ value: this.nota, label: 'nota' })
     }
     build?(item: {}) {
         return this.load(item)
@@ -84,16 +86,16 @@ this.address = new Address()
         return true
     }
     getValue2(): Value {
-        return new Value({value:this.fetchAddress(),label:'indirizzo'})
+        return new Value({ value: this.fetchAddress(), label: 'indirizzo' })
     }
     getValue3(): Value {
-        return new Value({value:'non so',label:'value3'})
+        return new Value({ value: 'non so', label: 'value3' })
     }
     getValue4(): Value {
-        return new Value({value:'non so',label:'value4'})
+        return new Value({ value: 'non so', label: 'value4' })
     }
     setKey?(key: string): School {
-        this.key= key
+        this.key = key
         return this
     }
     getEditPopup(item?: ItemModelInterface, service?: ItemServiceInterface) {
@@ -109,9 +111,9 @@ this.address = new Address()
         throw new Error("Method not implemented.")
     }
     hasQuickActions?(): boolean {
-       return false
+        return false
     }
     getElement(): { element: string; genere: Genere } {
-       return {element:'scuola',genere:'a'}
+        return { element: 'scuola', genere: 'a' }
     }
 }

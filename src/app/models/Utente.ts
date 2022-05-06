@@ -12,14 +12,14 @@ export class Utente extends UserModel {
     address: Address
     userType: UserType
     telephones: Array<Telephone> = []
-    dor = new  DateModel(new Date()) // date of registration
-    role  = new RoleModel({ key: "Utente standard", value: 3 })
+    dor = new DateModel(new Date()) // date of registration
+    role = new RoleModel({ key: "Utente standard", value: 3 })
 
     load(v: {}) {
         this.telephones = []
         this.role = super.roleFactory(this.level)
         Object.assign(this, v)
-        this.dor= new DateModel(new Date(this.dor))
+        this.dor = new DateModel(new Date(this.dor))
         if (v && v['telephones']) {
             this.telephones = v['telephones'].map((t) => {
                 return new Telephone(t)
@@ -29,7 +29,7 @@ export class Utente extends UserModel {
             this.address = new Address(v['indirizzo'])
         }
         this.dor = v && v['dor'] ? new DateModel(v['dor']) : new DateModel(new Date())
-        if(isNaN(Date.parse(v['dor']))){
+        if (isNaN(Date.parse(v['dor']))) {
             this.dor = new DateModel(new Date("01-01-1972")) // set a very old Date this user has never been registered
         }
         console.log('dor', typeof this.dor, this.dor)
@@ -46,7 +46,7 @@ export class Utente extends UserModel {
             ...{
                 telephones: telephones,
                 archived: !!this.archived,
-                dor:  new DateModel(this.dor).formatDate(),
+                dor: new DateModel(this.dor).formatDate(),
                 type: this.userType
             }
         }
@@ -61,9 +61,9 @@ export class Utente extends UserModel {
 
     }
 
-  
+
     getValue4(): Value {
-        return new Value({label:'key',value:this.key})
+        return new Value({ label: 'key', value: this.key })
     }
 
     getValue3(): Value {

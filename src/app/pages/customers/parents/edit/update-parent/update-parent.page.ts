@@ -16,27 +16,27 @@ export class UpdateParentPage implements OnInit {
   title
 
   public formFields = [
-    new TextboxQuestion({key:'firstName',label:'nome',value:this.parent.firstName}),
-    new TextboxQuestion({key:'lastName',label:'Cognome',value:this.parent.lastName}),
-    new AddressQuestion({key:'indirizzo',label:'indirizzo',value:this.parent.address})
-]
+    new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.parent.firstName }),
+    new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.parent.lastName }),
+    new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.parent.address })
+  ]
 
 
-  filter(ev){
-    console.log('typing',ev)
+  filter(ev) {
+    console.log('typing', ev)
   }
 
-  submit(ev){
-    let result:Genitore
+  submit(ev) {
+    let result: Genitore
     this.parent.load(ev)
-    console.log('submit',ev,this.parent)
+    console.log('submit', ev, this.parent)
 
-    this.service.updateItem(this.parent).then(item=>{
-    this.toaster.presentToast('genitore modificato correttamente')
-    }).catch(error=>{
+    this.service.updateItem(this.parent).then(item => {
+      this.toaster.presentToast('genitore modificato correttamente')
+    }).catch(error => {
       console.error(error)
       this.toaster.presentToast('ho riscontrato dei problemi, riprova')
-    }).finally(()=>{
+    }).finally(() => {
       this.dismiss(result)
     })
   }
@@ -45,22 +45,22 @@ export class UpdateParentPage implements OnInit {
     this.modalCtrl.dismiss(parent)
   }
 
-  constructor(public modalCtrl:ModalController,
-    public service:CustomersService,
-    public toaster:MyToastService,
-    public navParams:NavParams
-    ) { }
+  constructor(public modalCtrl: ModalController,
+    public service: CustomersService,
+    public toaster: MyToastService,
+    public navParams: NavParams
+  ) { }
 
   ngOnInit() {
     this.parent = this.navParams.get('item')
-    this.title= `modifica ${this.parent.getTitle().value}`
+    this.title = `modifica ${this.parent.getTitle().value}`
 
     this.formFields = [
-      new TextboxQuestion({key:'firstName',label:'nome',value:this.parent.firstName}),
-      new TextboxQuestion({key:'lastName',label:'Cognome',value:this.parent.lastName}),
-      new AddressQuestion({key:'indirizzo',label:'indirizzo',value:this.parent.address})
-  ]
-  
+      new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.parent.firstName }),
+      new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.parent.lastName }),
+      new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.parent.address })
+    ]
+
 
   }
 

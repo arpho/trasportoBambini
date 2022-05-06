@@ -14,37 +14,37 @@ import { CustomersService } from 'src/app/services/customers/customers.service';
 export class NewParentPage implements OnInit {
   parent = new Genitore()
   public formFields = [
-    new TextboxQuestion({key:'firstName',label:'nome',value:this.parent.firstName}),
-    new TextboxQuestion({key:'lastName',label:'Cognome',value:this.parent.lastName}),
-    new AddressQuestion({key:'indirizzo',label:'indirizzo',value:this.parent.address})
-]
+    new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.parent.firstName }),
+    new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.parent.lastName }),
+    new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.parent.address })
+  ]
 
 
-  filter(ev){
-    console.log('typing',ev)
+  filter(ev) {
+    console.log('typing', ev)
   }
 
-  submit(ev){
-    let result:Genitore
+  submit(ev) {
+    let result: Genitore
     this.parent.load(ev)
-    console.log('submit',ev,this.parent)
+    console.log('submit', ev, this.parent)
 
-    this.service.createItem(this.parent).then(item=>{
-    this.toaster.presentToast('genitore inserito correttamente')
-    }).catch(error=>{
+    this.service.createItem(this.parent).then(item => {
+      this.toaster.presentToast('genitore inserito correttamente')
+    }).catch(error => {
       console.error(error)
       this.toaster.presentToast('ho riscontrato dei problemi, riprova')
-    }).finally(()=>{
+    }).finally(() => {
       this.dismiss(result)
     })
   }
 
-  
 
-  constructor(public service:CustomersService,
-    public modalCtrl:ModalController,
-    public toaster:MyToastService
-    ) { }
+
+  constructor(public service: CustomersService,
+    public modalCtrl: ModalController,
+    public toaster: MyToastService
+  ) { }
 
 
   dismiss(parent?) {
