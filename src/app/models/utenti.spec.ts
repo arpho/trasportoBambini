@@ -44,14 +44,14 @@ describe('testing users class', () => {
   it('serialize and load addresss', () => {
     const data = { indirizzo: { street: 'via e cosenz', cap: '20158', city: 'milano', province: 'mi', number: '54', latitude: 5, longitude: 4 } }
     const user = new Utente(data)
-    expect(user.indirizzo).toBeInstanceOf(Address)
-    expect(user.indirizzo.latitude).toEqual(data.indirizzo.latitude)
-    expect(user.indirizzo.longitude).toEqual(data.indirizzo.longitude)
-    expect(user.indirizzo.city).toEqual(data.indirizzo.city)
-    expect(user.indirizzo.number).toEqual(data.indirizzo.number)
-    expect(user.indirizzo.street).toEqual(data.indirizzo.street)
-    expect(user.indirizzo.province).toEqual(data.indirizzo.province)
-    expect(user.indirizzo.cap).toEqual(data.indirizzo.cap)
+    expect(user.address).toBeInstanceOf(Address)
+    expect(user.address.latitude).toEqual(data.indirizzo.latitude)
+    expect(user.address.longitude).toEqual(data.indirizzo.longitude)
+    expect(user.address.city).toEqual(data.indirizzo.city)
+    expect(user.address.number).toEqual(data.indirizzo.number)
+    expect(user.address.street).toEqual(data.indirizzo.street)
+    expect(user.address.province).toEqual(data.indirizzo.province)
+    expect(user.address.cap).toEqual(data.indirizzo.cap)
     expect(user.serialize()['indirizzo']).toBeDefined()
   })
 
