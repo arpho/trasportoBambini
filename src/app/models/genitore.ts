@@ -5,7 +5,7 @@ import { Utente } from "./Utente";
 export class Genitore extends Utente {
     children: Array<string>
     userType = UserType.genitore
-    indirizzo: Address;
+    address: Address;
 
 
     load(v: {}) {
@@ -14,7 +14,7 @@ export class Genitore extends Utente {
     }
 
     serialize() {
-        return { ...super.serialize(), ...{ figli: this.children, indirizzo: this.indirizzo.serialize() } }
+        return { ...super.serialize(), ...{ figli: this.children, indirizzo: this.address.serialize() } }
     }
 
     getElement(): { element: string; genere: "o"; } {
