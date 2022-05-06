@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddressComponent } from './components/AddressField/address/address.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 
 
 
@@ -9,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [AddressComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,IonicModule.forRoot(),
   ],
   exports:[AddressComponent]
 })
