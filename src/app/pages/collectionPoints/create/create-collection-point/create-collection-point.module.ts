@@ -17,6 +17,6 @@ import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.mod
     CreateCollectionPointPageRoutingModule,
     DynamicFormModule
   ],
-  declarations: [CreateCollectionPointPage]
+  //declarations: [CreateCollectionPointPage]
 })
 export class CreateCollectionPointPageModule {}

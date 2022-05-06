@@ -15,6 +15,6 @@ import { UpdateCollectionPointPage } from './update-collection-point.page';
     IonicModule,
     UpdateCollectionPointPageRoutingModule
   ],
-  declarations: [UpdateCollectionPointPage]
+  //declarations: [UpdateCollectionPointPage]
 })
 export class UpdateCollectionPointPageModule {}
