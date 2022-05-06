@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>newParent</ion-title>
+    <ion-title>inserimento genitore</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+
+  <app-dynamic-form [questions]="formFields" (interactiveSubmit)="filter($event)" (singleSubmit)="submit($event)">
+
+  </app-dynamic-form>
 
 </ion-content>
