@@ -10,6 +10,8 @@ import { CustomersService } from 'src/app/services/customers/customers.service';
 })
 export class CustomersPage implements OnInit {
   public filterFunction: (item: ItemModelInterface) => boolean;
+  editModalPage
+  createModalPage
   
   public filterFields: any[];
 
