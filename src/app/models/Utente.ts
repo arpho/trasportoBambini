@@ -29,6 +29,9 @@ export class Utente extends UserModel {
             this.address = new Address(v['indirizzo'])
         }
         this.dor = v && v['dor'] ? new DateModel(v['dor']) : new DateModel(new Date())
+        if(isNaN(Date.parse(v['dor']))){
+            this.dor = new DateModel(new Date("01-01-1972")) // set a very old Date this user has never been registered
+        }
 
 
         return this
