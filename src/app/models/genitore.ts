@@ -5,11 +5,23 @@ import { Utente } from "./Utente";
 export class Genitore extends Utente {
     children: Array<string>
     userType = UserType.genitore
-    address: Address;
+    address: Address= new Address()
 
 
     load(v: {}) {
         Object.assign(this, v)
+
+        if(v&&v['address']){
+
+        this.address = new Address({'street':v['address']['street'],
+        'cap':v['address']['cap'],
+        'longitude':v['address']['longitude'],
+        'latitude':v['address']['latitude'],
+        'number':v['address']['number'],
+        'province':v['address']['province'],
+        'city':v['address']['city']})
+        }
+        
         return this
     }
 
