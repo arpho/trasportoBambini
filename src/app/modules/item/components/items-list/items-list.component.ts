@@ -68,7 +68,6 @@ export class ItemsListComponent implements OnInit, OnChanges {
 
 pluralOrSingular(text:{singular:string,plural:string},n:number){
 
-  console.log(text,n)
   return n>1? text.plural:text.singular
 }
 
