@@ -19,9 +19,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    DynamicFormModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    DynamicFormModule,
   ],
   declarations: []
 })

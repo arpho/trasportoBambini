@@ -21,8 +21,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     DynamicFormModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    IonicModule.forRoot(),
   ],
-   // declarations: [FilterPopupPage]
+    declarations: [FilterPopupPage]
 })
 export class FilterPopupPageModule {}
