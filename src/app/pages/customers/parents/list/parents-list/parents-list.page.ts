@@ -11,7 +11,7 @@ import { UpdateParentPage } from '../../edit/update-parent/update-parent.page';
   styleUrls: ['./parents-list.page.scss'],
 })
 export class ParentsListPage implements OnInit {
-  createModalpage = NewParentPage
+  createModalPage = NewParentPage
   editModalPage = UpdateParentPage
   filterFunction: (utente: Utente) => boolean;
   ngOnInit(): void {
