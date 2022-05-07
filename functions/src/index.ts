@@ -1,9 +1,18 @@
-// import * as functions from "firebase-functions";
-
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+"use strict";
+ import * as functions from "firebase-functions";
+ import * as admin from "firebase-admin";
+ admin.initializeApp();
+ exports.adAddminRole = functions.https.onCall((data,context)=>{
+     // get user and add custom claim (admin)
+     return admin.auth().getUserByEmail(data.email).then(user=>{
+         return admin.auth().setCustomUserClaims(user.uid,{
+             admin:true
+         }).then(()=>{
+             return {
+                 message:` Success! ${data.email} as been made an admin`
+             }
+         }).catch(err=>{
+             return err
+         })
+     })
+ })
