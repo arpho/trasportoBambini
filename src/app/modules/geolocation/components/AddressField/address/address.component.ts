@@ -31,6 +31,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
   private onTouch: Function = () => { };
   touched = false;
   subscription: Subscription
+  canGeocode= false
   constructor(
 	  public formBuilder: FormBuilder,
 	public toaster:MyToastService,
@@ -168,6 +169,9 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
       number: new FormControl(this.address.number)
     })
     this.subscription = this.addressForm.valueChanges.subscribe(d => {
+	console.log('form',d)
+	this.address.load(d)
+	
       this.markAsTouched()
       this.onChange(d)
     })}
