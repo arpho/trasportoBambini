@@ -20,6 +20,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)
+
   ],
   // declarations: [SelectorItemsPage]
 })

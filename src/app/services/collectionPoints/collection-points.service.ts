@@ -1,8 +1,10 @@
+
+
 import { Injectable } from '@angular/core';
-import { DatabaseReference, Database, getDatabase, ref, onValue, set, push } from 'firebase/database';
+import { DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CollectionPoint } from 'src/app/models/collectionPoints';
-import { School } from 'src/app/models/Schools';
+import { Vehicle } from 'src/app/models/vehicle';
 import { ReferenceFactory } from 'src/app/modules/helpers/makeReference';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInterface';
@@ -47,8 +49,7 @@ export class CollectionPointsService implements ItemServiceInterface {
     return new CollectionPoint()
   }
 
-  createItem(item: ItemModelInterface) {
-    console.log('creating',item,this.itemsListRef)
+  createItem(item: CollectionPoint) {
     return push(this.itemsListRef, item.serialize())
   }
 
@@ -61,9 +62,9 @@ export class CollectionPointsService implements ItemServiceInterface {
     onValue(this.itemsListRef, (snap) => {
       this.items_list = []
       snap.forEach(item => {
-        const vehicle = new CollectionPoint(item.val()).setKey(item.key)
-        console.log('vehicle',vehicle)
-        this.items_list.push(vehicle)
+        const point = new CollectionPoint(item.val()).setKey(item.key)
+        console.log('vehicle',point)
+        this.items_list.push(point)
       })
       this.publishItems(this.items_list)
     })

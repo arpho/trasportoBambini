@@ -4,6 +4,7 @@ import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, NG_VAL
 import { Position } from '@capacitor/geolocation';
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 import { Subscription } from 'rxjs';
+import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { Address } from '../../../models/Address';
  //import {  } from 'google-maps';
 
@@ -30,7 +31,9 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
   private onTouch: Function = () => { };
   touched = false;
   subscription: Subscription
-  constructor(public formBuilder: FormBuilder,
+  constructor(
+	  public formBuilder: FormBuilder,
+	public toaster:MyToastService,
     // public geocoder:google,
     mapsAPILoader: MapsAPILoader,) { }
   protected injector: Injector;
@@ -107,6 +110,25 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
       }) 
     })
+  }
+
+  geodecode(){
+	  console.log('geodecoding')
+	  console.log(this.address.fetchAddress())
+	  let geodecoder = new google.maps.Geocoder()
+	  geodecoder.geocode({address:this.address.fetchAddress()},(response)=>{
+		  console.log('ciao',response)
+		  if(response){
+		  console.log('lat',response[0].geometry.location.lat())
+		  console.log('lng',response[0].geometry.location.lng())
+		  this.addressForm.controls.latitude.setValue(response[0].geometry.location.lat())
+		  this.addressForm.controls.longitude.setValue(response[0].geometry.location.lng())
+		}
+		else{
+			this.toaster.presentToast("non sono riuscito a ricavare le coordinate dell'indirizzo che mi hai fornito")
+		}
+	  })
+
   }
 
   markAsTouched() {

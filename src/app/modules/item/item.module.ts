@@ -28,7 +28,7 @@ import { SelectorItemsComponent } from './components/selector-items/selector-ite
     ShowValueComponent,
     ItemsFilterComponent,
   ],
-  imports: [CommonModule, IonicModule.forRoot(), ReactiveFormsModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule],
   // entryComponents:[FilterPopupPage],
   exports: [
     MyItemComponent,
