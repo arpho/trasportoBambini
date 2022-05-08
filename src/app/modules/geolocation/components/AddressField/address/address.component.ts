@@ -87,6 +87,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
   }
 
   setAddressForm(address:Address){
+	  console.log('setting',address)
     this.addressForm.controls.number.setValue(address.number)
     this.addressForm.controls.cap.setValue(address.cap)
     this.addressForm.controls.city.setValue(address.city)
@@ -105,7 +106,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
       let geodecoder = new google.maps.Geocoder()
       let latlng ={ lat:position.coords.latitude,lng:position.coords.longitude}
        geodecoder.geocode({'location':latlng},results=>{
-        console.log('results',results)
+        console.log('results',results[0])
        this.address = this.fetchAddress(results[0])
        this.setAddressForm(this.address)
 
@@ -115,7 +116,8 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
   geodecode(){
 	  console.log('geodecoding')
-	  console.log(this.address.fetchAddress())
+	  const address = new Address(this.addressForm.value)
+	  console.log(address.fetchAddress())
 	  let geodecoder = new google.maps.Geocoder()
 	  geodecoder.geocode({address:this.address.fetchAddress()},(response)=>{
 		  console.log('ciao',response)
