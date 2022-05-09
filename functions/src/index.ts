@@ -15,3 +15,15 @@ exports.adAddminRole = functions.https.onCall((data) => {
     });
   });
 });
+
+exports.addCustomClaim = functions.https.onCall((data) => {
+	return admin.auth().getUserByEmail(data.email).then((user) => {
+	  return admin.auth().setCustomUserClaims(user.uid,data.claim).then(() => {
+		return {
+		  message: ` Success! ${data.email} as been made an admin`,
+		};
+	  }).catch((err) => {
+		return err;
+	  });
+	});
+  });
