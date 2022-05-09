@@ -3,7 +3,7 @@ import { Component, ElementRef, Injector, Input, OnDestroy, OnInit } from '@angu
 import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Position } from '@capacitor/geolocation';
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { Address } from '../../../models/Address';
 //import {  } from 'google-maps';
@@ -26,6 +26,8 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	addressForm
 	disabled = false
 	canGeodecode = false
+	cangeocodeSubject:BehaviorSubject<boolean> = new BehaviorSubject(false)
+	
 	private onChange: Function = (password: string) => { };
 	// tslint:disable-next-line: ban-types
 	private onTouch: Function = () => { };
@@ -36,7 +38,12 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 		public formBuilder: FormBuilder,
 		public toaster: MyToastService,
 		// public geocoder:google,
-		mapsAPILoader: MapsAPILoader,) { }
+		mapsAPILoader: MapsAPILoader,) { 
+
+			this.cangeocodeSubject.subscribe((b)=>{
+				console.log('cangeocode sub ',b)
+			})
+		}
 	protected injector: Injector;
 	protected el: ElementRef<any>;
 	protected lastValue: any;
@@ -168,7 +175,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 			})
 			this.subscription = this.addressForm.valueChanges.subscribe(d => {
 				console.log('form', d)
-				this.canGeodecode = !!d['street'] && !!d["city"] && !! d['number']
+				this.cangeocodeSubject.next(!!d['street'] && !!d["city"] && !! d['number'])
 				console.log('cangeodecode',this.canGeodecode)
 				this.markAsTouched()
 				this.onChange(d)

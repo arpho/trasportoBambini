@@ -21,7 +21,7 @@
     <ion-button (click)="localize()">
       <ion-icon slot="icon-only" name="locate"></ion-icon>
     </ion-button>
-    <ion-button  *ngIf="canGeodecode" (click)="geodecode()" >
+    <ion-button  *ngIf="cangeocodeSubject|async" (click)="geodecode()" >
       <ion-icon slot="icon-only" name="location"></ion-icon>
     </ion-button>
     <div #map style="width:100%;height:400px"></div>
