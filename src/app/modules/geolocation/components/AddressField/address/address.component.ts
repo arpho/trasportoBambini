@@ -26,8 +26,8 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	addressForm
 	disabled = false
 	canGeodecode = false
-	cangeocodeSubject:BehaviorSubject<boolean> = new BehaviorSubject(false)
-	
+	cangeocodeSubject: BehaviorSubject<boolean> = new BehaviorSubject(false)
+
 	private onChange: Function = (password: string) => { };
 	// tslint:disable-next-line: ban-types
 	private onTouch: Function = () => { };
@@ -38,12 +38,10 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 		public formBuilder: FormBuilder,
 		public toaster: MyToastService,
 		// public geocoder:google,
-		mapsAPILoader: MapsAPILoader,) { 
+		mapsAPILoader: MapsAPILoader,) {
 
-			this.cangeocodeSubject.subscribe((b)=>{
-				console.log('cangeocode sub ',b)
-			})
-		}
+
+	}
 	protected injector: Injector;
 	protected el: ElementRef<any>;
 	protected lastValue: any;
@@ -107,10 +105,10 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 			this.address.longitude = position.coords.longitude
 			let geodecoder = new google.maps.Geocoder()
 			let latlng = { lat: position.coords.latitude, lng: position.coords.longitude }
-			geodecoder.geocode({ 'location': latlng}, results => {
+			geodecoder.geocode({ 'location': latlng }, results => {
 				console.log('results', results[0])
 				this.address = this.fetchAddress(results[0])
-				console.log('fetched asddress',this.address)
+				console.log('fetched asddress', this.address)
 				this.setAddressForm(this.address)
 
 			})
@@ -175,8 +173,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 			})
 			this.subscription = this.addressForm.valueChanges.subscribe(d => {
 				console.log('form', d)
-				this.cangeocodeSubject.next(!!d['street'] && !!d["city"] && !! d['number'])
-				console.log('cangeodecode',this.canGeodecode)
+				this.cangeocodeSubject.next(!!d['street'] && !!d["city"] && !!d['number'])
 				this.markAsTouched()
 				this.onChange(d)
 			})
