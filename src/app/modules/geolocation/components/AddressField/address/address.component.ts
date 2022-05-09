@@ -27,6 +27,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	disabled = false
 	canGeodecode = false
 	cangeocodeSubject: BehaviorSubject<boolean> = new BehaviorSubject(false)
+	showSpinner:BehaviorSubject<boolean>= new BehaviorSubject(false)
 
 	private onChange: Function = (password: string) => { };
 	// tslint:disable-next-line: ban-types
@@ -97,6 +98,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
 	localize() {
 		console.log('localizing')
+		this.showSpinner.next(true)
 		navigator.geolocation.getCurrentPosition((position: Position) => {
 			console.log('position', position)
 			this.address.latitude = position.coords.latitude
@@ -106,6 +108,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 			let geodecoder = new google.maps.Geocoder()
 			let latlng = { lat: position.coords.latitude, lng: position.coords.longitude }
 			geodecoder.geocode({ 'location': latlng }, results => {
+				this.showSpinner.next(false)
 				console.log('results', results[0])
 				this.address = this.fetchAddress(results[0])
 				console.log('fetched asddress', this.address)

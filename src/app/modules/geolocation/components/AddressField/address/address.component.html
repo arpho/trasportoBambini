@@ -25,4 +25,5 @@
       <ion-icon slot="icon-only" name="location"></ion-icon>
     </ion-button>
     <div #map style="width:100%;height:400px"></div>
+	<ion-spinner *ngIf="showSpinner|async" name="dots"></ion-spinner>
 
