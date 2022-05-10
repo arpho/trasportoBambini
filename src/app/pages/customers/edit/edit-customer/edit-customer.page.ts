@@ -34,6 +34,8 @@ new SwitchQuestion({key:'enabled',label:'Utente abilitato',value:this.utente.ena
     console.log('editing',ev)
     this.utente.load(ev)
     console.log('utente',this.utente)
+    let data = {email:this.utente.email,claim:{'enabled':this.utente.enabled}}
+    this.service.adAddCustomClaim(data)
   }
   submit(ev){
     this.utente.load(ev)
