@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { EditCustomerPageRoutingModule } from './edit-customer-routing.module';
 
 import { EditCustomerPage } from './edit-customer.page';
+import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EditCustomerPageRoutingModule
+    EditCustomerPageRoutingModule,
+    DynamicFormModule
   ],
   //declarations: [EditCustomerPage]
 })
