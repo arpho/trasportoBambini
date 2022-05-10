@@ -3,6 +3,7 @@ import { NavParams } from '@ionic/angular';
 import { Utente } from 'src/app/models/Utente';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { SwitchQuestion } from 'src/app/modules/item/models/question-switch';
 import { CustomersService } from 'src/app/services/customers/customers.service';
 
 @Component({
@@ -24,7 +25,8 @@ this.title = `modifica ${this.utente.getTitle().value}`
 this.formFields= [
   new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.utente.firstName }),
   new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.utente.lastName }),
-  new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.utente.address })]
+  new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.utente.address }),
+new SwitchQuestion({key:'enabled',label:'Utente abilitato',value:this.utente.enabled,iconTrue:'checkmark',iconFalse:'close',labelTrue:'utente abilitato',labelFalse:'utente non abilitato'})]
 
   }
 
