@@ -28,6 +28,7 @@ import { NewParentPage } from './pages/customers/parents/create/new-parent/new-p
 import { UpdateParentPage } from './pages/customers/parents/edit/update-parent/update-parent.page';
 import { SelectorItemsPage } from './modules/item/pages/selector-items/selector-items.page';
 import { EditUserPage } from './modules/user/pages/edit-user/edit-user.page';
+import { EditCustomerPage } from './pages/customers/edit/edit-customer/edit-customer.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { EditUserPage } from './modules/user/pages/edit-user/edit-user.page';
     UpdateParentPage,
 	SelectorItemsPage,
 	EditUserPage,
+  EditCustomerPage,
     
   ],
   entryComponents: [],

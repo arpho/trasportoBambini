@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { CustomersService } from 'src/app/services/customers/customers.service';
+import { EditCustomerPage } from '../edit/edit-customer/edit-customer.page';
 
 @Component({
   selector: 'app-customers',
@@ -10,7 +11,7 @@ import { CustomersService } from 'src/app/services/customers/customers.service';
 })
 export class CustomersPage implements OnInit {
   public filterFunction: (item: ItemModelInterface) => boolean;
-  editModalPage
+  editModalPage = EditCustomerPage
   createModalPage
   
   public filterFields: any[];

@@ -15,6 +15,6 @@ import { EditCustomerPage } from './edit-customer.page';
     IonicModule,
     EditCustomerPageRoutingModule
   ],
-  declarations: [EditCustomerPage]
+  //declarations: [EditCustomerPage]
 })
 export class EditCustomerPageModule {}
