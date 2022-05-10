@@ -83,6 +83,10 @@ pathMatch:'full'},
   {
     path: 'update-parent',
     loadChildren: () => import('./pages/customers/parents/edit/update-parent/update-parent.module').then( m => m.UpdateParentPageModule)
+  },
+  {
+    path: 'edit-customer',
+    loadChildren: () => import('./pages/customers/edit/edit-customer/edit-customer.module').then( m => m.EditCustomerPageModule)
   }
 ];
 
