@@ -29,9 +29,12 @@ onFileSelect(files: FileList) {
       this.log('user',user)
     }) */
     const auth = getAuth()
- onAuthStateChanged(auth,(user)=>{
-   if(user){
+	
+ onAuthStateChanged(auth,async (user)=>{
+   if(user) {
+	   const token = await user.getIdTokenResult(true)
      this.log('user ok è',user)
+	 console.log('token.claims',token.claims)
    }
    else{
      this.log('no user')
