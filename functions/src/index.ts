@@ -20,7 +20,7 @@ exports.addCustomClaim = functions.https.onCall((data) => {
   return admin.auth().getUserByEmail(data.email).then((user) => {
     return admin.auth().setCustomUserClaims(user.uid, data.claim).then(() => {
       return {
-        message: ` Success! ${data.email} as been made an admin`,
+        message: ` Success! ${data.claim} as been set on ${data.email}`,
       };
     }).catch((err) => {
       return err;
