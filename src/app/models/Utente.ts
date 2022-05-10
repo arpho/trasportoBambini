@@ -29,6 +29,9 @@ export class Utente extends UserModel {
         if (v && v['indirizzo']) {
             this.address = new Address(v['indirizzo'])
         }
+		else{
+			this.address = new Address()
+		}
         if(!this.dor ){ // I assume user from db has a valid dor, if not is a a faulty user
             this.dor = new DateModel(new Date("01-01-1972")) // set a very old Date this user has never been registered 
         }
