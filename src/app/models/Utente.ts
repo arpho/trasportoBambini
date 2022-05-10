@@ -19,7 +19,8 @@ export class Utente extends UserModel {
         this.telephones = []
         this.role = super.roleFactory(this.level)
         Object.assign(this, v)
-        this.dor = new DateModel(new Date(this.dor))
+        if(v&&v['dor']){
+        this.dor = new DateModel(new Date(this.dor))}
         if (v && v['telephones']) {
             this.telephones = v['telephones'].map((t) => {
                 return new Telephone(t)
@@ -28,9 +29,8 @@ export class Utente extends UserModel {
         if (v && v['indirizzo']) {
             this.address = new Address(v['indirizzo'])
         }
-        this.dor = v && v['dor'] ? new DateModel(v['dor']) : new DateModel(new Date())
-        if (isNaN(Date.parse(v['dor']))) {
-            this.dor = new DateModel(new Date("01-01-1972")) // set a very old Date this user has never been registered
+        if(!this.dor ){ // I assume user from db has a valid dor, if not is a a faulty user
+            this.dor = new DateModel(new Date("01-01-1972")) // set a very old Date this user has never been registered 
         }
 
         return this
