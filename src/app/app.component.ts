@@ -21,8 +21,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     const app = initializeApp(configs.firebase)
     const auth = getAuth()
-    onAuthStateChanged(auth,(user)=>{
+    onAuthStateChanged(auth,async (user)=>{
       if(user){
+		const token = await user.getIdTokenResult(true)
         this.customers.items.subscribe(users=>{
           if(users.length>0){
           const profilo = users.filter(u=>u.email==user.email)[0]
