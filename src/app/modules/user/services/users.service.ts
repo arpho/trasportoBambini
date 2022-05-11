@@ -6,6 +6,7 @@ import { ItemServiceInterface } from "../../item/models/ItemServiceInterface";
 import { UserModel } from "../models/userModel";
 import { ItemModelInterface } from "../../item/models/itemModelInterface";
 import { BehaviorSubject, Observable } from 'rxjs';
+import { getFunctions, httpsCallable } from "firebase/functions";
 
 @Injectable({
   providedIn: "root"
@@ -70,6 +71,18 @@ db
 
   getLoggedUser() {
     return this.loggedUser;
+  }
+
+  //
+   callCloudPushUser(user:{}){
+	const functions = getFunctions()
+	
+
+  const insertUser = httpsCallable(functions,'insertUser')
+  return insertUser({user}).then((msg)=>{
+	  console.log('insert use',msg)
+  })
+
   }
 
   setLoggedUser(user: ItemModelInterface) {
