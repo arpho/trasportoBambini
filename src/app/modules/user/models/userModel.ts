@@ -124,7 +124,6 @@ export class UserModel implements ItemModelInterface {
   }
 
   load(args) {
-    console.log('carico user')
     Object.assign(this, args)
     this.role = this.roleFactory(this.level)
     this.key = this.key ?? this.uid
