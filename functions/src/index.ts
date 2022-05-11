@@ -3,7 +3,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {getDatabase, push, ref} from "firebase/database";
 admin.initializeApp();
-exports.adAddminRole = functions.https.onCall((data) => {
+exports.addAddminRole = functions.https.onCall((data) => {
   return admin.auth().getUserByEmail(data.email).then((user) => {
     return admin.auth().setCustomUserClaims(user.uid, {
       admin: true,
@@ -33,5 +33,9 @@ exports.insertUser = functions.https.onCall((data)=>{
   const db = getDatabase();
   const reference = "userProfile";
   const itemsListRef = ref(db, reference);
-  return push(itemsListRef, data.user);
+  return push(itemsListRef, data.user).then(()=>{
+    return {message: "utente inserito"};
+  }).catch((error)=>{
+    return error;
+  });
 });
