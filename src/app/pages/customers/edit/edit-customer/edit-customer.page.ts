@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { Utente } from 'src/app/models/Utente';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
@@ -19,7 +19,8 @@ export class EditCustomerPage implements OnInit {
 
   constructor(public navParams:NavParams,
     public service:CustomersService,
-	public toaster:MyToastService) { }
+	public toaster:MyToastService,
+	public modalController:ModalController) { }
 
   ngOnInit() {
 this.utente = this.navParams.get('item')
@@ -31,6 +32,11 @@ this.formFields= [
   new SwitchQuestion({key:'enabled',label:'Utente abilitato',value:this.utente.enabled,iconTrue:'checkmark',iconFalse:'close',labelTrue:'utente abilitato',labelFalse:'utente non abilitato'})]
 
   }
+
+  dismiss(vehicle?) {
+	this.modalController.dismiss(vehicle)
+  }
+
 
   filter(ev){
     console.log('editing',ev)
@@ -49,6 +55,12 @@ this.toaster.presentToast('claim impostato correttamente')
   submit(ev){
     this.utente.load(ev)
     console.log('submitting',this.utente)
+	this.service.updateItem(this.utente).then(()=>{
+		this.toaster.presentToast(`l'utente ${this.utente.getTitle().value} è stato aggiornato`).catch((err)=>{
+			console.error(err)
+			this.toaster.presentToast("qualcosa nonè andato per il verso giusto")
+		})
+	})
   }
 
 }
