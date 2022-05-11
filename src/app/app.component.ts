@@ -22,23 +22,29 @@ export class AppComponent implements OnInit {
     const app = initializeApp(configs.firebase)
     const auth = getAuth()
     onAuthStateChanged(auth,async (user)=>{
+
+
+		const token = await user.getIdTokenResult(true)
+		console.log('user ok è',user)
+		console.log('token.claims',token.claims)
       if(user){
 		const token = await user.getIdTokenResult(true)
-        this.customers.items.subscribe(users=>{
-          if(users.length>0){
-          const profilo = users.filter(u=>u.email==user.email)[0]
-        if (profilo.level<3){
-          this.appPages= [   { title: 'utenti', url: '/customers', icon: 'people' },
+		console.log('claims enabled',token.claims.enabled)
+		console.log('role claim',token['role'])
+     
+			
+           this.appPages= [   { title: 'utenti', url: '/customers', icon: 'people' },
           { title: 'pulmini', url: '/flotta', icon: 'bus' },
         {title:'Scuole',url:'/schools-list',icon:'business'},
       {title:'Studenti',url:'/students',icon:'happy'},
     {title:'punti di raccolta', url:'collection-points-list',icon:'location'},
     {title:'Genitori', url:'/parents-list',icon:'body'}]
-        }
-        }
-        })
+		  
+		
+	  }
+	})
 
-      }
-    })
-  }
+      
+ 
+}
 }
