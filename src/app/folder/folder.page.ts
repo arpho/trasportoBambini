@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Observable } from 'rxjs';
+import { UserModel } from '../modules/user/models/userModel';
+import { UsersService } from '../modules/user/services/users.service';
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
@@ -11,7 +13,7 @@ import { Observable } from 'rxjs';
 export class FolderPage implements OnInit {
   public folder: string;
   log = console.log.bind(document)
-  constructor(private activatedRoute: ActivatedRoute,private router:Router) { }
+  constructor(private activatedRoute: ActivatedRoute,private router:Router,public User:UsersService) { }
 
   fileToUpload: File = null;
 
@@ -21,7 +23,15 @@ onFileSelect(files: FileList) {
 
 
 
-  
+ testPushUser(): void{
+	 const test = new UserModel({firstName:"test",lastName:"Mc test",email:"a@iol.it"})
+	 console.log('test user',test)
+	 this.User.callCloudPushUser(test.serialize()).then((resp)=>{
+		 console.log('test',resp)
+	 }).catch((error=>{
+		 console.error(error)
+	 }))
+ }  
 
   ngOnInit() {
     this.folder ='Home' //this.activatedRoute.snapshot.paramMap.get('id');
