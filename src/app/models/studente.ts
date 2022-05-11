@@ -1,3 +1,4 @@
+import { Address } from "../modules/geolocation/models/Address"
 import { Serializers } from "../modules/helpers/serializers"
 import { DateModel } from "../modules/user/models/birthDateModel"
 import { UserType } from "./usersType"
@@ -9,6 +10,7 @@ export class Studente extends Utente {
     genitoriId: Array<string>
     collectionPoint: string
     collectionPointKey: string
+	address: Address
     dob:DateModel
     schoolKey: string
     userType = UserType.studente
@@ -17,6 +19,15 @@ export class Studente extends Utente {
         this.dor = new DateModel(new Date(this.dor))
         this.dob = new DateModel(new Date(this.dob))
         this.userType = UserType.studente
+		console.log('stuidente',this)
+
+
+        if (v && v['indirizzo']) {
+            this.address = new Address(v['indirizzo'])
+        }
+		else{
+			this.address = new Address()
+		}
         return this
     }
 
