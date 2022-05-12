@@ -14,6 +14,6 @@ import { ShowTrackingComponent } from './components/show-tracking/show-tracking.
     CommonModule,
     ReactiveFormsModule,IonicModule.forRoot(),
   ],
-  exports:[AddressComponent,TrackComponent]
+  exports:[AddressComponent,TrackComponent,ShowTrackingComponent]
 })
 export class GeolocationModule { }
