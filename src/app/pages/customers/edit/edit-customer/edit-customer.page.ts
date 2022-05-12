@@ -100,9 +100,8 @@ this.toaster.presentToast(successMessage)
 				return e.value==role
 			})[0].key
 		}
-		this.claimUserType(this.utente.userType,fetchUserType(this.utente.userType))
-		this.claimUserLevel(this.utente.level,fetchUserlevel(this.utente.level))
-		this.claimEnabled(this.utente.enabled)
+		let data ={email:this.utente.email,claim:{enabled:this.utente.enabled,role:this.utente.level,userType:this.utente.userType}}
+		this.setClaim(data,"claim impostati correttamente ")
 		
 		
 
