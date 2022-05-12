@@ -32,13 +32,13 @@ export class AppComponent implements OnInit {
 		console.log('claims enabled',token.claims.enabled)
 		console.log('role claim',token['role'])
      
-			
-           this.appPages= [   { title: 'utenti', url: '/customers', icon: 'people' },
+			if(token.claims.enabled)
+         {  this.appPages= [   { title: 'utenti', url: '/customers', icon: 'people' },
           { title: 'pulmini', url: '/flotta', icon: 'bus' },
         {title:'Scuole',url:'/schools-list',icon:'business'},
       {title:'Studenti',url:'/students',icon:'happy'},
     {title:'punti di raccolta', url:'collection-points-list',icon:'location'},
-    {title:'Genitori', url:'/parents-list',icon:'body'}]
+    {title:'Genitori', url:'/parents-list',icon:'body'}]}
 		  
 		
 	  }

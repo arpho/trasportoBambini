@@ -89,7 +89,7 @@ this.toaster.presentToast(successMessage)
 		result = this.utente
 		this.toaster.presentToast(`l'utente ${this.utente.getTitle().value} è stato aggiornato`);
 
-		this.claimEnabled(this.utente.enabled)
+		//this.claimEnabled(this.utente.enabled)
 		const fetchUserType = (type:number)=>{
 			return configs.customerType.filter((e)=>{
 				return e.value==type
@@ -100,8 +100,10 @@ this.toaster.presentToast(successMessage)
 				return e.value==role
 			})[0].key
 		}
-		this.claimUserType(this.utente.userType,fetchUserType(this.utente.userType))
-		this.claimUserLevel(this.utente.level,fetchUserlevel(this.utente.level))
+		//this.claimUserType(this.utente.userType,fetchUserType(this.utente.userType))
+		//this.claimUserLevel(this.utente.level,fetchUserlevel(this.utente.level))
+    let data = {email:this.utente.email,claim:{enabled:this.utente.enabled,userType:this.utente.userType,role:this.utente.level}}
+    this.setClaim(data,"i claim sono stati settati correttamente")
 		
 		
 
