@@ -22,16 +22,7 @@ onFileSelect(files: FileList) {
 }
 
 
-
- testPushUser(): void{
-	 const test = new UserModel({firstName:"test",lastName:"Mc test",email:"a@iol.it"})
-	 console.log('test user',test)
-	 this.User.callCloudPushUser(test.serialize()).then((resp)=>{
-		 console.log('test',resp)
-	 }).catch((error=>{
-		 console.error(error)
-	 }))
- }  
+ 
 
   ngOnInit() {
     this.folder ='Home' //this.activatedRoute.snapshot.paramMap.get('id');
