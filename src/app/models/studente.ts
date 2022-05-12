@@ -15,11 +15,10 @@ export class Studente extends Utente {
     schoolKey: string
     userType = UserType.studente
     load(v: {}) {
-        Object.assign(this, v)
+        super.load(v)
         this.dor = new DateModel(new Date(this.dor))
         this.dob = new DateModel(new Date(this.dob))
         this.userType = UserType.studente
-		console.log('stuidente',this)
 
 
         if (v && v['indirizzo']) {
