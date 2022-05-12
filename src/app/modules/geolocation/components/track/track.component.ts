@@ -11,7 +11,27 @@ export class TrackComponent implements OnInit {
 
   track(){
 	  console.log('tracking')
+	  let options = {
+		enableHighAccuracy: true,
+		timeout: 5000,
+		maximumAge: 0
+	  };
+
+	  let success =(pos)=>{
+		  var crd = pos.coords;
+		  console.log("actual pos",pos)
+		  alert(`current position ${pos.coords.latitude}, ${pos.coords.longitude}`)
+	  }
+	  let error = (error)=>{
+		  console.error(error)
+	  }
+	  navigator.geolocation.watchPosition(success,error,options)
   }
+
+  tracking(){
+	  console.log('click')
+  }
+
 
   ngOnInit() {}
 
