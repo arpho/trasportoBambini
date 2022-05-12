@@ -29,6 +29,7 @@ import { UpdateParentPage } from './pages/customers/parents/edit/update-parent/u
 import { SelectorItemsPage } from './modules/item/pages/selector-items/selector-items.page';
 import { EditUserPage } from './modules/user/pages/edit-user/edit-user.page';
 import { EditCustomerPage } from './pages/customers/edit/edit-customer/edit-customer.page';
+import { TrackComponent } from './modules/geolocation/components/track/track.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { EditCustomerPage } from './pages/customers/edit/edit-customer/edit-cust
 	SelectorItemsPage,
 	EditUserPage,
   EditCustomerPage,
+  
     
   ],
   entryComponents: [],
