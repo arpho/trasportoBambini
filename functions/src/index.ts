@@ -1,3 +1,5 @@
+
+
 "use strict";
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
@@ -29,13 +31,12 @@ exports.addCustomClaim = functions.https.onCall((data) => {
   });
 });
 
-/* exports.insertUser = functions.https.onCall((data)=>{
-  const db = getDatabase();
+exports.insertUser = functions.https.onCall((data)=>{
+  const db = admin.database();
   const reference = "userProfile";
-  const itemsListRef = ref(db, reference);
-  return push(itemsListRef, data.user).then(()=>{
+  return db.ref(reference).push(data.user).then(()=>{
     return {message: "utente inserito"};
   }).catch((error)=>{
     return error;
   });
-}); */
+});
