@@ -121,7 +121,7 @@ export class UserModel implements ItemModelInterface {
   roleFactory(level) {
 
     const out = configs.accessLevel.filter(
-      (access: RoleModel) => access.value === this.level
+      (access: RoleModel) => access.value === level
     )[0]
 
     return out ? out : configs.accessLevel[2] //utente standard
