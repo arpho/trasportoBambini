@@ -22,7 +22,9 @@ onFileSelect(files: FileList) {
 }
 
 
- 
+track(){
+	console.log('track')
+} 
 
   ngOnInit() {
     this.folder ='Home' //this.activatedRoute.snapshot.paramMap.get('id');
