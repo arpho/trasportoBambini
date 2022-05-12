@@ -4,11 +4,12 @@ import { AddressComponent } from './components/AddressField/address/address.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TrackComponent } from './components/track/track.component';
+import { ShowTrackingComponent } from './components/show-tracking/show-tracking.component';
 
 
 
 @NgModule({
-  declarations: [AddressComponent,TrackComponent],
+  declarations: [AddressComponent,TrackComponent,ShowTrackingComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,IonicModule.forRoot(),
