@@ -36,7 +36,7 @@ this.formFields= [
   iconFalse:'close',labelTrue:'utente abilitato',labelFalse:'utente non abilitato'}),
   new DropdownQuestion({key:"userType",
   label:"categoria utente",
-  options:configs.customerType,value:this.utente.userType}),
+  options:configs.userType,value:this.utente.userType}),
   new DropdownQuestion({key:"level",
   label:"ruolo",options:configs.accessLevel,value:this.utente.level})
 ]
@@ -91,7 +91,7 @@ this.toaster.presentToast(successMessage)
 
 	
 		const fetchUserType = (type:number)=>{
-			return configs.customerType.filter((e)=>{
+			return configs.userType.filter((e)=>{
 				return e.value==type
 			})[0].key
 		}
