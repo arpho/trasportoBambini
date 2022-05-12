@@ -19,7 +19,6 @@ export class Studente extends Utente {
         this.dor = new DateModel(new Date(this.dor))
         this.dob = new DateModel(new Date(this.dob))
         this.userType = UserType.studente
-		console.log('stuidente',this)
 
 
         if (v && v['indirizzo']) {

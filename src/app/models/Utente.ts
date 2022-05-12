@@ -46,6 +46,7 @@ export class Utente extends UserModel {
         var out = {
             ...super.serialize(),
             ...{
+				level:this.level,
                 telephones: telephones,
                 archived: !!this.archived,
                 dor: new DateModel(this.dor).formatDate(),
