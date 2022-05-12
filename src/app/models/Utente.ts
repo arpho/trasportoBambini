@@ -17,8 +17,8 @@ export class Utente extends UserModel {
 
     load(v: {}) {
         this.telephones = []
-        this.role = super.roleFactory(this.level)
         Object.assign(this, v)
+        this.role = super.roleFactory(this.level)
         if(v&&v['dor']){
         this.dor = new DateModel(new Date(this.dor))}
         if (v && v['telephones']) {
@@ -50,7 +50,7 @@ export class Utente extends UserModel {
                 telephones: telephones,
                 archived: !!this.archived,
                 dor: new DateModel(this.dor).formatDate(),
-                type: this.userType
+                userType: this.userType
             }
         }
         if (this.key) {

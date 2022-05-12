@@ -72,16 +72,16 @@ return	addAdminRole({ email: adminEmail })
 
   CustomersFactory(d: {}): Utente {
     var out = new Utente(d)
-    if (d['type'] == UserType.addetto) {
+    if (d['userType'] == UserType.addetto) {
       out = new Addetto(d)
     }
-    if (d['type'] == UserType.autista) {
+    if (d['userType'] == UserType.autista) {
       out = new Autista(d)
     }
-    if (d['type'] == UserType.genitore) {
+    if (d['userType'] == UserType.genitore) {
       out = new Genitore(d)
     }
-    if (d['type'] == UserType.studente) {
+    if (d['userType'] == UserType.studente) {
       out = new Studente(d)
     }
     return out

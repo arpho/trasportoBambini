@@ -28,6 +28,11 @@ export class UserModel implements ItemModelInterface {
 
   constructor(user?: {}, key?: string,) {
     this.load(user)
+    if(this.level){
+      this.role= configs.accessLevel.filter(
+        (access: RoleModel) => access.value === this.level
+      )[0];
+    }
     if (key) {
       this.key = key
       this.uid = key
@@ -116,7 +121,7 @@ export class UserModel implements ItemModelInterface {
   roleFactory(level) {
 
     const out = configs.accessLevel.filter(
-      (access: RoleModel) => access.value === this.level
+      (access: RoleModel) => access.value === level
     )[0]
 
     return out ? out : configs.accessLevel[2] //utente standard
