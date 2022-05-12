@@ -49,7 +49,7 @@ export class Utente extends UserModel {
                 telephones: telephones,
                 archived: !!this.archived,
                 dor: new DateModel(this.dor).formatDate(),
-                UserType: this.userType
+                userType: this.userType
             }
         }
         if (this.key) {
