@@ -34,7 +34,7 @@ this.formFields= [
   new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.utente.address }),
   new SwitchQuestion({key:'enabled',label:'Utente abilitato',value:this.utente.enabled,iconTrue:'checkmark',
   iconFalse:'close',labelTrue:'utente abilitato',labelFalse:'utente non abilitato'}),
-  new DropdownQuestion({key:"userType",label:"categoria utente",options:configs.customerType,value:this.utente.userType}),
+  new DropdownQuestion({key:"userType",label:"categoria utente",options:configs.userType,value:this.utente.userType}),
   new DropdownQuestion({key:"level",label:"ruolo",options:configs.accessLevel,value:this.utente.level})
 ]
   }
