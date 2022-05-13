@@ -2,7 +2,7 @@ import { stringify } from "querystring"
 import { isConstructorDeclaration } from "typescript"
 import { Serializers } from "../../helpers/serializers"
 
-export class trackPosition{
+export class TrackPosition{
 
     latitude:number
     longitude:number
