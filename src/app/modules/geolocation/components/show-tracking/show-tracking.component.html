@@ -1,6 +1,6 @@
-<ion-button (click)="track()"><ion-icon name="analytics" ></ion-icon></ion-button>
-<ion-button><ion-icon name="cross" (click)="tracking()"></ion-icon></ion-button>
+
 <ion-toggle (ionChange)="triggeredTracking($event)"></ion-toggle>
+<ion-spinner name="crescent" *ngIf="trackingIsOn"></ion-spinner>
 <agm-map
   [latitude]="lat"
   [longitude]="lng"
@@ -24,5 +24,3 @@
   </agm-marker>
  
 </agm-map>
-
-<ion-spinner name="crescent" *ngIf="trackingIsOn"></ion-spinner>
