@@ -29,14 +29,14 @@ export class CollectionPointsService implements ItemServiceInterface {
 
   getItem(key: string, next: (item?: any) => void): void {
     const reference = new ReferenceFactory().referenceFactory(this.reference, key)
-    const vehicleReference = ref(this.db, reference)
-    onValue(vehicleReference, (vehicle) => { next(CollectionPoint) })
+    const PointsReference = ref(this.db, reference)
+    onValue(PointsReference, (vehicle) => { next(CollectionPoint) })
   }
 
   updateItem(item: ItemModelInterface) {
     const referenceFactory = new ReferenceFactory()
-    const vehicleReference = ref(this.db, referenceFactory.referenceFactory(this.reference, item.key))
-    return set(vehicleReference, item.serialize())
+    const Reference = ref(this.db, referenceFactory.referenceFactory(this.reference, item.key))
+    return set(Reference, item.serialize())
   }
 
   deleteItem(key: string) {
