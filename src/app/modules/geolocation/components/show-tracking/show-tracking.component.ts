@@ -14,8 +14,8 @@ export class ShowTrackingComponent implements OnInit {
   zoom: number = 8;
   
   // initial center position for the map
-  lat: number = 51.673858;
-  lng: number = 7.815982;
+  lat: number = 45.4481786;
+  lng: number = 9.1831583;
   center: google.maps.LatLngLiteral
   options: google.maps.MapOptions = {
     mapTypeId: 'hybrid',
