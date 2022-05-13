@@ -13,8 +13,8 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-<app-track></app-track>
+<app-track (latLong)="setPoint($event)"></app-track>
 <ion-button (click)="insert()"><ion-icon name="add"></ion-icon></ion-button>
-<app-show-tracking></app-show-tracking>
+<app-show-tracking [latLon]="latLon"></app-show-tracking>
   
 </ion-content>

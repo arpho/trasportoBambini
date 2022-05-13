@@ -13,12 +13,18 @@ import { UsersService } from '../modules/user/services/users.service';
 export class FolderPage implements OnInit {
   public folder: string;
   log = console.log.bind(document)
+  latLon:{lat:number,lng:number}
   constructor(private activatedRoute: ActivatedRoute,private router:Router,public User:UsersService) { }
 
   fileToUpload: File = null;
 
 onFileSelect(files: FileList) {
     this.fileToUpload = files.item(0);
+}
+
+setPoint(data){
+  console.log('pouit',data)
+  this.latLon = data
 }
 
 

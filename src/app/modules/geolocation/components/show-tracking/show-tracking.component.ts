@@ -1,14 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 @Component({
   selector: 'app-show-tracking',
   templateUrl: './show-tracking.component.html',
   styleUrls: ['./show-tracking.component.scss'],
 })
-export class ShowTrackingComponent implements OnInit {
-
+export class ShowTrackingComponent implements OnInit,OnChanges {
+@Input() latLon:{lat:number,lng:number}
 
   constructor() { }
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.latLon){
+    console.log(" marker at ",this.latLon)
+    this.markers.push({
+      lat:this.latLon.lat,
+      lng:this.latLon.lng,
+      draggable:true
+    })}
+  }
 
   // google maps zoom level
   zoom: number = 8;
@@ -30,6 +39,7 @@ export class ShowTrackingComponent implements OnInit {
   }
   
   mapClicked($event: MouseEvent) {
+    console.log("click",$event)
     this.markers.push({
       lat: 3,//$event.coords.lat,
       lng: 4,// $event.coords.lng,
