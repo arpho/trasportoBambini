@@ -27,7 +27,6 @@ trackChange(data){
 		  var crd = pos.coords;
 		  console.log("actual pos",pos)
 		  this.latLong.emit({lat:pos.coords.latitude,lng:pos.coords.longitude})
-		  alert(`current position ${pos.coords.latitude}, ${pos.coords.longitude}`)
 	  }
 	  let error = (error)=>{
 		  console.error(error)
@@ -37,6 +36,10 @@ trackChange(data){
 
   tracking(){
 	  console.log('click')
+  }
+
+  triggeredTracking(ev){
+	  console.log("triggered",ev)
   }
 
 

@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
+import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 @Component({
   selector: 'app-show-tracking',
   templateUrl: './show-tracking.component.html',
@@ -8,7 +9,9 @@ import { AgmCoreModule } from '@agm/core';
 export class ShowTrackingComponent implements OnInit,OnChanges {
 @Input() latLon:{lat:number,lng:number}
 
-  constructor() { }
+  constructor(
+	  public toaster:MyToastService
+  ) { }
   ngOnChanges(changes: SimpleChanges): void {
     if(this.latLon){
     console.log(" marker at ",this.latLon)
@@ -21,6 +24,8 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
 
   // google maps zoom level
   zoom: number = 8;
+  trackingIsOn = false
+  trackId
   
   // initial center position for the map
   lat: number = 45.4481786;
@@ -46,6 +51,17 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
       draggable: true
     });
   }
+
+  triggeredTracking(ev){
+	console.log("triggered",ev)
+	this.trackingIsOn = ev.detail.checked
+	if(this.trackingIsOn){
+		this.track()
+	}
+	else{
+		this.stopTracking()
+	}
+}
 
     
   markerDragEnd(m: marker, $event: MouseEvent) {
@@ -82,6 +98,35 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
     this.initMap()
 	  })
   }
+
+  track(){
+	console.log('tracking')
+	let options = {
+	  enableHighAccuracy: true,
+	  timeout: 5000,
+	  maximumAge: 0
+	};
+
+	let success =(pos)=>{
+		var crd = pos.coords;
+		console.log("actual pos",pos)
+		this.markers.push({
+			lat:pos.coords.latitude,
+			lng:pos.coords.longitude,
+			label:"p",
+			draggable:false
+		})
+	}
+	let error = (error)=>{
+		console.error(error)
+	}
+	this.trackId = navigator.geolocation.watchPosition(success,error,options)
+	this.toaster.presentToast("il tracking è attivo")
+}
+stopTracking(){
+	navigator.geolocation.clearWatch(this.trackId)
+	this.toaster.presentToast("il tracking non è attivo")
+}
 
   // Initialize and add the map
  initMap(): void {
