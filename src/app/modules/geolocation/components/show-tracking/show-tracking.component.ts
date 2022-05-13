@@ -7,19 +7,14 @@ import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toas
   styleUrls: ['./show-tracking.component.scss'],
 })
 export class ShowTrackingComponent implements OnInit,OnChanges {
-@Input() latLon:{lat:number,lng:number}
+//@Input() latLon:{lat:number,lng:number}
+@Input() driverKey:string
 
   constructor(
 	  public toaster:MyToastService
   ) { }
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.latLon){
-    console.log(" marker at ",this.latLon)
-    this.markers.push({
-      lat:this.latLon.lat,
-      lng:this.latLon.lng,
-      draggable:true
-    })}
+    
   }
 
   // google maps zoom level
