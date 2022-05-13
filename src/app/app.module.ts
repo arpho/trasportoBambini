@@ -30,6 +30,7 @@ import { SelectorItemsPage } from './modules/item/pages/selector-items/selector-
 import { EditUserPage } from './modules/user/pages/edit-user/edit-user.page';
 import { EditCustomerPage } from './pages/customers/edit/edit-customer/edit-customer.page';
 import { TrackComponent } from './modules/geolocation/components/track/track.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,8 +57,10 @@ import { TrackComponent } from './modules/geolocation/components/track/track.com
     IonicModule.forRoot(),
     AppRoutingModule,
     ItemModule,
+    AgmCoreModule,
     DynamicFormModule,
     UserModule,
+    AgmCoreModule.forRoot({apiKey: configs.google.api_key}),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: true,
       // Register the ServiceWorker as soon as the application is stable
