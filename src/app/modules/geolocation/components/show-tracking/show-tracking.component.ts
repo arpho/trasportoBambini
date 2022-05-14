@@ -18,7 +18,7 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
   }
 
   // google maps zoom level
-  zoom: number = 8;
+  zoom: number = 12;
   trackingIsOn = false
   trackId
   
