@@ -1,6 +1,10 @@
 
 <ion-toggle (ionChange)="triggeredTracking($event)"></ion-toggle>
 <ion-spinner name="crescent" *ngIf="trackingIsOn"></ion-spinner>
+<div class="trackingIsOn" *ngIf="trackingIsOn">il tracking è attivo </div>
+<div class="trackingIsOff" *ngIf="!trackingIsOn">il tracking non è attivo </div>
+
+
 <agm-map
   [latitude]="lat"
   [longitude]="lng"
