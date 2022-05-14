@@ -9,6 +9,7 @@ import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toas
 export class ShowTrackingComponent implements OnInit,OnChanges {
 //@Input() latLon:{lat:number,lng:number}
 @Input() driverKey:string
+  map: google.maps.Map<Element>;
 
   constructor(
 	  public toaster:MyToastService
@@ -64,25 +65,10 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
   }
   
   markers: marker[] = [
-	  {
-		  lat: 51.673858,
-		  lng: 7.815982,
-		  label: 'A',
-		  draggable: true
-	  },
-	  {
-		  lat: 51.373858,
-		  lng: 7.215982,
-		  label: 'B',
-		  draggable: false
-	  },
-	  {
-		  lat: 51.723858,
-		  lng: 7.895982,
-		  label: 'C',
-		  draggable: true
-	  }
+
   ]
+
+  trackPositions:latLong[]= []
 
   ngOnInit() {
 	navigator.geolocation.getCurrentPosition((position) => {
@@ -105,12 +91,14 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
 	let success =(pos)=>{
 		var crd = pos.coords;
 		console.log("actual pos",pos)
-		this.markers.push({
+    this.trackPositions.push({lat:pos.coords.latitude,lng:pos.coords.longitude})
+    this.showPath()
+	/* 	this.markers.push({
 			lat:pos.coords.latitude,
 			lng:pos.coords.longitude,
 			label:"p",
 			draggable:false
-		})
+		}) */
 	}
 	let error = (error)=>{
 		console.error(error)
@@ -130,8 +118,19 @@ stopTracking(){
   const center: google.maps.LatLngLiteral = {lat: 30, lng: -110};
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center,
-    zoom: 8
+    zoom: 12
   });
+  this.map = map
+ }
+ showPath(){
+const path= new google.maps.Polyline({
+  path:this.trackPositions,
+  geodesic:true,
+  strokeColor:"#00ff2f",
+  strokeOpacity:1.0,
+  strokeWeight:2
+});
+path.setMap(this.map)
  }
 
  
@@ -150,4 +149,9 @@ interface marker {
 	lng: number;
 	label?: string;
 	draggable: boolean;
+}
+
+interface latLong{
+  lat:number,
+  lng:number
 }
