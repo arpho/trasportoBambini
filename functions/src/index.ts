@@ -39,7 +39,7 @@ exports.insertUser = functions.https.onRequest((req, res)=>{
     const data = req.params;
     const db = admin.database();
     const reference = "userProfile";
-    return db.ref(reference).push(data.user).then(()=>{
+    return db.ref(reference).push(data?.user).then(()=>{
       res.status(500).send({message: "utente inserito"});
     }).catch((error)=>{
       return error;
