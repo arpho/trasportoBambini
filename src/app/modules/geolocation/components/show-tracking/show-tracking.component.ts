@@ -1,6 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
+import { marker } from '../../models/marker';
+import { latLong } from '../../models/latlong';
+import { TrackingAction } from './bussiness/trackingActions';
 @Component({
   selector: 'app-show-tracking',
   templateUrl: './show-tracking.component.html',
@@ -16,12 +19,40 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
   ) { }
   ngOnChanges(changes: SimpleChanges): void {
     
+  }  
+  markers: marker[] = [
+
+  ]
+  error= (error)=>{
+		console.error(error)
+	}
+
+
+
+  
+
+latlng:latLong[]= []
+  success = (pos)=>{
+		var crd = pos.coords;
+		console.log("actual pos",pos)
+    console.log("marker",this.markers)
+    this.latlng.push({lat:pos.coords.latitude,lng:pos.coords.longitude})
+	 	this.markers=[{
+			lat:pos.coords.latitude,
+			lng:pos.coords.longitude,
+			label:"p",
+			draggable:false
+		} ]
   }
 
+  trackingOperations= new TrackingAction(this.success,this.error,()=>{
+    this.toaster.presentToast("tracking attivato")
+  },()=>{
+    this.toaster.presentToast("il tracking è stato  disattivato")
+  })
   // google maps zoom level
   zoom: number = 12;
   trackingIsOn = false
-  trackId
   
   // initial center position for the map
   lat: number = 45.4481786;
@@ -49,7 +80,7 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
   }
   info=""
 
-  latlng:latLong[]= []
+  
 
   polylineOptions = {
     path: this.latlng,
@@ -69,14 +100,14 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
 	}
 }
 
-    
+    stopTracking(){
+      return this.trackingOperations.stopTracking()
+    }
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
   }
   
-  markers: marker[] = [
 
-  ]
 
 
 
@@ -92,36 +123,11 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
   }
 
   track(){
-	console.log('tracking')
-	let options = {
-	  enableHighAccuracy: true,
-	  timeout: 5000,
-	  maximumAge: 0
-	};
+	return this.trackingOperations.track()
 
-	let success =(pos)=>{
-		var crd = pos.coords;
-		console.log("actual pos",pos)
-    console.log("marker",this.markers)
-    this.latlng.push({lat:pos.coords.latitude,lng:pos.coords.longitude})
-	 	this.markers=[{
-			lat:pos.coords.latitude,
-			lng:pos.coords.longitude,
-			label:"p",
-			draggable:false
-		} ]
-    this.info=`points:${this.latlng.length} position:${pos.coords.latitude}:${pos.coords.longitude}`
-	}
-	let error = (error)=>{
-		console.error(error)
-	}
-	this.trackId = navigator.geolocation.watchPosition(success,error,options)
-	this.toaster.presentToast("il tracking è attivo")
+
 }
-stopTracking(){
-	navigator.geolocation.clearWatch(this.trackId)
-	this.toaster.presentToast("il tracking non è attivo")
-}
+
 
   // Initialize and add the map
  initMap(): void {
@@ -145,15 +151,4 @@ stopTracking(){
     if (this.zoom > this.options.minZoom) this.zoom--
   }
 
-}
-interface marker {
-	lat: number;
-	lng: number;
-	label?: string;
-	draggable: boolean;
-}
-
-interface latLong{
-  lat:number,
-  lng:number
 }
