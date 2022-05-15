@@ -16,5 +16,14 @@
       "**/.*",
       "**/node_modules/**"
     ]
+  },
+  "emulators": {
+    "database": {
+      "host": "localhost",
+      "port": "85ß00"
+    }
   }
-}
+  }
+
+
+  
