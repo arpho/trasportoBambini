@@ -9,17 +9,14 @@ import { TrackingAction } from './bussiness/trackingActions';
   templateUrl: './show-tracking.component.html',
   styleUrls: ['./show-tracking.component.scss'],
 })
-export class ShowTrackingComponent implements OnInit,OnChanges {
+export class ShowTrackingComponent implements OnInit {
 //@Input() latLon:{lat:number,lng:number}
 @Input() driverKey:string
   map: google.maps.Map<Element>;
 
   constructor(
 	  public toaster:MyToastService
-  ) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    
-  }  
+  ) { } 
   markers: marker[] = [
 
   ]
