@@ -59,9 +59,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	}
 	fetchAddress(location) {
 		const address = new Address()
-		console.log('fetching', location)
 		location['address_components'].forEach(element => {
-			console.log('components', element)
 			if (element.types[0] == 'street_number') {
 				address.number = element.short_name
 			}
@@ -83,12 +81,10 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
 
 		});
-		console.log('address', address)
 		return address
 	}
 
 	setAddressForm(address: Address) {
-		console.log('setting', address)
 		this.addressForm.controls.number.setValue(address.number)
 		this.addressForm.controls.cap.setValue(address.cap)
 		this.addressForm.controls.city.setValue(address.city)
@@ -97,10 +93,8 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	}
 
 	localize() {
-		console.log('localizing')
 		this.showSpinner.next(true)
 		navigator.geolocation.getCurrentPosition((position: Position) => {
-			console.log('position', position)
 			this.address.latitude = position.coords.latitude
 			this.addressForm.controls.longitude.setValue(position.coords.longitude)
 			this.addressForm.controls.latitude.setValue(position.coords.latitude)
@@ -109,9 +103,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 			let latlng = { lat: position.coords.latitude, lng: position.coords.longitude }
 			geodecoder.geocode({ 'location': latlng }, results => {
 				this.showSpinner.next(false)
-				console.log('results', results[0])
 				this.address = this.fetchAddress(results[0])
-				console.log('fetched asddress', this.address)
 				this.setAddressForm(this.address)
 
 			})
@@ -175,7 +167,6 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 				number: new FormControl(this.address.number)
 			})
 			this.subscription = this.addressForm.valueChanges.subscribe(d => {
-				console.log('form', d)
 				this.cangeocodeSubject.next(!!d['street'] && !!d["city"] && !!d['number'])
 				this.markAsTouched()
 				this.onChange(d)

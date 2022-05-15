@@ -21,7 +21,6 @@ export class CreateCollectionPointPage implements OnInit {
 	]
 
 	filter(ev) {
-		console.log('filter', ev)
 	}
 
 	submit(ev) {
