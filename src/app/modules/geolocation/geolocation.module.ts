@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TrackComponent } from './components/track/track.component';
 import { ShowTrackingComponent } from './components/show-tracking/show-tracking.component';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule,AgmPolyline } from '@agm/core';
 
 
 
