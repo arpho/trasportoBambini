@@ -79,7 +79,7 @@ db
 	
 
   const insertUser = httpsCallable(functions,'insertUser')
-  return insertUser({user}).then((msg)=>{
+  return insertUser(user).then((msg)=>{
 	  console.log('insert use',msg)
   })
 
