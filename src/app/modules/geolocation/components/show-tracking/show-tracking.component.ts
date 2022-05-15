@@ -47,6 +47,16 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
       draggable: true
     });
   }
+  info=""
+
+  latlng:latLong[]= []
+
+  polylineOptions = {
+    path: this.latlng,
+    strokeColor: '#00ff2f',
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+    };
 
   triggeredTracking(ev){
 	console.log("triggered",ev)
@@ -68,7 +78,8 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
 
   ]
 
-  trackPositions:latLong[]= []
+
+
 
   ngOnInit() {
 	navigator.geolocation.getCurrentPosition((position) => {
@@ -91,14 +102,15 @@ export class ShowTrackingComponent implements OnInit,OnChanges {
 	let success =(pos)=>{
 		var crd = pos.coords;
 		console.log("actual pos",pos)
-    this.trackPositions.push({lat:pos.coords.latitude,lng:pos.coords.longitude})
-    this.showPath()
-	/* 	this.markers.push({
+    console.log("marker",this.markers)
+    this.latlng.push({lat:pos.coords.latitude,lng:pos.coords.longitude})
+	 	this.markers=[{
 			lat:pos.coords.latitude,
 			lng:pos.coords.longitude,
 			label:"p",
 			draggable:false
-		}) */
+		} ]
+    this.info=`points:${this.latlng.length} position:${pos.coords.latitude}:${pos.coords.longitude}`
 	}
 	let error = (error)=>{
 		console.error(error)
@@ -121,16 +133,6 @@ stopTracking(){
     zoom: 12
   });
   this.map = map
- }
- showPath(){
-const path= new google.maps.Polyline({
-  path:this.trackPositions,
-  geodesic:true,
-  strokeColor:"#00ff2f",
-  strokeOpacity:1.0,
-  strokeWeight:2
-});
-path.setMap(this.map)
  }
 
  
