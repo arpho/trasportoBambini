@@ -40,7 +40,9 @@ exports.insertUser = functions.https.onRequest((req, res)=>{
     console.log(JSON.stringify(data));
     const db = admin.database();
     const reference = "userProfile";
-    return db.ref(reference).push(data).then().catch((error)=>{
+    return db.ref(reference).push(data).then(((result)=>{
+      res.send(result);
+    })).catch((error)=>{
       return error;
     });
   });
