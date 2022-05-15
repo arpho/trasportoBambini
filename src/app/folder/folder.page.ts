@@ -35,7 +35,7 @@ track(){
 insert(){
 	console.log("add")
 	const test = new UserModel({firstName:"test",lastName:"mc test",email:"a@iol.it"})
-	this.User.callCloudPushUser(test).then((msg)=>{
+	this.User.callCloudPushUser(test.serialize()).then((msg)=>{
 		console.log('ok',msg)
 	}).catch((error)=>{
 		console.error(error)
