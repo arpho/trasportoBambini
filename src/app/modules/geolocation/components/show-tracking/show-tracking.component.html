@@ -5,6 +5,7 @@
 <div class="trackingIsOff" *ngIf="!trackingIsOn">il tracking non è attivo </div>
 
 
+{{info}}
 <agm-map
   [latitude]="lat"
   [longitude]="lng"
@@ -26,5 +27,14 @@
     </agm-info-window>
    
   </agm-marker>
+  <agm-polyline [visible]="true" [strokeWeight]="3" [strokeColor]="'#07b57a'">
+    <agm-polyline-point
+    *ngFor="let coordinate of latlng; let i=index"
+    [latitude]="coordinate.lat"
+    [longitude]="coordinate.lng">
+
+</agm-polyline-point>
+</agm-polyline>
+
  
 </agm-map>
