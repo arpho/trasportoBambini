@@ -36,7 +36,7 @@ exports.addCustomClaim = functions.https.onCall((data) => {
 
 exports.insertUser = functions.https.onRequest((req, res)=>{
   corshandler(req, res, ()=>{
-    const data = req.params;
+    const data = req.query;
     const db = admin.database();
     const reference = "userProfile";
     return db.ref(reference).push(data?.user).then().catch((error)=>{
