@@ -87,6 +87,18 @@ pathMatch:'full'},
   {
     path: 'edit-customer',
     loadChildren: () => import('./pages/customers/edit/edit-customer/edit-customer.module').then( m => m.EditCustomerPageModule)
+  },
+  {
+    path: 'drivers',
+    loadChildren: () => import('./pages/customers/drivers/list/drivers/drivers.module').then( m => m.DriversPageModule)
+  },
+  {
+    path: 'new-driver',
+    loadChildren: () => import('./pages/customers/drivers/create/new-driver/new-driver.module').then( m => m.NewDriverPageModule)
+  },
+  {
+    path: 'update-driver',
+    loadChildren: () => import('./pages/customers/drivers/edit/update-driver/update-driver.module').then( m => m.UpdateDriverPageModule)
   }
 ];
 
