@@ -59,7 +59,7 @@ export class CollectionPoint implements ItemModelInterface {
   }
   getValue2(): Value {
     const serializers = new Serializers()
-    return new Value({ value: serializers.serialize2String(this.address.fetchAddress()), label: 'indirizzo' })
+    return new Value({ value: serializers.serialize2String(this.key), label: 'key' })
   }
   getValue3(): Value {
     return new Value({ label: 'indirizzo', value: this.address.fetchAddress() })
