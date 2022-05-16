@@ -1,7 +1,7 @@
 
 
 import { Injectable } from '@angular/core';
-import { DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
+import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { configs } from 'src/app/configs/credentials';
 import { CollectionPoint } from 'src/app/models/collectionPoints';
@@ -17,23 +17,21 @@ import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInt
 export class CollectionPointsService implements ItemServiceInterface {
 
 
-  categoriesService?: ItemServiceInterface;
-  suppliersService?: ItemServiceInterface;
-  paymentsService?: ItemServiceInterface;
-  db
-  reference:string;
-  _items: BehaviorSubject<CollectionPoint[]> = new BehaviorSubject([])
-  items_list: CollectionPoint[];
-  readonly items: Observable<CollectionPoint[]> = this._items.asObservable()
-  itemsListRef: DatabaseReference;
+
+  itemsListRef: DatabaseReference
+  _items: BehaviorSubject<Array<CollectionPoint>> = new BehaviorSubject([]);
+  readonly items: Observable<Array<CollectionPoint>> = this._items.asObservable()
+  items_list: Array<CollectionPoint> = []
+reference: string;
+db:Database
 
   constructor() 
-    {new  MyFirebaseHelper().createFirebaseApp(configs .firebase)
-    this.reference = 'punti'
-    this.db = getDatabase()
-    this.itemsListRef = ref(this.db, this.reference)
-    this.loadDataAndPublish()
-
+    {
+      new MyFirebaseHelper().createFirebaseApp(configs.firebase)
+      this.reference = 'collectionPoints'
+      this.db = getDatabase() 
+      this.itemsListRef = ref(this.db, this.reference)
+      this.loadDataAndPublish()
    }
 
  
@@ -61,6 +59,7 @@ export class CollectionPointsService implements ItemServiceInterface {
   }
 
   createItem(item: CollectionPoint) {
+    console.log('pushing',item.serialize())
     return push(this.itemsListRef, item.serialize())
   }
 
@@ -73,6 +72,7 @@ export class CollectionPointsService implements ItemServiceInterface {
     onValue(this.itemsListRef, (snap) => {
       this.items_list = []
       snap.forEach(item => {
+        console.log("cp",item.val())
         const point = new CollectionPoint(item.val()).setKey(item.key)
         console.log('vehicle',point)
         this.items_list.push(point)
