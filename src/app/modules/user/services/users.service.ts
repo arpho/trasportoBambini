@@ -52,8 +52,6 @@ db
     onAuthStateChanged(auth,(user) => {
       if (user) {
         this.itemsListReference = ref(this.db,this.reference);
-
-        //this.usersRef.on('value', this.populateItems);
         onValue(this.itemsListReference,(users)=>{
           this.populateItems(users)
         })
