@@ -39,7 +39,10 @@ export class AppComponent implements OnInit {
         {title:"Scuole",url:"/schools-list",icon:"business"},
       {title:"Studenti",url:"/students",icon:"happy"},
     {title:"punti di raccolta", url:"collection-points-list",icon:"location"},
-    {title:"Genitori", url:"/parents-list",icon:"body"}]}
+    {title:"Genitori", url:"/parents-list",icon:"body"},
+    {title:"Autisti",src:"/assets/icons/md-driver-outline.svg",url:"/parents-list",}
+  ]}
+    
 		  
 		
 	  }
