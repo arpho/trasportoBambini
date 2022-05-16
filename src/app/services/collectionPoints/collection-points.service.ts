@@ -3,8 +3,10 @@
 import { Injectable } from '@angular/core';
 import { DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { configs } from 'src/app/configs/credentials';
 import { CollectionPoint } from 'src/app/models/collectionPoints';
 import { Vehicle } from 'src/app/models/vehicle';
+import { MyFirebaseHelper } from 'src/app/modules/helpers/createFirebaseApp';
 import { ReferenceFactory } from 'src/app/modules/helpers/makeReference';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInterface';
@@ -18,14 +20,23 @@ export class CollectionPointsService implements ItemServiceInterface {
   categoriesService?: ItemServiceInterface;
   suppliersService?: ItemServiceInterface;
   paymentsService?: ItemServiceInterface;
-  db = getDatabase()
-  reference = 'collectionPoints'
-  itemsListRef = ref(this.db, this.reference)
+  db
+  reference:string;
   _items: BehaviorSubject<CollectionPoint[]> = new BehaviorSubject([])
   items_list: CollectionPoint[];
   readonly items: Observable<CollectionPoint[]> = this._items.asObservable()
+  itemsListRef: DatabaseReference;
 
-  constructor() { }
+  constructor() 
+    {new  MyFirebaseHelper().createFirebaseApp(configs .firebase)
+    this.reference = 'punti'
+    this.db = getDatabase()
+    this.itemsListRef = ref(this.db, this.reference)
+    this.loadDataAndPublish()
+
+   }
+
+ 
 
   getItem(key: string, next: (item?: any) => void): void {
     const reference = new ReferenceFactory().referenceFactory(this.reference, key)
