@@ -9,5 +9,6 @@ export interface SelectorProperties extends QuestionProperties<ItemModelInterfac
     filterFunction?: (item: ItemModelInterface, value: ItemModelInterface | any) => boolean
     ItemsFilterFunction?: (item: ItemModelInterface) => boolean
     sorterFunction?: (a: ItemModelInterface, b: ItemModelInterface) => number
+    filterShownItems?:(e:ItemModelInterface)=> boolean // filtra gli elementi della comboBox
 
 }

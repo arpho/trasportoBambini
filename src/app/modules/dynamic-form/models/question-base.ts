@@ -29,6 +29,7 @@ export class QuestionBase<T> {
   onChange: any = () => { };
   neutralFilter: (item: ItemModelInterface) => true
   // any solo per testing TOBE refactored
+  public  filterShownItems?:(e:ItemModelInterface)=> boolean
   public filterFunction: (item: ItemModelInterface, arg: ItemModelInterface | any) => boolean
 
 
