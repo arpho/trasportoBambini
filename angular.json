@@ -113,6 +113,13 @@
                 "input": "src/assets",
                 "output": "/assets"
               },
+              {
+                "glob": "**/*.svg",
+                "input": "src/assets/icons",
+                "output": "./svg"
+              }
+              ,
+
               "src/manifest.webmanifest"
             ]
           },
