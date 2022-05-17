@@ -30,6 +30,7 @@ import { SelectorItemsPage } from './modules/item/pages/selector-items/selector-
 import { EditUserPage } from './modules/user/pages/edit-user/edit-user.page';
 import { EditCustomerPage } from './pages/customers/edit/edit-customer/edit-customer.page';
 import { TrackComponent } from './modules/geolocation/components/track/track.component';
+import { NewDriverPage } from './pages/customers/drivers/create/new-driver/new-driver.page';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { TrackComponent } from './modules/geolocation/components/track/track.com
 	SelectorItemsPage,
 	EditUserPage,
   EditCustomerPage,
+  NewDriverPage,
   
     
   ],
