@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DriversPageRoutingModule } from './drivers-routing.module';
 
 import { DriversPage } from './drivers.page';
+import { ItemModule } from 'src/app/modules/item/item.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DriversPageRoutingModule
+    DriversPageRoutingModule,
+    ItemModule
   ],
   declarations: [DriversPage]
 })

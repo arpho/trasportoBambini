@@ -1,9 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>drivers</ion-title>
+    <ion-title>Autisti</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <app-page-items-list [service]='parents' [filterFunction]="filterFunction" [createModalPage]="createModalPage" [editModalPage]="editModalPage"></app-page-items-list>
 
 </ion-content>

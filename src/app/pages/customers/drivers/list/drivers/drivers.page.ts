@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DriversService } from 'src/app/services/autisti/drivers.service';
+import { NewDriverPage } from '../../create/new-driver/new-driver.page';
+import { UpdateDriverPage } from '../../edit/update-driver/update-driver.page';
 
 @Component({
   selector: 'app-drivers',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DriversPage implements OnInit {
 
-  constructor() { }
+  constructor(public service:DriversService) { }
+  createModalPage = NewDriverPage
+  editModalPage = UpdateDriverPage
 
   ngOnInit() {
   }
