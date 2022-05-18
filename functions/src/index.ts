@@ -3,8 +3,6 @@
 "use strict";
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-import * as corsi from "cors";
-const corshandler = corsi({origin: true});
 admin.initializeApp();
 exports.addAddminRole = functions.https.onCall((data) => {
   return admin.auth().getUserByEmail(data.email).then((user) => {
@@ -34,16 +32,14 @@ exports.addCustomClaim = functions.https.onCall((data) => {
 });
 
 
-exports.insertUser = functions.https.onRequest((req, res)=>{
-  corshandler(req, res, ()=>{
-    const data = req.query;
-    console.log(JSON.stringify(data));
-    const db = admin.database();
-    const reference = "userProfile";
-    return db.ref(reference).push(data).then(((result)=>{
+exports.insertUser = functions.https.onCall((req)=>{
+  const data = req.body;
+  console.log(JSON.stringify(data));
+  // const db = admin.database();
+  return {data};
+  /* return db.ref(reference).push(data).then(((result)=>{
       res.status(200).send(result);
     })).catch((error)=>{
       res.status(500).send(error);
-    });
-  });
+    }); */
 });
