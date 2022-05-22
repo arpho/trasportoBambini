@@ -6,8 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { NewDriverPageRoutingModule } from './new-driver-routing.module';
 
-import { NewDriverPage } from './new-driver.page';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +13,6 @@ import { NewDriverPage } from './new-driver.page';
     IonicModule,
     NewDriverPageRoutingModule
   ],
-  declarations: [NewDriverPage]
+  declarations: []
 })
 export class NewDriverPageModule {}
