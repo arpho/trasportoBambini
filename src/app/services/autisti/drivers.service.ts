@@ -18,18 +18,6 @@ export class DriversService extends CustomersService{
 
   constructor(Vehicles:VehiclesService) {
     super()
-    super.schools.subscribe((items)=>{ // set the vehicle to the drifvers
-      items.forEach((driver:Driver)=>{
-        if(driver.userType== UserType.autista ){
-          this.driversList.push(driver)
-          if (driver.vehicleKey){
-            Vehicles.getItem(driver.vehicleKey,(vehicle:Vehicle)=>{
-              driver.vehicle = vehicle
-            })}
-
-        }
-      })
-      this.publishItems(this.driversList)
-    })
+    
    }
 }
