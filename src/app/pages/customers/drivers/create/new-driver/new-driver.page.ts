@@ -45,6 +45,10 @@ export class NewDriverPage implements OnInit {
 
   filter(ev){
     console.log("editing",ev)
+    if(ev.vehicle){
+      this.driver.vehicle = ev.vehicle
+    }
+   this.driver.load
   }
 
   dismiss(vehicle?) {
@@ -54,6 +58,10 @@ export class NewDriverPage implements OnInit {
   submit(ev){
     console.log("submit",ev)
     this.driver.load(ev)
+
+    if(ev.vehicle){
+      this.driver.vehicle = ev.vehicle
+    }
     console.log("driver submitted: ",this.driver)
   }
 
