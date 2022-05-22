@@ -24,7 +24,7 @@ export class Driver extends Utente {
     return {
       ...super.serialize(),
       ...{
-        vehicleKey: serializers.serialize2String(this.vehicle.key)
+        vehicleKey: serializers.serialize2String(this.vehicle.key||this.vehicleKey)
       }
     }
   }
