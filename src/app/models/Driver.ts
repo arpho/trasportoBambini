@@ -9,6 +9,7 @@ export class Driver extends Utente {
   private _vehicle: Vehicle
   set vehicle(vehicle: Vehicle) {
     this.vehicleKey = vehicle.key
+    console.log("set vedhicle",this)
 
   }
 

@@ -18,11 +18,13 @@ export class VehiclesService implements ItemServiceInterface {
   db = getDatabase()
   reference = 'vehicles'
   itemsListRef = ref(this.db, this.reference)
-  schools: BehaviorSubject<Vehicle[]> = new BehaviorSubject([])
+  _items: BehaviorSubject<Vehicle[]> = new BehaviorSubject([])
   items_list: Vehicle[];
-  readonly items: Observable<Vehicle[]> = this.schools.asObservable()
+  readonly items: Observable<Vehicle[]> = this._items.asObservable()
 
-  constructor() { }
+  constructor() { 
+    this.loadDataAndPublish()
+  }
 
   getItem(key: string, next: (item?: any) => void): void {
     const reference = new ReferenceFactory().referenceFactory(this.reference, key)
@@ -51,7 +53,7 @@ export class VehiclesService implements ItemServiceInterface {
   }
 
   publishItems(lista: Vehicle[]) {
-    this.schools.next(lista)
+    this._items.next(lista)
   }
 
   loadDataAndPublish() {

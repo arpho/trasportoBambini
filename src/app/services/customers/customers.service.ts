@@ -19,8 +19,8 @@ import {configs} from '../../configs/credentials'
 })
 export class CustomersService implements ItemServiceInterface {
   itemsListRef: DatabaseReference
-  schools: BehaviorSubject<Array<Utente>> = new BehaviorSubject([]);
-  readonly items: Observable<Array<Utente>> = this.schools.asObservable()
+  _items: BehaviorSubject<Array<Utente>> = new BehaviorSubject([]);
+  readonly items: Observable<Array<Utente>> = this._items.asObservable()
   items_list: Array<Utente> = []
 reference: string;
 db:Database
@@ -90,7 +90,7 @@ return	addAdminRole({ email: adminEmail })
 
   publishItems(lista: Utente[]) {// must stay inside onValue to update data evry time there is an update
 
-    this.schools.next(lista)
+    this._items.next(lista)
 
   }
 

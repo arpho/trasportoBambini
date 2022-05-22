@@ -16,7 +16,7 @@ export class SchoolsService implements ItemServiceInterface {
   suppliersService?: ItemServiceInterface;
   paymentsService?: ItemServiceInterface;
   reference = 'schools'
-  schools: BehaviorSubject<School[]> = new BehaviorSubject([])
+  _items: BehaviorSubject<School[]> = new BehaviorSubject([])
   items_list: School[];
   db = getDatabase()
   itemsListRef = ref(this.db, this.reference)
@@ -29,10 +29,7 @@ export class SchoolsService implements ItemServiceInterface {
   getEmptyItem(): ItemModelInterface {
     return new School()
   }
-
-
-
-  readonly items: Observable<School[]> = this.schools.asObservable()
+  readonly items: Observable<School[]> = this._items.asObservable()
   getItem(key: string, next: (item?) => void): void {
     const customerRef = ref(this.db, `${this.reference}/${key}`)
     onValue(customerRef, (item => {
@@ -52,7 +49,7 @@ export class SchoolsService implements ItemServiceInterface {
 
   publishItems(lista: School[]) {
 
-    this.schools.next(lista)
+    this._items.next(lista)
 
   }
 

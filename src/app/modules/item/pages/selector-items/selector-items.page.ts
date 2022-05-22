@@ -34,7 +34,7 @@ export class SelectorItemsPage implements OnInit, OnChanges {
     } 
   ngOnInit(): void {
     if (this.service) {
-      this.service.items.subscribe((items) => {
+      this.service._items.subscribe((items) => {
     this.itemsList = items
   })
 }

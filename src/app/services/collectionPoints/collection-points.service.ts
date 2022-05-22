@@ -19,8 +19,8 @@ export class CollectionPointsService implements ItemServiceInterface {
 
 
   itemsListRef: DatabaseReference
-  schools: BehaviorSubject<Array<CollectionPoint>> = new BehaviorSubject([]);
-  readonly items: Observable<Array<CollectionPoint>> = this.schools.asObservable()
+  _items: BehaviorSubject<Array<CollectionPoint>> = new BehaviorSubject([]);
+  readonly items: Observable<Array<CollectionPoint>> = this._items.asObservable()
   items_list: Array<CollectionPoint> = []
 reference: string;
 db:Database
@@ -64,7 +64,7 @@ db:Database
   }
 
   publishItems(lista: CollectionPoint[]) {
-    this.schools.next(lista)
+    this._items.next(lista)
   }
 
   loadDataAndPublish() {

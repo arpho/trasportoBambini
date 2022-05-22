@@ -11,11 +11,11 @@ suppliersService?: ItemServiceInterface
 paymentsService?: ItemServiceInterface
 reference:string //it s the reference name in the realtime database
 // items?: Observable<Array<ItemModelInterface>>
-   schools: BehaviorSubject<Array<ItemModelInterface>> // = new BehaviorSubject([])
+   _items: BehaviorSubject<Array<ItemModelInterface>> // = new BehaviorSubject([])
    items_list: Array<ItemModelInterface> // = []
    db:Database
    itemsListRef:DatabaseReference
-/* public */ readonly items: Observable<Array<ItemModelInterface>> // = this._items.asObservable()
+   readonly items:Observable<Array<ItemModelInterface>>
 
     /**get one item from firebase
      * @param key:string

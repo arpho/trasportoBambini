@@ -123,8 +123,8 @@ export class PageItemsListComponent implements OnInit, OnChanges {
 
 
 
-    if (this.service && this.service.items) {
-      this.service.items.subscribe((items) => {
+    if (this.service && this.service._items) {
+      this.service._items.subscribe((items) => {
         if (items) {
           this.showSpinner = false
           this.secondSpinner = false
@@ -143,7 +143,7 @@ export class PageItemsListComponent implements OnInit, OnChanges {
   countItems() {
     var count
     if (this.service) {
-      this.service.items.subscribe(items => {
+      this.service._items.subscribe(items => {
         count = items.filter(this.filterFunction).length
       })
     }
