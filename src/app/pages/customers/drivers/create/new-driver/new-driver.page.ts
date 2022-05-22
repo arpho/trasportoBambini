@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Driver } from 'src/app/models/Driver';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
+import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
+import { NuovoVeicoloPage } from 'src/app/pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
+import {VehiclesService} from "../../../../../services/vehicles/vehicles.service"
 
 @Component({
   selector: 'app-new-driver',
@@ -11,17 +15,30 @@ import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-te
 })
 export class NewDriverPage implements OnInit {
   driver:Driver = new Driver
+  ItemsFilterFunction = (item: ItemModelInterface) => true
+  sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
 
   formFields:any[] = 
     [
       new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.driver.firstName }),
       new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.driver.lastName }),
-      new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.driver.address })
+      new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.driver.address }),
+      new SelectorQuestion({
+        key: 'vehicle',
+        text: ' Veicolo',
+        label: 'Veicolo',
+        service: this.service,
+        filterFunction: this.ItemsFilterFunction,
+        sorterFunction: this.sorterFunction,
+        value: this.driver.vehicle,
+        createPopup:NuovoVeicoloPage
+      })
     ]
   
   
 
-  constructor(public modalCtrl:ModalController) { }
+  constructor(public modalCtrl:ModalController,
+    public service:VehiclesService) { }
 
   ngOnInit() {
   }
