@@ -14,12 +14,12 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 export class UsersService implements ItemServiceInterface, OnInit {
   public itemsListReference: DatabaseReference;
   items_list: Array<UserModel> = []
-  _items: BehaviorSubject<Array<UserModel>> = new BehaviorSubject([])
+  schools: BehaviorSubject<Array<UserModel>> = new BehaviorSubject([])
   _loggedUser: BehaviorSubject<UserModel> = new BehaviorSubject(new UserModel)
   loggedUser: Observable<UserModel> = this._loggedUser.asObservable()
 
 
-  readonly items: Observable<Array<UserModel>> = this._items.asObservable()
+  readonly items: Observable<Array<UserModel>> = this.schools.asObservable()
 static loggedUser:UserModel
 db
   constructor() {
@@ -42,7 +42,7 @@ db
       if (user.key === '') {
       }
     });
-    this._items.next(this.items_list)
+    this.schools.next(this.items_list)
   }
   ngOnInit(): void {
   }

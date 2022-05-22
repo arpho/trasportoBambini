@@ -11,7 +11,7 @@ suppliersService?: ItemServiceInterface
 paymentsService?: ItemServiceInterface
 reference:string //it s the reference name in the realtime database
 // items?: Observable<Array<ItemModelInterface>>
-   _items: BehaviorSubject<Array<ItemModelInterface>> // = new BehaviorSubject([])
+   schools: BehaviorSubject<Array<ItemModelInterface>> // = new BehaviorSubject([])
    items_list: Array<ItemModelInterface> // = []
    db:Database
    itemsListRef:DatabaseReference

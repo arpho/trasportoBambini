@@ -18,9 +18,9 @@ export class VehiclesService implements ItemServiceInterface {
   db = getDatabase()
   reference = 'vehicles'
   itemsListRef = ref(this.db, this.reference)
-  _items: BehaviorSubject<Vehicle[]> = new BehaviorSubject([])
+  schools: BehaviorSubject<Vehicle[]> = new BehaviorSubject([])
   items_list: Vehicle[];
-  readonly items: Observable<Vehicle[]> = this._items.asObservable()
+  readonly items: Observable<Vehicle[]> = this.schools.asObservable()
 
   constructor() { }
 
@@ -51,7 +51,7 @@ export class VehiclesService implements ItemServiceInterface {
   }
 
   publishItems(lista: Vehicle[]) {
-    this._items.next(lista)
+    this.schools.next(lista)
   }
 
   loadDataAndPublish() {
