@@ -9,6 +9,8 @@ import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-te
 import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
 import { UserModel } from '../../models/userModel';
 import { PasswordQuestion } from 'src/app/modules/dynamic-form/models/password-question';
+import { UsersService } from '../../services/users.service';
+import { servicesVersion } from 'typescript';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -26,7 +28,8 @@ export class SignupPage implements OnInit, OnDestroy {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    public service:UsersService
   ) {
     this.usersFields = [new TextboxQuestion({
       key: 'firstName',
@@ -85,14 +88,15 @@ export class SignupPage implements OnInit, OnDestroy {
     this.user.email = ev.email.email
     this.signupUser(this.signupForm, this.user)
 
+
   }
 
   async signupUser(signupForm: FormGroup, user: UserModel): Promise<void> {
   
       const email: string = signupForm.value.email.email;
       const password: string = signupForm.value.password;
-      const successHandler = (v) => {
-
+      const successHandler = async () => {
+        await this.service.callCloudPushUser(user.serialize())
         console.log('loading', this.modal)
         this.modal.dismiss().then(() => {
        
@@ -116,6 +120,7 @@ export class SignupPage implements OnInit, OnDestroy {
         });
       }
       this.authService.signupUser(user, successHandler, errorHandler,complete)
+
       this.modal = await this.loadingCtrl.create();
       await this.modal.present();
     }
