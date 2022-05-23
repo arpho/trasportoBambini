@@ -8,12 +8,11 @@
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" *ngIf="!p.src"></ion-icon>
-              <ion-icon src="p.src" ></ion-icon>
+              <ion-icon slot="start" src="/assets/icons/md-driver-outline.svg" *ngIf="p.src"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-        <ion-icon  src="/assets/icons/md-driver-outline.svg"></ion-icon>
 
       </ion-content>
     </ion-menu>
