@@ -12,6 +12,14 @@ export class Driver extends Utente {
 
   }
 
+  getElement(): { element: string; genere: "o"; } {
+    return { element: 'autista', genere: 'o' }
+}
+
+getCountingText(): {plural:string,singular:string} {
+    return {plural:'autista',singular:'autisti'}
+}
+
   get vehicle() {
     return this._vehicle
   }

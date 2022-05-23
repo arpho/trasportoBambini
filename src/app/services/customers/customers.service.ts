@@ -14,6 +14,9 @@ import { getFunctions, httpsCallable } from "firebase/functions";
 import { MyItemComponent } from 'src/app/modules/item/components/item/item.component';
 import { MyFirebaseHelper } from 'src/app/modules/helpers/createFirebaseApp';
 import {configs} from '../../configs/credentials'
+import { VehiclesService } from '../vehicles/vehicles.service';
+import { DriverFactory } from 'src/app/businessLogic/DriverFactory';
+import { Driver } from 'src/app/models/Driver';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +28,7 @@ export class CustomersService implements ItemServiceInterface {
 reference: string;
 db:Database
 
-  constructor() {
+  constructor(public Vehicles:VehiclesService) {
     new MyFirebaseHelper().createFirebaseApp(configs.firebase)
     this.reference = 'userProfile'
     this.db = getDatabase()
@@ -71,12 +74,13 @@ return	addAdminRole({ email: adminEmail })
 
 
   CustomersFactory(d: {}): Utente {
-    var out = new Utente(d)
+    var out:Utente
     if (d['userType'] == UserType.addetto) {
       out = new Addetto(d)
     }
     if (d['userType'] == UserType.autista) {
-      out = new Autista(d)
+      out = new Driver(d)
+      new DriverFactory(this.Vehicles).setVehicle(out)
     }
     if (d['userType'] == UserType.genitore) {
       out = new Genitore(d)

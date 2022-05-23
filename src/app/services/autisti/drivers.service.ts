@@ -17,7 +17,7 @@ export class DriversService extends CustomersService{
   driversList:Driver[]= []
 
   constructor(Vehicles:VehiclesService) {
-    super()
+    super(Vehicles)
     
    }
 }
