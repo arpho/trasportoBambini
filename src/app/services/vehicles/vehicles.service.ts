@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
+import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
+import {initializeApp} from "firebase/app"
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Vehicle } from 'src/app/models/vehicle';
 import { ReferenceFactory } from 'src/app/modules/helpers/makeReference';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInterface';
+import { configs } from 'src/app/configs/credentials';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +17,17 @@ export class VehiclesService implements ItemServiceInterface {
   categoriesService?: ItemServiceInterface;
   suppliersService?: ItemServiceInterface;
   paymentsService?: ItemServiceInterface;
-  db = getDatabase()
   reference = 'vehicles'
-  itemsListRef = ref(this.db, this.reference)
+  db:Database 
+  itemsListRef 
   _items: BehaviorSubject<Vehicle[]> = new BehaviorSubject([])
   items_list: Vehicle[];
   readonly items: Observable<Vehicle[]> = this._items.asObservable()
 
   constructor() { 
-    this.loadDataAndPublish()
+    initializeApp(configs.firebase)
+    this.db= getDatabase()
+    this.itemsListRef = ref(this.db, this.reference)
   }
 
   getItem(key: string, next: (item?: any) => void): void {

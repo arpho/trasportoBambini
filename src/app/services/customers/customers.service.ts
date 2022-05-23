@@ -88,6 +88,9 @@ return	addAdminRole({ email: adminEmail })
     if (d['userType'] == UserType.studente) {
       out = new Studente(d)
     }
+    if(!d['userType']){
+      out = new Genitore(d)
+    }
     return out
 
   }
