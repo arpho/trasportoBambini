@@ -3,6 +3,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {db} from "./configs/firebase";
+import { addUserProfile } from "./insertUserProfile";
 if (admin.apps.length === 0) {
   admin.initializeApp();
 }
@@ -41,4 +42,8 @@ exports.insertUser = functions.https.onCall((req)=>{
   }).catch((error)=>{
     return error;
   });
+});
+
+exports.adminAddUserProfile = functions.https.onCall((data)=>{
+  addUserProfile(data);
 });
