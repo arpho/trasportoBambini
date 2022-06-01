@@ -5,6 +5,7 @@ import { BehaviorSubject } from "rxjs";
 import {configs} from "./configs/credentials"
 import { Utente } from "./models/Utente";
 import { CustomersService } from "./services/customers/customers.service";
+import { Router } from '@angular/router';
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -15,13 +16,24 @@ export class AppComponent implements OnInit {
  
   public appPages =[]
   app = initializeApp(configs.firebase)
-  constructor(public customers:CustomersService) {
+  constructor(public customers:CustomersService,public router:Router) {
  
   }
   ngOnInit(): void {
     const app = initializeApp(configs.firebase)
     const auth = getAuth()
     onAuthStateChanged(auth,async (user)=>{
+
+      if( user){
+        const token = await user.getIdTokenResult(true)
+        console.log("user ok è",user)
+        console.log("token.claims",token.claims)
+      }else{
+        this.router.navigate(["/users/login"])
+      }
+
+
+
 
 
 		const token = await user.getIdTokenResult(true)
