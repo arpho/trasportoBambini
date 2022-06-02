@@ -7,7 +7,8 @@ import {
   SimpleChanges,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
+  OnDestroy
   // tslint:disable: quotemark
 } from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
@@ -16,6 +17,7 @@ import { ItemServiceInterface } from "../../models/ItemServiceInterface";
 import { Router } from "@angular/router";
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { ComponentRef } from '@ionic/core';
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-page-items-list",
@@ -23,17 +25,19 @@ import { ComponentRef } from '@ionic/core';
   styleUrls: ["./page-items-list.page.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageItemsListComponent implements OnInit, OnChanges {
+export class PageItemsListComponent implements OnInit, OnChanges,OnDestroy {
   // tslint:disable-next-line: variable-name
   @Input() items_list: ItemModelInterface[];
   @Input() secondSpinner
   @Input() service: ItemServiceInterface;
+  loading = true
   @Input() editModalPage: ComponentRef
   public dummyItem: ItemModelInterface;
   @Input() filterFunction: (item: ItemModelInterface) => boolean;
   @Input() sorterFunction: (a: ItemModelInterface, b: ItemModelInterface) => number
   public showSpinner = true;
   @Input() createModalPage: ComponentRef;
+  subscription: Subscription;
 
   constructor(
     public alertCtrl: AlertController,
@@ -47,12 +51,20 @@ export class PageItemsListComponent implements OnInit, OnChanges {
 
 
   }
+  ngOnDestroy(): void {
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
+  }
 
 
   getMultiplicityText() {
     var out = this.dummyItem.getCountingText().plural
-    if (this.countItems() == 1) {
+    console.log("multiplicity", typeof this.countItems(),this.countItems())
+    console.log("condition",typeof this.countItems()=== "number" && this.countItems() == 1)
+    if (typeof this.countItems()=== "number" && this.countItems() <= 1) {
       out = this.dummyItem.getCountingText().singular
+      console.log("text",out)
     }
     
 
@@ -140,14 +152,23 @@ export class PageItemsListComponent implements OnInit, OnChanges {
     }
   }
 
-  countItems() {
+  countItems():string|number {
     var count
+    let out:string
     if (this.service) {
-      this.service._items.subscribe(items => {
+     this.subscription= this.service._items.subscribe(items => {
+       this.loading= false
         count = items.filter(this.filterFunction).length
       })
     }
-    return (count) ? count : "loading";
+    out = count
+    if(this.loading){
+      out = "loading"
+    }
+    if(count ==0 && !this.loading){
+      out = "nessun"
+    }
+    return out;
   }
 
   editItem(item: ItemModelInterface) {
