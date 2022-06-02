@@ -25,7 +25,7 @@ export class Driver extends Utente {
 }
 
 getCountingText(): {plural:string,singular:string} {
-    return {plural:'autista',singular:'autisti'}
+    return {plural:'autisti',singular:'autista'}
 }
 
 

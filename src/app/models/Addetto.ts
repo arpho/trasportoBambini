@@ -11,7 +11,7 @@ export class Autista extends Utente {
     }
 
     getCountingText(): {plural:string,singular:string} {
-        return {plural:'autista',singular:'autisti'}
+        return {plural:'autisti',singular:'autista'}
     }
     userType: UserType = UserType.autista
     pulminoKey: string
