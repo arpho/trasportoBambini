@@ -8,8 +8,16 @@ export class Driver extends Utente {
   vehicleKey: string
   private _vehicle: Vehicle
   set vehicle(vehicle: Vehicle) {
+    console.log("user's vwehicle",this.vehicle)
     this.vehicleKey = vehicle.key
+    this._vehicle= vehicle
+    console.log("user's vwehicle",this.vehicle)
+    
 
+
+  }
+  get vehicle(){
+    return this._vehicle
   }
 
   getElement(): { element: string; genere: "o"; } {
@@ -20,19 +28,26 @@ getCountingText(): {plural:string,singular:string} {
     return {plural:'autista',singular:'autisti'}
 }
 
-  get vehicle() {
-    return this._vehicle
-  }
 
 
   serialize(): {
-    level: number; telephones: { numero: string; note: string; }[]; archived: boolean; dor: string; userType: UserType; uid: string; birthDate: string | { year: number; month: number; day: number; }; email: string; firstName: string; lastName: string; enabled: boolean;
+    level: number;
+    telephones: { numero: string; note: string; }[];
+    archived: boolean; 
+    dor: string;
+    userType: UserType; 
+    uid: string;
+    birthDate: string | { year: number; month: number; day: number; };
+    email: string; 
+    firstName: string;
+    lastName: string;
+    enabled: boolean;
   } {
     const serializers = new Serializers
     return {
       ...super.serialize(),
       ...{
-        vehicleKey: serializers.serialize2String(this.vehicle.key||this.vehicleKey)
+        vehicleKey: serializers.serialize2String(this.vehicleKey)
       }
     }
   }
@@ -40,5 +55,6 @@ getCountingText(): {plural:string,singular:string} {
   constructor(v?: {}) {
     super(v)
     this.userType = UserType.autista
+    this.level=this.level||3 // for default basic level
   }
 }
