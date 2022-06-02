@@ -51,8 +51,8 @@ export class NewDriverPage implements OnInit {
    this.driver.load
   }
 
-  dismiss(vehicle?) {
-    this.modalCtrl.dismiss(vehicle)
+  dismiss(driver?) {
+    this.modalCtrl.dismiss(driver)
   }
 
   submit(ev){
@@ -63,6 +63,7 @@ export class NewDriverPage implements OnInit {
       this.driver.vehicle = ev.vehicle
     }
     console.log("driver submitted: ",this.driver)
+    this.dismiss(this.driver)
   }
 
 
