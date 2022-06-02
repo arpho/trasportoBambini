@@ -9,6 +9,7 @@ import { RoleModel } from './privilegesLevelModel';
 import { configs } from 'src/app/configs/configs';
 import { QuickAction } from '../../item/models/QuickAction';
 import { KeyboardResize } from '@capacitor/keyboard';
+import { Serializers } from '../../helpers/serializers';
 // import { EditUserPage } from '../pages/edit-user/edit-user.page';
 export class UserModel implements ItemModelInterface {
   birthDate: DateModel; // { day: number; month: number; year: number };
@@ -101,7 +102,7 @@ export class UserModel implements ItemModelInterface {
 
   serialize() {
     const out = {
-      uid: this.uid || this.key,
+      uid:this.uid || this.key,
       birthDate: this.birthDate ? this.birthDate.serialize() : '',
       email: this.email ?? '',
       firstName: this.firstName ?? '',
@@ -112,7 +113,9 @@ export class UserModel implements ItemModelInterface {
     };
     if (!out.uid) {
       delete out.uid
-
+    }
+    if(!out.level){
+      delete out.level
     }
 
     return this.key ? { ...out, ...{ key: this.key } } : out
