@@ -4,6 +4,7 @@ import { Driver } from 'src/app/models/Driver';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { NuovoVeicoloPage } from 'src/app/pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
 import {VehiclesService} from "../../../../../services/vehicles/vehicles.service"
@@ -38,7 +39,7 @@ export class NewDriverPage implements OnInit {
   
 
   constructor(public modalCtrl:ModalController,
-    public service:VehiclesService) { }
+    public service:VehiclesService,public toaster:MyToastService) { }
 
   ngOnInit() {
   }
@@ -63,6 +64,12 @@ export class NewDriverPage implements OnInit {
       this.driver.vehicle = ev.vehicle
     }
     console.log("driver submitted: ",this.driver)
+    this.service.createItem(this.driver).then(()=>{
+      this.toaster.presentToast(`autista ${this.driver.getTitle().value} è stato creato correttamente`)
+    }).catch((error)=>{
+      this.toaster.presentToast("ho riscontrato un problema nella creazione dell'autista, riprova!");
+      console.error(error)
+    });
     this.dismiss(this.driver)
   }
 
