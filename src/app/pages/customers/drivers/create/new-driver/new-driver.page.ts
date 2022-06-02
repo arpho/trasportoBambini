@@ -7,6 +7,7 @@ import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-te
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { NuovoVeicoloPage } from 'src/app/pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
+import { DriversService } from 'src/app/services/autisti/drivers.service';
 import {VehiclesService} from "../../../../../services/vehicles/vehicles.service"
 
 @Component({
@@ -28,7 +29,7 @@ export class NewDriverPage implements OnInit {
         key: 'vehicle',
         text: ' Veicolo',
         label: 'Veicolo',
-        service: this.service,
+        service: this.vehicleService,
         filterFunction: this.ItemsFilterFunction,
         sorterFunction: this.sorterFunction,
         value: this.driver.vehicle,
@@ -39,7 +40,9 @@ export class NewDriverPage implements OnInit {
   
 
   constructor(public modalCtrl:ModalController,
-    public service:VehiclesService,public toaster:MyToastService) { }
+    public vehicleService:VehiclesService,
+    public toaster:MyToastService,
+    public driverService:DriversService) { }
 
   ngOnInit() {
   }
@@ -57,14 +60,13 @@ export class NewDriverPage implements OnInit {
   }
 
   submit(ev){
-    console.log("submit",ev)
     this.driver.load(ev)
 
     if(ev.vehicle){
       this.driver.vehicle = ev.vehicle
     }
-    console.log("driver submitted: ",this.driver)
-    this.service.createItem(this.driver).then(()=>{
+    this.driverService.createItem(this.driver).then((result)=>{
+      console.log("result",result)
       this.toaster.presentToast(`autista ${this.driver.getTitle().value} è stato creato correttamente`)
     }).catch((error)=>{
       this.toaster.presentToast("ho riscontrato un problema nella creazione dell'autista, riprova!");
