@@ -28,6 +28,7 @@ export class VehiclesService implements ItemServiceInterface {
     initializeApp(configs.firebase)
     this.db= getDatabase()
     this.itemsListRef = ref(this.db, this.reference)
+    this.loadDataAndPublish()
   }
 
   getItem(key: string, next: (item?: any) => void): void {
