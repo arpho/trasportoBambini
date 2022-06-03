@@ -62,7 +62,7 @@ export class PageItemsListComponent implements OnInit, OnChanges,OnDestroy {
     var out = this.dummyItem.getCountingText().plural
     console.log("multiplicity", typeof this.countItems(),this.countItems())
     console.log("condition",typeof this.countItems()=== "number" && this.countItems() == 1)
-    if (typeof this.countItems()=== "number" && this.countItems() <= 1) {
+    if ( this.countItems()== "nessun") {
       out = this.dummyItem.getCountingText().singular
       console.log("text",out)
     }
