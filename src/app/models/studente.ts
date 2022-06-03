@@ -11,6 +11,7 @@ export class Studente extends Utente {
     collectionPoint: string
     collectionPointKey: string
 	address: Address
+  level = 3
     dob:DateModel
     schoolKey: string
     userType = UserType.studente

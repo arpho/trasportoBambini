@@ -13,7 +13,7 @@ import { CustomersService } from 'src/app/services/customers/customers.service';
 })
 export class NewStudentPage implements OnInit {
 studentFields
-student:Studente
+student = new Studente()
   constructor(public modalCtrl: ModalController,public service:CustomersService) { }
 
 
