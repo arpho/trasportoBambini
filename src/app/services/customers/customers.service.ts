@@ -88,9 +88,10 @@ return	addAdminRole({ email: adminEmail })
     if (d['userType'] == UserType.studente) {
       out = new Studente(d)
     }
-    if(!d['userType']){
+    if(d['userType']=="undefined"){
       out = new Genitore(d)
     }
+    console.log("creato",out)
     return out
 
   }
