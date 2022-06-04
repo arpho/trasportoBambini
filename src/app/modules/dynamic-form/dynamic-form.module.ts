@@ -9,9 +9,15 @@ import { ItemModule } from '../item/item.module';
 import { PasswordFieldComponent } from './components/password-field/password-field.component';
 import { EmailFieldComponent } from './components/email-field/email-field.component';
 import { GeolocationModule } from '../geolocation/geolocation.module';
+import { MyDateTimeComponent } from './components/my-date-time/my-date-time.component';
 
 @NgModule({
-  declarations: [QuestionFormComponent, DynamicFormComponent,PasswordFieldComponent,EmailFieldComponent],
+  declarations: [
+    QuestionFormComponent,
+    DynamicFormComponent,
+    PasswordFieldComponent,
+    EmailFieldComponent,
+    MyDateTimeComponent],
   imports: [
     CommonModule,
     IonicModule.forRoot(),
