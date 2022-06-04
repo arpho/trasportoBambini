@@ -28,6 +28,7 @@ export class MyDateTimeComponent implements OnInit,ControlValueAccessor {
 private onTouch: Function = () => { };
   @Input() myDate:DateModel
   @Input() presentation:string
+  touched = false
 
   constructor(public modal:ModalController) { }
   writeValue(obj: DateModel): void {
@@ -46,13 +47,32 @@ private onTouch: Function = () => { };
   ngOnInit() {
     if(!this.myDate){
       this.myDate= new DateModel(new Date())
-    console.log("today",this.myDate.formatDate(),typeof this.myDate)
+    }
+  }
+  showDate(){
+    this.markAsTouched()
+    this.onChange( this.myDate )
+    return this.myDate? this.myDate.italianFormatDate():""
+
+  }
+
+  markAsTouched() {
+    if (!this.touched) {
+      this.onTouch();
+      this.touched = true;
     }
   }
 
-showDate(){
+
+  formatDate(date){
+    this.myDate = date.split("T")[0]
+    this.writeValue(new DateModel(new Date(this.myDate)))
+    return this.myDate
+  }
+
+/* showDate(){
   console.log("showing date",this.myDate)
   return this.myDate?this.myDate.formatDate():new DateModel(new Date()).italianFormatDate()
-}
+} */
 
 }

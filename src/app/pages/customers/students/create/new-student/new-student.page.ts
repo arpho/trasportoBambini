@@ -18,6 +18,7 @@ import { SchoolsService } from 'src/app/services/scuole/schools.service';
 export class NewStudentPage implements OnInit {
 studentFields
 student = new Studente()
+dateValue
 ItemsFilterFunction = (item: ItemModelInterface) => true
 sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
   constructor(public modalCtrl: ModalController,
@@ -50,6 +51,12 @@ sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
       this.dismiss(result)
     })
 
+  }
+
+  formatDate(date){
+    console.log("date:",date)
+    this.dateValue = date.split("T")[0]
+    return this.dateValue
   }
 
   ngOnInit() {
