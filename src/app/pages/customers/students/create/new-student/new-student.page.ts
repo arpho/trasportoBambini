@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Studente } from 'src/app/models/studente';
 import { DateQuestion } from 'src/app/modules/dynamic-form/models/question-date';
+import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
+import { NewSchoolPage } from 'src/app/pages/schools/inserisciScuola/new-school/new-school.page';
 import { CustomersService } from 'src/app/services/customers/customers.service';
+import { SchoolsService } from 'src/app/services/scuole/schools.service';
 
 @Component({
   selector: 'app-new-student',
@@ -14,7 +18,11 @@ import { CustomersService } from 'src/app/services/customers/customers.service';
 export class NewStudentPage implements OnInit {
 studentFields
 student = new Studente()
-  constructor(public modalCtrl: ModalController,public service:CustomersService) { }
+ItemsFilterFunction = (item: ItemModelInterface) => true
+sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
+  constructor(public modalCtrl: ModalController,
+    public service:CustomersService,
+    public schoolService:SchoolsService) { }
 
 
   dismiss(vehicle?) {
@@ -69,6 +77,16 @@ student = new Studente()
         label: 'note',
         autoGrow: true,
         value: this.student.note
+      }),
+      new SelectorQuestion({
+        key: 'school',
+        text: ' Scuola',
+        label: 'Scuola',
+        service: this.schoolService,
+        filterFunction: this.ItemsFilterFunction,
+        sorterFunction: this.sorterFunction,
+        value: this.student.school,
+        createPopup: NewSchoolPage
       })
 
     ]
