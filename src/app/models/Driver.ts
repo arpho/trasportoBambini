@@ -8,10 +8,8 @@ export class Driver extends Utente {
   vehicleKey: string
   private _vehicle: Vehicle
   set vehicle(vehicle: Vehicle) {
-    console.log("user's vwehicle",this.vehicle)
     this.vehicleKey = vehicle.key
     this._vehicle= vehicle
-    console.log("user's vwehicle",this.vehicle)
     
 
 
