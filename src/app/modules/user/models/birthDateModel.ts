@@ -59,6 +59,16 @@ export class DateModel extends Date {
 
   }
 
+
+  italianFormatDate() {
+    const mm = this.month + 1;
+    const dd = this.day;
+    return [(dd > 9 ? "" : "0") + dd, (mm > 9 ? "" : "0") + mm, this.year].join(
+      "/"
+    );
+  }
+
+
   loadFromDate(d: Date) {
     this.year = d.getFullYear();
     this.month = d.getMonth();
