@@ -1,3 +1,21 @@
-<p>
-  my-date-time works!
-</p>
+
+
+<ion-button id="open-modal">Seleziona una data</ion-button>
+<article>
+  {{showDate()}}
+</article>
+<ion-modal trigger="open-modal">
+  <ng-template>
+    <ion-toolbar>
+      <ion-title>Modal Content</ion-title>
+      <ion-buttons slot="end">
+        <ion-button onclick="dismissModal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <ion-content>
+      <ion-datetime
+      [presentation]="presentation"
+      ></ion-datetime>
+    </ion-content>
+  </ng-template>
+</ion-modal>
