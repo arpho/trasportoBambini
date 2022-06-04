@@ -62,7 +62,6 @@ export class VehiclesService implements ItemServiceInterface {
   }
 
   loadDataAndPublish() {
-    console.log('loading vehicles')
     onValue(this.itemsListRef, (snap) => {
       this.items_list = []
       snap.forEach(item => {

@@ -91,7 +91,6 @@ return	addAdminRole({ email: adminEmail })
     if(d['userType']=="undefined"){
       out = new Genitore(d)
     }
-    console.log("creato",out)
     return out
 
   }
