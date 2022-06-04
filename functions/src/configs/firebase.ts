@@ -13,6 +13,7 @@ if (admin.apps.length === 0) {
 
   db = admin.database();
 }
-export {admin, db};
+const realtime = admin.database();
+export {admin, db, realtime};
 
 

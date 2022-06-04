@@ -13,7 +13,7 @@ const addUserProfile = async (data: Record<string, never>) => {
     ref.push(data);
     return {status: 200,
       message: " userProfile added correctly"};
-  } catch (error: unknown) {
+  } catch (error) {
     return {status: 500,
       message: error};
   }
