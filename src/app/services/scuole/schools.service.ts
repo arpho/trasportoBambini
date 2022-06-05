@@ -30,7 +30,7 @@ export class SchoolsService implements ItemServiceInterface {
     return new School()
   }
   readonly items: Observable<School[]> = this._items.asObservable()
-  getItem(key: string, next: (item?) => void): void {
+  getItem(key: string, next: (item:School) => void): void {
     const customerRef = ref(this.db, `${this.reference}/${key}`)
     onValue(customerRef, (item => {
       next(item.val())
