@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Genitore } from 'src/app/models/genitore';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
+import { CustomersFactoryService } from '../customers/business/customers-constructor.service';
 import { CustomersService } from '../customers/customers.service';
 import { VehiclesService } from '../vehicles/vehicles.service';
 
@@ -13,7 +14,7 @@ export class ParentsService extends CustomersService {
     return new Genitore()
   }
 
-  constructor(Vehicles:VehiclesService) {
-    super(Vehicles)
+  constructor(factory:CustomersFactoryService) {
+    super(factory)
   }
 }

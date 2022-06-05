@@ -4,6 +4,7 @@ import { Driver } from 'src/app/models/Driver';
 import { UserType } from 'src/app/models/usersType';
 import { Vehicle } from 'src/app/models/vehicle';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
+import { CustomersFactoryService } from '../customers/business/customers-constructor.service';
 import { CustomersService } from '../customers/customers.service';
 import { VehiclesService } from '../vehicles/vehicles.service';
 
@@ -16,8 +17,8 @@ export class DriversService extends CustomersService{
   }
   driversList:Driver[]= []
 
-  constructor(Vehicles:VehiclesService) {
-    super(Vehicles)
+  constructor(factory:CustomersFactoryService) {
+    super(factory)
     
    }
 }

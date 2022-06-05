@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Studente } from 'src/app/models/studente';
+import { CustomersFactoryService } from '../customers/business/customers-constructor.service';
 import { CustomersService } from '../customers/customers.service';
 import { VehiclesService } from '../vehicles/vehicles.service';
 
@@ -14,7 +15,7 @@ export class StudentsService extends CustomersService {
     return new Studente()
   }
 
-  constructor(Vehicles:VehiclesService) {
-    super(Vehicles)
+  constructor(factory:CustomersFactoryService) {
+    super(factory)
    }
 }

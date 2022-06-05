@@ -17,6 +17,8 @@ import {configs} from '../../configs/credentials'
 import { VehiclesService } from '../vehicles/vehicles.service';
 import { DriverFactory } from 'src/app/businessLogic/DriverFactory';
 import { Driver } from 'src/app/models/Driver';
+import { SchoolsService } from '../scuole/schools.service';
+import { CustomersFactoryService } from './business/customers-constructor.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,7 +30,8 @@ export class CustomersService implements ItemServiceInterface {
 reference: string;
 db:Database
 
-  constructor(public Vehicles:VehiclesService) {
+  constructor(
+    public customersFactory:CustomersFactoryService ) {
     new MyFirebaseHelper().createFirebaseApp(configs.firebase)
     this.reference = 'userProfile'
     this.db = getDatabase()
@@ -48,7 +51,8 @@ db:Database
 
       this.items_list = []
       snapshot.forEach(e => {
-        const item = this.CustomersFactory(e.val()).setKey(e.key)
+        const item = this.customersFactory.CustomersFactory(e.val()).setKey(e.key)
+ 
         this.items_list.push(item)
 
 
@@ -73,27 +77,7 @@ return	addAdminRole({ email: adminEmail })
  }
 
 
-  CustomersFactory(d: {}): Utente {
-    var out:Utente
-    if (d['userType'] == UserType.addetto) {
-      out = new Addetto(d)
-    }
-    if (d['userType'] == UserType.autista) {
-      out = new Driver(d)
-      new DriverFactory(this.Vehicles).setVehicle(out)
-    }
-    if (d['userType'] == UserType.genitore) {
-      out = new Genitore(d)
-    }
-    if (d['userType'] == UserType.studente) {
-      out = new Studente(d)
-    }
-    if(d['userType']=="undefined"){
-      out = new Genitore(d)
-    }
-    return out
 
-  }
 
   publishItems(lista: Utente[]) {// must stay inside onValue to update data evry time there is an update
 
