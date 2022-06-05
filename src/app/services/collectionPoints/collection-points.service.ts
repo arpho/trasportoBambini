@@ -36,10 +36,10 @@ db:Database
 
  
 
-  getItem(key: string, next: (item?: any) => void): void {
+  getItem(key: string, next: (item?: CollectionPoint) => void): void {
     const reference = new ReferenceFactory().referenceFactory(this.reference, key)
     const PointsReference = ref(this.db, reference)
-    onValue(PointsReference, (vehicle) => { next(CollectionPoint) })
+    onValue(PointsReference, (cp) => { next(cp.val()) })
   }
 
   updateItem(item: ItemModelInterface) {
@@ -68,13 +68,10 @@ db:Database
   }
 
   loadDataAndPublish() {
-    console.log('loading vehicles')
     onValue(this.itemsListRef, (snap) => {
       this.items_list = []
       snap.forEach(item => {
-        console.log("cp",item.val())
         const point = new CollectionPoint(item.val()).setKey(item.key)
-        console.log('vehicle',point)
         this.items_list.push(point)
       })
       this.publishItems(this.items_list)
