@@ -3,6 +3,7 @@ import { DriverFactory } from 'src/app/businessLogic/DriverFactory';
 import { Addetto } from 'src/app/models/Addetto';
 import { Driver } from 'src/app/models/Driver';
 import { Genitore } from 'src/app/models/genitore';
+import { School } from 'src/app/models/Schools';
 import { Studente } from 'src/app/models/studente';
 import { UserType } from 'src/app/models/usersType';
 import { Utente } from 'src/app/models/Utente';
@@ -19,8 +20,8 @@ export class CustomersFactoryService {
     public schoolService:SchoolsService
   ) { }
 
-  CustomersFactory(d: {}): Utente {
-    var out:Utente
+  CustomersFactory(d: {}): Utente|Studente|Driver|Genitore|Addetto {
+    var out:Utente|Studente
     if (d['userType'] == UserType.addetto) {
       out = new Addetto(d)
     }
@@ -38,7 +39,8 @@ export class CustomersFactoryService {
     if (d['userType'] == UserType.studente) {
       out = new Studente(d)
       if(out['schoolKey']){
-        this.schoolService.getItem(out['schoolkey'],(school)=>{
+
+        this.schoolService.getItem(out['schoolKey'],(school:School)=>{
           out['school']= school
         })
 
