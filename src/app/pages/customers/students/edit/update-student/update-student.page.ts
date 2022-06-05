@@ -62,7 +62,7 @@ export class UpdateStudentPage implements OnInit {
   ngOnInit() {
     this.student = this.navParams.get('item')
     console.log('studente to be edited', this.student,this.student.getTitle())
-    this.title = `modifica studente ${this.student.getTitle()}`
+    this.title = `modifica studente ${this.student.getTitle().value}`
     this.studentFields = [
       new TextboxQuestion({
         key: 'firstName',
