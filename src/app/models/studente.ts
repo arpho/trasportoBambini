@@ -71,7 +71,7 @@ export class Studente extends Utente {
         genitoryId: serializers.serialize2Array(this.genitoriId),
         busKey: serializers.serialize2String(this.busKey),
         collectionPointKey: serializers.serialize2String(this.collectionPointKey),
-        schoolkey: serializers.serialize2String(this.schoolKey)
+        schoolKey: serializers.serialize2String(this.schoolKey)
       }
     }
   }
