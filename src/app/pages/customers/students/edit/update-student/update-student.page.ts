@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { dismiss } from '@ionic/core/dist/types/utils/overlays';
+import { School } from 'src/app/models/Schools';
 import { Studente } from 'src/app/models/studente';
 import { DateQuestion } from 'src/app/modules/dynamic-form/models/question-date';
 import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
@@ -26,6 +27,7 @@ export class UpdateStudentPage implements OnInit {
 
   filter(ev) {
     console.log('typing', ev)
+
   }
 
   submit(ev) {
@@ -93,7 +95,7 @@ export class UpdateStudentPage implements OnInit {
         service: this.schoolService,
         filterFunction: this.ItemsFilterFunction,
         sorterFunction: this.sorterFunction,
-        value: this.student.school,
+        value: new School(this.student.school),
         createPopup: NewSchoolPage
       })
 
