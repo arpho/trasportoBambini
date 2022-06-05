@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { dismiss } from '@ionic/core/dist/types/utils/overlays';
+import { CollectionPoint } from 'src/app/models/collectionPoints';
 import { School } from 'src/app/models/Schools';
 import { Studente } from 'src/app/models/studente';
 import { DateQuestion } from 'src/app/modules/dynamic-form/models/question-date';
@@ -9,7 +10,9 @@ import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textAr
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
+import { CreateCollectionPointPage } from 'src/app/pages/collectionPoints/create/create-collection-point/create-collection-point.page';
 import { NewSchoolPage } from 'src/app/pages/schools/inserisciScuola/new-school/new-school.page';
+import { CollectionPointsService } from 'src/app/services/collectionPoints/collection-points.service';
 import { SchoolsService } from 'src/app/services/scuole/schools.service';
 import { StudentsService } from 'src/app/services/studenti/students.service';
 
@@ -55,15 +58,18 @@ export class UpdateStudentPage implements OnInit {
   }
 
 
-  constructor(public navParams: NavParams,
+  constructor(
+    public navParams: NavParams,
     public service: StudentsService,
     public toaster: MyToastService,
     public modalCtrl: ModalController,
-    public schoolService: SchoolsService) { }
+    public schoolService: SchoolsService,
+    public collectionPointsService:CollectionPointsService
+    ) { }
 
   ngOnInit() {
     this.student = this.navParams.get('item')
-    console.log('studente to be edited', this.student,this.student.getTitle())
+    console.log('studente to be edited', this.student,this.student)
     this.title = `modifica studente ${this.student.getTitle().value}`
     this.studentFields = [
       new TextboxQuestion({
@@ -97,6 +103,16 @@ export class UpdateStudentPage implements OnInit {
         sorterFunction: this.sorterFunction,
         value: new School(this.student.school),
         createPopup: NewSchoolPage
+      }),
+      new SelectorQuestion({
+        key: 'collectionPoint',
+        text: ' un punto di raccolta',
+        label: 'punto di raccolta',
+        service: this.collectionPointsService,
+        filterFunction: this.ItemsFilterFunction,
+        sorterFunction: this.sorterFunction,
+        value:new CollectionPoint( this.student.collectionPoint),
+        createPopup: CreateCollectionPointPage
       })
 
     ]

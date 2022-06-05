@@ -6,7 +6,9 @@ import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-s
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
+import { CreateCollectionPointPage } from 'src/app/pages/collectionPoints/create/create-collection-point/create-collection-point.page';
 import { NewSchoolPage } from 'src/app/pages/schools/inserisciScuola/new-school/new-school.page';
+import { CollectionPointsService } from 'src/app/services/collectionPoints/collection-points.service';
 import { CustomersService } from 'src/app/services/customers/customers.service';
 import { SchoolsService } from 'src/app/services/scuole/schools.service';
 
@@ -23,7 +25,8 @@ ItemsFilterFunction = (item: ItemModelInterface) => true
 sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
   constructor(public modalCtrl: ModalController,
     public service:CustomersService,
-    public schoolService:SchoolsService) { }
+    public schoolService:SchoolsService,
+    public collectionPointsService:CollectionPointsService) { }
 
 
   dismiss(vehicle?) {
@@ -94,6 +97,16 @@ sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
         sorterFunction: this.sorterFunction,
         value: this.student.school,
         createPopup: NewSchoolPage
+      }),
+      new SelectorQuestion({
+        key: 'collectionPoint',
+        text: ' punto di raccolta',
+        label: 'Punto di raccolta',
+        service: this.collectionPointsService,
+        filterFunction: this.ItemsFilterFunction,
+        sorterFunction: this.sorterFunction,
+        value: this.student.collectionPoint,
+        createPopup: CreateCollectionPointPage
       })
 
     ]
