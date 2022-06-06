@@ -31,6 +31,9 @@ import { EditUserPage } from './modules/user/pages/edit-user/edit-user.page';
 import { EditCustomerPage } from './pages/customers/edit/edit-customer/edit-customer.page';
 import { TrackComponent } from './modules/geolocation/components/track/track.component';
 import { NewDriverPage } from './pages/customers/drivers/create/new-driver/new-driver.page';
+import { TestTemplate } from './templates/test/helloTemplate';
+import { FolderPage } from './folder/folder.page';
+import { GeolocationModule } from './modules/geolocation/geolocation.module';
 
 @NgModule({
   declarations: [
@@ -46,10 +49,12 @@ import { NewDriverPage } from './pages/customers/drivers/create/new-driver/new-d
     ParentsListPage,
     NewParentPage,
     UpdateParentPage,
-	SelectorItemsPage,
-	EditUserPage,
-  EditCustomerPage,
-  NewDriverPage,
+    SelectorItemsPage,
+    EditUserPage,
+    EditCustomerPage,
+    NewDriverPage,
+    TestTemplate,
+    FolderPage
   
     
   ],
@@ -61,6 +66,7 @@ import { NewDriverPage } from './pages/customers/drivers/create/new-driver/new-d
     ItemModule,
     AgmCoreModule,
     DynamicFormModule,
+    GeolocationModule,
     UserModule,
     AgmCoreModule.forRoot({apiKey: configs.google.api_key}),
     ServiceWorkerModule.register('ngsw-worker.js', {

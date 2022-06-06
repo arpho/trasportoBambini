@@ -32,15 +32,7 @@ track(){
 	console.log('track')
 } 
 
-insert(){
-	console.log("add")
-	const test = new UserModel({firstName:"test",lastName:"mc test",email:"a@iol.it"})
-	this.User.callCloudPushUser(test.serialize()).then((msg)=>{
-		console.log('ok',msg)
-	}).catch((error)=>{
-		console.error(error)
-	})
-}
+
   ngOnInit() {
     this.folder ='Home' //this.activatedRoute.snapshot.paramMap.get('id');
     /* firebase.auth().onAuthStateChanged((user: firebase.User) => {

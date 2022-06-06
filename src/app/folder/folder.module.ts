@@ -17,6 +17,6 @@ import { GeolocationModule } from '../modules/geolocation/geolocation.module';
     FolderPageRoutingModule,
 	GeolocationModule
   ],
-  declarations: [FolderPage]
+  declarations: []
 })
 export class FolderPageModule {}
