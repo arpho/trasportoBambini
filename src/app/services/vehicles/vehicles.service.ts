@@ -31,10 +31,10 @@ export class VehiclesService implements ItemServiceInterface {
     this.loadDataAndPublish()
   }
 
-  getItem(key: string, next: (item?: any) => void): void {
+  getItem(key: string, next: (item?: Vehicle) => void): void {
     const reference = new ReferenceFactory().referenceFactory(this.reference, key)
     const vehicleReference = ref(this.db, reference)
-    onValue(vehicleReference, (vehicle) => { next(Vehicle) })
+    onValue(vehicleReference, (vehicle) => { next(new Vehicle(vehicle.val())) })
   }
 
   updateItem(item: ItemModelInterface) {
