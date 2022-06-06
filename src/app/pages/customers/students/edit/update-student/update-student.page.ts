@@ -11,10 +11,12 @@ import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-te
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { CreateCollectionPointPage } from 'src/app/pages/collectionPoints/create/create-collection-point/create-collection-point.page';
+import { NuovoVeicoloPage } from 'src/app/pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
 import { NewSchoolPage } from 'src/app/pages/schools/inserisciScuola/new-school/new-school.page';
 import { CollectionPointsService } from 'src/app/services/collectionPoints/collection-points.service';
 import { SchoolsService } from 'src/app/services/scuole/schools.service';
 import { StudentsService } from 'src/app/services/studenti/students.service';
+import { VehiclesService } from 'src/app/services/vehicles/vehicles.service';
 
 @Component({
   selector: 'app-update-student',
@@ -64,7 +66,8 @@ export class UpdateStudentPage implements OnInit {
     public toaster: MyToastService,
     public modalCtrl: ModalController,
     public schoolService: SchoolsService,
-    public collectionPointsService:CollectionPointsService
+    public collectionPointsService:CollectionPointsService,
+    public vehicleService:VehiclesService
     ) { }
 
   ngOnInit() {
@@ -113,6 +116,16 @@ export class UpdateStudentPage implements OnInit {
         sorterFunction: this.sorterFunction,
         value:new CollectionPoint( this.student.collectionPoint),
         createPopup: CreateCollectionPointPage
+      }),,
+      new SelectorQuestion({
+        key: 'bus',
+        text: 'seleziona un pulmino',
+        label: 'Pulmino',
+        service: this.vehicleService,
+        filterFunction: this.ItemsFilterFunction,
+        sorterFunction: this.sorterFunction,
+        value: this.student.collectionPoint,
+        createPopup: NuovoVeicoloPage
       })
 
     ]
