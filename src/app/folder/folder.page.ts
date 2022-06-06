@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -10,27 +10,35 @@ import { UsersService } from '../modules/user/services/users.service';
   templateUrl: './folder.page.html',
   styleUrls: ['./folder.page.scss'],
 })
-export class FolderPage implements OnInit {
+export class FolderPage implements OnInit,AfterViewInit {
   public folder: string;
   log = console.log.bind(document)
   latLon:{lat:number,lng:number}
-  constructor(private activatedRoute: ActivatedRoute,private router:Router,public User:UsersService) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private router:Router,
+    public User:UsersService,
+    private  vref:ViewContainerRef) { }
 
   fileToUpload: File = null;
 
 onFileSelect(files: FileList) {
     this.fileToUpload = files.item(0);
 }
+headerTemplate = "<p>ciao</p>"
 
 setPoint(data){
   console.log('pouit',data)
   this.latLon = data
 }
-
+@ViewChild('sayHelloTemplate', { read: TemplateRef }) sayHelloTemplate:TemplateRef<any>;
 
 track(){
 	console.log('track')
 } 
+
+ngAfterViewInit() {
+  this.vref.createEmbeddedView(this.sayHelloTemplate);
+}
 
 
   ngOnInit() {
