@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutUserComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+    
+   }
+   logout(){
+     console.log("logout")
+   }
 
   ngOnInit() {}
 
