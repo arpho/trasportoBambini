@@ -26,7 +26,7 @@ export class AuthService {
     return sendPasswordResetEmail(user,email);
   }
 
-  signupUser(user:UserModel, string, next?, error?, complete?): Subscription {
+  signupUser(user:UserModel,  next?, error?, complete?): Subscription {
     return this.createUserObserver(user.email, user.password).subscribe({
       next: v => {
         sendEmailVerification(v['user'])
