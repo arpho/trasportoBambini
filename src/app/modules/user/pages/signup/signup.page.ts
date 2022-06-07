@@ -96,6 +96,7 @@ export class SignupPage implements OnInit, OnDestroy {
       const email: string = signupForm.value.email.email;
       const password: string = signupForm.value.password;
       const successHandler = async () => {
+        console.log("user created adding profile")
         await this.service.callCloudPushUser(user.serialize())
         console.log('loading', this.modal)
         this.modal.dismiss().then(() => {
