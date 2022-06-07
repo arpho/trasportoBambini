@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 @Component({
   selector: 'app-logout-user',
@@ -6,15 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logout-user.component.scss'],
 })
 export class LogoutUserComponent implements OnInit {
-
+email = ""
   constructor() {
 
     
    }
    logout(){
-     console.log("logout")
+
+    const auth = getAuth();
+    console.log("logout",auth)
+    signOut(auth)
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("ciao")
+    const auth = getAuth();
+    console.log("auth",auth)
 
+    onAuthStateChanged(auth,async (user)=>{
+      console.log("user",user)
+      this.email = user.email
+
+  })
+
+}
 }
