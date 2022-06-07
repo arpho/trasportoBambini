@@ -10,7 +10,7 @@ import { UsersService } from '../modules/user/services/users.service';
   templateUrl: './folder.page.html',
   styleUrls: ['./folder.page.scss'],
 })
-export class FolderPage implements OnInit,AfterViewInit {
+export class FolderPage implements OnInit {
   public folder: string;
   log = console.log.bind(document)
   latLon:{lat:number,lng:number}
@@ -30,16 +30,16 @@ setPoint(data){
   console.log('pouit',data)
   this.latLon = data
 }
-@ViewChild('sayHelloTemplate', { read: TemplateRef }) sayHelloTemplate:TemplateRef<any>;
+// @ViewChild('sayHelloTemplate', { read: TemplateRef }) sayHelloTemplate:TemplateRef<any>;
 
 track(){
 	console.log('track')
 } 
 
-ngAfterViewInit() {
+/* ngAfterViewInit() {
   this.vref.createEmbeddedView(this.sayHelloTemplate);
 }
-
+ */
 
   ngOnInit() {
     this.folder ='Home' //this.activatedRoute.snapshot.paramMap.get('id');

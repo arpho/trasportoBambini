@@ -4,6 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{ folder }}</ion-title>
+    <app-logout-user slot="end"></app-logout-user>
   </ion-toolbar>
 </ion-header>
 
@@ -11,16 +12,18 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
+
+     
     </ion-toolbar>
   </ion-header>
 <app-show-tracking></app-show-tracking>
-<app-template></app-template>
+<!-- <app-template></app-template> -->
 
 
 
 
  
-<h1>ng-template & TemplateRef</h1>
+<!-- <h1>ng-template & TemplateRef</h1>
  
 <h2>Using the ngTemplateOutlet</h2>
 
@@ -30,5 +33,5 @@
  
 <ng-template #sayHelloTemplate>
   <p> Say Hello</p>
-</ng-template>
+</ng-template> -->
 </ion-content>
