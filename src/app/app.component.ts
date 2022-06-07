@@ -28,6 +28,11 @@ export class AppComponent implements OnInit {
         const token = await user.getIdTokenResult(true)
         console.log("user ok è",user)
         console.log("token.claims",token.claims)
+          if(user){
+        const token = await user.getIdTokenResult(true)
+        console.log("claims enabled",token.claims.enabled)
+        console.log("role claim",token.claims["role"])
+        console.log("usertype claim",token.claims["userType"])
       }else{
         this.router.navigate(["/users/login"])
       }
@@ -36,14 +41,6 @@ export class AppComponent implements OnInit {
 
 
 
-		const token = await user.getIdTokenResult(true)
-		console.log("user ok è",user)
-		console.log("token.claims",token.claims)
-      if(user){
-		const token = await user.getIdTokenResult(true)
-		console.log("claims enabled",token.claims.enabled)
-		console.log("role claim",token.claims["role"])
-		console.log("usertype claim",token.claims["userType"])
      
 			if(token.claims.enabled)
          {  this.appPages= [   { title: "utenti", url: "/customers", icon: "people" },
