@@ -3,3 +3,8 @@ export enum StudentStatus {
     assente,
     ritardo
 }
+
+export interface Studentpresence{
+  studentKey:string
+  status:StudentStatus
+}
