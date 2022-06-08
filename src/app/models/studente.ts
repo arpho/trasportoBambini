@@ -9,7 +9,6 @@ import { Vehicle } from "./vehicle"
 
 export class Studente extends Utente {
 
-  pulminoKey: string
   genitoriId: Array<string>
   collectionPointKey: string
   _collectionPoint: CollectionPoint

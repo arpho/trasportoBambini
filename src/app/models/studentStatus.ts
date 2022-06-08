@@ -4,7 +4,7 @@ export enum StudentStatus {
     ritardo
 }
 
-export interface Studentpresence{
+export interface StudentPresence{
   studentKey:string
   status:StudentStatus
 }

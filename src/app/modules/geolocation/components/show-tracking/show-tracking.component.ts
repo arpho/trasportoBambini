@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { AgmCoreModule } from '@agm/core';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { marker } from '../../models/marker';
-import { latLong } from '../../models/latlong';
+import { LatLong } from '../../models/latlong';
 import { TrackingAction } from './bussiness/trackingActions';
 @Component({
   selector: 'app-show-tracking',
@@ -28,7 +28,7 @@ export class ShowTrackingComponent implements OnInit {
 
   
 
-latlng:latLong[]= []
+latlng:LatLong[]= []
   success = (pos)=>{
 		var crd = pos.coords;
     this.latlng.push({lat:pos.coords.latitude,lng:pos.coords.longitude})
