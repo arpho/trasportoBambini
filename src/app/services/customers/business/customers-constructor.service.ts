@@ -58,9 +58,10 @@ export class CustomersFactoryService {
       }
       console.log("studente",out)
     }
-    if (d['userType'] == "undefined") {
+    if (!d['userType'] ) {
       out = new Genitore(d)
     }
+    console.log("factory user",out,"for",d)
     return out
 
   }
