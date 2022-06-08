@@ -16,7 +16,10 @@ export class AppComponent implements OnInit {
  
   public appPages =[]
   app = initializeApp(configs.firebase)
-  constructor(public customers:CustomersService,public router:Router) {
+  constructor(
+    public customers:CustomersService,
+    public router:Router,
+    public messages:messageBroker) {
  
   }
   ngOnInit(): void {
