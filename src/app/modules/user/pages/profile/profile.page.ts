@@ -16,10 +16,8 @@ export class ProfilePage implements OnInit {
   public birthDate: string;
 
   ngOnInit() {
-    console.log('init profile')
     this.userProfile = {firstName:'nome',lastName:'cognome'}
     if (this.profileService.getUserProfileReference()) {
-      console.log('getting profile')
       this.profileService
         .getUserProfileReference()
         .on("value", userProfileSnapshot => {

@@ -20,13 +20,10 @@ email = ""
    }
 
   ngOnInit() {
-    console.log("ciao")
     const auth = getAuth();
-    console.log("auth",auth)
 
     onAuthStateChanged(auth,async (user)=>{
       if(user){
-      console.log("user",user)
       this.email = user.email
     }
 

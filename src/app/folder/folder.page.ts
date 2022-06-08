@@ -27,13 +27,11 @@ onFileSelect(files: FileList) {
 headerTemplate = "<p>ciao</p>"
 
 setPoint(data){
-  console.log('pouit',data)
   this.latLon = data
 }
 // @ViewChild('sayHelloTemplate', { read: TemplateRef }) sayHelloTemplate:TemplateRef<any>;
 
 track(){
-	console.log('track')
 } 
 
 /* ngAfterViewInit() {

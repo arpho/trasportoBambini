@@ -10,7 +10,6 @@ export class PasswordQuestion extends QuestionBase<string>{
     constructor(options:QuestionProperties<string>){
         super(options)
 
-        console.log('retype',this.retypePassword)
     
     }
 

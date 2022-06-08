@@ -20,7 +20,6 @@ export class TrackingAction{
 
 
   track(){
-    console.log('tracking')
     let options = {
       enableHighAccuracy: true,
       timeout: 5000,

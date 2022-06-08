@@ -31,8 +31,6 @@ export class ShowTrackingComponent implements OnInit {
 latlng:latLong[]= []
   success = (pos)=>{
 		var crd = pos.coords;
-		console.log("actual pos",pos)
-    console.log("marker",this.markers)
     this.latlng.push({lat:pos.coords.latitude,lng:pos.coords.longitude})
 	 	this.markers=[{
 			lat:pos.coords.latitude,
@@ -64,7 +62,6 @@ latlng:latLong[]= []
     minZoom: 8,
   }
   clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
   }
   
   mapClicked($event: MouseEvent) {
@@ -87,7 +84,6 @@ latlng:latLong[]= []
     };
 
   triggeredTracking(ev){
-	console.log("triggered",ev)
 	this.trackingIsOn = ev.detail.checked
 	if(this.trackingIsOn){
 		this.track()

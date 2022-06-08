@@ -111,15 +111,10 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	}
 
 	geodecode() {
-		console.log('geodecoding')
 		const address = new Address(this.addressForm.value)
-		console.log(address.fetchAddress())
 		let geodecoder = new google.maps.Geocoder()
 		geodecoder.geocode({ address: this.address.fetchAddress() }, (response) => {
-			console.log('ciao', response)
 			if (response) {
-				console.log('lat', response[0].geometry.location.lat())
-				console.log('lng', response[0].geometry.location.lng())
 				this.addressForm.controls.latitude.setValue(response[0].geometry.location.lat())
 				this.addressForm.controls.longitude.setValue(response[0].geometry.location.lng())
 			}

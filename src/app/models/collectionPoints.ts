@@ -32,7 +32,6 @@ export class CollectionPoint implements ItemModelInterface {
     if (v && v['address']) {
       this.address = new Address(v['address'])
     }
-    console.log("loaded cp",this)
     return this
   }
   getTitle(): Value {
@@ -91,8 +90,6 @@ export class CollectionPoint implements ItemModelInterface {
     const serializers = new Serializers()
 
     const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
-    console.log('metodi:',getMethods(this.address))
-    console.log("address", this.address.serialize())
     var out = { title: serializers.serialize2String(this.title), note: serializers.serialize2String(this.note), address: this.address.serialize() }
     if (this.key) {
       out = { ...out, ...{ key: this.key } }

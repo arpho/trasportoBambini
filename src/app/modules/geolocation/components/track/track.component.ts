@@ -16,7 +16,6 @@ trackChange(data){
   @Output() latLong:EventEmitter<{lat:number,lng:number}> = new EventEmitter()
 
   track(){
-	  console.log('tracking')
 	  let options = {
 		enableHighAccuracy: true,
 		timeout: 5000,
@@ -25,7 +24,6 @@ trackChange(data){
 
 	  let success =(pos)=>{
 		  var crd = pos.coords;
-		  console.log("actual pos",pos)
 		  this.latLong.emit({lat:pos.coords.latitude,lng:pos.coords.longitude})
 	  }
 	  let error = (error)=>{
@@ -35,11 +33,9 @@ trackChange(data){
   }
 
   tracking(){
-	  console.log('click')
   }
 
   triggeredTracking(ev){
-	  console.log("triggered",ev)
   }
 
 
