@@ -1,7 +1,7 @@
 
 
 
-export interface latLong{
+export interface LatLong{
   lat:number,
   lng:number
 }

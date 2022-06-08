@@ -4,8 +4,8 @@ import { QuickAction } from "../modules/item/models/QuickAction";
 import { Value } from "../modules/item/models/value";
 import { DateModel } from "../modules/user/models/birthDateModel";
 import { Driver } from "./Driver";
-import { RideStatus } from "./journeyStatus";
-import { Studentpresence } from "./studentStatus";
+import { RideStatus } from "./RideStatus";
+import { StudentPresence } from "./studentStatus";
 import { Vehicle } from "./vehicle";
 import {} from "../modules"
 
@@ -24,7 +24,7 @@ export class BusRide implements ItemModelInterface{
     this._bus = bus
     this.busKey= bus.key
   }
-  students:Studentpresence[]
+  students:StudentPresence[]
   status:RideStatus
   
 
