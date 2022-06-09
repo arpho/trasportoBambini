@@ -89,7 +89,7 @@ export class BusRide implements ItemModelInterface {
       label: "autista"
     })
   }
-  setKey?(key: string): ItemModelInterface {
+  setKey?(key: string): BusRide {
     this.key = key
     return this
   }
@@ -119,7 +119,8 @@ export class BusRide implements ItemModelInterface {
       students: serializers.serialize2Array(this.students),
       driverKey: serializers.serialize2String(this.driverKey),
       busKey: serializers.serialize2String(this.busKey),
-      status: serializers.serialize2String(RideStatus[this.status])
+      status: serializers.serialize2String(RideStatus[this.status]),
+      tracking:serializers.serialize2Array(this.tracking)
 
     }
   }
