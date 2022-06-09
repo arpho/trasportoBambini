@@ -7,7 +7,7 @@ import { Driver } from "./Driver";
 import { RideStatus } from "./RideStatus";
 import { StudentPresence } from "./studentStatus";
 import { Vehicle } from "./vehicle";
-import {LatLong} from "./../modules/geolocation/models/latlong"
+import {LatLong} from "../modules/geolocation/models/latlong"
 
 
 export class BusRide implements ItemModelInterface{
@@ -109,6 +109,10 @@ export class BusRide implements ItemModelInterface{
   }
   getElement(): { element: string; genere: Genere; } {
     return {element:"corsa",genere:'a'}
+  }
+
+  constructor(v?:{}){
+    this.load(v)
   }
 
 }
