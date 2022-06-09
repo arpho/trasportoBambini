@@ -85,7 +85,6 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	}
 
 	setAddressForm(address: Address) {
-    console.log("setting address form with",address)
 		this.addressForm.controls.number.setValue(address.number)
 		this.addressForm.controls.cap.setValue(address.cap)
 		this.addressForm.controls.city.setValue(address.city)
@@ -97,10 +96,8 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
 	localize() {
     this.address = new Address()
-    console.log("localizing")
 		this.showSpinner.next(true)
 		navigator.geolocation.getCurrentPosition((position: Position) => {
-      console.log("got position",position)
 			this.address.latitude = position.coords.latitude
 			this.address.longitude = position.coords.longitude
 			this.addressForm.controls.longitude.setValue(position.coords.longitude)
@@ -110,7 +107,6 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 			geodecoder.geocode({ 'location': latlng }, results => {
 				this.showSpinner.next(false)
 				this.address.setAddress(  this.fetchAddress(results[0]))
-        console.log("fetched address",this.fetchAddress(results[0]))
 				this.setAddressForm(this.address)
 
 			})
@@ -176,7 +172,6 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 			})
 		}
     else{
-      console.log("initializing empty address")
       this.address = new Address()
       this.addressForm = this.formBuilder.group({
 				street: new FormControl(this.address.street),
