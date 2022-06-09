@@ -85,16 +85,22 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	}
 
 	setAddressForm(address: Address) {
+    console.log("setting address form with",address)
 		this.addressForm.controls.number.setValue(address.number)
 		this.addressForm.controls.cap.setValue(address.cap)
 		this.addressForm.controls.city.setValue(address.city)
 		this.addressForm.controls.province.setValue(address.province)
 		this.addressForm.controls.street.setValue(address.street)
+    this.addressForm.controls.latitude.setValue(address.latitude)
+    this.addressForm.controls.longitude.setValue(address.longitude)
 	}
 
 	localize() {
+    this.address = new Address()
+    console.log("localizing")
 		this.showSpinner.next(true)
 		navigator.geolocation.getCurrentPosition((position: Position) => {
+      console.log("got position")
 			this.address.latitude = position.coords.latitude
 			this.addressForm.controls.longitude.setValue(position.coords.longitude)
 			this.addressForm.controls.latitude.setValue(position.coords.latitude)
@@ -152,6 +158,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 
 	ngOnInit() {
 		if (this.address) {
+
 			this.addressForm = this.formBuilder.group({
 				street: new FormControl(this.address.street),
 				cap: new FormControl(this.address.cap),
@@ -167,6 +174,19 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 				this.onChange(d)
 			})
 		}
+    else{
+      console.log("initializing empty address")
+      this.address = new Address()
+      this.addressForm = this.formBuilder.group({
+				street: new FormControl(this.address.street),
+				cap: new FormControl(this.address.cap),
+				city: new FormControl(this.address.city),
+				longitude: new FormControl(this.address.longitude),
+				latitude: new FormControl(this.address.latitude),
+				province: new FormControl(this.address.province),
+				number: new FormControl(this.address.number)
+			})
+    }
 
 
 	}
