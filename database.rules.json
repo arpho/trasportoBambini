@@ -1,6 +1,6 @@
 {
 	"rules": {
-		".read": "auth.token.enabled === true",
-		".write": "auth.token.enabled === true"
+		".read": " true",
+		".write": " true"
 	}
 }
