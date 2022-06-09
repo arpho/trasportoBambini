@@ -7,7 +7,7 @@ import { Driver } from "./Driver";
 import { RideStatus } from "./RideStatus";
 import { StudentPresence } from "./studentStatus";
 import { Vehicle } from "./vehicle";
-import {} from "../modules"
+import {LatLong} from "./../modules/geolocation/models/latlong"
 
 
 export class BusRide implements ItemModelInterface{
@@ -15,11 +15,11 @@ export class BusRide implements ItemModelInterface{
   key: string;
   startTime:DateModel
   endTime: DateModel
-  _driver:Driver
+  _driver:Driver = new Driver()
   _driverKey:string
   busKey:string
-  tracking:Latlong
-  _bus:Vehicle
+  tracking:LatLong[]
+  _bus:Vehicle = new Vehicle()
   set bus(bus:Vehicle){
     this._bus = bus
     this.busKey= bus.key
@@ -75,7 +75,7 @@ export class BusRide implements ItemModelInterface{
   }
   getValue3(): Value {
     return new Value( {
-      value: this._bus?this.bus.getTitle().value,
+      value: this.bus.getTitle().value,
       label:"bus"
     })
   }
