@@ -97,7 +97,7 @@ export class UserModel implements ItemModelInterface {
   }
 
   getCountingText() {
-    return {plural:'utente',singular:'utenti'}
+    return {plural:'utenti',singular:'utente'}
   }
 
   serialize() {
