@@ -24,6 +24,11 @@ export class Address implements ItemModelInterface {
         return `${this.street}, ${this.number}, ${this.cap} ${this.city} ${this.province}`
     }
 
+    setAddress(v:{}){
+      Object.assign(this,v)
+      return this
+    }
+
     serialize() {
         return {
             'street': this.serializers.serialize2String(this.street),

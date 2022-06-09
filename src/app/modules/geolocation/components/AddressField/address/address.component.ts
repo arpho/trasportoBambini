@@ -100,16 +100,17 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     console.log("localizing")
 		this.showSpinner.next(true)
 		navigator.geolocation.getCurrentPosition((position: Position) => {
-      console.log("got position")
+      console.log("got position",position)
 			this.address.latitude = position.coords.latitude
+			this.address.longitude = position.coords.longitude
 			this.addressForm.controls.longitude.setValue(position.coords.longitude)
 			this.addressForm.controls.latitude.setValue(position.coords.latitude)
-			this.address.longitude = position.coords.longitude
 			let geodecoder = new google.maps.Geocoder()
 			let latlng = { lat: position.coords.latitude, lng: position.coords.longitude }
 			geodecoder.geocode({ 'location': latlng }, results => {
 				this.showSpinner.next(false)
-				this.address = this.fetchAddress(results[0])
+				this.address.setAddress(  this.fetchAddress(results[0]))
+        console.log("fetched address",this.fetchAddress(results[0]))
 				this.setAddressForm(this.address)
 
 			})
