@@ -4,6 +4,7 @@ import { configs } from 'src/app/configs/configs';
 import { Utente } from 'src/app/models/Utente';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { DropdownQuestion } from 'src/app/modules/dynamic-form/models/question-dropdown';
+import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { SwitchQuestion } from 'src/app/modules/item/models/question-switch';
@@ -31,6 +32,7 @@ this.title = `modifica ${this.utente.getTitle().value}`
 this.formFields= [
   new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.utente.firstName }),
   new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.utente.lastName }),
+  new EmailQuestion({key:"email",label:"email",value:this.utente.email}),
   new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.utente.address }),
   new SwitchQuestion({key:'enabled',label:'Utente abilitato',value:this.utente.enabled,iconTrue:'checkmark',
   iconFalse:'close',labelTrue:'utente abilitato',labelFalse:'utente non abilitato'}),
@@ -38,7 +40,8 @@ this.formFields= [
   label:"categoria utente",
   options:configs.userType,value:this.utente.userType}),
   new DropdownQuestion({key:"level",
-  label:"ruolo",options:configs.accessLevel,value:this.utente.level})
+  label:"ruolo",options:configs.accessLevel,value:this.utente.level}),
+  
 ]
   }
 
