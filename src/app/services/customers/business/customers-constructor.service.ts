@@ -24,43 +24,45 @@ export class CustomersFactoryService {
   ) { }
 
   CustomersFactory(d: {}): Utente | Studente | Driver | Genitore | Addetto {
-    var out: Utente | Studente
+    var customer: Utente | Studente
     if (d['userType'] == UserType.addetto) {
-      out = new Addetto(d)
+      customer = new Addetto(d)
+      console.log("addetto",customer)
+  
     }
     if (d['userType'] == UserType.autista) {
-      out = new Driver(d)
-      if (out['vehicleKey']) {
-        this.vehicleService.getItem(out['vehicleKey'], (vehicle => {
-          out["vehicle"] = vehicle
+      customer = new Driver(d)
+      if (customer['vehicleKey']) {
+        this.vehicleService.getItem(customer['vehicleKey'], (vehicle => {
+          customer["vehicle"] = vehicle
         }))
       }
     }
     if (d['userType'] == UserType.genitore) {
-      out = new Genitore(d)
+      customer = new Genitore(d)
     }
     if (d['userType'] == UserType.studente) {
-      out = new Studente(d)
+      customer = new Studente(d)
 
 
       if (d["collectionPointKey"]) {
         this.collectionPointsService.getItem(d["collectionPointKey"], (cp: CollectionPoint) => {
-          out["collectionPoint"] = cp
+          customer["collectionPoint"] = cp
         })
       }
 
-      if (out['schoolKey']) {
+      if (customer['schoolKey']) {
 
-        this.schoolService.getItem(out['schoolKey'], (school: School) => {
-          out['school'] = school
+        this.schoolService.getItem(customer['schoolKey'], (school: School) => {
+          customer['school'] = school
         })
 
       }
     }
     if (!d['userType'] ) {
-      out = new Genitore(d)
+      customer = new Genitore(d)
     }
-    return out
+    return customer
 
   }
 }
