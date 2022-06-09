@@ -31,7 +31,7 @@ describe('testing users class', () => {
     expect(user.telephones[0].numero).toEqual('1')
     expect(user.telephones[0].note).toEqual('test')
     expect(user.serialize()['key']).toBeUndefined()
-    expect(user.serialize()['indirizzo']).toBeUndefined()
+    expect(user.serialize()['address']).toBeUndefined()
 
 
   })
@@ -42,17 +42,17 @@ describe('testing users class', () => {
     expect(user.serialize()['key']).toEqual('key')
   })
   it('serialize and load addresss', () => {
-    const data = { indirizzo: { street: 'via e cosenz', cap: '20158', city: 'milano', province: 'mi', number: '54', latitude: 5, longitude: 4 } }
+    const data = { address: { street: 'via e cosenz', cap: '20158', city: 'milano', province: 'mi', number: '54', latitude: 5, longitude: 4 } }
     const user = new Utente(data)
     expect(user.address).toBeInstanceOf(Address)
-    expect(user.address.latitude).toEqual(data.indirizzo.latitude)
-    expect(user.address.longitude).toEqual(data.indirizzo.longitude)
-    expect(user.address.city).toEqual(data.indirizzo.city)
-    expect(user.address.number).toEqual(data.indirizzo.number)
-    expect(user.address.street).toEqual(data.indirizzo.street)
-    expect(user.address.province).toEqual(data.indirizzo.province)
-    expect(user.address.cap).toEqual(data.indirizzo.cap)
-    expect(user.serialize()['indirizzo']).toBeDefined()
+    expect(user.address.latitude).toEqual(data.address.latitude)
+    expect(user.address.longitude).toEqual(data.address.longitude)
+    expect(user.address.city).toEqual(data.address.city)
+    expect(user.address.number).toEqual(data.address.number)
+    expect(user.address.street).toEqual(data.address.street)
+    expect(user.address.province).toEqual(data.address.province)
+    expect(user.address.cap).toEqual(data.address.cap)
+    expect(user.serialize()['address']).toBeDefined()
   })
 
   it('set the right userType', () => {

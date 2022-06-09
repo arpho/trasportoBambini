@@ -29,6 +29,7 @@ export class Utente extends UserModel {
         if (v && v['indirizzo']) {
             this.address = new Address(v['indirizzo'])
         }
+
 		else{
 			this.address = new Address()
 		}
@@ -57,7 +58,7 @@ export class Utente extends UserModel {
             out = { ...out, ...{ key: this.key } }
         }
         if (this.address instanceof Address) {
-            out = { ...out, ...{ indirizzo: this.address.serialize() }, }
+            out = { ...out, ...{address: this.address.serialize() }, }
         }
 
         return out
