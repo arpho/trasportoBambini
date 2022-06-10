@@ -23,7 +23,7 @@ export class CustomersFactoryService {
     public collectionPointsService: CollectionPointsService
   ) { }
 
-  CustomersFactory(d: {}): Utente | Studente | Driver | Genitore | Addetto {
+  makeCustomer(d: {}): Utente | Studente | Driver | Genitore | Addetto {
     var customer: Utente | Studente
     if (d['userType'] == UserType.addetto) {
       customer = new Addetto(d)
