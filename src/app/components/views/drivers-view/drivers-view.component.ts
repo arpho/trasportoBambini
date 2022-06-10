@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Driver } from 'src/app/models/Driver';
 
 @Component({
   selector: 'app-drivers-view',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drivers-view.component.scss'],
 })
 export class DriversViewComponent implements OnInit {
+  @Input() driver:Driver
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    console.log("got driver",this.driver)
+  }
 
 }
