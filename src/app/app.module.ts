@@ -34,6 +34,7 @@ import { NewDriverPage } from './pages/customers/drivers/create/new-driver/new-d
 import { TestTemplate } from './templates/test/helloTemplate';
 import { FolderPage } from './folder/folder.page';
 import { GeolocationModule } from './modules/geolocation/geolocation.module';
+import { DriversViewComponent } from './components/views/drivers-view/drivers-view.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { GeolocationModule } from './modules/geolocation/geolocation.module';
     EditCustomerPage,
     NewDriverPage,
     TestTemplate,
-    FolderPage
+    FolderPage,
+    DriversViewComponent
   
     
   ],
