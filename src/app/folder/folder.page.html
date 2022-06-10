@@ -16,9 +16,13 @@
      
     </ion-toolbar>
   </ion-header>
-<app-show-tracking></app-show-tracking>
 
-<app-drivers-view *ngIf="loggedUser?.userType==2"></app-drivers-view>
+  <div class='example' *ngIf="showSpinner">
+    <div class="loader"></div>
+</div>
+
+
+<app-drivers-view [driver]="loggedUser" *ngIf="loggedUser?.userType==2"></app-drivers-view>
 
 
 <!-- <app-template></app-template> -->
