@@ -58,32 +58,16 @@ this.formFields= [
     this.utente.load(ev)
   }
 
-  setClaim(data:{email:string,claim:{}},successMessage:string){
-	this.service.adAddCustomClaim(data).catch((error)=>{
-		console.error(error)
+  setClaim(data:{email:string,claims:{}},successMessage:string){
+    console.log("setting claims",data)
+	this.service.addCustomClaim(data).catch((error)=>{
+		console.log("errore",error)
 		this.toaster.presentToast('ho riscontrato degli errori')
 	}).then((msg)=>{
-		console.log(`claims set for ${ Object.keys(data.claim)} `,msg)
+		console.log(`claims set for  `,msg,data.claims)
 this.toaster.presentToast(successMessage)
 	})
 
-  }
-
-  claimEnabled(b:boolean){
-	let data = {email:this.utente.email,claim:{'enabled':b}}
-	this.setClaim(data, "claim enabled impostato correttamente")
-  }
-
-  claimUserType(tipo:number,userTYpe:string){
-	  console.log('setting',userTYpe,tipo)
-	let data = {email:this.utente.email,claim:{"userType":tipo}}
-	this.setClaim(data,`utente  impostato come  ${userTYpe} `)
-	
-  }
-  claimUserLevel(roleValue:number,roleKey:string){
-	let data = {email:this.utente.email,claim:{role:roleValue}}
-	this.setClaim(data,`utente ${this.utente.getTitle().value} impostato come ${roleKey}`)
-	
   }
 
 
@@ -106,7 +90,8 @@ this.toaster.presentToast(successMessage)
 				return e.value==role
 			})[0].key
 		}
-		let data ={email:this.utente.email,claim:{enabled:this.utente.enabled,role:this.utente.level,userType:this.utente.userType}}
+		let data ={email:this.utente.email,claims:{enabled:this.utente.enabled,role:this.utente.level,userType:this.utente.userType}}
+
 		this.setClaim(data,"claim impostati correttamente ")
 		
 		
