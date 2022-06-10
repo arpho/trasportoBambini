@@ -8,6 +8,7 @@ import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-emai
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { SwitchQuestion } from 'src/app/modules/item/models/question-switch';
+import { CustomersFactoryService } from 'src/app/services/customers/business/customers-constructor.service';
 import { CustomersService } from 'src/app/services/customers/customers.service';
 
 @Component({
@@ -23,7 +24,9 @@ export class EditCustomerPage implements OnInit {
   constructor(public navParams:NavParams,
     public service:CustomersService,
 	public toaster:MyToastService,
-	public modalController:ModalController) { }
+	public modalController:ModalController,
+  public customerFactory: CustomersFactoryService
+  ) { }
 
   ngOnInit() {
 this.utente = this.navParams.get('item')
@@ -86,7 +89,7 @@ this.toaster.presentToast(successMessage)
 
   submit(ev){
 	  let result:Utente
-    this.utente.load(ev)
+    this.utente =this.customerFactory.CustomersFactory(ev).load(this.utente)
     console.log('submitting',this.utente.serialize(),this.utente)
 	this.service.updateItem(this.utente).then(()=>{
 		result = this.utente
