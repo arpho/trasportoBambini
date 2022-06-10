@@ -51,7 +51,7 @@ export class UpdateDriverPage implements OnInit {
       console.log("submitting",this.driver,this.driver.serialize())
     }
 
-    dismiss(driver:Driver){
+    dismiss(driver?:Driver){
       this.modalController.dismiss(driver)
     }
 
