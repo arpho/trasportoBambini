@@ -68,12 +68,12 @@ db:Database
 	const addAdminRole = httpsCallable(functions,'addAdminRole')
 return	addAdminRole({ email: adminEmail })
  } // add claims cloud funxction
- adAddCustomClaim(data:{email:string, claim:{}}){
+ addCustomClaim(data:{email:string, claims:{}}){
 	const functions = getFunctions()
 
   const addAdminRole = httpsCallable(functions,'addAdminRole')
-	const addAaddCustomClaim = httpsCallable(functions,'addCustomClaim')
-	return addAaddCustomClaim({ email: data.email, claim: data.claim })
+	const addCustomClaims = httpsCallable(functions,'addCustomClaims')
+	return addCustomClaims({email: data.email, claims: data.claims})
  }
 
 
