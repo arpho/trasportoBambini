@@ -21,15 +21,16 @@ exports.addAddminRole = functions.https.onCall((data) => {
   });
 });
 
-exports.addCustomClaim = functions.https.onCall((data) => {
+
+exports.addCustomClaims = functions.https.onCall((data) => {
   return admin.auth().getUserByEmail(data.email).then((user) => {
-    return admin.auth().setCustomUserClaims(user.uid, data.claim).then(() => {
+    return admin.auth().setCustomUserClaims(user.uid, data.claims).then(() => {
       return {
         message: ` Success!claim ${Object.keys(data.claim)} 
         as been set on ${data.email}`,
       };
     }).catch((err) => {
-      return err;
+      return {err, data, claims: data.claims};
     });
   });
 });
