@@ -49,7 +49,8 @@ export class Addetto extends Utente {
     }
 
     serialize() {
-        var out = { ...super.serialize(), ...{ mansione: this.mansione } }
+      const serializers = new Serializers()
+        var out = { ...super.serialize(), ...{ mansione: serializers.serialize2String( this.mansione) } }
 
         return out
     }
