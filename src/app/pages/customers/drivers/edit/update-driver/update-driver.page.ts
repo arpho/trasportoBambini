@@ -59,6 +59,22 @@ export class UpdateDriverPage implements OnInit {
     this.driver = this.navparams.get("item")
     console.log("editing ",this.driver)
     this.title = ` modifica autista ${this.driver.getTitle().value}`
+    this.formFields = 
+    [
+      new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.driver.firstName }),
+      new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.driver.lastName }),
+      new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.driver.address }),
+      new SelectorQuestion({
+        key: 'vehicle',
+        text: ' Veicolo',
+        label: 'Veicolo',
+        service: this.vehicleService,
+        filterFunction: this.ItemsFilterFunction,
+        sorterFunction: this.sorterFunction,
+        value: this.driver.vehicle,
+        createPopup:NuovoVeicoloPage
+      })
+    ]
   }
 
 }
