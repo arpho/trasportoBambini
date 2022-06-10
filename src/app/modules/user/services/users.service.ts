@@ -67,6 +67,19 @@ db
     }
   }
 
+  getItemByEmail(email:string,next:(user)=>void){
+console.log("LOOKING  for",email)
+    this.items.subscribe((users)=>{
+      if(users.length>0){
+   let user = users.filter((user=>{
+   return  user.email== email
+  }))[0]
+  next(user)}
+    })
+    
+
+  }
+
   getLoggedUser() {
     return this.loggedUser;
   }
