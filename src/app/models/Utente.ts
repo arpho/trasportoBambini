@@ -65,6 +65,13 @@ export class Utente extends UserModel {
 
     }
 
+    getValue2(): Value {
+      return new Value({
+        value:this.email,
+        label:"email"
+      })
+    }
+
 
     getValue4(): Value {
         return new Value({ label: 'key', value: this.key })
