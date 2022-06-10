@@ -17,6 +17,10 @@
     </ion-toolbar>
   </ion-header>
 <app-show-tracking></app-show-tracking>
+
+<app-drivers-view *ngIf="loggedUser?.userType==2"></app-drivers-view>
+
+
 <!-- <app-template></app-template> -->
 
 
