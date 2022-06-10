@@ -73,7 +73,7 @@ this.toaster.presentToast(successMessage)
 
   submit(ev){
 	  let result:Utente
-    this.utente =this.customerFactory.CustomersFactory(ev).load(this.utente)
+    this.utente =this.customerFactory.makeCustomer(ev).load(this.utente)
     console.log('submitting',this.utente.serialize(),this.utente)
 	this.service.updateItem(this.utente).then(()=>{
 		result = this.utente
