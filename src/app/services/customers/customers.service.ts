@@ -51,7 +51,7 @@ db:Database
 
       this.items_list = []
       snapshot.forEach(e => {
-        const item = this.customersFactory.CustomersFactory(e.val()).setKey(e.key)
+        const item = this.customersFactory.makeCustomer(e.val()).setKey(e.key)
  
         this.items_list.push(item)
 
