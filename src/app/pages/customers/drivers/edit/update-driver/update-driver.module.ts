@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { UpdateDriverPageRoutingModule } from './update-driver-routing.module';
 
 import { UpdateDriverPage } from './update-driver.page';
+import { DynamicFormModule } from 'src/app/modules/dynamic-form/dynamic-form.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdateDriverPageRoutingModule
+    UpdateDriverPageRoutingModule,
+    DynamicFormModule
   ],
   declarations: [UpdateDriverPage]
 })
