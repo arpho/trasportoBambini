@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { UserModel } from '../modules/user/models/userModel';
 import { UsersService } from '../modules/user/services/users.service';
 import { Utente } from '../models/Utente';
+import { ShowTrackingComponent } from '../modules/geolocation/components/show-tracking/show-tracking.component';
+import { CustomersFactoryService } from '../services/customers/business/customers-constructor.service';
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
@@ -16,10 +18,12 @@ export class FolderPage implements OnInit {
   public folder: string;
   log = console.log.bind(document)
   latLon:{lat:number,lng:number}
-loggedUser:Utente
+  loggedUser:Utente = new Utente
+  showSpinner = true
   constructor(private activatedRoute: ActivatedRoute,
     private router:Router,
     public User:UsersService,
+    public customerFactory: CustomersFactoryService,
     private  vref:ViewContainerRef) { }
 
   fileToUpload: File = null;
@@ -54,12 +58,13 @@ track(){
    if(user) {
 	   const token = await user.getIdTokenResult(true)
      this.log('user ok è',user)
-     const customer  = this.User.getItemByEmail(user.email,(user)=>{
+    this.User.getItemByEmail(user.email,(user)=>{
        if(user){
-      this.loggedUser = user
+      this.loggedUser = this.customerFactory.makeCustomer( user)
       console.log("user by email",user)}
      })
      console.log("user by email",this.loggedUser)
+     this.showSpinner = false
 
      this.User.getItem
 	 console.log('token.claims',token.claims)
