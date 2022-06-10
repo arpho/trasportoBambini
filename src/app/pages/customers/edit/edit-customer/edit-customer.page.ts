@@ -87,7 +87,7 @@ this.toaster.presentToast(successMessage)
   submit(ev){
 	  let result:Utente
     this.utente.load(ev)
-    console.log('submitting',this.utente)
+    console.log('submitting',this.utente.serialize(),this.utente)
 	this.service.updateItem(this.utente).then(()=>{
 		result = this.utente
 		this.toaster.presentToast(`l'utente ${this.utente.getTitle().value} è stato aggiornato`);
