@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams } from '@ionic/angular';
+import { CollectionPoint } from 'src/app/models/collectionPoints';
+import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
+import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
+import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { CollectionPointsService } from 'src/app/services/collectionPoints/collection-points.service';
 
 @Component({
   selector: 'app-update-collection-point',
@@ -6,10 +12,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./update-collection-point.page.scss'],
 })
 export class UpdateCollectionPointPage implements OnInit {
+  collectionPoint = new CollectionPoint();
+  public collectionPointFields = [
+    new TextboxQuestion({ label: 'titolo del punto di raccolta', key: 'title', value: this.collectionPoint.title }),
+    new TextAreaBox({ autoGrow: true, key: 'note', label: 'note', value: this.collectionPoint.note }),
+    new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.collectionPoint.address })
+  ]
 
-  constructor() { }
+  constructor(
+    public navParams: NavParams,
+    public service: CollectionPointsService
+  ) { }
 
   ngOnInit() {
+    this.collectionPoint = this.navParams.get("item")
+    console.log("cp to update", this.collectionPoint)
+    this.collectionPointFields = [
+      new TextboxQuestion({ label: 'titolo del punto di raccolta', key: 'title', value: this.collectionPoint.title }),
+      new TextAreaBox({ autoGrow: true, key: 'note', label: 'note', value: this.collectionPoint.note }),
+      new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.collectionPoint.address })
+    ]
+  }
+
+  filter(ev) {
+    console.log("typing", ev)
+  }
+
+  submit(ev) {
+    this.collectionPoint.load(ev)
+    console.log("submitting", this.collectionPoint, this.collectionPoint.serialize())
+    this.service.updateItem(this.collectionPoint)
   }
 
 }
