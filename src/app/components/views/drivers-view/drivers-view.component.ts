@@ -12,7 +12,6 @@ export class DriversViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
     console.log("got driver",this.driver)
   }
 
