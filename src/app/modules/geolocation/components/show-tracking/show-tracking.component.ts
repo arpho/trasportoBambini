@@ -112,7 +112,11 @@ latlng:LatLong[]= []
 		  lng: position.coords.longitude,
 		}
     this.initMap()
-	  })
+	  },(error)=>{
+      console.error(error)
+    },{
+      enableHighAccuracy:true
+    })
   }
 
   track(){
