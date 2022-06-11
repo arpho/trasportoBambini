@@ -13,6 +13,8 @@ import { CollectionPointsService } from 'src/app/services/collectionPoints/colle
 })
 export class UpdateCollectionPointPage implements OnInit {
   collectionPoint = new CollectionPoint();
+  title=""
+  
   public collectionPointFields = [
     new TextboxQuestion({ label: 'titolo del punto di raccolta', key: 'title', value: this.collectionPoint.title }),
     new TextAreaBox({ autoGrow: true, key: 'note', label: 'note', value: this.collectionPoint.note }),
@@ -28,6 +30,7 @@ export class UpdateCollectionPointPage implements OnInit {
   ngOnInit() {
     this.collectionPoint = this.navParams.get("item")
     console.log("cp to update", this.collectionPoint)
+    this.title = `modifica punto di raccolta ${this.collectionPoint.title}`
     this.collectionPointFields = [
       new TextboxQuestion({ label: 'titolo del punto di raccolta', key: 'title', value: this.collectionPoint.title }),
       new TextAreaBox({ autoGrow: true, key: 'note', label: 'note', value: this.collectionPoint.note }),
