@@ -55,7 +55,6 @@ export class BusRideServiceService implements ItemServiceInterface {
       this.items_list = []
       items.forEach((ride)=>{
         const busRide = new BusRide(ride.val()).setKey(ride.key)
-        console.log("bus ride",busRide)
         this.items_list.push(busRide)
       })
       this.publishItems(this.items_list)
