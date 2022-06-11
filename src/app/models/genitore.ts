@@ -31,7 +31,7 @@ export class Genitore extends Utente {
 
     serialize() {
         const serializers = new Serializers()
-        return { ...super.serialize(), ...{ figli: serializers.serialize2Array(this.children), indirizzo: this.address.serialize() } }
+        return { ...super.serialize(), ...{ figli: serializers.serialize2Array(this.children), address: this.address.serialize() } }
     }
 
     getElement(): { element: string; genere: "o"; } {

@@ -18,7 +18,7 @@ export class UpdateParentPage implements OnInit {
   public formFields = [
     new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.parent.firstName }),
     new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.parent.lastName }),
-    new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.parent.address })
+    new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.parent.address })
   ]
 
 
@@ -29,7 +29,7 @@ export class UpdateParentPage implements OnInit {
   submit(ev) {
     let result: Genitore
     this.parent.load(ev)
-    console.log('submit', ev, this.parent)
+    console.log('submit', ev, this.parent,this.parent.serialize())
 
     this.service.updateItem(this.parent).then(item => {
       this.toaster.presentToast('genitore modificato correttamente')
@@ -54,11 +54,12 @@ export class UpdateParentPage implements OnInit {
   ngOnInit() {
     this.parent = this.navParams.get('item')
     this.title = `modifica ${this.parent.getTitle().value}`
+    console.log('parent ',this.parent)
 
     this.formFields = [
       new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.parent.firstName }),
       new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.parent.lastName }),
-      new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.parent.address })
+      new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.parent.address })
     ]
 
 

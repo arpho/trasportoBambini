@@ -34,7 +34,7 @@ export class UpdateDriverPage implements OnInit {
     [
       new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.driver.firstName }),
       new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.driver.lastName }),
-      new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.driver.address }),
+      new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.driver.address }),
       new SelectorQuestion({
         key: 'vehicle',
         text: ' Veicolo',
@@ -77,7 +77,7 @@ export class UpdateDriverPage implements OnInit {
     [
       new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.driver.firstName }),
       new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.driver.lastName }),
-      new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.driver.address }),
+      new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.driver.address }),
       new SelectorQuestion({
         key: 'vehicle',
         text: ' Veicolo',
