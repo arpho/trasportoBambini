@@ -1,5 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { marker } from '../../models/marker';
 import { LatLong } from '../../models/latlong';
@@ -11,6 +10,9 @@ import { TrackingAction } from './bussiness/trackingActions';
 })
 export class ShowTrackingComponent implements OnInit {
 //@Input() latLon:{lat:number,lng:number}
+@Output() trackData= new EventEmitter<LatLong>()
+@Output() trackingStarted = new EventEmitter<boolean>()
+@Output() trackingStopped = new EventEmitter<boolean>()
 @Input() driverKey:string
   map: google.maps.Map<Element>;
 
@@ -32,6 +34,8 @@ latlng:LatLong[]= []
   success = (pos)=>{
 		var crd = pos.coords;
     this.latlng.push({lat:pos.coords.latitude,lng:pos.coords.longitude})
+    const data= {lat:pos.coords.latitude,lng: pos.coords.longitude}
+    this.trackData.emit(data)
 	 	this.markers=[{
 			lat:pos.coords.latitude,
 			lng:pos.coords.longitude,
@@ -87,9 +91,13 @@ latlng:LatLong[]= []
 	this.trackingIsOn = ev.detail.checked
 	if(this.trackingIsOn){
 		this.track()
+    this.trackingStarted.emit(true)
+    this.trackingStopped.emit(false)
 	}
 	else{
 		this.stopTracking()
+    this.trackingStarted.emit(false)
+    this.trackingStopped.emit(true)
 	}
 }
 

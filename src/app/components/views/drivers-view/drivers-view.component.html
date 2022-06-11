@@ -1,1 +1,4 @@
-<app-show-tracking></app-show-tracking>
+<app-show-tracking (trackData)="storeTrack($event)"
+(trackingStarted)="trackingStarted($event)"
+(trackingStopped)="trackingStopped($event)"
+></app-show-tracking>

@@ -11,6 +11,17 @@ export class DriversViewComponent implements OnInit {
 
   constructor() { }
 
+  storeTrack(data){
+    console.log("trackData", data)
+  }
+  trackingStarted(data){
+    console.log("tracking started",data)
+  }
+
+  trackingStopped(data){
+    console.log("tracking stopped",data)
+  }
+
   ngOnInit() {
     console.log("got driver",this.driver)
   }
