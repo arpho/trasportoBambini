@@ -115,6 +115,8 @@ latlng:LatLong[]= []
 
   ngOnInit() {
 	navigator.geolocation.getCurrentPosition((position) => {
+    this.lat = position.coords.latitude
+    this.lng = position.coords.longitude
 		this.center = {
 		  lat: position.coords.latitude,
 		  lng: position.coords.longitude,
