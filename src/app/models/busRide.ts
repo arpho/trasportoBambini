@@ -19,7 +19,7 @@ export class BusRide implements ItemModelInterface {
   _driver: Driver = new Driver()
   driverKey: string
   busKey: string
-  tracking: LatLong[]
+  tracking: LatLong[] =[]
   _bus: Vehicle = new Vehicle()
 
   set bus(bus: Vehicle) {
@@ -37,6 +37,7 @@ export class BusRide implements ItemModelInterface {
   set driver(driver: Driver) {
     this._driver = driver
     this.driverKey = driver.key
+    this.bus = driver.vehicle
   }
 
   get driver() {
@@ -83,6 +84,10 @@ export class BusRide implements ItemModelInterface {
       label: "bus"
     })
   }
+
+  pushTrackData(data:LatLong){
+    this.tracking.push(data)
+  }
   getValue4(): Value {
     return new Value({
       value: this._driver ? this.driver.getTitle().value : "",
@@ -119,7 +124,7 @@ export class BusRide implements ItemModelInterface {
       students: serializers.serialize2Array(this.students),
       driverKey: serializers.serialize2String(this.driverKey),
       busKey: serializers.serialize2String(this.busKey),
-      status: serializers.serialize2String(RideStatus[this.status]),
+      status: serializers.serialize2PositiveNumber(this.status),
       tracking:serializers.serialize2Array(this.tracking)
 
     }
@@ -129,7 +134,12 @@ export class BusRide implements ItemModelInterface {
   }
 
   constructor(v?: {}) {
-    this.load(v)
+    if(v){
+    this.load(v)}
+    else{
+      this.startTime = new DateModel(new Date())
+      this.endTime = new DateModel(new Date("12/31/3100"))
+    }
   }
 
 
