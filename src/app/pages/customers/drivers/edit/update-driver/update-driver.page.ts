@@ -4,8 +4,10 @@ import { Driver } from 'src/app/models/Driver';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { NuovoVeicoloPage } from 'src/app/pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
+import { DriversService } from 'src/app/services/autisti/drivers.service';
 import { VehiclesService } from 'src/app/services/vehicles/vehicles.service';
 
 @Component({
@@ -22,7 +24,9 @@ export class UpdateDriverPage implements OnInit {
   constructor(
     public vehicleService:VehiclesService,
     public navparams: NavParams,
-    public modalController:ModalController
+    public toaster:MyToastService,
+    public modalController:ModalController,
+    public driversServices:DriversService
   ) { }
 
 
@@ -48,7 +52,17 @@ export class UpdateDriverPage implements OnInit {
     }
 
     submit(ev){
-      console.log("submitting",this.driver,this.driver.serialize())
+      console.log("submitting",this.driver,this.driver.load(ev).serialize())
+      this.driversServices.updateItem(this.driver.load(ev)).then(()=>{
+        this.toaster.presentToast("autista modificato correttamente")
+        this.dismiss(this.driver.load(ev))
+      }).catch(err=>{
+          this.toaster.presentToast("ho riscontrato dei problemi, ripeti l'operazione")
+          console.error(err)
+          this.dismiss()
+        })
+      
+
     }
 
     dismiss(driver?:Driver){
