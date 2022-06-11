@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { Genitore } from 'src/app/models/genitore';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
+import { ListSelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector-list';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { CustomersService } from 'src/app/services/customers/customers.service';
+import { NewStudentPage } from '../../../students/create/new-student/new-student.page';
 
 @Component({
   selector: 'app-update-parent',
@@ -15,7 +17,7 @@ export class UpdateParentPage implements OnInit {
   parent = new Genitore()
   title
 
-  public formFields = [
+  public formFields:any[] = [
     new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.parent.firstName }),
     new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.parent.lastName }),
     new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.parent.address })
@@ -59,7 +61,14 @@ export class UpdateParentPage implements OnInit {
     this.formFields = [
       new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.parent.firstName }),
       new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.parent.lastName }),
-      new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.parent.address })
+      new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.parent.address }),
+      new ListSelectorQuestion({
+        service:this.service,
+        text:"studenti",
+        createPopup:NewStudentPage,
+        label:"figli",
+        key:"children"
+      })
     ]
 
 
