@@ -72,7 +72,6 @@ export class UpdateStudentPage implements OnInit {
 
   ngOnInit() {
     this.student = this.navParams.get('item')
-    console.log('studente to be edited', this.student,this.student)
     this.title = `modifica studente ${this.student.getTitle().value}`
     this.studentFields = [
       new TextboxQuestion({
@@ -116,7 +115,7 @@ export class UpdateStudentPage implements OnInit {
         sorterFunction: this.sorterFunction,
         value:new CollectionPoint( this.student.collectionPoint),
         createPopup: CreateCollectionPointPage
-      }),,
+      }),
       new SelectorQuestion({
         key: 'bus',
         text: 'seleziona un pulmino',
@@ -124,7 +123,7 @@ export class UpdateStudentPage implements OnInit {
         service: this.vehicleService,
         filterFunction: this.ItemsFilterFunction,
         sorterFunction: this.sorterFunction,
-        value: this.student.collectionPoint,
+        value: this.student.bus,
         createPopup: NuovoVeicoloPage
       })
 
