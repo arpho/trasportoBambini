@@ -42,7 +42,14 @@ export class CustomersFactoryService {
       customer = new Genitore(d)
     }
     if (d['userType'] == UserType.studente) {
+      
       customer = new Studente(d)
+      if(d["busKey"]){
+        this.vehicleService.getItem(d["busKey"],(vehicle)=>{
+          customer["bus"] = vehicle
+        })
+      }
+      console.log("studente",customer)
 
 
       if (d["collectionPointKey"]) {
@@ -59,7 +66,7 @@ export class CustomersFactoryService {
 
       }
     }
-    if (!d['userType'] ) {
+    if (d['userType']=="undefined" ) {
       customer = new Genitore(d)
     }
     return customer
