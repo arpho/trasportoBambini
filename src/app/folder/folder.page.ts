@@ -13,6 +13,7 @@ import { Genitore } from '../models/genitore';
 import { Studente } from '../models/studente';
 import { Addetto } from '../models/Addetto';
 import { UserType } from '../models/usersType';
+import { CustomersService } from '../services/customers/customers.service';
 @Component({
   selector: 'app-folder',
   templateUrl: './folder.page.html',
@@ -32,6 +33,7 @@ export class FolderPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     public User: UsersService,
+    public customers:CustomersService,
     public customerFactory: CustomersFactoryService,
     private vref: ViewContainerRef) { }
 
@@ -63,25 +65,28 @@ export class FolderPage implements OnInit {
     const auth = getAuth()
 
     onAuthStateChanged(auth, async (user) => {
+      console.log("logged in",user)
 
       if (user) {
         const token = await user.getIdTokenResult(true)
         this.log('user ok è', user)
-        this.User.getItemByEmail(user.email, (user) => {
+        this.customers.getItemByEmail(user.email, (user) => {
+          console.log("got",user)
           if (user) {
             this.loggedUser = this.customerFactory.makeCustomer(user)
             if (this.loggedUser.userType == UserType.autista) {
-              this.loggedDriver = new Driver(this.loggedUser)
+              this.loggedDriver = new Driver( this.customerFactory.makeCustomer(this.loggedUser))
             }
             if (this.loggedUser.userType == UserType.studente) {
-              this.loggedStudent == new Studente(this.loggedUser)
+              this.loggedStudent == new Studente( this.customerFactory.makeCustomer(this.loggedUser))
             }
 
             if (this.loggedUser.userType == UserType.genitore) {
-              this.loggedParent = new Genitore(this.loggedUser)
+              this.loggedParent = new Genitore( this.customerFactory.makeCustomer(this.loggedUser))
+              console.log("logged parent",this.loggedParent)
             }
             if (this.loggedUser.userType == UserType.addetto) {
-              this.loggedAddetto = new Addetto(this.loggedUser)
+              this.loggedAddetto = new Addetto( this.customerFactory.makeCustomer(this.loggedUser))
             }
 
             console.log("user by email", user)
