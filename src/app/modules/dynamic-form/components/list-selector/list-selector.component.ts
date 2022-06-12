@@ -41,7 +41,9 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
 
   constructor() { }
   writeValue(obj: any): void {
-    this.itemsList = obj
+    console.log("wreiting",typeof obj)
+    if(obj){
+    this.itemsList.push( obj)}
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -54,11 +56,16 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
   }
 
   filter(ev){
-    console.log("typing",ev)
+    const item = ev.selector
+    console.log("typing",item)
+    this.itemsList.push(item)
+    this.itemsList =  Array.from(new Set(this.itemsList))
+    this.markAsTouched()
+    console.log("items",this.itemsList)
   }
 
   ngOnInit() {
-
+    this.itemsList = []
     this.formFields = [new SelectorQuestion({
       service:this.service,
       text:this.text,
