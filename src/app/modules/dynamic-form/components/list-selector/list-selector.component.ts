@@ -57,13 +57,16 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
   }
 
   filter(ev){
-    const item = ev.selector
-    console.log("typing",item)
-    this.itemsList.push(item)
-    this.itemsList =  Array.from(new Set(this.itemsList))
-    this.markAsTouched()
-    console.log("items",this.itemsList)
-    this.onChange(this.itemsList)
+    const Item = ev.selector
+    console.log("typing",Item)
+    if (this.itemsList.map((item:ItemModelInterface)=>{
+      return item.key
+    }).indexOf(Item.key)==-1){ // if item is not alredy in the list we push it 
+      this.itemsList.push(Item)
+      this.markAsTouched()
+      console.log("items",this.itemsList)
+      this.onChange(this.itemsList)
+    }
   }
 
   ngOnInit() {
