@@ -69,9 +69,7 @@ export class FolderPage implements OnInit {
 
       if (user) {
         const token = await user.getIdTokenResult(true)
-        this.log('user ok è', user)
         this.customers.getItemByEmail(user.email, (user) => {
-          console.log("got",user)
           if (user) {
             this.loggedUser = this.customerFactory.makeCustomer(user)
             if (this.loggedUser.userType == UserType.autista) {
@@ -89,10 +87,8 @@ export class FolderPage implements OnInit {
               this.loggedAddetto = new Addetto( this.customerFactory.makeCustomer(this.loggedUser))
             }
 
-            console.log("user by email", user)
           }
         })
-        console.log("user by email", this.loggedUser)
         this.showSpinner = false
 
         this.User.getItem
