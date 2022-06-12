@@ -2,10 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BusRide } from 'src/app/models/busRide';
 import { Driver } from 'src/app/models/Driver';
 import { RideStatus } from 'src/app/models/RideStatus';
+import { Studente } from 'src/app/models/studente';
 import { TrackingStatus } from 'src/app/models/trackingStatus';
+import { UserType } from 'src/app/models/usersType';
 import { LatLong } from 'src/app/modules/geolocation/models/latlong';
 import { DateModel } from 'src/app/modules/user/models/birthDateModel';
 import { BusRideServiceService } from 'src/app/services/busRide/bus-ride-service.service';
+import { StudentsService } from 'src/app/services/studenti/students.service';
 import { servicesVersion } from 'typescript';
 
 @Component({
@@ -18,7 +21,10 @@ export class DriversViewComponent implements OnInit {
   trackingStatus: TrackingStatus = TrackingStatus.trackingOff
   ride:BusRide
 
-  constructor(public service:BusRideServiceService) { }
+  constructor(
+    public service:BusRideServiceService,
+    public studentsService:StudentsService) { }
+  passengersList:Studente[] = []
 
   storeTrack(data:LatLong) {
     console.log("trackData", data)
@@ -58,6 +64,22 @@ export class DriversViewComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("bus",this.driver.vehicle)
+    this.studentsService.items.subscribe(items=>{
+      const studenti:Studente[] = items.filter(user=>{
+        return user.userType== UserType.studente
+      }).map(it=>{
+        return new Studente(it)
+      })
+      console.log("students",studenti)
+
+      this.passengersList = studenti.filter(student=>{
+        console.log("studente bus",student.busKey)
+        console.log("driver bus",this.driver.vehicle.key)
+       return student.busKey== this.driver.vehicle.key
+      })
+      console.log("passeggeri",this.passengersList)
+    })
   }
 
 }

@@ -2,3 +2,10 @@
 (trackingStarted)="trackingStarted($event)"
 (trackingStopped)="trackingStopped($event)"
 ></app-show-tracking>
+
+<ion-list>
+  <ion-item *ngFor="let item of passengersList">
+  
+ <ion-icon name="trash" (click)="remove(item)"></ion-icon>   <app-page-item [Item]="item" ></app-page-item>
+  </ion-item>
+</ion-list>
