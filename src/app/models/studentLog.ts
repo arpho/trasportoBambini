@@ -75,6 +75,13 @@ export class StudentLog implements ItemModelInterface {
   load(v?: {}) {
     if (v) {
       Object.assign(this, v)
+     
+    }
+    if(this.day){
+      this.day= new DateModel(new Date(this.day))
+    }
+    else{
+      this.day = new DateModel(new Date())
     }
     return this
   }
