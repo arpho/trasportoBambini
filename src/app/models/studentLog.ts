@@ -93,7 +93,7 @@ export class StudentLog implements ItemModelInterface {
       key: serializers.serialize2String(this.key),
       studentKey: serializers.serialize2String(this.studentKey),
       studentStatus: serializers.serialize2PositiveNumber(this.studentStatus, 1),
-      day:serializers.serialize2String( this.day.formatDate())
+      day:serializers.serialize2String( this.day.formatFullDate())
     }
   }
 }
