@@ -58,7 +58,6 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
   }
 
   ngOnInit() {
-    console.log("filter",this.filterFunction)
 
     this.formFields = [new SelectorQuestion({
       service:this.service,

@@ -91,7 +91,6 @@ export class SelectorItemsComponent implements OnInit, OnChanges, ControlValueAc
   constructor(public modalCtrl: ModalController, public modals: ModalsService) { }
 
   ngOnInit() {
-    console.log("filter in selector",this.filterFunction)
   }
 
   ngOnChanges(changes: SimpleChanges) {
