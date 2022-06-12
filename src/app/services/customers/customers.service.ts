@@ -19,6 +19,7 @@ import { DriverFactory } from 'src/app/businessLogic/DriverFactory';
 import { Driver } from 'src/app/models/Driver';
 import { SchoolsService } from '../scuole/schools.service';
 import { CustomersFactoryService } from './business/customers-constructor.service';
+import { PopulateChildren } from './business/populateChildren';
 @Injectable({
   providedIn: 'root'
 })
@@ -52,10 +53,14 @@ db:Database
       this.items_list = []
       snapshot.forEach(e => {
         const item = this.customersFactory.makeCustomer(e.val()).setKey(e.key)
- 
+        
         this.items_list.push(item)
 
 
+      })
+      this.items_list.forEach((user:Utente)=>{
+
+        new PopulateChildren().doitOn(user,this.items_list)
       })
       this.publishItems(this.items_list)
     })
