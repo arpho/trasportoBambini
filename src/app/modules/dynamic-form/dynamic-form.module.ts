@@ -26,9 +26,12 @@ import { ListSelectorComponent } from './components/list-selector/list-selector.
     IonicModule.forRoot(),
     ReactiveFormsModule,
     ItemModule,
-    GeolocationModule
+    GeolocationModule,
   ],
-  exports: [QuestionFormComponent, DynamicFormComponent],
+  exports: [
+    QuestionFormComponent,
+    DynamicFormComponent
+  ],
   providers: [QuestionControlService]
 })
 export class DynamicFormModule { }
