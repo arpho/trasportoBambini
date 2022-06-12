@@ -22,6 +22,7 @@ export class QuestionBase<T> {
   retypePassword?:boolean
   presentation?:'date'|'date-time'|'time'
   service: ItemServiceInterface
+  hideSelectedItem?:boolean
   labelFalse: string;
   text: string;
   disabled: boolean
