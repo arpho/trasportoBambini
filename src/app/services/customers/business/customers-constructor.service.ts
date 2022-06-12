@@ -24,7 +24,7 @@ export class CustomersFactoryService {
   ) { }
 
   makeCustomer(d: {}): Utente | Studente | Driver | Genitore | Addetto {
-    var customer: Utente | Studente
+    var customer: Utente | Studente |Genitore
     if (d['userType'] == UserType.addetto) {
       customer = new Addetto(d)
   
