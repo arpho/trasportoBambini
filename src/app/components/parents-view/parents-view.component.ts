@@ -19,6 +19,7 @@ export class ParentsViewComponent implements OnInit,OnChanges {
   @Input() parent:Genitore
 _studentsList:BehaviorSubject<Array<Studente>> = new BehaviorSubject([])
 readonly students:Observable<Array<Studente>> = this._studentsList.asObservable()
+  todayLogs: StudentLog[];
 
 
   constructor(
@@ -50,14 +51,28 @@ this.toaster.presentToast(`${item.getTitle().value} ${log.day.formatDate()} non 
     this.Logs.items.subscribe(items=>{
       console.log("log",items)
       const today = new DateModel(new Date())
-      const todayLogs = items.filter(log=>{
+       this.todayLogs = items.filter(log=>{
         console.log("log",log)
         return log.day.formatDate()== today.formatDate()
       })
-      console.log("today logs",todayLogs)
+      console.log("today logs",this.todayLogs)
     })
 
  
+  }
+
+  setStudentStatus(student:Studente){
+    let out = "ritardo"
+    const log4Student = this.todayLogs.filter(log=>{
+      return log.studentKey==student.key})[0]
+      console.log('log4 student',log4Student)
+      if(!log4Student){
+        out = "presente"
+      }
+      if(log4Student &&log4Student.studentStatus==StudentStatus.assente){
+        out= "assente"
+      }
+      return out
   }
 
 }
