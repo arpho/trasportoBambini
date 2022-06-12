@@ -60,7 +60,7 @@ export class PageItemsListComponent implements OnInit, OnChanges,OnDestroy {
 
   getMultiplicityText() {
     var out = this.dummyItem.getCountingText().plural
-    if ( this.countItems()== "nessun") {
+    if ( this.countItems()== "nessun"||this.countItems()==1) {
       out = this.dummyItem.getCountingText().singular
     }
     
