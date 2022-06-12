@@ -66,6 +66,16 @@ db:Database
     })
   }
 
+  getItemByEmail(email:string,next:(item:Utente)=>void){
+    this.items.subscribe(items=>{
+      const item = items.filter(Item=>{
+        return Item.email==email
+      })[0]
+      console.log('found',item)
+      next(item)
+    })
+  }
+
   // add admin cloud funxction
   adAddminRole(adminEmail:string){
 	  const functions = getFunctions()
