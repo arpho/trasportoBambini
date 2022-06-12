@@ -27,7 +27,6 @@ export class CustomersFactoryService {
     var customer: Utente | Studente
     if (d['userType'] == UserType.addetto) {
       customer = new Addetto(d)
-      console.log("addetto",customer)
   
     }
     if (d['userType'] == UserType.autista) {
@@ -49,7 +48,6 @@ export class CustomersFactoryService {
           customer["bus"] = vehicle
         })
       }
-      console.log("studente",customer)
 
 
       if (d["collectionPointKey"]) {
