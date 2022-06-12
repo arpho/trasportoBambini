@@ -58,6 +58,7 @@ export class UpdateParentPage implements OnInit {
 
   ngOnInit() {
     this.parent = this.navParams.get('item')
+    console.log("editing",this.parent)
     this.title = `modifica ${this.parent.getTitle().value}`
     console.log('parent ',this.parent)
     const filterStudent = (item:Utente)=>{
@@ -71,6 +72,7 @@ export class UpdateParentPage implements OnInit {
       new ListSelectorQuestion({
         service:this.service,
         text:"studenti",
+        value:this.parent.children,
         filterFunction:filterStudent,
         createPopup:NewStudentPage,
         label:"figli",
