@@ -3,10 +3,14 @@ import { BusRide } from 'src/app/models/busRide';
 import { Driver } from 'src/app/models/Driver';
 import { RideStatus } from 'src/app/models/RideStatus';
 import { Studente } from 'src/app/models/studente';
+import { StudentLog } from 'src/app/models/studentLog';
+import { StudentStatus } from 'src/app/models/studentStatus';
 import { TrackingStatus } from 'src/app/models/trackingStatus';
 import { UserType } from 'src/app/models/usersType';
 import { LatLong } from 'src/app/modules/geolocation/models/latlong';
+import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { DateModel } from 'src/app/modules/user/models/birthDateModel';
+import { StudentLogService } from 'src/app/services/Business/student-log.service';
 import { BusRideServiceService } from 'src/app/services/busRide/bus-ride-service.service';
 import { StudentsService } from 'src/app/services/studenti/students.service';
 import { servicesVersion } from 'typescript';
@@ -23,6 +27,8 @@ export class DriversViewComponent implements OnInit {
 
   constructor(
     public service:BusRideServiceService,
+    public logService:StudentLogService,
+    public toaster:MyToastService,
     public studentsService:StudentsService) { }
   passengersList:Studente[] = []
 
@@ -63,6 +69,19 @@ export class DriversViewComponent implements OnInit {
     console.log("tracking stopped", data)
   }
 
+  setLate(student:Studente){
+    const log = new StudentLog()
+    log.studentKey= student.key
+    log.studentStatus = StudentStatus.ritardo
+    this.logService.createItem(log).then(()=>{
+      this.toaster.presentToast(`il ritardo dello studente ${student.getTitle().value} è stato registrato`).
+      catch(err=>{
+        console.error(err)
+        this.toaster.presentToast("ho riscontrato dei problemi, ritenta")
+      })
+    })
+
+  }
   ngOnInit() {
     this.studentsService.items.subscribe(items=>{
       const studenti:Studente[] = items.filter(user=>{
