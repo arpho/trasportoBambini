@@ -62,6 +62,7 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
     this.itemsList =  Array.from(new Set(this.itemsList))
     this.markAsTouched()
     console.log("items",this.itemsList)
+    this.onChange(this.itemsList)
   }
 
   ngOnInit() {
