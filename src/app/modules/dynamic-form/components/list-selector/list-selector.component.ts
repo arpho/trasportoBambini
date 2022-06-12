@@ -29,6 +29,7 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
   @Output() selectedItem: EventEmitter<ItemModelInterface> = new EventEmitter()
   @Input() createPopup
   @Input() filterFunction: (item: ItemModelInterface) => boolean
+  @Input() filterShownItems: (item: ItemModelInterface) => boolean
   @Input() sorterFunction: (a: ItemModelInterface, b: ItemModelInterface) => number
   hideSubmitButton = true
   private onTouch: Function = () => { };
@@ -66,11 +67,14 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
   }
 
   ngOnInit() {
+
+    console.log("filter shown",this.filterShownItems)
     this.itemsList = []
     this.formFields = [new SelectorQuestion({
       service:this.service,
       text:this.text,
-      filterFunction:this.filterFunction,
+      filterFunction:this.filterShownItems,
+      filterShownItems:this.filterShownItems,
       createPopup:this.createPopup,
       label:"",
       key:"selector"

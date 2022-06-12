@@ -73,7 +73,7 @@ export class UpdateParentPage implements OnInit {
         service:this.service,
         text:"studenti",
         value:this.parent.children,
-        filterFunction:filterStudent,
+        filterShownItems:filterStudent,
         createPopup:NewStudentPage,
         label:"figli",
         key:"children"

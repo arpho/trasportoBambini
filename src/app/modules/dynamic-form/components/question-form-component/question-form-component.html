@@ -45,7 +45,7 @@
         [id]="question?.key"
          [text]="question?.text" [service]="question?.service" (selectedItem)="question.selectedItem($event)"
           [sorterFunction]="question?.sorterFunction"
-          [filterFunction]="question?.filterFunction"
+          [filterShownItems]="question?.filterShownItems"
           [createPopup]= "question?.createPopup"
           [item]="question?.value"
           (selectedItem)="question.selectedItem($event)"

@@ -34,6 +34,7 @@ export class QuestionBase<T> {
 
 
 
+
   constructor(
     options: QuestionProperties<any> | { key: string, label: string }
   ) {
@@ -44,9 +45,11 @@ export class QuestionBase<T> {
     this.required = !!options['required'];
     this.value = options['value']
     this.filterFunction = options['filterFunction']
+    this.filterShownItems=options["filterShownItems"]
     this.order = options['order'] === undefined ? 1 : options['order'];
     this.controlType = options['controlType'] || "";
     // tslint:disable-next-line: prefer-const
+    console.log("filter shown",this.filterShownItems)
     for (let key in options) {
       if (options[key]) {
         this[key] = options[key]
