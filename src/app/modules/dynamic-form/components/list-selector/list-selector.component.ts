@@ -15,11 +15,11 @@ import { SelectorQuestion } from '../../models/question-selector';
       multi: true,
       useExisting: ListSelectorComponent
     },
- 
+
   ]
 })
-export class ListSelectorComponent implements OnInit,ControlValueAccessor {
-  itemsList: ItemModelInterface[]=[]
+export class ListSelectorComponent implements OnInit, ControlValueAccessor {
+  itemsList: ItemModelInterface[] = []
   @Input() text: string
   // tslint:disable: no-input-rename
   // tslint:disable-next-line: variable-name
@@ -35,16 +35,16 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
   private onTouch: Function = () => { };
   private onValidationChange: any = () => { };
   private onChange: Function = (password: string) => { };
-  formFields:any[] 
-  disabled:boolean= false
+  formFields: any[]
+  disabled: boolean = false
   touched = false
 
 
   constructor() { }
   writeValue(obj: any): void {
-    console.log("wreiting",obj)
-    if(obj){
-    this.itemsList.push(... obj)}
+    if (obj) {
+      this.itemsList.push(...obj)
+    }
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -53,18 +53,16 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
     this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled= isDisabled
+    this.disabled = isDisabled
   }
 
-  filter(ev){
+  filter(ev) {
     const Item = ev.selector
-    console.log("typing",Item)
-    if (this.itemsList.map((item:ItemModelInterface)=>{
+    if (this.itemsList.map((item: ItemModelInterface) => {
       return item.key
-    }).indexOf(Item.key)==-1){ // if item is not alredy in the list we push it 
+    }).indexOf(Item.key) == -1) { // if item is not alredy in the list we push it 
       this.itemsList.push(Item)
       this.markAsTouched()
-      console.log("items",this.itemsList)
       this.onChange(this.itemsList)
     }
   }
@@ -72,14 +70,14 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
   ngOnInit() {
     this.itemsList = []
     this.formFields = [new SelectorQuestion({
-      service:this.service,
-      text:this.text,
-      hideSelectedItem:true,
-      filterFunction:this.filterShownItems,
-      filterShownItems:this.filterShownItems,
-      createPopup:this.createPopup,
-      label:"",
-      key:"selector"
+      service: this.service,
+      text: this.text,
+      hideSelectedItem: true,
+      filterFunction: this.filterShownItems,
+      filterShownItems: this.filterShownItems,
+      createPopup: this.createPopup,
+      label: "",
+      key: "selector"
     })]
   }
 

@@ -49,7 +49,6 @@ export class QuestionBase<T> {
     this.order = options['order'] === undefined ? 1 : options['order'];
     this.controlType = options['controlType'] || "";
     // tslint:disable-next-line: prefer-const
-    console.log("filter shown",this.filterShownItems)
     for (let key in options) {
       if (options[key]) {
         this[key] = options[key]

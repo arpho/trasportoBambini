@@ -93,7 +93,6 @@ export class SelectorItemsComponent implements OnInit, OnChanges, ControlValueAc
   constructor(public modalCtrl: ModalController, public modals: ModalsService) { }
 
   ngOnInit() {
-    console.log("hide item",this.hideSelectedItem)
   }
 
   ngOnChanges(changes: SimpleChanges) {
