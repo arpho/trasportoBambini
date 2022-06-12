@@ -2,4 +2,4 @@
 <ion-button (click)="action()">
     <ion-icon name="list" (click)="action()"></ion-icon>
 </ion-button>
-<h2>{{item ? item?.getTitle()?.value:''}}</h2>
+<h2 *ngIf="!hideSelectedItem">{{item ? item?.getTitle()?.value:''}}</h2>

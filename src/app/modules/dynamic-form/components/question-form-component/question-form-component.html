@@ -47,6 +47,7 @@
           [sorterFunction]="question?.sorterFunction"
           [filterShownItems]="question?.filterShownItems"
           [createPopup]= "question?.createPopup"
+          [hideSelectedItem]="question?.hideSelectedItem"
           [item]="question?.value"
           (selectedItem)="question.selectedItem($event)"
       ></app-list-selector>
@@ -106,6 +107,7 @@
           [sorterFunction]="question?.sorterFunction"
           [filterFunction]="question?.filterFunction"
           [filterShownItems]="question?.filterShownItems"
+          [hideSelectedItem]="question?.hideSelectedItem"
           [createPopup]= "question?.createPopup"
           [item]="question?.value"
           (selectedItem)="question.selectedItem($event)" ></app-selector-items>

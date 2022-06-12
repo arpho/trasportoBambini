@@ -41,6 +41,7 @@ export class SelectorItemsComponent implements OnInit, OnChanges, ControlValueAc
   @Input() service: ItemServiceInterface
   @Output() selectedItem: EventEmitter<ItemModelInterface> = new EventEmitter()
   @Input() createPopup
+  @Input() hideSelectedItem:boolean
   @Input() filterFunction: (item: ItemModelInterface, arg: any) => boolean
   @Input() sorterFunction: (a: ItemModelInterface, b: ItemModelInterface) => number
   @Input() filterShownItems: (item: ItemModelInterface) => boolean
@@ -92,6 +93,7 @@ export class SelectorItemsComponent implements OnInit, OnChanges, ControlValueAc
   constructor(public modalCtrl: ModalController, public modals: ModalsService) { }
 
   ngOnInit() {
+    console.log("hide item",this.hideSelectedItem)
   }
 
   ngOnChanges(changes: SimpleChanges) {

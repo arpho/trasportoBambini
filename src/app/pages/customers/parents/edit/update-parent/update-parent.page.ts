@@ -74,6 +74,7 @@ export class UpdateParentPage implements OnInit {
         text:"studenti",
         value:this.parent.children,
         filterShownItems:filterStudent,
+        hideSelectedItem:true,
         createPopup:NewStudentPage,
         label:"figli",
         key:"children"
