@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { configs } from 'src/app/configs/credentials';
 import { StudentLog } from 'src/app/models/studentLog';
 import { MyFirebaseHelper } from 'src/app/modules/helpers/createFirebaseApp';
@@ -24,6 +25,7 @@ export class StudentLogService implements ItemServiceInterface {
     new MyFirebaseHelper().createFirebaseApp(configs.firebase)
     this.db = getDatabase()
     this.itemsListRef = ref(this.db, this.reference)
+    this.loadDataAndPublish()
   }
 
 
@@ -55,12 +57,14 @@ export class StudentLogService implements ItemServiceInterface {
 
       this.items_list = []
       snapshot.forEach(e => {
-        const item = new StudentLog(e.val()).setKey(e.key)
 
+        const item = new StudentLog(e.val()).setKey(e.key)
+        console.log(item)
         this.items_list.push(item)
 
 
       })
+      this._items.next(this.items_list)
     })
   }
 }
