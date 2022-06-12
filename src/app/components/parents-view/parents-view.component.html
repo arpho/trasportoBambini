@@ -1,3 +1,6 @@
-<p>
-  parents-view works!
-</p>
+<ion-list>
+  <ion-item *ngFor="let item of students|async">
+  
+ <ion-icon name="trash" (click)="remove(item)"></ion-icon>   <app-page-item [Item]="item" ></app-page-item>
+  </ion-item>
+</ion-list>
