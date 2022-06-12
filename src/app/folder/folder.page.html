@@ -23,7 +23,7 @@
 
 
 <app-drivers-view [driver]="loggedDriver" *ngIf="loggedUser?.userType==2"></app-drivers-view>
-
+<app-parents-view [parent]="loggedParent" *ngIf="loggedUser?.userType==1"></app-parents-view>
 
 <!-- <app-template></app-template> -->
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Genitore } from 'src/app/models/genitore';
 
 @Component({
   selector: 'app-parents-view',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parents-view.component.scss'],
 })
 export class ParentsViewComponent implements OnInit {
+  @Input() parent:Genitore
 
   constructor() { }
 
