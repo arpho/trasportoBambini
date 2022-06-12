@@ -53,6 +53,10 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
     this.disabled= isDisabled
   }
 
+  filter(ev){
+    console.log("typing",ev)
+  }
+
   ngOnInit() {
 
     this.formFields = [new SelectorQuestion({
