@@ -64,18 +64,14 @@ export class DriversViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("bus",this.driver.vehicle)
     this.studentsService.items.subscribe(items=>{
       const studenti:Studente[] = items.filter(user=>{
         return user.userType== UserType.studente
       }).map(it=>{
         return new Studente(it)
       })
-      console.log("students",studenti)
 
       this.passengersList = studenti.filter(student=>{
-        console.log("studente bus",student.busKey)
-        console.log("driver bus",this.driver.vehicle.key)
        return student.busKey== this.driver.vehicle.key
       })
       console.log("passeggeri",this.passengersList)
