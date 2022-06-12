@@ -45,7 +45,7 @@
         [id]="question?.key"
          [text]="question?.text" [service]="question?.service" (selectedItem)="question.selectedItem($event)"
           [sorterFunction]="question?.sorterFunction"
-          [filterFunction]="question?.ItemsFilterFunction"
+          [filterFunction]="question?.filterFunction"
           [createPopup]= "question?.createPopup"
           [item]="question?.value"
           (selectedItem)="question.selectedItem($event)"
@@ -104,7 +104,7 @@
         [id]="question?.key"
          [text]="question?.text" [service]="question?.service" (selectedItem)="question.selectedItem($event)"
           [sorterFunction]="question?.sorterFunction"
-          [filterFunction]="question?.ItemsFilterFunction"
+          [filterFunction]="question?.filterFunction"
           [createPopup]= "question?.createPopup"
           [item]="question?.value"
           (selectedItem)="question.selectedItem($event)" ></app-selector-items>
