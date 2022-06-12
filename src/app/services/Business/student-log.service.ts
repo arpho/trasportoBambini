@@ -17,11 +17,13 @@ export class StudentLogService implements ItemServiceInterface {
   items_list: Array<StudentLog> = []
   reference: string = "studentLog"
   db: Database
+  
 
 
   constructor() {
     new MyFirebaseHelper().createFirebaseApp(configs.firebase)
     this.db = getDatabase()
+    this.itemsListRef = ref(this.db, this.reference)
   }
 
 
