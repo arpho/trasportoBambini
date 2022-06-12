@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { Genitore } from 'src/app/models/genitore';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
+import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { ListSelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector-list';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';

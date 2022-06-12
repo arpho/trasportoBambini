@@ -40,7 +40,16 @@
 
     </section>
     <section *ngSwitchCase="'itemListSelector'">
-      <app-list-selector></app-list-selector>
+      <app-list-selector
+      [formControlName]="question?.key"
+        [id]="question?.key"
+         [text]="question?.text" [service]="question?.service" (selectedItem)="question.selectedItem($event)"
+          [sorterFunction]="question?.sorterFunction"
+          [filterFunction]="question?.ItemsFilterFunction"
+          [createPopup]= "question?.createPopup"
+          [item]="question?.value"
+          (selectedItem)="question.selectedItem($event)"
+      ></app-list-selector>
       </section>
     
 
