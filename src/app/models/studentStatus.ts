@@ -1,6 +1,6 @@
 export enum StudentStatus {
-    presente = 1,
-    assente,
+    assente = 0,
+    presente,
     ritardo
 }
 
