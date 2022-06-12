@@ -41,9 +41,9 @@ export class ListSelectorComponent implements OnInit,ControlValueAccessor {
 
   constructor() { }
   writeValue(obj: any): void {
-    console.log("wreiting",typeof obj)
+    console.log("wreiting",obj)
     if(obj){
-    this.itemsList.push( obj)}
+    this.itemsList.push(... obj)}
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
