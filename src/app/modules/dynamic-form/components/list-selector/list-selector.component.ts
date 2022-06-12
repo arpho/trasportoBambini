@@ -20,7 +20,7 @@ export class ListSelectorComponent implements OnInit {
   @Input() createPopup
   @Input() filterFunction: (item: ItemModelInterface) => boolean
   @Input() sorterFunction: (a: ItemModelInterface, b: ItemModelInterface) => number
-
+  hideSubmitButton = true
 
  
   formFields:any[] 
@@ -28,6 +28,7 @@ export class ListSelectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
     this.formFields = [new SelectorQuestion({
       service:this.service,
       text:this.text,
