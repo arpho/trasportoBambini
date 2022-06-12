@@ -48,7 +48,8 @@ export class StudentLog implements ItemModelInterface {
     throw new Error("Method not implemented.")
   }
   setKey?(key: string): StudentLog {
-    throw new Error("Method not implemented.")
+   this.key= key
+   return this
   }
   getEditPopup(item?: ItemModelInterface, service?: ItemServiceInterface) {
     throw new Error("Method not implemented.")
@@ -70,7 +71,7 @@ export class StudentLog implements ItemModelInterface {
   }
   studentKey: string
   day: DateModel
-  status: StudentStatus=1
+  studentStatus: StudentStatus=1
   key: string
   load(v?: {}) {
     if (v) {
@@ -91,7 +92,7 @@ export class StudentLog implements ItemModelInterface {
     return {
       key: serializers.serialize2String(this.key),
       studentKey: serializers.serialize2String(this.studentKey),
-      StudentStatus: serializers.serialize2PositiveNumber(this.status, 1),
+      studentStatus: serializers.serialize2PositiveNumber(this.studentStatus, 1),
       day:serializers.serialize2String( this.day.formatDate())
     }
   }
