@@ -41,8 +41,9 @@ export class SelectorItemsComponent implements OnInit, OnChanges, ControlValueAc
   @Input() service: ItemServiceInterface
   @Output() selectedItem: EventEmitter<ItemModelInterface> = new EventEmitter()
   @Input() createPopup
-  @Input() filterFunction: (item: ItemModelInterface) => boolean
+  @Input() filterFunction: (item: ItemModelInterface, arg: any) => boolean
   @Input() sorterFunction: (a: ItemModelInterface, b: ItemModelInterface) => number
+  @Input() filterShownItems: (item: ItemModelInterface) => boolean
   // @Input() formControlName: string
 
   @HostBinding('attr.id')
