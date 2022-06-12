@@ -67,6 +67,14 @@ export class ListSelectorComponent implements OnInit, ControlValueAccessor {
     }
   }
 
+  remove(item:ItemModelInterface){
+    this.itemsList = this.itemsList.filter(i=>{
+      return i.key!=item.key
+    })
+    this.markAsTouched()
+    this.onChange(this.itemsList)
+  }
+
   ngOnInit() {
     this.itemsList = []
     this.formFields = [new SelectorQuestion({
