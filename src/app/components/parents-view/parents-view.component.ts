@@ -52,10 +52,8 @@ this.toaster.presentToast(`${item.getTitle().value} ${log.day.formatDate()} non 
       console.log("log",items)
       const today = new DateModel(new Date())
        this.todayLogs = items.filter(log=>{
-        console.log("log",log)
         return log.day.formatDate()== today.formatDate()
       })
-      console.log("today logs",this.todayLogs)
     })
 
  
