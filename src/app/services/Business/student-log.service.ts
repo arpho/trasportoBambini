@@ -59,7 +59,6 @@ export class StudentLogService implements ItemServiceInterface {
       snapshot.forEach(e => {
 
         const item = new StudentLog(e.val()).setKey(e.key)
-        console.log(item)
         this.items_list.push(item)
 
 
