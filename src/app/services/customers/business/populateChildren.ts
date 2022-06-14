@@ -8,10 +8,12 @@ export class PopulateChildren{
   doitOn(parent:Utente, items:Utente[]){
     if(parent.userType==UserType.genitore){
       let genitore = new Genitore(parent)
-      const figli = items.filter((user)=>{
-        return genitore.childrenKeys.indexOf(user.key)>-1
-      })
-      parent['children']= figli
+      if(genitore.childrenKeys){
+        const figli = items.filter((user)=>{
+          return genitore.childrenKeys.indexOf(user.key)>-1
+        })
+        parent['children']= figli
+     }
     }
   }
 }
