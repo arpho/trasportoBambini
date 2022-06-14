@@ -69,26 +69,28 @@ export class FolderPage implements OnInit {
 
       if (user) {
         const token = await user.getIdTokenResult(true)
-        this.customers.getItemByEmail(user.email, (user) => {
+        user["userType"]= token.claims.userType
+        user["enabled"] = token.claims.enabled
+      //  this.customers.getItemByEmail(user.email, (user) => {
           if (user) {
             this.loggedUser = this.customerFactory.makeCustomer(user)
             if (this.loggedUser.userType == UserType.autista) {
-              this.loggedDriver = new Driver( this.customerFactory.makeCustomer(this.loggedUser))
+              this.loggedDriver = this.customerFactory.makeCustomer(this.loggedUser) as Driver
             }
             if (this.loggedUser.userType == UserType.studente) {
               this.loggedStudent == new Studente( this.customerFactory.makeCustomer(this.loggedUser))
             }
 
             if (this.loggedUser.userType == UserType.genitore) {
-              this.loggedParent = new Genitore( this.customerFactory.makeCustomer(this.loggedUser))
+              this.loggedParent = this.customerFactory.makeCustomer(this.loggedUser) as Genitore
               console.log("logged parent",this.loggedParent)
             }
             if (this.loggedUser.userType == UserType.addetto) {
-              this.loggedAddetto = new Addetto( this.customerFactory.makeCustomer(this.loggedUser))
+              this.loggedAddetto = this.customerFactory.makeCustomer(this.loggedUser) as Addetto
             }
 
           }
-        })
+        //})
         this.showSpinner = false
 
         this.User.getItem
