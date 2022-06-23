@@ -23,7 +23,7 @@ export class UpdateParentPage implements OnInit {
   public formFields:any[] = [
     new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.parent.firstName }),
     new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.parent.lastName }),
-    new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.parent.address })
+    new AddressQuestion({ key: 'address', label: 'indirizzo', value: this.parent.address }),
   ]
 
 
