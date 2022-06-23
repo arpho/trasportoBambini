@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DriverFactory } from 'src/app/businessLogic/DriverFactory';
-import { Addetto } from 'src/app/models/Addetto';
+import { Clerk } from 'src/app/models/Addetto';
 import { CollectionPoint } from 'src/app/models/collectionPoints';
 import { Driver } from 'src/app/models/Driver';
 import { Genitore } from 'src/app/models/genitore';
@@ -23,10 +23,10 @@ export class CustomersFactoryService {
     public collectionPointsService: CollectionPointsService
   ) { }
 
-  makeCustomer(d: {}): Utente | Studente | Driver | Genitore | Addetto {
+  makeCustomer(d: {}): Utente | Studente | Driver | Genitore | Clerk {
     var customer: Utente | Studente |Genitore
     if (d['userType'] == UserType.addetto) {
-      customer = new Addetto(d)
+      customer = new Clerk(d)
   
     }
     if (d['userType'] == UserType.autista) {

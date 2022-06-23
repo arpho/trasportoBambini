@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Address } from '../modules/geolocation/models/Address';
 import { DateModel } from '../modules/user/models/birthDateModel';
 import { StudentsService } from '../services/studenti/students.service';
-import { Addetto, Autista } from './Addetto';
+import { Clerk, Autista } from './Addetto';
 import { Genitore } from './genitore';
 import { Studente } from './studente';
 import { UserType } from './usersType';
@@ -56,7 +56,7 @@ describe('testing users class', () => {
   })
 
   it('set the right userType', () => {
-    const addetto = new Addetto()
+    const addetto = new Clerk()
     const autista = new Autista()
     const genitore = new Genitore()
     const studednte = new Studente()

@@ -32,7 +32,7 @@ export class Autista extends Utente {
     }
 }
 
-export class Addetto extends Utente {
+export class Clerk extends Utente {
     mansione: string
     key: string
     getElement(): { element: string; genere: "o"; } {

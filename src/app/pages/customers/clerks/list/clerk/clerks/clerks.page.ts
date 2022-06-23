@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Addetto } from 'src/app/models/Addetto';
+import { Clerk } from 'src/app/models/Addetto';
 import { UserType } from 'src/app/models/usersType';
 import { Utente } from 'src/app/models/Utente';
 import { ClerksService } from "../../../../../../services/addetti/adetti.service"
@@ -12,7 +12,7 @@ import { UpdateClerkPage } from '../../../edit/update-clerk/update-clerk.page';
   styleUrls: ['./clerks.page.scss'],
 })
 export class ClerksPage implements OnInit {
-  clerk = new Addetto()
+  clerk = new Clerk()
   createModalPage = NewClerkPage
   editModalPage = UpdateClerkPage
   filterFunction(item: Utente) {
