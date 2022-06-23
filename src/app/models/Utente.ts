@@ -5,7 +5,7 @@ import { UserType } from "./usersType"
 import { Telephone } from "./telephone"
 import { Value } from "../modules/item/models/value"
 import { configs } from "../configs/configs"
-import { UserTpeModedl } from "../modules/user/models/UserTypeModel"
+import { UserTypeModel } from "../modules/user/models/UserTypeModel"
 import { RoleModel } from "../modules/user/models/privilegesLevelModel"
 
 export class Utente extends UserModel {
@@ -84,7 +84,7 @@ export class Utente extends UserModel {
     getUserTypeKey(level) {
 
         var out = configs.userType.filter(
-            (access: UserTpeModedl) => access.value === level
+            (access: UserTypeModel) => access.value === level
         )[0]
 
         return out ? out.key : ''
