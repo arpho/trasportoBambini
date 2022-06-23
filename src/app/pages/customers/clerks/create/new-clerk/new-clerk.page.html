@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>newClerk</ion-title>
+    <ion-title>Nuovo Addetto</ion-title>
      <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
         <ion-icon name="close"></ion-icon>
@@ -10,5 +10,7 @@
 </ion-header>
 
 <ion-content>
+
+  <app-dynamic-form [questions]="formFields" (interactiveSubmit)="filter($event)" (singleSubmit)="submit($event)"></app-dynamic-form>
 
 </ion-content>
