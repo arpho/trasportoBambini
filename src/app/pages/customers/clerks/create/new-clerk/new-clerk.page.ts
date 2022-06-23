@@ -55,6 +55,7 @@ export class NewClerkPage implements OnInit {
         claims: {
           enabled: true,
           userType: this.clerk.userType,
+          mustChangePassword:true,
           role: configs.accessLevel[1].value // utente responsabile
         }
       })
