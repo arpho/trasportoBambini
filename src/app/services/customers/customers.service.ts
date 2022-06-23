@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Addetto, Autista } from 'src/app/models/Addetto';
+import { Clerk, Autista } from 'src/app/models/Addetto';
 import { Genitore } from 'src/app/models/genitore';
 import { Studente } from 'src/app/models/studente';
 import { UserType } from 'src/app/models/usersType';
@@ -91,6 +91,7 @@ db:Database
 return	addAdminRole({ email: adminEmail })
  } // add claims cloud funxction
  addCustomClaim(data:{email:string, claims:{}}){
+  console.log("setting claims",data.claims)
 	const functions = getFunctions()
 
   const addAdminRole = httpsCallable(functions,'addAdminRole')
