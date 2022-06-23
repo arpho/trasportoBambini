@@ -1,6 +1,6 @@
 import { UserType } from "../models/usersType";
 import { RoleModel } from "../modules/user/models/privilegesLevelModel";
-import { UserTpeModedl } from "../modules/user/models/UserTypeModel";
+import { UserTypeModel } from "../modules/user/models/UserTypeModel";
 
 export const configs = {
   accessLevel: [
@@ -14,5 +14,8 @@ export const configs = {
 	  {key:"autista",value:UserType.autista},
 	  {key:"addetto",value:UserType.addetto}
   ],
-  offlineEntityNumber: 0
+  offlineEntityNumber: 0,
+  standardPassword:"Password!"
 };
+
+
