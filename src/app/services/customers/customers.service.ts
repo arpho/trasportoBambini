@@ -20,6 +20,7 @@ import { Driver } from 'src/app/models/Driver';
 import { SchoolsService } from '../scuole/schools.service';
 import { CustomersFactoryService } from './business/customers-constructor.service';
 import { PopulateChildren } from './business/populateChildren';
+import { AuthService } from 'src/app/modules/user/services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +33,9 @@ reference: string;
 db:Database
 
   constructor(
-    public customersFactory:CustomersFactoryService ) {
+    public customersFactory:CustomersFactoryService,
+    public authService:AuthService
+    ) {
     new MyFirebaseHelper().createFirebaseApp(configs.firebase)
     this.reference = 'userProfile'
     this.db = getDatabase()
@@ -64,6 +67,10 @@ db:Database
       })
       this.publishItems(this.items_list)
     })
+  }
+
+  createAuthUser(email:string,password:string){
+    return this.authService.createUserObserver(email,password)
   }
 
   getItemByEmail(email:string,next:(item:Utente)=>void){
