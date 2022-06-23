@@ -7,6 +7,7 @@ import { Value } from "../modules/item/models/value"
 import { configs } from "../configs/configs"
 import { UserTypeModel } from "../modules/user/models/UserTypeModel"
 import { RoleModel } from "../modules/user/models/privilegesLevelModel"
+import { Serializers } from "../modules/helpers/serializers"
 
 export class Utente extends UserModel {
     address: Address
@@ -41,13 +42,14 @@ export class Utente extends UserModel {
     }
 
     serialize() {
+      const  serializers = new Serializers()
 
         const telephones = this.telephones.map((t: Telephone) => t.serialize())
 
         var out = {
             ...super.serialize(),
             ...{
-				level:this.level,
+				level:serializers.serialize2PositiveNumber( this.level,3),
                 telephones: telephones,
                 archived: !!this.archived,
                 dor: new DateModel(this.dor).formatDate(),
