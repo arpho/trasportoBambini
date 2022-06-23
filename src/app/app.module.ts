@@ -37,6 +37,8 @@ import { GeolocationModule } from './modules/geolocation/geolocation.module';
 import { DriversViewComponent } from './components/views/drivers-view/drivers-view.component';
 import { ParentsViewComponent } from './components/parents-view/parents-view.component';
 import { ClerksPage } from './pages/customers/clerks/list/clerk/clerks/clerks.page';
+import { NewClerkPage } from './pages/customers/clerks/create/new-clerk/new-clerk.page';
+import { UpdateClerkPage } from './pages/customers/clerks/edit/update-clerk/update-clerk.page';
 
 @NgModule({
   declarations: [
@@ -60,9 +62,9 @@ import { ClerksPage } from './pages/customers/clerks/list/clerk/clerks/clerks.pa
     FolderPage,
     DriversViewComponent,
     ParentsViewComponent,
-    ClerksPage
-  
-    
+    ClerksPage,
+    NewClerkPage,
+    UpdateClerkPage    
   ],
   entryComponents: [],
   imports: [

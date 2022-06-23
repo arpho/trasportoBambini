@@ -15,6 +15,6 @@ import { NewClerkPage } from './new-clerk.page';
     IonicModule,
     NewClerkPageRoutingModule
   ],
-  declarations: [NewClerkPage]
+  declarations: []
 })
 export class NewClerkPageModule {}

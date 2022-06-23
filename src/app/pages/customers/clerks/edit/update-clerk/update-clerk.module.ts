@@ -15,6 +15,6 @@ import { UpdateClerkPage } from './update-clerk.page';
     IonicModule,
     UpdateClerkPageRoutingModule
   ],
-  declarations: [UpdateClerkPage]
+  declarations: []
 })
 export class UpdateClerkPageModule {}
