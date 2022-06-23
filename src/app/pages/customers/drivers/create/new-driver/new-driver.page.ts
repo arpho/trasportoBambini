@@ -25,7 +25,11 @@ export class NewDriverPage implements OnInit {
     [
       new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.driver.firstName }),
       new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.driver.lastName }),
-      new EmailQuestion({key:"email",label:"email",value:this.driver.email}),
+      new EmailQuestion({
+        key:"email",
+      label:"email",
+      value:this.driver.email,
+    required:true}),
       new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.driver.address }),
       new SelectorQuestion({
         key: 'vehicle',

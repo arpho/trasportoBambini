@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Studente } from 'src/app/models/studente';
 import { DateQuestion } from 'src/app/modules/dynamic-form/models/question-date';
+import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
 import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
@@ -78,6 +79,11 @@ sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
         key: 'lastName',
         label: 'cognome',
         value: this.student.lastName
+      }), new EmailQuestion({
+        key:"email",
+        label:"email",
+        value:this.student.email,
+        required:true
       }),
       new DateQuestion({
         label:'data di nascita',
