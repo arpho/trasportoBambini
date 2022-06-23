@@ -64,7 +64,7 @@ export class CustomersFactoryService {
 
       }
     }
-    if (!d['userType'] ) {
+    if (d['userType']==undefined ) {
       customer = new Genitore(d)
     }
     return customer
