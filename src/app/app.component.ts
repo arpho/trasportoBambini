@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
     {title:"punti di raccolta", url:"collection-points-list",icon:"location"},
     {title:"Genitori", url:"/parents-list",icon:"body"},
     {title:"Autisti",src:"/assets/icons/driver-svgrepo-com.svg",url:"/drivers",},
-    {title:"Addetti",src:"/assets/icons/clerk.svg",url:"/drivers",}
+    {title:"Addetti",src:"/assets/icons/clerk.svg",url:"/clerks",}
     
   ]}
     
