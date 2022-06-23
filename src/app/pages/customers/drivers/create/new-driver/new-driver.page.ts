@@ -73,6 +73,7 @@ export class NewDriverPage implements OnInit {
     }
     this.driverService.createItem(this.driver).then((result)=>{
       console.log("result",result)
+      DriversService.
       this.toaster.presentToast(`autista ${this.driver.getTitle().value} è stato creato correttamente`)
     }).catch((error)=>{
       this.toaster.presentToast("ho riscontrato un problema nella creazione dell'autista, riprova!");

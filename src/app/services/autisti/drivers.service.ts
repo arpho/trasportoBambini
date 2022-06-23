@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Autista } from 'src/app/models/Addetto';
 import { Driver } from 'src/app/models/Driver';
 import { UserType } from 'src/app/models/usersType';
@@ -17,6 +18,10 @@ export class DriversService extends CustomersService{
     return new Autista()
   }
   driversList:Driver[]= []
+
+  createAuthUser(email: string, password: string): Observable<unknown> {
+    return super.createAuthUser(email,password) 
+  }
 
   constructor(factory:CustomersFactoryService,auth:AuthService) {
     super(factory,auth)
