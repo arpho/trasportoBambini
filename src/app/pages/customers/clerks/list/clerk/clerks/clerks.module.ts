@@ -17,6 +17,6 @@ import { ItemModule } from 'src/app/modules/item/item.module';
     ClerksPageRoutingModule,
     ItemModule
   ],
-  declarations: [ClerksPage]
+  declarations: []
 })
 export class ClerksPageModule {}
