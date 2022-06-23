@@ -99,6 +99,10 @@ pathMatch:'full'},
   {
     path: 'update-driver',
     loadChildren: () => import('./pages/customers/drivers/edit/update-driver/update-driver.module').then( m => m.UpdateDriverPageModule)
+  },
+  {
+    path: 'clerks',
+    loadChildren: () => import('./pages/customers/clerks/list/clerk/clerks/clerks.module').then( m => m.ClerksPageModule)
   }
 ];
 
