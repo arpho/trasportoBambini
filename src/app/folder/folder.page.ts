@@ -11,7 +11,7 @@ import { CustomersFactoryService } from '../services/customers/business/customer
 import { Driver } from '../models/Driver';
 import { Genitore } from '../models/genitore';
 import { Studente } from '../models/studente';
-import { Addetto } from '../models/Addetto';
+import { Clerk } from '../models/Addetto';
 import { UserType } from '../models/usersType';
 import { CustomersService } from '../services/customers/customers.service';
 @Component({
@@ -28,7 +28,7 @@ export class FolderPage implements OnInit {
   loggedDriver: Driver
   loggedParent: Genitore
   loggedStudent: Studente
-  loggedAddetto: Addetto
+  loggedAddetto: Clerk
   showSpinner = true
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -86,7 +86,7 @@ export class FolderPage implements OnInit {
               console.log("logged parent",this.loggedParent)
             }
             if (this.loggedUser.userType == UserType.addetto) {
-              this.loggedAddetto = this.customerFactory.makeCustomer(this.loggedUser) as Addetto
+              this.loggedAddetto = this.customerFactory.makeCustomer(this.loggedUser) as Clerk
             }
 
           }
