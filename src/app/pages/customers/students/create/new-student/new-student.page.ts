@@ -6,6 +6,7 @@ import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-emai
 import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { TextAreaBox } from 'src/app/modules/dynamic-form/models/question-textArea';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
+import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { CreateCollectionPointPage } from 'src/app/pages/collectionPoints/create/create-collection-point/create-collection-point.page';
 import { NuovoVeicoloPage } from 'src/app/pages/Fleet/nuovo-veicolo/nuovo-veicolo.page';
@@ -28,6 +29,7 @@ ItemsFilterFunction = (item: ItemModelInterface) => true
 sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
   constructor(public modalCtrl: ModalController,
     public service:CustomersService,
+    public toaster:MyToastService,
     public schoolService:SchoolsService,
     public vehicleService:VehiclesService,
     public collectionPointsService:CollectionPointsService) { }
@@ -47,8 +49,13 @@ sorterFunction= (a:ItemModelInterface,b:ItemModelInterface)=>{return 0}
     console.log('submit',ev)
     this.student.load(ev)
     console.log('student',this.student)
-    this.service.createItem(this.student).then(data=>{
+    this.service.createItem(this.student).then(async data=>{
       console.log('created',data)
+      const authUser =  this.service.createAuthUser(this.student.email,"Password")
+      authUser.toPromise().then(()=>{
+        this.toaster.presentToast(`lo studente ${this.student.getTitle().value} è stato creato correttamente con password:Password`,"middle",10000)
+
+      })
       result = this.student.setKey(data.key)
 
     }).catch(_error=>{

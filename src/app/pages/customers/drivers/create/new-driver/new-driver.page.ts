@@ -71,10 +71,13 @@ export class NewDriverPage implements OnInit {
     if(ev.vehicle){
       this.driver.vehicle = ev.vehicle
     }
-    this.driverService.createItem(this.driver).then((result)=>{
+    this.driverService.createItem(this.driver).then( (result)=>{
       console.log("result",result)
-      DriversService.
-      this.toaster.presentToast(`autista ${this.driver.getTitle().value} è stato creato correttamente`)
+      const authUser =  this.driverService.createAuthUser(this.driver.email,"Password")
+      authUser.toPromise().then(()=>{
+        this.toaster.presentToast(`autista ${this.driver.getTitle().value} è stato creato correttamente con password:Password`,"middle",10000)
+
+      })
     }).catch((error)=>{
       this.toaster.presentToast("ho riscontrato un problema nella creazione dell'autista, riprova!");
       console.error(error)

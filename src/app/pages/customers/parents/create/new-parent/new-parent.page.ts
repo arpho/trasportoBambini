@@ -36,7 +36,13 @@ export class NewParentPage implements OnInit {
     this.parent.load(ev)
     console.log('submit', ev, this.parent)
 
-    this.service.createItem(this.parent).then(item => {
+    this.service.createItem(this.parent).then( item => {
+
+      const authUser =  this.service.createAuthUser(this.parent.email,"Password")
+      authUser.toPromise().then(()=>{
+        this.toaster.presentToast(`il genitore ${this.parent.getTitle().value} è stato creato correttamente con password:Password`,"middle",10000)
+
+      })
       this.toaster.presentToast('genitore inserito correttamente')
     }).catch(error => {
       console.error(error)
