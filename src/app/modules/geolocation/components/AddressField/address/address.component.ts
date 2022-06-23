@@ -26,7 +26,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 	addressForm
 	disabled = false
 	canGeodecode = false
-	chanGeocodeSubject: BehaviorSubject<boolean> = new BehaviorSubject(false)
+	changeGeocodeSubject: BehaviorSubject<boolean> = new BehaviorSubject(false)
 	showSpinner:BehaviorSubject<boolean>= new BehaviorSubject(false)
 
 	private onChange: Function = (password: string) => { };
@@ -166,7 +166,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
 				number: new FormControl(this.address.number)
 			})
 			this.subscription = this.addressForm.valueChanges.subscribe(d => {
-				this.chanGeocodeSubject.next(!!d['street'] && !!d["city"] && !!d['number'])
+				this.changeGeocodeSubject.next(!!d['street'] && !!d["city"] && !!d['number'])
 				this.markAsTouched()
 				this.onChange(d)
 			})
@@ -186,7 +186,7 @@ export class AddressComponent implements OnInit, ControlValueAccessor, OnDestroy
     this.addressForm.valueChanges.subscribe(val=>{
       console.log("val",val)
       this.markAsTouched()
-      this.chanGeocodeSubject.next(!!val['street'] && !!val["city"] && !!val['number'])
+      this.changeGeocodeSubject.next(!!val['street'] && !!val["city"] && !!val['number'])
       this.onChange(val)
     })
 
