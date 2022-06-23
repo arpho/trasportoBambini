@@ -107,6 +107,10 @@ pathMatch:'full'},
   {
     path: 'update-clerk',
     loadChildren: () => import('./pages/customers/clerks/edit/update-clerk/update-clerk.module').then( m => m.UpdateClerkPageModule)
+  },
+  {
+    path: 'new-clerk',
+    loadChildren: () => import('./pages/customers/clerks/create/new-clerk/new-clerk.module').then( m => m.NewClerkPageModule)
   }
 ];
 
