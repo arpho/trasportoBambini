@@ -71,7 +71,7 @@ export class FolderPage implements OnInit {
         const token = await user.getIdTokenResult(true)
         user["userType"]= token.claims.userType
         user["enabled"] = token.claims.enabled
-      //  this.customers.getItemByEmail(user.email, (user) => {
+        this.customers.getItemByEmail(user.email, (user) => {
           if (user) {
             this.loggedUser = this.customerFactory.makeCustomer(user)
             if (this.loggedUser.userType == UserType.autista) {
@@ -90,7 +90,7 @@ export class FolderPage implements OnInit {
             }
 
           }
-        //})
+        })
         this.showSpinner = false
 
         this.User.getItem
