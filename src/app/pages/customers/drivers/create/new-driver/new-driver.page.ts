@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Driver } from 'src/app/models/Driver';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
+import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
 import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
@@ -24,6 +25,7 @@ export class NewDriverPage implements OnInit {
     [
       new TextboxQuestion({ key: 'firstName', label: 'nome', value: this.driver.firstName }),
       new TextboxQuestion({ key: 'lastName', label: 'Cognome', value: this.driver.lastName }),
+      new EmailQuestion({key:"email",label:"email",value:this.driver.email}),
       new AddressQuestion({ key: 'indirizzo', label: 'indirizzo', value: this.driver.address }),
       new SelectorQuestion({
         key: 'vehicle',
