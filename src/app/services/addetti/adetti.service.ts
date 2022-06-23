@@ -10,7 +10,7 @@ import { VehiclesService } from '../vehicles/vehicles.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AddettiService extends CustomersService {
+export class ClerksService extends CustomersService {
 
   getEmptyItem(): Addetto {
     return new Addetto()

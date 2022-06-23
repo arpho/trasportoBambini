@@ -4,7 +4,7 @@ import { Addetto } from 'src/app/models/Addetto';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
-import {AddettiService} from "../../../../../services/addetti/adetti.service"
+import {ClerksService} from "../../../../../services/addetti/adetti.service"
 
 @Component({
   selector: 'app-new-clerk',
@@ -41,7 +41,7 @@ export class NewClerkPage implements OnInit {
 
   constructor(
     public modalCtrl:ModalController,
-    public service:AddettiService
+    public service:ClerksService
     ) { }
   dismiss(clerk?:Addetto){
     this.modalCtrl.dismiss(clerk)
