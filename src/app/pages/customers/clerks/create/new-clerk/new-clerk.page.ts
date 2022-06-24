@@ -18,7 +18,7 @@ import { FileWatcherEventKind, isJsxOpeningElement } from 'typescript';
 export class NewClerkPage implements OnInit {
 
 
-  clerk = new Clerk({firstName:"joe",lastName:"friend",email:"arpho737@gmail.com"})
+  clerk = new Clerk({ firstName: "joe", lastName: "friend", email: "arpho737@gmail.com" })
   setForm() {
     this.formFields =
       [
@@ -44,33 +44,17 @@ export class NewClerkPage implements OnInit {
     this.clerk.load(ev)
     console.log("submitting", ev)
     console.log("clerk", this.clerk)
-   
-    try {
-     
-      const nonso = await this.service.callCreateAuthUser({email:this.clerk.email,password:configs.standardPassword})
-      console.log("result",nonso)
-      this.clerk.setKey(nonso['data']['uid'])
-      this.clerk.level = Number(configs.accessLevel[0].value) //addetto
-      console.log("done", this.clerk)
-      await this.service.addCustomClaim({
-        email: this.clerk.email,
-        claims: {
-          enabled: true,
-          userType: this.clerk.userType,
-          mustChangePassword:true,
-          role: configs.accessLevel[1].value // utente responsabile
-        }
-      })
-      console.log("set claims")
-      const result = await this.service.createItem(this.clerk)
-      console.log("tutto fatto", result)
-      this.dismiss(this.clerk)
-    }
-    catch (error) {
-      console.error(error)
-      this.toaster.presentToast("ho riscontrato dei problemi tecnici")
-      this.dismiss(this.clerk)
-    }
+
+    this.service.createCustomer(this.clerk,
+      Number(configs.accessLevel[1].value),
+      (result) => {
+        console.log("result", result)
+        this.dismiss(this.clerk)
+      },
+      (err) => {
+        console.error(err)
+        this.dismiss()
+      }, configs.standardPassword)
 
   }
 

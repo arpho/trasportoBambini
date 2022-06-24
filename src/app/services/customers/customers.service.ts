@@ -83,6 +83,32 @@ db:Database
     })
   }
 
+ async createCustomer(customer:Utente,level:number,success:(val)=>void,wrong:(err)=>void,password:string){
+    try {
+     
+      const authUserResult = await this.callCreateAuthUser({email:customer.email,password:password})
+      console.log("result",authUserResult)
+      customer.setKey(authUserResult['data']['uid'])
+      customer.level = Number(level)//configs.accessLevel[0].value) //addetto
+      console.log("done", customer)
+      await this.addCustomClaim({
+        email: customer.email,
+        claims: {
+          enabled: true,
+          userType: customer.userType,
+          mustChangePassword:true,
+          role: level // utente responsabile
+        }
+      })
+      console.log("set claims")
+      const result = await this.createItem(customer)
+     success(result)
+    }
+    catch (error) {
+      wrong(error)
+    }
+  }
+
   // add admin cloud funxction
   adAddminRole(adminEmail:string){
 	  const functions = getFunctions()
