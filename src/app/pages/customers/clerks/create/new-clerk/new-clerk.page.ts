@@ -8,6 +8,7 @@ import { ClerksService } from "../../../../../services/addetti/adetti.service"
 import { configs } from 'src/app/configs/configs';
 import { UserCredential } from 'firebase/auth';
 import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toast-service.service';
+import { FileWatcherEventKind, isJsxOpeningElement } from 'typescript';
 
 @Component({
   selector: 'app-new-clerk',
@@ -17,7 +18,7 @@ import { MyToastService } from 'src/app/modules/helpers/services/toaster/my-toas
 export class NewClerkPage implements OnInit {
 
 
-  clerk = new Clerk()
+  clerk = new Clerk({firstName:"joe",lastName:"friend",email:"arpho737@gmail.com"})
   setForm() {
     this.formFields =
       [
@@ -40,14 +41,15 @@ export class NewClerkPage implements OnInit {
   }
 
   async submit(ev) {
-    ev.email = ev.email.email // emailQuestion encapsulates its value in an object
     this.clerk.load(ev)
     console.log("submitting", ev)
     console.log("clerk", this.clerk)
-    const observer = this.service.createAuthUser(this.clerk.email, configs.standardPassword)
+   
     try {
-      const nonso = await observer.toPromise()
-      this.clerk.setKey(nonso['user']['uid'])
+     
+      const nonso = await this.service.callCreateAuthUser({email:this.clerk.email,password:configs.standardPassword})
+      console.log("result",nonso)
+      this.clerk.setKey(nonso['data']['uid'])
       this.clerk.level = Number(configs.accessLevel[0].value) //addetto
       console.log("done", this.clerk)
       await this.service.addCustomClaim({
