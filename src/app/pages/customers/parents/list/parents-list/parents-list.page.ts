@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserType } from 'src/app/models/usersType';
-import { Utente } from 'src/app/models/Utente';
+import { Customer } from 'src/app/models/Utente';
 import { ParentsService } from 'src/app/services/genitori/parents.service';
 import { NewParentPage } from '../../create/new-parent/new-parent.page';
 import { UpdateParentPage } from '../../edit/update-parent/update-parent.page';
@@ -13,10 +13,10 @@ import { UpdateParentPage } from '../../edit/update-parent/update-parent.page';
 export class ParentsListPage implements OnInit {
   createModalPage = NewParentPage
   editModalPage = UpdateParentPage
-  filterFunction: (utente: Utente) => boolean;
+  filterFunction: (utente: Customer) => boolean;
   ngOnInit(): void {
 
-    this.filterFunction = (utente:Utente)=>{
+    this.filterFunction = (utente:Customer)=>{
       return utente.userType == UserType.genitore
     }
   }

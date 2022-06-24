@@ -5,7 +5,7 @@ import { Clerk, Autista } from 'src/app/models/Addetto';
 import { Genitore } from 'src/app/models/genitore';
 import { Studente } from 'src/app/models/studente';
 import { UserType } from 'src/app/models/usersType';
-import { Utente } from 'src/app/models/Utente';
+import { Customer } from 'src/app/models/Utente';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInterface';
 import { initializeApp, getApp, FirebaseError, } from "firebase/app";
@@ -26,9 +26,9 @@ import { AuthService } from 'src/app/modules/user/services/auth.service';
 })
 export class CustomersService implements ItemServiceInterface {
   itemsListRef: DatabaseReference
-  _items: BehaviorSubject<Array<Utente>> = new BehaviorSubject([]);
-  readonly items: Observable<Array<Utente>> = this._items.asObservable()
-  items_list: Array<Utente> = []
+  _items: BehaviorSubject<Array<Customer>> = new BehaviorSubject([]);
+  readonly items: Observable<Array<Customer>> = this._items.asObservable()
+  items_list: Array<Customer> = []
 reference: string;
 db:Database
 
@@ -61,7 +61,7 @@ db:Database
 
 
       })
-      this.items_list.forEach((user:Utente)=>{
+      this.items_list.forEach((user:Customer)=>{
 
         new PopulateChildren().doitOn(user,this.items_list)
       })
@@ -73,7 +73,7 @@ db:Database
     return this.authService.createUserObserver(email,password)
   }
 
-  getItemByEmail(email:string,next:(item:Utente)=>void){
+  getItemByEmail(email:string,next:(item:Customer)=>void){
     this.items.subscribe(items=>{
       const item = items.filter(Item=>{
         return Item.email==email
@@ -83,7 +83,7 @@ db:Database
     })
   }
 
- async createCustomer(customer:Utente,level:number,success:(val)=>void,wrong:(err)=>void,password:string){
+ async createCustomer(customer:Customer,level:number,success:(val)=>void,wrong:(err)=>void,password:string){
     try {
      
       const authUserResult = await this.callCreateAuthUser({email:customer.email,password:password})
@@ -134,7 +134,7 @@ return	addAdminRole({ email: adminEmail })
 
 
 
-  publishItems(lista: Utente[]) {// must stay inside onValue to update data evry time there is an update
+  publishItems(lista: Customer[]) {// must stay inside onValue to update data evry time there is an update
 
     this._items.next(lista)
 
@@ -157,8 +157,8 @@ return	addAdminRole({ email: adminEmail })
     return set(reference, null)
 
   }
-  getEmptyItem(): Utente {
-    return new Utente()
+  getEmptyItem(): Customer {
+    return new Customer()
   }
   createItem(item: ItemModelInterface) {
    return  push(this.itemsListRef, item.serialize())

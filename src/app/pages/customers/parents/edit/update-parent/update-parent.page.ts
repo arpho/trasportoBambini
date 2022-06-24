@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { Genitore } from 'src/app/models/genitore';
 import { UserType } from 'src/app/models/usersType';
-import { Utente } from 'src/app/models/Utente';
+import { Customer } from 'src/app/models/Utente';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { SelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector';
 import { ListSelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector-list';
@@ -61,7 +61,7 @@ export class UpdateParentPage implements OnInit {
     console.log("editing",this.parent)
     this.title = `modifica ${this.parent.getTitle().value}`
     console.log('parent ',this.parent)
-    const filterStudent = (item:Utente)=>{
+    const filterStudent = (item:Customer)=>{
       return item.userType==UserType.studente
     }
 

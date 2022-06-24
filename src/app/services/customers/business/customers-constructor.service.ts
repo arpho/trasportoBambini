@@ -7,7 +7,7 @@ import { Genitore } from 'src/app/models/genitore';
 import { School } from 'src/app/models/Schools';
 import { Studente } from 'src/app/models/studente';
 import { UserType } from 'src/app/models/usersType';
-import { Utente } from 'src/app/models/Utente';
+import { Customer } from 'src/app/models/Utente';
 import { CollectionPointsService } from '../../collectionPoints/collection-points.service';
 import { SchoolsService } from '../../scuole/schools.service';
 import { VehiclesService } from '../../vehicles/vehicles.service';
@@ -23,8 +23,8 @@ export class CustomersFactoryService {
     public collectionPointsService: CollectionPointsService
   ) { }
 
-  makeCustomer(d: {}): Utente | Studente | Driver | Genitore | Clerk {
-    var customer: Utente | Studente |Genitore
+  makeCustomer(d: {}): Customer | Studente | Driver | Genitore | Clerk {
+    var customer: Customer | Studente |Genitore
     if (d['userType'] == UserType.addetto) {
       customer = new Clerk(d)
   

@@ -5,7 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Observable } from 'rxjs';
 import { UserModel } from '../modules/user/models/userModel';
 import { UsersService } from '../modules/user/services/users.service';
-import { Utente } from '../models/Utente';
+import { Customer } from '../models/Utente';
 import { ShowTrackingComponent } from '../modules/geolocation/components/show-tracking/show-tracking.component';
 import { CustomersFactoryService } from '../services/customers/business/customers-constructor.service';
 import { Driver } from '../models/Driver';
@@ -24,7 +24,7 @@ export class FolderPage implements OnInit {
   public folder: string;
   log = console.log.bind(document)
   latLon: { lat: number, lng: number }
-  loggedUser: Utente = new Utente
+  loggedUser: Customer = new Customer
   loggedDriver: Driver
   loggedParent: Genitore
   loggedStudent: Studente

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { configs } from 'src/app/configs/configs';
-import { Utente } from 'src/app/models/Utente';
+import { Customer } from 'src/app/models/Utente';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { DropdownQuestion } from 'src/app/modules/dynamic-form/models/question-dropdown';
 import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
@@ -17,7 +17,7 @@ import { CustomersService } from 'src/app/services/customers/customers.service';
   styleUrls: ['./edit-customer.page.scss'],
 })
 export class EditCustomerPage implements OnInit {
-  utente: Utente
+  utente: Customer
   title:string
   formFields:any[]
 
@@ -72,7 +72,7 @@ this.toaster.presentToast(successMessage)
 
 
   submit(ev){
-	  let result:Utente
+	  let result:Customer
     this.utente =this.customerFactory.makeCustomer(ev).load(this.utente)
     console.log('submitting',this.utente.serialize(),this.utente)
 	this.service.updateItem(this.utente).then(()=>{

@@ -6,7 +6,7 @@ import { Clerk, Autista } from './Addetto';
 import { Genitore } from './genitore';
 import { Studente } from './studente';
 import { UserType } from './usersType';
-import { Utente } from './Utente';
+import { Customer } from './Utente';
 
 
 describe('testing users class', () => {
@@ -16,7 +16,7 @@ describe('testing users class', () => {
     telephones: [{ numero: '1', note: 'test' }, { numero: '2', note: 'test1' }]
   }
 
-  const user = new Utente(data_no_key)
+  const user = new Customer(data_no_key)
   it('user intantiated correctly withouth key', () => {
     expect(user['firstName']).toEqual(data_no_key.firstName)
     expect(user['lastName']).toEqual(data_no_key.lastName)
@@ -26,7 +26,7 @@ describe('testing users class', () => {
     expect(user.dor).toBeDefined()
     expect(user.dor).toBeInstanceOf(DateModel)
     expect(user.dor.day).toEqual(data_no_key.dor.day)
-    expect(new Utente().dor.day).toEqual(new Date().getDate())
+    expect(new Customer().dor.day).toEqual(new Date().getDate())
     expect(user.telephones.length).toEqual(2)
     expect(user.telephones[0].numero).toEqual('1')
     expect(user.telephones[0].note).toEqual('test')
@@ -37,13 +37,13 @@ describe('testing users class', () => {
   })
   it('seialize key', () => {
 
-    const user = new Utente({ key: 'key' })
+    const user = new Customer({ key: 'key' })
     expect(user.key).toEqual('key')
     expect(user.serialize()['key']).toEqual('key')
   })
   it('serialize and load addresss', () => {
     const data = { address: { street: 'via e cosenz', cap: '20158', city: 'milano', province: 'mi', number: '54', latitude: 5, longitude: 4 } }
-    const user = new Utente(data)
+    const user = new Customer(data)
     expect(user.address).toBeInstanceOf(Address)
     expect(user.address.latitude).toEqual(data.address.latitude)
     expect(user.address.longitude).toEqual(data.address.longitude)

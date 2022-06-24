@@ -9,7 +9,7 @@ import { UserTypeModel } from "../modules/user/models/UserTypeModel"
 import { RoleModel } from "../modules/user/models/privilegesLevelModel"
 import { Serializers } from "../modules/helpers/serializers"
 
-export class Utente extends UserModel {
+export class Customer extends UserModel {
     address: Address
     userType: UserType
     telephones: Array<Telephone> = []

@@ -1,9 +1,9 @@
 import { Serializers } from "../modules/helpers/serializers";
 import { UserType } from "./usersType";
-import { Utente } from "./Utente";
+import { Customer } from "./Utente";
 import { Vehicle } from "./vehicle";
 
-export class Driver extends Utente {
+export class Driver extends Customer {
   busKey: string
   vehicleKey: string
   private _vehicle: Vehicle

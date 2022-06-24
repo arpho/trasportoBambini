@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserType } from 'src/app/models/usersType';
-import { Utente } from 'src/app/models/Utente';
+import { Customer } from 'src/app/models/Utente';
 import { TextboxQuestion } from 'src/app/modules/dynamic-form/models/question-textbox';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { CustomersService } from 'src/app/services/customers/customers.service';
@@ -23,7 +23,7 @@ export class StudentsPage implements OnInit {
 
   ngOnInit() {
 
-    this.filterFunction = (utente:Utente)=>{
+    this.filterFunction = (utente:Customer)=>{
       return utente.userType == UserType.studente
     }
     this.filterFields = [

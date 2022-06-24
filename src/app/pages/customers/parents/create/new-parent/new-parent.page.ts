@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Genitore } from 'src/app/models/genitore';
 import { UserType } from 'src/app/models/usersType';
-import { Utente } from 'src/app/models/Utente';
+import { Customer } from 'src/app/models/Utente';
 import { AddressQuestion } from 'src/app/modules/dynamic-form/models/question-address';
 import { EmailQuestion } from 'src/app/modules/dynamic-form/models/question-email';
 import { ListSelectorQuestion } from 'src/app/modules/dynamic-form/models/question-selector-list';
@@ -60,7 +60,7 @@ export class NewParentPage implements OnInit {
   }
 
   ngOnInit() {
-     const filterStudent = (item:Utente)=>{
+     const filterStudent = (item:Customer)=>{
     return item.userType==UserType.studente
   }
 

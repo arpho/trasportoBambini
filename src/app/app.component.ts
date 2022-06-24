@@ -3,7 +3,7 @@ import {initializeApp} from "firebase/app"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { BehaviorSubject } from "rxjs";
 import {configs} from "./configs/credentials"
-import { Utente } from "./models/Utente";
+import { Customer } from "./models/Utente";
 import { CustomersService } from "./services/customers/customers.service";
 import { Router } from '@angular/router';
 @Component({

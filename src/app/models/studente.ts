@@ -4,10 +4,10 @@ import { DateModel } from "../modules/user/models/birthDateModel"
 import { CollectionPoint } from "./collectionPoints"
 import { School } from "./Schools"
 import { UserType } from "./usersType"
-import { Utente } from "./Utente"
+import { Customer } from "./Utente"
 import { Vehicle } from "./vehicle"
 
-export class Studente extends Utente {
+export class Studente extends Customer {
 
   genitoriId: Array<string>
   collectionPointKey: string

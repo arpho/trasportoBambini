@@ -7,7 +7,7 @@ import { QuickAction } from "../modules/item/models/QuickAction";
 import { Value } from "../modules/item/models/value";
 import { UserModel } from "../modules/user/models/userModel";
 import { UserType } from "./usersType";
-import { Utente } from "./Utente";
+import { Customer } from "./Utente";
 
 
 

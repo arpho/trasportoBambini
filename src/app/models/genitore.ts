@@ -3,9 +3,9 @@ import { Address } from "../modules/geolocation/models/Address";
 import { Serializers } from "../modules/helpers/serializers";
 import { Studente } from "./studente";
 import { UserType } from "./usersType";
-import { Utente } from "./Utente";
+import { Customer } from "./Utente";
 
-export class Genitore extends Utente {
+export class Genitore extends Customer {
   childrenKeys: Array<string>
   _children: Array<Studente>
   userType = UserType.genitore
