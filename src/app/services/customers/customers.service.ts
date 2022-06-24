@@ -99,6 +99,12 @@ return	addAdminRole({ email: adminEmail })
 	return addCustomClaims({email: data.email, claims: data.claims})
  }
 
+ callCreateAuthUser(data:{email:string,password:string}){
+  const functions = getFunctions()
+  const createsAuthUser = httpsCallable(functions,"createsAuthUser")
+  return createsAuthUser(data)
+ }
+
 
 
 
