@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import {initializeApp} from "firebase/app"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { BehaviorSubject } from "rxjs";
 import {configs} from "./configs/credentials"
-import { Customer } from "./models/Utente";
 import { CustomersService } from "./services/customers/customers.service";
 import { Router } from '@angular/router';
+
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -23,6 +23,29 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     const app = initializeApp(configs.firebase)
+    const messaging = getMessaging(app);
+// receive message from sw
+    navigator.serviceWorker.addEventListener('message', function(event) {
+      console.log('Received a message from service worker: ', event.data);
+      });
+    Notification.requestPermission().then((permission)=>{
+      console.log("permission:",permission)
+      if(permission=="granted"){
+        console.log("permission granted")
+      }
+    getToken(messaging,{vapidKey:configs.vapidKey}).then((currentToken)=>{
+      if(currentToken){
+        console.log("current token",currentToken)
+      }
+      else{
+        console.log("no token")
+      }
+     onMessage(messaging,(payload)=>{
+      console.log("received ",payload)
+     })
+    })
+
+    })
     const auth = getAuth()
     onAuthStateChanged(auth,async (user)=>{
 
