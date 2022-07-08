@@ -7,6 +7,8 @@ import { UserModel } from "../models/userModel";
 import { ItemModelInterface } from "../../item/models/itemModelInterface";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { getFunctions, httpsCallable } from "firebase/functions";
+import { initializeApp } from "firebase/app";
+import { configs } from "src/app/configs/credentials";
 
 @Injectable({
   providedIn: "root"
@@ -23,6 +25,8 @@ export class UsersService implements ItemServiceInterface, OnInit {
 static loggedUser:UserModel
 db
   constructor() {
+
+    const app = initializeApp(configs.firebase)
     this.db = getDatabase()
     this.itemsListReference = ref(this.db)//,"/userProfile");
     this.loadDataAndPublish()
@@ -98,6 +102,11 @@ console.error(error);
 
   }
 
+  setToken(data:{userKey:string,token: string, timestamp:number}){
+    const itemRef = ref(this.db,"fcmToken")
+    return push(itemRef,data)
+  }
+
   setLoggedUser(user: ItemModelInterface) {
     console.log('setting user', user)
     this._loggedUser.next(new UserModel(user, user['uid']));
@@ -119,7 +128,7 @@ console.error(error);
   createItem(item: ItemModelInterface) {
 
     const itemRef = ref(this.db,this.reference)
-    return push(item.serialize());
+    return push(itemRef, item.serialize());
   }
 
   getEntitiesList(): DatabaseReference{

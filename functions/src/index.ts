@@ -56,19 +56,3 @@ exports.createsAuthUser = functions.https.onCall((data:{
   return createAuthUser(data.email, data.password);
 });
 
-exports.setToken = functions.https.onCall((data:{
-  userKey:string,
-    token:string,
-    timestamp:number
-  })=>{
-  const reference ="fcmToken";
-  db.ref(reference).push(data).then(()=>{
-    return {
-      "message":
-       `aggiunto token per utente ${data.userKey}`,
-    };
-  }).catch((err)=>{
-    return {error: err};
-  });
-});
-
