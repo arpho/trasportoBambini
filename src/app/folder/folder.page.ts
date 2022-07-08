@@ -95,8 +95,8 @@ export class FolderPage implements OnInit {
 
         this.User.getItem
         console.log('token.claims', token.claims)
-        const test = Number(token.claims.userType)
-        console.log("logged a",UserType[test])
+        const userTypeKey = Number(token.claims.userType)
+        console.log("logged as",UserType[userTypeKey])
       }
       else {
         this.log('no user')
