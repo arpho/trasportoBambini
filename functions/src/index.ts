@@ -67,6 +67,8 @@ exports.setToken = functions.https.onCall((data:{
       "message":
        `aggiunto token per utente ${data.userKey}`,
     };
+  }).catch((err)=>{
+    return {error:err}
   });
 });
 
