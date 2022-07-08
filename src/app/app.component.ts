@@ -6,6 +6,7 @@ import { CustomersService } from "./services/customers/customers.service";
 import { Router } from '@angular/router';
 
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { UsersService } from "./modules/user/services/users.service";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -15,8 +16,10 @@ export class AppComponent implements OnInit {
 
  
   public appPages =[]
+  private data4Token= {userKey:"",token:"",timestamp:0}
   app = initializeApp(configs.firebase)
   constructor(
+    public users:UsersService,
     public customers:CustomersService,
     public router:Router) {
  
@@ -36,6 +39,8 @@ export class AppComponent implements OnInit {
     getToken(messaging,{vapidKey:configs.vapidKey}).then((currentToken)=>{
       if(currentToken){
         console.log("current token",currentToken)
+        this.data4Token.timestamp= Date.now()
+        this.data4Token.token=currentToken
       }
       else{
         console.log("no token")
@@ -47,11 +52,20 @@ export class AppComponent implements OnInit {
 
     })
     const auth = getAuth()
+
+    
     onAuthStateChanged(auth,async (user)=>{
 
       if( user){
         const token = await user.getIdTokenResult(true)
         console.log("user ok è",user)
+        this.data4Token.userKey = user.uid
+        if(this.data4Token.userKey&&this.data4Token.token&&this.data4Token.timestamp){
+          console.log("setting token",this.data4Token)
+          this.users.setToken(this.data4Token).then(result=>{
+            console.log("token set",result);
+          }).catch(err=>{console.log("errore setting token",err)})
+        }
         console.log("token.claims",token.claims)
           if(user){
         const token = await user.getIdTokenResult(true)
