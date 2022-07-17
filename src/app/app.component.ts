@@ -36,6 +36,11 @@ export class AppComponent implements OnInit {
       if(permission=="granted"){
         console.log("permission granted")
       }
+      navigator.serviceWorker.register("./firebase-messaging-sw.js").then((sw)=>{
+        console.log("wow sw registered",sw)
+      }).catch((err)=>{
+        console.log("prolbem with sw",err)
+      })
     getToken(messaging,{vapidKey:configs.vapidKey}).then((currentToken)=>{
       if(currentToken){
         console.log("current token",currentToken)
