@@ -56,3 +56,21 @@ exports.createsAuthUser = functions.https.onCall((data:{
   return createAuthUser(data.email, data.password);
 });
 
+export const sedNotification = functions.https.onCall(
+    async (data, context)=>{
+      const payload = {
+        token: data.token,
+        notification: {
+          title: data.title,
+          body: data.message,
+        },
+        data: {
+          body: data,
+        },
+      };
+      await admin.messaging().send(payload).then(()=>{
+        return {success: data};
+      }).catch((error)=>{
+        return {error: error};
+      });
+    });
