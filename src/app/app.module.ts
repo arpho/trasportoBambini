@@ -79,6 +79,7 @@ import { AngularFireMessagingModule } from '@angular/fire/compat/messaging/';
     DynamicFormModule,
     GeolocationModule,
     UserModule,
+    ServiceWorkerModule.register("firebase-messaging-sw.js"),
     AgmCoreModule.forRoot({apiKey: credentials.google.api_key}),
 /*     ServiceWorkerModule.register('./ngsw-worker.js', {
       enabled: true,
