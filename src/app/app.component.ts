@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { UsersService } from "./modules/user/services/users.service";
+import { MessagingService } from "./services/fcm/messaging.service";
+import { AlertController } from "@ionic/angular";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -18,10 +20,13 @@ export class AppComponent implements OnInit {
   public appPages =[]
   private data4Token= {userKey:"",token:"",timestamp:0}
   app = initializeApp(credentials.firebase)
+  token=""
   constructor(
-    public users:UsersService,
-    public customers:CustomersService,
-    public router:Router) {
+    private users:UsersService,
+    private customers:CustomersService,
+    private alertCtrl:AlertController,
+    private router:Router,
+    private messagingService:MessagingService) {
  
   }
   ngOnInit(): void {
@@ -36,14 +41,24 @@ export class AppComponent implements OnInit {
       if(permission=="granted"){
         console.log("permission granted")
       }
-      navigator.serviceWorker.register("./firebase-messaging-sw.js").then((sw)=>{
+     /*  navigator.serviceWorker.register("firebase-messaging-sw.js").then((sw)=>{
         console.log("wow sw registered",sw)
       }).catch((err)=>{
         console.log("prolbem with sw",err)
-      })
+      }) */
     getToken(messaging,{vapidKey:credentials.vapidKey}).then((currentToken)=>{
       if(currentToken){
         console.log("current token",currentToken)
+        this.token= currentToken
+        this.messagingService.getMessages().subscribe(async (msg:any) => {
+          const alert = await this.alertCtrl.create({
+            header: msg.notification.title,
+            subHeader: msg.notification.body,
+            message: msg.data.info,
+            buttons: ['OK'],
+          });
+          await alert.present();
+        })
         this.data4Token.timestamp= Date.now()
         this.data4Token.token=currentToken
       }
@@ -105,5 +120,18 @@ export class AppComponent implements OnInit {
 
       
  
+}
+sendNotification(){
+  const payload={
+    title:"test",
+    token:this.token,
+    message:"questo è un test"
+  }
+  this.messagingService.pushNotification(payload).then(result=>{
+    console.log("result",result)
+  }).catch(err=>{
+    console.log("error",err)
+  })
+
 }
 }
