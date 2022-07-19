@@ -18,7 +18,7 @@ import { NewSchoolPageModule } from './pages/schools/inserisciScuola/new-school/
 import { UpdateSchoolPage } from './pages/schools/modificaScuola/update-school/update-school.page';
 import { NewSchoolPage } from './pages/schools/inserisciScuola/new-school/new-school.page';
 import { AgmCoreModule } from '@agm/core';
-import { configs } from './configs/credentials';
+import { credentials } from './configs/credentials';
 import { NewStudentPage } from './pages/customers/students/create/new-student/new-student.page';
 import { UpdateStudentPage } from './pages/customers/students/edit/update-student/update-student.page';
 import { CreateCollectionPointPage } from './pages/collectionPoints/create/create-collection-point/create-collection-point.page';
@@ -39,7 +39,8 @@ import { ParentsViewComponent } from './components/parents-view/parents-view.com
 import { ClerksPage } from './pages/customers/clerks/list/clerk/clerks/clerks.page';
 import { NewClerkPage } from './pages/customers/clerks/create/new-clerk/new-clerk.page';
 import { UpdateClerkPage } from './pages/customers/clerks/edit/update-clerk/update-clerk.page';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging/';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,8 @@ import { UpdateClerkPage } from './pages/customers/clerks/edit/update-clerk/upda
   ],
   entryComponents: [],
   imports: [
+    AngularFireModule.initializeApp(credentials.firebase),
+    AngularFireMessagingModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
@@ -76,14 +79,14 @@ import { UpdateClerkPage } from './pages/customers/clerks/edit/update-clerk/upda
     DynamicFormModule,
     GeolocationModule,
     UserModule,
-    AgmCoreModule.forRoot({apiKey: configs.google.api_key}),
+    AgmCoreModule.forRoot({apiKey: credentials.google.api_key}),
 /*     ServiceWorkerModule.register('./ngsw-worker.js', {
       enabled: true,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerImmediately'
     }), */
-    AgmCoreModule.forRoot({apiKey:configs.google.api_key,
+    AgmCoreModule.forRoot({apiKey:credentials.google.api_key,
     libraries:['places']})
   ],
   providers: [

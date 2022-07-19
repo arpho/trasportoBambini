@@ -13,7 +13,7 @@ import firebase from 'firebase/compat/app';
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { MyItemComponent } from 'src/app/modules/item/components/item/item.component';
 import { MyFirebaseHelper } from 'src/app/modules/helpers/createFirebaseApp';
-import {configs} from '../../configs/credentials'
+import {credentials} from '../../configs/credentials'
 import { VehiclesService } from '../vehicles/vehicles.service';
 import { DriverFactory } from 'src/app/businessLogic/DriverFactory';
 import { Driver } from 'src/app/models/Driver';
@@ -36,7 +36,7 @@ db:Database
     public customersFactory:CustomersFactoryService,
     public authService:AuthService
     ) {
-    new MyFirebaseHelper().createFirebaseApp(configs.firebase)
+    new MyFirebaseHelper().createFirebaseApp(credentials.firebase)
     this.reference = 'userProfile'
     this.db = getDatabase()
 

@@ -8,7 +8,7 @@ import { ItemModelInterface } from "../../item/models/itemModelInterface";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { getFunctions, httpsCallable } from "firebase/functions";
 import { initializeApp } from "firebase/app";
-import { configs } from "src/app/configs/credentials";
+import { credentials } from "src/app/configs/credentials";
 
 @Injectable({
   providedIn: "root"
@@ -26,7 +26,7 @@ static loggedUser:UserModel
 db
   constructor() {
 
-    const app = initializeApp(configs.firebase)
+    const app = initializeApp(credentials.firebase)
     this.db = getDatabase()
     this.itemsListReference = ref(this.db)//,"/userProfile");
     this.loadDataAndPublish()

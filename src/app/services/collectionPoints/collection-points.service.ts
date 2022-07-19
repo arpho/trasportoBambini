@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Database, DatabaseReference, getDatabase, onValue, push, ref, set } from 'firebase/database';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { configs } from 'src/app/configs/credentials';
+import { credentials } from 'src/app/configs/credentials';
 import { CollectionPoint } from 'src/app/models/collectionPoints';
 import { Vehicle } from 'src/app/models/vehicle';
 import { MyFirebaseHelper } from 'src/app/modules/helpers/createFirebaseApp';
@@ -27,7 +27,7 @@ db:Database
 
   constructor() 
     {
-      new MyFirebaseHelper().createFirebaseApp(configs.firebase)
+      new MyFirebaseHelper().createFirebaseApp(credentials.firebase)
       this.reference = 'collectionPoints'
       this.db = getDatabase() 
       this.itemsListRef = ref(this.db, this.reference)

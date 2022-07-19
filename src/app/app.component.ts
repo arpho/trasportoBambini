@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import {initializeApp} from "firebase/app"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {configs} from "./configs/credentials"
+import {credentials} from "./configs/credentials"
 import { CustomersService } from "./services/customers/customers.service";
 import { Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
  
   public appPages =[]
   private data4Token= {userKey:"",token:"",timestamp:0}
-  app = initializeApp(configs.firebase)
+  app = initializeApp(credentials.firebase)
   constructor(
     public users:UsersService,
     public customers:CustomersService,
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
  
   }
   ngOnInit(): void {
-    const app = initializeApp(configs.firebase)
+    const app = initializeApp(credentials.firebase)
     const messaging = getMessaging(app);
 // receive message from sw
     navigator.serviceWorker.addEventListener('message', function(event) {
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
       }).catch((err)=>{
         console.log("prolbem with sw",err)
       })
-    getToken(messaging,{vapidKey:configs.vapidKey}).then((currentToken)=>{
+    getToken(messaging,{vapidKey:credentials.vapidKey}).then((currentToken)=>{
       if(currentToken){
         console.log("current token",currentToken)
         this.data4Token.timestamp= Date.now()

@@ -5,7 +5,7 @@ import { BusRide } from 'src/app/models/busRide';
 import { MyFirebaseHelper } from 'src/app/modules/helpers/createFirebaseApp';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInterface';
-import {configs} from '../../configs/credentials'
+import {credentials} from '../../configs/credentials'
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ import {configs} from '../../configs/credentials'
 export class BusRideServiceService implements ItemServiceInterface {
 
   constructor() { 
-    new MyFirebaseHelper().createFirebaseApp(configs.firebase)
+    new MyFirebaseHelper().createFirebaseApp(credentials.firebase)
     this.db = getDatabase()
 
 

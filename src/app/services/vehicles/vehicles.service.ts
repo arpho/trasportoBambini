@@ -6,7 +6,7 @@ import { Vehicle } from 'src/app/models/vehicle';
 import { ReferenceFactory } from 'src/app/modules/helpers/makeReference';
 import { ItemModelInterface } from 'src/app/modules/item/models/itemModelInterface';
 import { ItemServiceInterface } from 'src/app/modules/item/models/ItemServiceInterface';
-import { configs } from 'src/app/configs/credentials';
+import { credentials } from 'src/app/configs/credentials';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class VehiclesService implements ItemServiceInterface {
   readonly items: Observable<Vehicle[]> = this._items.asObservable()
 
   constructor() { 
-    initializeApp(configs.firebase)
+    initializeApp(credentials.firebase)
     this.db= getDatabase()
     this.itemsListRef = ref(this.db, this.reference)
     this.loadDataAndPublish()
