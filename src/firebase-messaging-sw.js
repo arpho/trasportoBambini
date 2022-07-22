@@ -1,9 +1,10 @@
 const { FirebaseError } = require("firebase/app")
 import * as firebase from firebase
-import {configs} from "./app/configs/credentials"
+import {configs as credentials} from "./app/configs/credentials"
+credentials = require("./app/configs/credentials").credentials
 importScripts('https://www.gstatic.com/firebasewjs/9.6.7/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasewjs/9.6.7/firebase-messaging.js')
-firebase.initializeApp(configs.firebase)
+firebase.initializeApp(credentials.firebase)
 const messaging = firebase.messaging()
 messaging.setBackgroundMessageHandler(payload=>{
   console.log("background message",payload);
