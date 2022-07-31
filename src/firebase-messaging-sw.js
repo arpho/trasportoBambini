@@ -1,10 +1,16 @@
-const { FirebaseError } = require("firebase/app")
-import * as firebase from firebase
-import {configs as credentials} from "./app/configs/credentials"
-credentials = require("./app/configs/credentials").credentials
-importScripts('https://www.gstatic.com/firebasewjs/9.6.7/firebase-app.js')
-importScripts('https://www.gstatic.com/firebasewjs/9.6.7/firebase-messaging.js')
-firebase.initializeApp(credentials.firebase)
+
+importScripts("https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js")
+importScripts('https://www.gstatic.com/firebasejs/9.6.7/firebase-messaging-compat.js')
+firebase.initializeApp({
+  apiKey: "AIzaSyDwMP1toW3zPXPSXQhpjHWVjMf3JXL9Izk",
+  authDomain: "trasportostudenti-bc19c.firebaseapp.com",
+  projectId: "trasportostudenti-bc19c",
+  storageBucket: "trasportostudenti-bc19c.appspot.com",
+  messagingSenderId: "813391950081",
+  appId: "1:813391950081:web:54cb8726ce802935cc2b00",
+  measurementId: "G-4T3GBJ05WS",
+  databaseURL: "https://trasportostudenti-bc19c-default-rtdb.europe-west1.firebasedatabase.app"
+})
 const messaging = firebase.messaging()
 messaging.setBackgroundMessageHandler(payload=>{
   console.log("background message",payload);

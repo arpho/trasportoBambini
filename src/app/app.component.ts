@@ -9,13 +9,14 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { UsersService } from "./modules/user/services/users.service";
 import { MessagingService } from "./services/fcm/messaging.service";
 import { AlertController } from "@ionic/angular";
+import { SwPush } from "@angular/service-worker";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
-
+  readonly VAPID_PUBLIC_KEY = credentials.vapidKey
  
   public appPages =[]
   private data4Token= {userKey:"",token:"",timestamp:0}
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
     private customers:CustomersService,
     private alertCtrl:AlertController,
     private router:Router,
+    private swPush: SwPush,
     private messagingService:MessagingService) {
  
   }
@@ -95,12 +97,6 @@ export class AppComponent implements OnInit {
       }else{
         this.router.navigate(["/users/login"])
       }
-
-
-
-
-
-     
 			if(token.claims.enabled)
          {  this.appPages= [   { title: "utenti", url: "/customers", icon: "people" },
           { title: "pulmini", url: "/flotta", icon: "bus" },
@@ -110,16 +106,15 @@ export class AppComponent implements OnInit {
     {title:"Genitori", url:"/parents-list",icon:"body"},
     {title:"Autisti",src:"/assets/icons/driver-svgrepo-com.svg",url:"/drivers",},
     {title:"Addetti",src:"/assets/icons/clerk.svg",url:"/clerks",}
-    
   ]}
-    
-		  
-		
 	  }
 	})
-
-      
- 
+}
+subscribeToNotifications(){
+  console.log("subscription")
+  this.swPush.requestSubscription({serverPublicKey:this.VAPID_PUBLIC_KEY})
+  .then(sub => {console.log("subscription",sub)})
+  .catch(err => console.error("Could not subscribe to notifications", err));
 }
 sendNotification(){
   const payload={
@@ -129,9 +124,10 @@ sendNotification(){
   }
   this.messagingService.pushNotification(payload).then(result=>{
     console.log("result",result)
-  }).catch(err=>{
+    console.log(JSON.parse(result.data['data']))
+  }).catch((err,)=>{
+    console.log("non va")
     console.log("error",err)
   })
-
 }
 }

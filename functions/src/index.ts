@@ -57,19 +57,10 @@ exports.createsAuthUser = functions.https.onCall((data:{
 });
 
 export const sendNotification = functions.https.onCall(
-    async (data, context)=>{
-      const payload = {
-        token: data.token,
-        notification: {
-          title: data.title,
-          body: data.message,
-        },
-        data: {
-          body: data,
-        },
-      };
-      await admin.messaging().send(payload).then(()=>{
-        return {success: data};
+    async (data)=>{
+      const payload = JSON.parse(data);
+      return admin.messaging().send(payload).then(()=>{
+        return {result: JSON.stringify(payload)};
       }).catch((error)=>{
         return {error: error,
           data: data};

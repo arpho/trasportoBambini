@@ -10,22 +10,22 @@ import { credentials } from '../../configs/credentials';
 })
 export class MessagingService {
   token = null;
-  
-  constructor(private afMessaging: AngularFireMessaging) {}
+
+  constructor(private afMessaging: AngularFireMessaging) { }
 
   requestPermission() {
-this.afMessaging.requestToken
-const app = initializeApp(credentials.firebase)
-const messaging = getMessaging(app);
-return getToken(messaging,{vapidKey:credentials.vapidKey})
-    
-    
+    this.afMessaging.requestToken
+    const app = initializeApp(credentials.firebase)
+    const messaging = getMessaging(app);
+    return getToken(messaging, { vapidKey: credentials.vapidKey })
+
+
   }
- 
+
   getMessages() {
     return this.afMessaging.messages;
   }
- 
+
   deleteToken() {
     if (this.token) {
       this.afMessaging.deleteToken(this.token);
@@ -35,24 +35,34 @@ return getToken(messaging,{vapidKey:credentials.vapidKey})
 
   requestToken(): void {
     this.afMessaging.requestToken.subscribe({
-        next: token => {
-          // Upload the user FCM token to your server.
-        },
-        error: err => {
-          console.log("error",err)
-          console.error('Fetching FCM token failed: ', +err)
-        }
+      next: token => {
+        // Upload the user FCM token to your server.
+      },
+      error: err => {
+        console.log("error", err)
+        console.error('Fetching FCM token failed: ', +err)
+      }
     })
-}
+  }
 
 
-pushNotification(data:{
-  title:string,
-  token:string,
-  message:string
-}){
-  return httpsCallable(getFunctions(),"sendNotification")(data)
+  pushNotification(data: {
+    title: string,
+    token: string,
+    message: string
+  }) {
+    const payload = {
+      title: data.title,
+      token: data.token,
+      message: data.message
+    }
+    console.log("payload to send", payload)
+    return httpsCallable(getFunctions(), "sendNotification")(JSON.stringify({
+      title: data.title,
+      token: data.token,
+      message: data.message
+    }))
 
-}
+  }
 
 }
